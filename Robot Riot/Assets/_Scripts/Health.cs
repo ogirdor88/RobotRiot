@@ -1,16 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    //What health the player should start with
     [SerializeField] private int _startHealth;
+
+    //Players current health
     [SerializeField] private int _currentHealth;
-    [SerializeField] private int _healthPack;
+
+    // Players health slider
+    [SerializeField] private Slider _healthSlider;
+
+    [SerializeField] private Weapons _weaponsObjects;
+
+    [SerializeField] private int damage;
 
     private void Awake()
     {
-        _healthPack = _startHealth;
+        //set Players health to max
         _currentHealth = _startHealth;
     }
 
@@ -19,11 +29,24 @@ public class Health : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            _currentHealth = _startHealth;
-        }
+        damage = _weaponsObjects.weaponDmage;
+        Debug.Log(_currentHealth);
+        Debug.Log(damage);
     }
+
+    private void FixedUpdate()
+    {
+        //sets slider to the players health
+        _healthSlider.value = _currentHealth;
+
+        TakeDamage();
+    }
+
+    private void TakeDamage()
+    {
+        _currentHealth -= damage;
+    }
+
 }
