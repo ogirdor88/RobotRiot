@@ -7,22 +7,26 @@ using UnityEngine;
 // Simple menus should be operated here.
 public class Menus : MonoBehaviour
 {
-    public bool debugOnly = false;
+    // Old version of debug menu
+    //public bool debugOnly = false;
 
     // Polish this stuff later
     public GameObject credits;
     public GameObject menu;
+    public GameObject settings;
+    public GameObject debug;
 
     private void Start()
     {
-        if (debugOnly)
-            if (Application.isEditor || Debug.isDebugBuild)
-            {
-                // Should make menu / hud viewable if in editor (easier testing)
-                Debug.Log("Is in editor");
-            }
-            else
-                Debug.Log("Not in editor");
+        //if (debugOnly)
+        if (Application.isEditor || Debug.isDebugBuild)
+        {
+            // Should make menu / hud viewable if in editor (easier testing)
+            Debug.Log("Is in editor");
+            debug.SetActive(true);
+        }
+        else
+            Debug.Log("Not in editor");
     }
 
     //
@@ -66,6 +70,7 @@ public class Menus : MonoBehaviour
 
     // Open the credits
     // As it appears at the end of the game, it will probably take you back to the main menu scene.
+    // Will adjust later if needed.
     public void Credits()
     {
         //Temporarily put functions that might be used for Credits here
