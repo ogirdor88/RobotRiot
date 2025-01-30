@@ -80,6 +80,33 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dc1896e-7cbc-461b-9af7-e421ab8cb5bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""Button"",
+                    ""id"": ""3878b9c0-2286-4e45-9297-6ab1b603dbc8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BoostStop"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c6b55c4-eab5-421d-875b-ed0ac3cba654"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -184,6 +211,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""604ff658-b2ff-4d1f-af60-8976dc9ef906"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Transform"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4554a12b-be88-4b9a-8478-541e48d31bde"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -208,7 +246,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""4d1da8ca-6c5c-4e10-9c88-aec87bb47a4d"",
                     ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Boost"",
@@ -219,7 +257,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""aca6b102-168b-49da-bbf3-d85bb898576f"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Boost"",
@@ -247,6 +285,116 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""DeployTraps"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a736529-d927-4d33-85c9-448ffcecbc5d"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ad71d78-ac3a-47de-b615-87977c9135b9"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Controller"",
+                    ""id"": ""b42acca1-26f1-430f-bd63-1f25225314b0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""62bfe3f2-4192-4c26-8ca6-fbb9f1a89c7d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""d8604757-4828-488a-8163-f6b2eca3bd35"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""id"": ""16c93d3e-c8ff-46b3-a45a-df1fab0c4663"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7878281b-b175-46aa-905c-aba6e843c6c9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1d1be6ca-2413-4ddb-803e-2cd5830848f7"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5abe6fe6-0928-4856-847c-00c47a630458"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BoostStop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8887a221-e727-4050-b3ea-187d29a4ce84"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BoostStop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -261,6 +409,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
         m_Player_DeployTraps = m_Player.FindAction("DeployTraps", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
+        m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +479,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Boost;
     private readonly InputAction m_Player_DeployTraps;
+    private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_Scroll;
+    private readonly InputAction m_Player_BoostStop;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -338,6 +492,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputAction @DeployTraps => m_Wrapper.m_Player_DeployTraps;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
+        public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +522,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DeployTraps.started += instance.OnDeployTraps;
             @DeployTraps.performed += instance.OnDeployTraps;
             @DeployTraps.canceled += instance.OnDeployTraps;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
+            @BoostStop.started += instance.OnBoostStop;
+            @BoostStop.performed += instance.OnBoostStop;
+            @BoostStop.canceled += instance.OnBoostStop;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -387,6 +553,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DeployTraps.started -= instance.OnDeployTraps;
             @DeployTraps.performed -= instance.OnDeployTraps;
             @DeployTraps.canceled -= instance.OnDeployTraps;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
+            @BoostStop.started -= instance.OnBoostStop;
+            @BoostStop.performed -= instance.OnBoostStop;
+            @BoostStop.canceled -= instance.OnBoostStop;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -412,5 +587,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnDeployTraps(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+        void OnBoostStop(InputAction.CallbackContext context);
     }
 }
