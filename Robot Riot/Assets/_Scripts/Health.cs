@@ -62,6 +62,11 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.tag == "Healthpack")
+        {
+            _currentHealth = _startHealth;
+            Destroy(other.gameObject);
+            _healthSlider.value = _currentHealth;
+        }
     }
 }
