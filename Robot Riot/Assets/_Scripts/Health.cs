@@ -14,9 +14,10 @@ public class Health : MonoBehaviour
     // Players health slider
     [SerializeField] private Slider _healthSlider;
 
+    // Weapons
     [SerializeField] private Weapons _weaponsObjects;
 
-    [SerializeField] private int damage;
+    [SerializeField] private int _weaponDamage;
 
     private void Awake()
     {
@@ -26,27 +27,41 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        damage = _weaponsObjects.weaponDmage;
+        _weaponDamage = _weaponsObjects.weaponDmage;
         Debug.Log(_currentHealth);
-        Debug.Log(damage);
+        Debug.Log(_weaponDamage);
+
     }
 
     private void FixedUpdate()
     {
         //sets slider to the players health
-        _healthSlider.value = _currentHealth;
+        //_healthSlider.value = _currentHealth;
 
-        TakeDamage();
     }
 
-    private void TakeDamage()
+    private void TakeDamage(int damage)
     {
         _currentHealth -= damage;
+        _healthSlider.value = _currentHealth;
     }
 
+    public void DealDamage(GameObject target)
+    {
+        var playerTarget = target.GetComponent<Health>();
+        if (playerTarget != null)
+        {
+            playerTarget.TakeDamage(_weaponDamage);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }
