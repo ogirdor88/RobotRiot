@@ -11,17 +11,17 @@ public class Menus : MonoBehaviour
     //public bool debugOnly = false;
 
     // Polish this stuff later
-    public GameObject credits;
-    public GameObject menu;
-    public GameObject settings;
-    public GameObject debug;
+    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private GameObject debug;
 
     private void Start()
     {
         //if (debugOnly)
-        if (Application.isEditor || Debug.isDebugBuild)
+        if ((Application.isEditor || Debug.isDebugBuild) && debug != null)
         {
-            // Should make menu / hud viewable if in editor (easier testing)
+            // Should make debug menu / hud viewable if in editor if available (easier testing)
             Debug.Log("Is in editor");
             debug.SetActive(true);
         }
@@ -61,7 +61,8 @@ public class Menus : MonoBehaviour
     //
     public void Settings()
     {
-
+        menu.SetActive(false);
+        settings.SetActive(true);
     }
 
     //
