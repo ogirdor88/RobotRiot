@@ -11,6 +11,10 @@ public class Health : MonoBehaviour
     //Players current health
     [SerializeField] private int _currentHealth;
 
+    [SerializeField] private int _livesCount;
+
+    [SerializeField] private Vector3 _spawnPoint;
+
     // Players health slider
     [SerializeField] private Slider _healthSlider;
 
@@ -33,9 +37,13 @@ public class Health : MonoBehaviour
     private void Update()
     {
         _weaponDamage = _weaponsObjects.weaponDmage;
-        Debug.Log(_currentHealth);
-        Debug.Log(_weaponDamage);
+        //Debug.Log(_currentHealth);
+        //Debug.Log(_weaponDamage);
 
+        if (_currentHealth <= 0)
+        {
+            Respawn();
+        }
     }
 
     private void FixedUpdate()
@@ -60,13 +68,33 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Respawn()
+    {
+        this.gameObject.transform.position = _spawnPoint;
+        if (_livesCount == 0)
+        {
+            //GameOver will go here
+            Debug.Log("GAME OVER");
+        }
+        else
+        {
+            _livesCount--;
+            _currentHealth = _startHealth;
+            _healthSlider.value = _currentHealth;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Healthpack")
         {
             _currentHealth = _startHealth;
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             _healthSlider.value = _currentHealth;
+        }
+        if (other.gameObject.tag == "SpawnPoint")
+        {
+            _spawnPoint = other.gameObject.transform.position;
         }
     }
 }
