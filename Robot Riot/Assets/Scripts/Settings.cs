@@ -13,6 +13,12 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
+    [SerializeField] private GameObject audioSettings;
+    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject buttons;
+
+    private GameObject lastMenu;
+
     public void Start()
     {
         if (PlayerPrefs.HasKey("volume"))
@@ -63,9 +69,32 @@ public class Settings : MonoBehaviour
 
     // What menu should we return too?
     // Settings will probably be present in the pause menu as well.
+    // Current idea is that I create a gameobject that gets set to remember the menu used to get here so I can return easier.
     public void ReturnMenu(GameObject menu)
     {
         gameObject.SetActive(false);
         menu.SetActive(true);
+    }
+
+    // Return to main settings
+    // Create a tracker to return easier.
+    public void ReturnToSettings()
+    {
+        lastMenu.SetActive(false);
+        buttons.SetActive(true);
+    }
+
+    public void GoToAudio()
+    {
+        lastMenu = audioSettings;
+        buttons.SetActive(false);
+        audioSettings.SetActive(true);
+    }
+
+    public void GoToCredits()
+    {
+        lastMenu = credits;
+        buttons.SetActive(false);
+        credits.SetActive(true);
     }
 }
