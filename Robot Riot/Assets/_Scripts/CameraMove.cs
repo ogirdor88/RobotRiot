@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CameraMove : MonoBehaviour
 {
-    /*public GameObject player;
+    public GameObject player;
     private Vector3 offset;
 
 
@@ -21,9 +21,9 @@ public class CameraMove : MonoBehaviour
     {
         //move the camera to follow the player with the offset
         transform.position = player.transform.position - offset;
-    }*/
+    }
 
-    public Transform orient;
+    /*public Transform orient;
     public Transform player;
     public Transform playerObj;
     public Rigidbody body;
@@ -49,5 +49,5 @@ public class CameraMove : MonoBehaviour
         {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed); 
         }
-    }
+    }*/
 }

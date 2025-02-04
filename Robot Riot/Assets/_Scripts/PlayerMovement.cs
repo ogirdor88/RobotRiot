@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        botMode = true;
+        botMode = false;
     }
     private void OnEnable()
     {
@@ -123,7 +123,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
+            if(botMode)
+            {
+                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f);
+            }
+            else
+            {
+                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
+            }
         }
        
 
@@ -141,7 +148,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        Debug.Log("Pew");
+        if(botMode)
+        {
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = this.transform.position;
+            Debug.Log("Deploying Trap");
+        }
+        else
+        {
+            Debug.Log("Pew");
+        }
     }
 
     private void Jump(InputAction.CallbackContext context) 
@@ -157,18 +173,22 @@ public class PlayerMovement : MonoBehaviour
     private void SwitchModes(InputAction.CallbackContext context)
     {
         botMode = !botMode;
-
+        // this is set up just for inital prototyping purposes
+        // will be changed later
         if(botMode)
         {
-            transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            /*transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);*/
+            this.GetComponent<Renderer>().material.color = Color.green;
+            
             Debug.Log("Bot Mode");
         }
 
         if (!botMode)
         {
-            transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90);
+            /*transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90);*/
+            this.GetComponent<Renderer>().material.color = Color.blue;
             Debug.Log("Combat Mode");
         }
     }

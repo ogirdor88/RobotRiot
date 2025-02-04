@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44583321}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15531825, y: -0.000000008498785, z: 0.0000000013362322, w: 0.9878645}
+  m_LocalRotation: {x: 0.15531825, y: 0.000000008498788, z: -0.0000000013362326, w: 0.9878645}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -560,7 +560,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479931023}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17819066, y: 0.000000008465504, z: -0.000000001533008, w: 0.983996}
+  m_LocalRotation: {x: 0.17819066, y: 0.000000008465504, z: -0.0000000015330082, w: 0.983996}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -862,7 +862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1127709080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,11 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67a5b28d8fd8e54ab76873d9db100d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orient: {fileID: 2004571798}
-  player: {fileID: 2004571798}
-  playerObj: {fileID: 2004571798}
-  body: {fileID: 2004571799}
-  rotationSpeed: 7
+  player: {fileID: 2004571794}
 --- !u!114 &1687943231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2023,10 +2019,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3c6b55c4-eab5-421d-875b-ed0ac3cba654
     m_ActionName: Player/BoostStop[/Keyboard/shift,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: fa767797-6dcc-44d9-867a-440287f40d74
-    m_ActionName: Player/RotateCam[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
