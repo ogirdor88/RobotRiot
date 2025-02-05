@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 
 public class CameraLook : MonoBehaviour
@@ -25,8 +26,7 @@ public class CameraLook : MonoBehaviour
     private void Awake()
     {
         movePlayer = new Controls();
-
-
+        //Screen.showCursor.MustBeFalse();
     }
 
     private void OnEnable()
@@ -34,6 +34,10 @@ public class CameraLook : MonoBehaviour
         LookCamera = movePlayer.Player.LookCamera;
         LookCamera.Enable();
         LookCamera.performed += Look;
+    }
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
