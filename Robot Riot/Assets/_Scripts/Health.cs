@@ -15,34 +15,35 @@ public class Health : MonoBehaviour
 
     [SerializeField] private Vector3 _spawnPoint;
 
+    private bool _outOfLives;
+
     // Players health slider
     [SerializeField] private Slider _healthSlider;
 
     // Weapons
     [SerializeField] private Weapons _weaponsObjects;
 
-    [SerializeField] private int _weaponDamage;
+    //[SerializeField] private int _weaponDamage;
 
     private void Awake()
     {
         //set Players health to max
         _currentHealth = _startHealth;
-    }
-
-    private void Start()
-    {
-
+        _spawnPoint = transform.position;
+        _outOfLives = false;
     }
 
     private void Update()
     {
-        _weaponDamage = _weaponsObjects.weaponDmage;
-        //Debug.Log(_currentHealth);
-        //Debug.Log(_weaponDamage);
+        //_weaponDamage = _weaponsObjects.weaponDmage;
 
         if (_currentHealth <= 0)
         {
             Respawn();
+        }
+        if (_livesCount == 0)
+        {
+            _outOfLives = true;
         }
     }
 
@@ -64,14 +65,14 @@ public class Health : MonoBehaviour
         var playerTarget = target.GetComponent<Health>();
         if (playerTarget != null)
         {
-            playerTarget.TakeDamage(_weaponDamage);
+            playerTarget.TakeDamage(_weaponsObjects.baseDamage);
         }
     }
 
     private void Respawn()
     {
         this.gameObject.transform.position = _spawnPoint;
-        if (_livesCount == 0)
+        if (_outOfLives)
         {
             //GameOver will go here
             Debug.Log("GAME OVER");
@@ -92,9 +93,11 @@ public class Health : MonoBehaviour
             //Destroy(other.gameObject);
             _healthSlider.value = _currentHealth;
         }
+        /*
         if (other.gameObject.tag == "SpawnPoint")
         {
             _spawnPoint = other.gameObject.transform.position;
         }
+        */
     }
 }

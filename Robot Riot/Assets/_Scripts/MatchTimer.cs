@@ -5,25 +5,46 @@ using UnityEngine.UI;
 
 public class MatchTimer : MonoBehaviour
 {
-    public float startTimeInSec;
+
+    [Tooltip("Time in minutes")] public float startTime;
+    [Tooltip("Time in minutes")] public float suddenDeathTime;
     public float currentTime;
     public Text timeText;
 
+    public bool suddenDeath;
+    public bool stop;
+
+    private void Awake()
+    {
+        //converts time to seconds
+        startTime *= 60;
+        suddenDeathTime *= 60;
+    }
     private void Start()
     {
-        currentTime = startTimeInSec;
+        suddenDeath = false;
+        stop = false;
+        currentTime = startTime;
     }
     private void Update()
     {
-        if (currentTime > 0)
+        if (currentTime > 0 && !stop)
         {
             currentTime -= Time.deltaTime;
             DisplayTime(currentTime);
         }
-        else
+        else if (!stop)
         {
+            currentTime = suddenDeathTime;
+            suddenDeath = true;
             Debug.Log("START SUDDEN DEATH");
         }
+        if (currentTime <= 0 && suddenDeath)
+        {
+            Debug.Log("Over");
+            stop = true;
+        }
+
     }
 
     private void DisplayTime( float displayTime)
