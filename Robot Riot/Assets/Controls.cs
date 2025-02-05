@@ -107,6 +107,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""521bdab2-f79c-4fa5-83b1-882660250e57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -395,6 +404,116 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""BoostStop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASDLook"",
+                    ""id"": ""5f379fbe-3b2a-46c6-bb24-83bf9c5b1987"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d074d722-7081-4c4d-b2f0-3b543d18882b"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""ec96f673-aa78-436c-b970-a7f544f90acd"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b58913cf-204f-4da7-b637-a97bd19379ec"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""57cf514f-6d30-4d2f-9eb7-f1dcfc8a7f57"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad Right Stick Look"",
+                    ""id"": ""455c741a-413c-42d6-9ac6-4a8caf34e773"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""06bf473f-6902-4e34-9f5d-735117f453c8"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""dc55dca1-1ede-49b2-916a-f6e6ada14677"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4ba62c1a-38f7-48a8-ba01-b70315578e6e"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ef5e80c2-4dea-4648-95d0-2a22d68ed191"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -412,6 +531,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
+        m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +602,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Scroll;
     private readonly InputAction m_Player_BoostStop;
+    private readonly InputAction m_Player_LookCamera;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -495,6 +616,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
+        public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -531,6 +653,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started += instance.OnBoostStop;
             @BoostStop.performed += instance.OnBoostStop;
             @BoostStop.canceled += instance.OnBoostStop;
+            @LookCamera.started += instance.OnLookCamera;
+            @LookCamera.performed += instance.OnLookCamera;
+            @LookCamera.canceled += instance.OnLookCamera;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -562,6 +687,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started -= instance.OnBoostStop;
             @BoostStop.performed -= instance.OnBoostStop;
             @BoostStop.canceled -= instance.OnBoostStop;
+            @LookCamera.started -= instance.OnLookCamera;
+            @LookCamera.performed -= instance.OnLookCamera;
+            @LookCamera.canceled -= instance.OnLookCamera;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -590,5 +718,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnBoostStop(InputAction.CallbackContext context);
+        void OnLookCamera(InputAction.CallbackContext context);
     }
 }
