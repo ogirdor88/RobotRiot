@@ -42,7 +42,7 @@ public class Menus : MonoBehaviour
     // Quit the game
     public void QuitGame()
     {
-        QuitGame();
+        Application.Quit();
     }
 
     //
