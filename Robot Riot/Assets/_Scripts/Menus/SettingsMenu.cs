@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 // This should allow you to change the audio volume once it's implemented.
 // Not entirely sure how we plan to have audio work yet, but this can be adjusted if needed once it's made.
-public class Settings : MonoBehaviour
+public class SettingsMenu : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private Slider slider;
