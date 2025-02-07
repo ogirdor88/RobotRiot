@@ -58,4 +58,6 @@ public class CameraLook : MonoBehaviour
         Debug.Log(moveInput.ToString());
     }
 
+    
+
 }

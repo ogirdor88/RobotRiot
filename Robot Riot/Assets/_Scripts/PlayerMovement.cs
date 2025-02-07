@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction reload;
     //private InputAction scroll;   
 
+    public GameObject lazerTest;
 
     [SerializeField]
     private float moveSpeed;
@@ -157,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Debug.Log("Pew");
+            Instantiate(lazerTest, transform.position, transform.rotation);
         }
     }
 
