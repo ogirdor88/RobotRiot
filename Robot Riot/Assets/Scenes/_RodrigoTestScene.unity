@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -762,6 +762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 890369627}
   - component: {fileID: 890369626}
+  - component: {fileID: 890369628}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -846,6 +847,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &890369628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890369625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1127709079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,6 +2043,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3c6b55c4-eab5-421d-875b-ed0ac3cba654
     m_ActionName: Player/BoostStop[/Keyboard/shift,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 521bdab2-f79c-4fa5-83b1-882660250e57
+    m_ActionName: Player/LookCamera[/Mouse/delta/up,/Mouse/delta/down,/Mouse/delta/left,/Mouse/delta/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2036,7 +2064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1aedf5627585741b68bc7ed8fb665f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lazerTest: {fileID: 0}
+  lazerTest: {fileID: 4823016563444201139, guid: 4eff0cf13e006d948955353309c31311, type: 3}
   moveSpeed: 10
   jumpForce: 8
   StaminaBar: {fileID: 70949834}
