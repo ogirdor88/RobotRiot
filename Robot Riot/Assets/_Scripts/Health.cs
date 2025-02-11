@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
         {
             Respawn();
         }
-        if (_livesCount == 0)
+        if (_livesCount == 1)
         {
             _outOfLives = true;
         }
@@ -65,7 +65,7 @@ public class Health : MonoBehaviour
         var playerTarget = target.GetComponent<Health>();
         if (playerTarget != null)
         {
-            playerTarget.TakeDamage(_weaponsObjects.baseDamage);
+            playerTarget.TakeDamage(_weaponsObjects.damage);
         }
     }
 
