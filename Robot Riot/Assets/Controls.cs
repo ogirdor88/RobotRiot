@@ -107,6 +107,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookCamera"",
+                    ""type"": ""Value"",
+                    ""id"": ""79057149-420e-4932-b1a2-90d61894b0d4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -395,6 +404,61 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""BoostStop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""6fa0efa9-da75-40e0-8f0a-f8c427b1b6b7"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c4f89120-6b63-490a-9fb6-9add160e08f3"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""392d0b08-597a-4e89-9a6c-014c6a94eafe"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0cd48a2d-d138-49fe-98b5-8ddcbabaac35"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1636c9f4-ee33-49d2-bed2-6c309b87b7c1"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -412,6 +476,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
+        m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -482,6 +547,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Scroll;
     private readonly InputAction m_Player_BoostStop;
+    private readonly InputAction m_Player_LookCamera;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -495,6 +561,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
+        public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -531,6 +598,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started += instance.OnBoostStop;
             @BoostStop.performed += instance.OnBoostStop;
             @BoostStop.canceled += instance.OnBoostStop;
+            @LookCamera.started += instance.OnLookCamera;
+            @LookCamera.performed += instance.OnLookCamera;
+            @LookCamera.canceled += instance.OnLookCamera;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -562,6 +632,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started -= instance.OnBoostStop;
             @BoostStop.performed -= instance.OnBoostStop;
             @BoostStop.canceled -= instance.OnBoostStop;
+            @LookCamera.started -= instance.OnLookCamera;
+            @LookCamera.performed -= instance.OnLookCamera;
+            @LookCamera.canceled -= instance.OnLookCamera;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -590,5 +663,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnBoostStop(InputAction.CallbackContext context);
+        void OnLookCamera(InputAction.CallbackContext context);
     }
 }
