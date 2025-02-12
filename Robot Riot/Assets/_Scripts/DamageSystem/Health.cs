@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
 
     [SerializeField] private Vector3 _spawnPoint;
 
-    private bool _outOfLives;
+    [SerializeField] private bool _outOfLives;
 
     // Players health slider
     [SerializeField] private Slider _healthSlider;
@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
         //set Players health to max
         _currentHealth = _startHealth;
         _spawnPoint = transform.position;
+        _healthSlider.value = _currentHealth;
         _outOfLives = false;
     }
 
