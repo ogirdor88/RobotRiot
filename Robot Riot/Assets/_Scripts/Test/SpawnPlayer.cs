@@ -7,12 +7,13 @@ public class SpawnPlayer : MonoBehaviour
 {
     [SerializeField] private bool spawnPlayer1;
     [SerializeField] private bool isPlayerSingleScreen;
+    [SerializeField] private bool screenBorder = true;
     [SerializeField] private GameObject playerPrefab;
     private void Awake()
     {
         GameObject spawnedPlayer = Instantiate(playerPrefab, transform);
         //spawnedPlayer.GetComponent<SplitScreenCamera>().isPlayer1 = spawnPlayer1;
         //spawnedPlayer.GetComponent<SplitScreenCamera>().isPlayer1 = isPlayerSplitScreen;
-        spawnedPlayer.GetComponent<SplitScreenCamera>().SetPlayer(spawnPlayer1, isPlayerSingleScreen);
+        spawnedPlayer.GetComponent<SplitScreenCamera>().SetPlayer(spawnPlayer1, isPlayerSingleScreen, screenBorder);
     }
 }
