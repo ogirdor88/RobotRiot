@@ -20,9 +20,6 @@ public class Health : MonoBehaviour
     // Players health slider
     [SerializeField] private Slider _healthSlider;
 
-    // Weapons
-    [SerializeField] private Weapons _weaponsObjects;
-
     //[SerializeField] private int _weaponDamage;
 
     private void Awake()
@@ -55,19 +52,10 @@ public class Health : MonoBehaviour
 
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
         _healthSlider.value = _currentHealth;
-    }
-
-    public void DealDamage(GameObject target)
-    {
-        var playerTarget = target.GetComponent<Health>();
-        if (playerTarget != null)
-        {
-            playerTarget.TakeDamage(_weaponsObjects.damage);
-        }
     }
 
     private void Respawn()

@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class LazerGun : MonoBehaviour
+public class LaserGun : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
     [SerializeField] protected Weapons weapon;
-    private float timeToFire = 0f;
+    private float timeToFire;
+    private float speedOfProjectile;
     [SerializeField] private PlayerMovement playerMove;
     [SerializeField] private GameObject projectile;
     [SerializeField] private bool canShoot = true;
 
+    private void Awake()
+    {
+        speedOfProjectile = weapon.prjectileSpeed * 100f;
+    }
     public void Start()
     {
         canShoot = true;
@@ -20,6 +24,7 @@ public class LazerGun : MonoBehaviour
 
     private void Update()
     {
+        Debug.DrawRay(transform.position, Vector3.forward * 100, Color.green);
         if (playerMove == null)
         {
             playerMove = transform.parent.GetComponent<PlayerMovement>();
@@ -33,14 +38,9 @@ public class LazerGun : MonoBehaviour
         }
     }
 
-    private void Shoot(GameObject projectile)
-    {
-        Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        projectile.transform.position = muzzle.transform.position;
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             Debug.Log("player detected");
         }
@@ -50,7 +50,7 @@ public class LazerGun : MonoBehaviour
     {
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * 25f);
+        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }
