@@ -9,4 +9,6 @@ public class Weapons : ScriptableObject
     public float fireRate;
     public int damage;
     public float maxDistance;
+    [Tooltip("Gets Multiplied by 100")]
+    public float prjectileSpeed;
 }

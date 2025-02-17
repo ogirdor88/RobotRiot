@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isSprinting;
 
+    public bool shot = false;
+
     private InputAction move;
     private InputAction fire;
     private InputAction jump;
@@ -157,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             Debug.Log("Pew");
+            shot = true;
         }
     }
 
