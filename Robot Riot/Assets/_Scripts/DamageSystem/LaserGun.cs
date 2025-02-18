@@ -17,7 +17,7 @@ public class LaserGun : MonoBehaviour
 
     private void Awake()
     {
-        speedOfProjectile = weapon.prjectileSpeed * 100f;
+        speedOfProjectile = weapon.prjectileSpeed * 300f;
     }
     public void Start()
     {
