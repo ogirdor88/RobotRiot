@@ -8,7 +8,10 @@ public class BallonSword : MonoBehaviour
     [SerializeField] private Weapons weapon;
     [SerializeField] private BoxCollider damageCollider;
     private float timeToFire;
-    [SerializeField] private bool canShoot = true;
+    //[SerializeField] private bool canShoot = true;
+
+    // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
+    public bool canShoot = true;
 
     private void Start()
     {
