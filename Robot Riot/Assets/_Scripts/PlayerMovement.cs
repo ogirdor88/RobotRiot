@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,21 +26,36 @@ public class PlayerMovement : MonoBehaviour
     private InputAction boost;
     private InputAction boostStop;
     private InputAction reload;
-    //private InputAction scroll;   
+    //private InputAction scroll;
+
+    private float horizontal, vertical;
+
+    private bool moving;
+
+
+    //cam stuff
+    float rotateX = 0;
+    float rotateY = 0;
+
+    public float lookSense;
 
 
     [SerializeField]
     private float moveSpeed;
+    private float originalMoveSpeed;
     [SerializeField]
     private float jumpForce;
 
     [SerializeField]
-    private Image StaminaBar;
+    private UnityEngine.UI.Image StaminaBar;
 
     [SerializeField]
     private float stamina, maxStamina , boostCost;
 
     private Coroutine recharge;
+
+    [SerializeField]
+    private GameObject cam;
 
     private void Awake()
     {
@@ -47,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         isGrounded = true;
         isSprinting = false;
+        originalMoveSpeed = moveSpeed;
     }
 
     private void Start()
@@ -58,6 +75,9 @@ public class PlayerMovement : MonoBehaviour
         // Set up movement
         move = movePlayer.Player.Movement;
         move.Enable();
+        move.performed += MovePlayer;
+        move.canceled += StopPlayer;
+
 
         //set up Shooting
         fire = movePlayer.Player.Fire;
@@ -108,10 +128,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        /*//get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
-        if(isSprinting)
+
+
+        if (isSprinting)
         {
-            transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 3f);
+            //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 3f);
+            //transform.Translate(new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 3f));
+
 
             stamina -= boostCost * Time.deltaTime;
             if (stamina < 0)
@@ -127,14 +152,24 @@ public class PlayerMovement : MonoBehaviour
         {
             if(botMode)
             {
-                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f);
+                //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f);
+                //transform.Translate(new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f));
             }
             else
             {
-                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
+                //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
+                //transform.Translate(new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed);
+                transform.Translate(transform.forward * Time.deltaTime * moveSpeed);
             }
-        }
-       
+        }*/
+
+        updateMovement();
+
+        rotateY += Input.GetAxis("Mouse X") * lookSense;
+        rotateX += Input.GetAxis("Mouse Y") * lookSense * -1;
+        transform.eulerAngles = new Vector3(0, rotateY, 0);
+        cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);
+
 
         RaycastHit hit;
 
@@ -146,6 +181,70 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    private void MovePlayer(InputAction.CallbackContext context)
+    {
+        vertical = context.ReadValue<Vector2>().y;
+        horizontal = context.ReadValue<Vector2>().x;
+        moving = true;
+
+    }
+    private void StopPlayer(InputAction.CallbackContext context)
+    {
+        vertical = context.ReadValue<Vector2>().y;
+        horizontal = context.ReadValue<Vector2>().x;
+        if(vertical == 0 && horizontal == 0)
+        {
+            moving = false;
+        }
+    }
+
+    private void updateMovement()
+    {
+        if (moving)
+        {
+            transform.Translate((Vector3.forward * vertical) * Time.deltaTime * moveSpeed);
+            transform.Translate((Vector3.right * horizontal) * Time.deltaTime * moveSpeed);
+        }
+
+/*        if (isSprinting)
+        {
+            if (moving)
+            {
+                transform.Translate((Vector3.forward * vertical) * Time.deltaTime * (moveSpeed * 3f));
+                transform.Translate((Vector3.right * horizontal) * Time.deltaTime * (moveSpeed * 3f));
+            }
+            stamina -= boostCost * Time.deltaTime;
+            if (stamina < 0)
+            {
+                stamina = 0;
+                isSprinting = false;
+            }
+            StaminaBar.fillAmount = stamina / maxStamina;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
+        }
+        else
+        {
+            if (botMode)
+            {
+                if (moving)
+                {
+                    transform.Translate((Vector3.forward * vertical) * Time.deltaTime * (moveSpeed * 1.25f));
+                    transform.Translate((Vector3.right * horizontal) * Time.deltaTime * (moveSpeed * 1.25f));
+                }
+                else
+                {
+                    if (moving)
+                    {
+                        transform.Translate((Vector3.forward * vertical) * Time.deltaTime * moveSpeed);
+                        transform.Translate((Vector3.right * horizontal) * Time.deltaTime * moveSpeed);
+                    }
+                }
+
+            }
+        }*/
     }
 
     private void Shoot(InputAction.CallbackContext context)
@@ -183,6 +282,7 @@ public class PlayerMovement : MonoBehaviour
             /*transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);*/
             this.GetComponent<Renderer>().material.color = Color.green;
+            moveSpeed = moveSpeed * 1.25f;
             
             Debug.Log("Bot Mode");
         }
@@ -192,6 +292,7 @@ public class PlayerMovement : MonoBehaviour
             /*transform.position = new Vector3(transform.position.x, 1.5f, transform.position.z);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90);*/
             this.GetComponent<Renderer>().material.color = Color.blue;
+            moveSpeed = originalMoveSpeed;
             Debug.Log("Combat Mode");
         }
     }
@@ -200,11 +301,13 @@ public class PlayerMovement : MonoBehaviour
     {
         isSprinting = true;
         Debug.Log("Boost");
+        moveSpeed = moveSpeed * 3f;
     }
     private void EndBoost(InputAction.CallbackContext context)
     {
         isSprinting = false;
         Debug.Log("BoostStopped");
+        moveSpeed = originalMoveSpeed;
     }
 
     private void ReloadWeapon(InputAction.CallbackContext context)
