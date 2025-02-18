@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         lookaround.Disable();*/
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         /*//get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
