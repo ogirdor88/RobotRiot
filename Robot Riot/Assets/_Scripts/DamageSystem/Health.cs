@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -15,13 +16,10 @@ public class Health : MonoBehaviour
 
     [SerializeField] private Vector3 _spawnPoint;
 
-    private bool _outOfLives;
+    [SerializeField] private bool _outOfLives;
 
     // Players health slider
     [SerializeField] private Slider _healthSlider;
-
-    // Weapons
-    [SerializeField] private Weapons _weaponsObjects;
 
     //[SerializeField] private int _weaponDamage;
 
@@ -30,6 +28,7 @@ public class Health : MonoBehaviour
         //set Players health to max
         _currentHealth = _startHealth;
         _spawnPoint = transform.position;
+        _healthSlider.value = _currentHealth;
         _outOfLives = false;
     }
 
@@ -45,6 +44,11 @@ public class Health : MonoBehaviour
         {
             _outOfLives = true;
         }
+
+        if(_livesCount == 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void FixedUpdate()
@@ -54,19 +58,10 @@ public class Health : MonoBehaviour
 
     }
 
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
         _healthSlider.value = _currentHealth;
-    }
-
-    public void DealDamage(GameObject target)
-    {
-        var playerTarget = target.GetComponent<Health>();
-        if (playerTarget != null)
-        {
-            playerTarget.TakeDamage(_weaponsObjects.damage);
-        }
     }
 
     private void Respawn()

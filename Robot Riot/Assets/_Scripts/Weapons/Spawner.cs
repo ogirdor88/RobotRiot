@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private List<GameObject> items;
+    [SerializeField]
+    private bool random;
+    [SerializeField]
+    private int itemNumber;
+    [SerializeField]
+    private float spawndelay;
 
-    // Update is called once per frame
-    void Update()
+    private bool spawned;
+
+
+    private void RandomSpawn()
     {
-        
+        //get a random number
+        int rand = Random.Range(0, items.Count);
+
+        //spawn the 
     }
 }

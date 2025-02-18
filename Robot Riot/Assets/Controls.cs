@@ -37,6 +37,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Turning"",
+                    ""type"": ""Value"",
+                    ""id"": ""eca31dd7-220a-41d1-85d9-e020fcede89d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Movement1"",
+                    ""type"": ""Value"",
+                    ""id"": ""c4334836-5bf8-4ae0-875f-61e4c23f61f9"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""7190197b-5088-4560-a976-0201758be0ed"",
@@ -109,9 +127,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LookCamera"",
+                    ""name"": ""Rotation"",
                     ""type"": ""Value"",
-                    ""id"": ""79057149-420e-4932-b1a2-90d61894b0d4"",
+                    ""id"": ""370dfe6e-b038-46ce-844b-a8178bc9ee3a"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -406,68 +424,137 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""5022f346-1828-4e00-9be8-9858dbc96933"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
-                    ""id"": ""6fa0efa9-da75-40e0-8f0a-f8c427b1b6b7"",
+                    ""id"": ""cbcbd200-81c8-4286-b665-4b99dd212eab"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""c4f89120-6b63-490a-9fb6-9add160e08f3"",
-                    ""path"": ""<Mouse>/delta/up"",
+                    ""id"": ""f8bc4101-c106-4bd9-956c-c0266b14b534"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""392d0b08-597a-4e89-9a6c-014c6a94eafe"",
-                    ""path"": ""<Mouse>/delta/down"",
+                    ""id"": ""d6bfb841-890c-45ad-ae34-bc71ee5905b2"",
+                    ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""0cd48a2d-d138-49fe-98b5-8ddcbabaac35"",
+                    ""id"": ""2e4193e8-675c-455d-b1fd-d3d53222943e"",
                     ""path"": ""<Mouse>/delta/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""1636c9f4-ee33-49d2-bed2-6c309b87b7c1"",
+                    ""id"": ""eb9bcca0-7561-4a59-ab87-23cc7255b470"",
                     ""path"": ""<Mouse>/delta/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LookCamera"",
+                    ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbd55757-f8df-4c1f-8164-f62bbb2ce047"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea2e77bd-ecd6-45a7-9fc1-d659f7be85a7"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turning"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6aaa32b-5070-41b7-a10a-42a2885a4800"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turning"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard"",
+            ""bindingGroup"": ""Keyboard"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Controller"",
+            ""bindingGroup"": ""Controller"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Turning = m_Player.FindAction("Turning", throwIfNotFound: true);
+        m_Player_Movement1 = m_Player.FindAction("Movement1", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Transform = m_Player.FindAction("Transform", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
@@ -476,7 +563,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
-        m_Player_LookCamera = m_Player.FindAction("LookCamera", throwIfNotFound: true);
+        m_Player_Rotation = m_Player.FindAction("Rotation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -539,6 +626,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Turning;
+    private readonly InputAction m_Player_Movement1;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Transform;
     private readonly InputAction m_Player_Jump;
@@ -547,12 +636,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Scroll;
     private readonly InputAction m_Player_BoostStop;
-    private readonly InputAction m_Player_LookCamera;
+    private readonly InputAction m_Player_Rotation;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Turning => m_Wrapper.m_Player_Turning;
+        public InputAction @Movement1 => m_Wrapper.m_Player_Movement1;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Transform => m_Wrapper.m_Player_Transform;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
@@ -561,7 +652,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
-        public InputAction @LookCamera => m_Wrapper.m_Player_LookCamera;
+        public InputAction @Rotation => m_Wrapper.m_Player_Rotation;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -574,6 +665,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Turning.started += instance.OnTurning;
+            @Turning.performed += instance.OnTurning;
+            @Turning.canceled += instance.OnTurning;
+            @Movement1.started += instance.OnMovement1;
+            @Movement1.performed += instance.OnMovement1;
+            @Movement1.canceled += instance.OnMovement1;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
@@ -598,9 +695,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started += instance.OnBoostStop;
             @BoostStop.performed += instance.OnBoostStop;
             @BoostStop.canceled += instance.OnBoostStop;
-            @LookCamera.started += instance.OnLookCamera;
-            @LookCamera.performed += instance.OnLookCamera;
-            @LookCamera.canceled += instance.OnLookCamera;
+            @Rotation.started += instance.OnRotation;
+            @Rotation.performed += instance.OnRotation;
+            @Rotation.canceled += instance.OnRotation;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -608,6 +705,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Turning.started -= instance.OnTurning;
+            @Turning.performed -= instance.OnTurning;
+            @Turning.canceled -= instance.OnTurning;
+            @Movement1.started -= instance.OnMovement1;
+            @Movement1.performed -= instance.OnMovement1;
+            @Movement1.canceled -= instance.OnMovement1;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
@@ -632,9 +735,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started -= instance.OnBoostStop;
             @BoostStop.performed -= instance.OnBoostStop;
             @BoostStop.canceled -= instance.OnBoostStop;
-            @LookCamera.started -= instance.OnLookCamera;
-            @LookCamera.performed -= instance.OnLookCamera;
-            @LookCamera.canceled -= instance.OnLookCamera;
+            @Rotation.started -= instance.OnRotation;
+            @Rotation.performed -= instance.OnRotation;
+            @Rotation.canceled -= instance.OnRotation;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -652,9 +755,29 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+    private int m_KeyboardSchemeIndex = -1;
+    public InputControlScheme KeyboardScheme
+    {
+        get
+        {
+            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
+            return asset.controlSchemes[m_KeyboardSchemeIndex];
+        }
+    }
+    private int m_ControllerSchemeIndex = -1;
+    public InputControlScheme ControllerScheme
+    {
+        get
+        {
+            if (m_ControllerSchemeIndex == -1) m_ControllerSchemeIndex = asset.FindControlSchemeIndex("Controller");
+            return asset.controlSchemes[m_ControllerSchemeIndex];
+        }
+    }
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnTurning(InputAction.CallbackContext context);
+        void OnMovement1(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnTransform(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -663,6 +786,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnBoostStop(InputAction.CallbackContext context);
-        void OnLookCamera(InputAction.CallbackContext context);
+        void OnRotation(InputAction.CallbackContext context);
     }
 }
