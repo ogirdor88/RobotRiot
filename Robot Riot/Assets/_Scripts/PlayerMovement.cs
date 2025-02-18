@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
         lookaround.Disable();*/
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         /*//get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
@@ -247,31 +247,31 @@ public class PlayerMovement : MonoBehaviour
 
     public void CamMove(InputAction.CallbackContext context)
     {
-        rotateY += context.ReadValue<Vector2>().x * lookSense;
-        rotateX += context.ReadValue<Vector2>().y * lookSense * -1;
+        Vector2 input = context.ReadValue<Vector2>();
+        rotateY += input.x * lookSense;
+        rotateX += input.y * lookSense * -1;
         looking = true;
     }
 
     public void CamStop(InputAction.CallbackContext context)
     {
-        rotateY += context.ReadValue<Vector2>().x;
-        rotateX += context.ReadValue<Vector2>().y * -1;
-        if (rotateX == 0 && rotateY == 0)
-        {
-            looking = false;
-        }
+        //rotateY += context.ReadValue<Vector2>().x;
+        //rotateX += context.ReadValue<Vector2>().y * -1;
+        //if (rotateX == 0 && rotateY == 0)
+        //{
+        //    looking = false;
+        //}
     }
 
     public void UpdateLooking()
     {
-        if(looking)
-        {
-            if(rotateY < -1 || rotateY > 1)
-            {
-                transform.eulerAngles = new Vector3(0, rotateY, 0) * lookSense * Time.deltaTime;
-            }
-            cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);
-        }
+       
+            
+            transform.localEulerAngles = new Vector3(0, rotateY, 0);
+
+            // Rotate camera along X axis
+            cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), 0, 0);
+        
     }
     public void updateMovement()
     {

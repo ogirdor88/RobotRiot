@@ -436,17 +436,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2b09e19e-eeda-43e7-b018-ccd45efda570"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Rotation"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""fbd55757-f8df-4c1f-8164-f62bbb2ce047"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
