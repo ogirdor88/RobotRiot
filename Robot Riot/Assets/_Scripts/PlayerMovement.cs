@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRB;
     private Vector2 moveDirection;
 
+   
+
     private bool botMode;
     private bool isGrounded;
     private bool isSprinting;
