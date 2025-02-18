@@ -10,6 +10,8 @@ public class BallonSword : MonoBehaviour
     private float timeToFire;
     //[SerializeField] private bool canShoot = true;
 
+    [SerializeField] private GameObject swordVFX;
+
     // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
     public bool canShoot = true;
 
@@ -52,7 +54,9 @@ public class BallonSword : MonoBehaviour
     {
         canShoot = false;
         damageCollider.enabled = true;
+        GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
         yield return new WaitForSeconds(timeToFire);
+        Destroy(vfx);
         damageCollider.enabled = false;
         canShoot = true;
     }

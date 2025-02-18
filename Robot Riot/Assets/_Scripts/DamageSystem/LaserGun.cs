@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform muzzle2;
     [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
@@ -33,11 +34,23 @@ public class LaserGun : MonoBehaviour
             playerMove = transform.parent.GetComponent<PlayerMovement>();
             Debug.Log("yes");
         }
-        if (playerMove.shot && canShoot)
+        if(muzzle2 != null)
         {
-            StartCoroutine(Shooting());
-            Debug.Log("shot");
-            playerMove.shot = false;
+            if (playerMove.shot && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot");
+                playerMove.shot = false;
+            }
+        }
+        else
+        {
+            if (playerMove.shot && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot");
+                playerMove.shot = false;
+            }
         }
     }
 
