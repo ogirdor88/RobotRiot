@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction boost;
     private InputAction boostStop;
     private InputAction reload;
+    private InputAction lookaround;
     //private InputAction scroll;
 
     private float horizontal, vertical;
@@ -76,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
         move.performed += MovePlayer;
         move.canceled += StopPlayer;
 
+        lookaround = movePlayer.Player.Rotation;
+        lookaround.Enable();
 
         //set up Shooting
         fire = movePlayer.Player.Fire;
@@ -122,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         morph.Disable();
         boost.Disable();
         reload.Disable();
+        lookaround.Disable();
     }
 
     private void Update()
@@ -163,8 +167,11 @@ public class PlayerMovement : MonoBehaviour
 
         updateMovement();
 
-        rotateY += Input.GetAxis("Mouse X") * lookSense;
-        rotateX += Input.GetAxis("Mouse Y") * lookSense * -1;
+        /* rotateY += Input.GetAxis("Mouse X") * lookSense;
+         rotateX += Input.GetAxis("Mouse Y") * lookSense * -1;*/
+
+        rotateY += lookaround.ReadValue<Vector2>().x * lookSense;
+        rotateX += lookaround.ReadValue<Vector2>().y * lookSense * -1;
         transform.eulerAngles = new Vector3(0, rotateY, 0);
         cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);
 
