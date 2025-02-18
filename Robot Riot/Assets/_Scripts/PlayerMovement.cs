@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool shot = false;
 
+    private InputActionAsset inputAsset;
+    private InputActionMap player;
+
     private InputAction move;
     private InputAction fire;
     private InputAction jump;
@@ -31,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal, vertical;
 
-    private bool moving;
+    [SerializeField]
+    private bool moving, looking;
 
 
     //cam stuff
@@ -60,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        inputAsset = GetComponent<PlayerInput>().actions;
+        player = inputAsset.FindActionMap("Player");
+
         movePlayer = new Controls();
         playerRB = GetComponent<Rigidbody>();
         isGrounded = true;
@@ -73,61 +80,91 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnEnable()
     {
-        // Set up movement
+       /* // Set up movement
         move = movePlayer.Player.Movement;
         move.Enable();
         move.performed += MovePlayer;
-        move.canceled += StopPlayer;
+        move.canceled += StopPlayer;*/
 
-        lookaround = movePlayer.Player.Rotation;
-        lookaround.Enable();
+        player.FindAction("move").started += MovePlayer;
+        player.FindAction("move").canceled += StopPlayer;
+        move = player.FindAction("Movement");
+        player.Enable();
 
-        //set up Shooting
-        fire = movePlayer.Player.Fire;
-        fire.Enable();
-        fire.performed += Shoot;
+        /*lookaround = movePlayer.Player.Rotation;
+        lookaround.Enable();*/
+        
+        
+        player.FindAction("lookaround").started += CamMove;
+        player.FindAction("lookaround").canceled += CamStop;
+        lookaround = player.FindAction("Rotation");
+        //lookaround.Enable();
 
-        //set up jumping
+        /* //set up Shooting
+         fire = movePlayer.Player.Fire;
+         fire.Enable();
+         fire.performed += Shoot;*/
+
+        player.FindAction("fire").started += Shoot;
+        fire = player.FindAction("Fire");
+        
+
+        /*//set up jumping
         jump = movePlayer.Player.Jump;
         jump.Enable();
-        jump.performed += Jump;
+        jump.performed += Jump;*/
 
-        //set up the transformation
+        player.FindAction("jump").started += Jump;
+        jump = movePlayer.Player.Jump;
+
+        /*//set up the transformation
         morph = movePlayer.Player.Transform;
         morph.Enable();
-        morph.performed += SwitchModes;
+        morph.performed += SwitchModes;*/
 
-        //set up the Boost
+        player.FindAction("morph").started += SwitchModes;
+        morph = movePlayer.Player.Transform;
+
+        /*//set up the Boost
         boost = movePlayer.Player.Boost;
         boost.Enable();
-        boost.performed += SpeedBoost;
+        boost.performed += SpeedBoost;*/
 
-        //set up the Booststop
+        player.FindAction("boost").started += SpeedBoost;
+        boost = movePlayer.Player.Boost;
+
+        /*//set up the Booststop
         boostStop = movePlayer.Player.BoostStop;
         boostStop.Enable();
-        boostStop.performed += EndBoost;
+        boostStop.performed += EndBoost;*/
 
-        //set up the transformation
+        player.FindAction("boostStop").started += EndBoost;
+        boostStop = movePlayer.Player.BoostStop;
+
+        /*//set up the transformation
         reload = movePlayer.Player.Reload;
         reload.Enable();
-        reload.performed += ReloadWeapon;
+        reload.performed += ReloadWeapon;*/
 
-       /* //set up the transformation
-        scroll = movePlayer.Player.Scroll;
-        scroll.Enable();
-        scroll.performed += SwitchItems;*/
+        player.FindAction("reload").started += ReloadWeapon;
+        reload = movePlayer.Player.Reload;
+
+        /* //set up the transformation
+         scroll = movePlayer.Player.Scroll;
+         scroll.Enable();
+         scroll.performed += SwitchItems;*/
 
     }
 
     private void OnDisable()
     {
-        move.Disable();
+        /*move.Disable();
         fire.Disable();
         jump.Disable();
         morph.Disable();
         boost.Disable();
         reload.Disable();
-        lookaround.Disable();
+        lookaround.Disable();*/
     }
 
     private void Update()
@@ -168,14 +205,15 @@ public class PlayerMovement : MonoBehaviour
         }*/
 
         updateMovement();
+        UpdateLooking();
 
-        /* rotateY += Input.GetAxis("Mouse X") * lookSense;
+         /*rotateY += Input.GetAxis("Mouse X") * lookSense;
          rotateX += Input.GetAxis("Mouse Y") * lookSense * -1;*/
 
-        rotateY += lookaround.ReadValue<Vector2>().x * lookSense;
+        /*rotateY += lookaround.ReadValue<Vector2>().x * lookSense;
         rotateX += lookaround.ReadValue<Vector2>().y * lookSense * -1;
         transform.eulerAngles = new Vector3(0, rotateY, 0);
-        cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);
+        cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);*/
 
 
         RaycastHit hit;
@@ -207,6 +245,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void CamMove(InputAction.CallbackContext context)
+    {
+        rotateY += context.ReadValue<Vector2>().x * lookSense;
+        rotateX += context.ReadValue<Vector2>().y * lookSense * -1;
+        looking = true;
+    }
+
+    public void CamStop(InputAction.CallbackContext context)
+    {
+        rotateY += context.ReadValue<Vector2>().x;
+        rotateX += context.ReadValue<Vector2>().y * -1;
+        if (rotateX == 0 && rotateY == 0)
+        {
+            looking = false;
+        }
+    }
+
+    public void UpdateLooking()
+    {
+        if(looking)
+        {
+            if(rotateY < -1 || rotateY > 1)
+            {
+                transform.eulerAngles = new Vector3(0, rotateY, 0) * lookSense * Time.deltaTime;
+            }
+            cam.transform.eulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), rotateY, 0);
+        }
+    }
     public void updateMovement()
     {
         if (moving)

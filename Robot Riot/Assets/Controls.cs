@@ -37,6 +37,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Turning"",
+                    ""type"": ""Value"",
+                    ""id"": ""eca31dd7-220a-41d1-85d9-e020fcede89d"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Movement1"",
                     ""type"": ""Value"",
                     ""id"": ""c4334836-5bf8-4ae0-875f-61e4c23f61f9"",
@@ -420,6 +429,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Rotation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b09e19e-eeda-43e7-b018-ccd45efda570"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
@@ -433,6 +453,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea2e77bd-ecd6-45a7-9fc1-d659f7be85a7"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turning"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6aaa32b-5070-41b7-a10a-42a2885a4800"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Turning"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -467,6 +509,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Turning = m_Player.FindAction("Turning", throwIfNotFound: true);
         m_Player_Movement1 = m_Player.FindAction("Movement1", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Transform = m_Player.FindAction("Transform", throwIfNotFound: true);
@@ -539,6 +582,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Turning;
     private readonly InputAction m_Player_Movement1;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Transform;
@@ -554,6 +598,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Turning => m_Wrapper.m_Player_Turning;
         public InputAction @Movement1 => m_Wrapper.m_Player_Movement1;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Transform => m_Wrapper.m_Player_Transform;
@@ -576,6 +621,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
+            @Turning.started += instance.OnTurning;
+            @Turning.performed += instance.OnTurning;
+            @Turning.canceled += instance.OnTurning;
             @Movement1.started += instance.OnMovement1;
             @Movement1.performed += instance.OnMovement1;
             @Movement1.canceled += instance.OnMovement1;
@@ -613,6 +661,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
+            @Turning.started -= instance.OnTurning;
+            @Turning.performed -= instance.OnTurning;
+            @Turning.canceled -= instance.OnTurning;
             @Movement1.started -= instance.OnMovement1;
             @Movement1.performed -= instance.OnMovement1;
             @Movement1.canceled -= instance.OnMovement1;
@@ -681,6 +732,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnTurning(InputAction.CallbackContext context);
         void OnMovement1(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnTransform(InputAction.CallbackContext context);
