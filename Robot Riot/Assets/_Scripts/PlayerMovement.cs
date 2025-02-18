@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction boost;
     private InputAction boostStop;
     private InputAction reload;
-    //private InputAction scroll;   
+    //private InputAction scroll;
 
 
     [SerializeField]
@@ -127,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 relativeRight = moveDirection.x * camRight;
 
         Vector3 moveDir = relativeForward + relativeRight;
-
 
         if (isSprinting)
         {
