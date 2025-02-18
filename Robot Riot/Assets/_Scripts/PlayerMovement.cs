@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         //get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
 
-        //get the direction of the camera
+        /*//get the direction of the camera
         Vector3 camForward = cam.transform.forward;
         Vector3 camRight = cam.transform.right; 
 
@@ -127,12 +127,18 @@ public class PlayerMovement : MonoBehaviour
         Vector3 relativeRight = moveDirection.x * camRight;
 
         Vector3 moveDir = relativeForward + relativeRight;
+        transform.forward = Vector3.Slerp(transform.forward, moveDir.normalized, Time.deltaTime * moveSpeed);*/
+
+        Vector3 movedir = new Vector3(moveDirection.x, 0, moveDirection.y);
+        Quaternion targetRotation = Quaternion.LookRotation(movedir, Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
 
         if (isSprinting)
         {
-            //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 3f);
+            transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 3f);
             //transform.forward = playerRB.velocity * Time.deltaTime * (moveSpeed * 3f);
-            transform.Translate(moveDir * Time.deltaTime * (moveSpeed * 3f));
+            //transform.Translate(moveDir * Time.deltaTime * (moveSpeed * 3f));
+            
 
             stamina -= boostCost * Time.deltaTime;
             if (stamina < 0)
@@ -148,15 +154,16 @@ public class PlayerMovement : MonoBehaviour
         {
             if(botMode)
             {
-                //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f);
+                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * (moveSpeed * 1.25f);
                 //transform.forward = playerRB.velocity * Time.deltaTime * (moveSpeed * 1.25f);
-                transform.Translate(moveDir * Time.deltaTime * (moveSpeed * 1.25f));
+                //transform.Translate(moveDir * Time.deltaTime * (moveSpeed * 1.25f));
             }
             else
             {
-                //transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
+                transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed;
                 //transform.forward = playerRB.velocity * Time.deltaTime * moveSpeed;
-                transform.Translate(moveDir * Time.deltaTime * moveSpeed);
+                //transform.Translate(moveDir * Time.deltaTime * moveSpeed);
+                
             }
         }
        
