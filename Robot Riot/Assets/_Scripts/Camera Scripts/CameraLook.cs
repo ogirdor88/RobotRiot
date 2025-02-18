@@ -31,7 +31,7 @@ public class CameraLook : MonoBehaviour
 
     private void OnEnable()
     {
-        LookCamera = movePlayer.Player.LookCamera;
+        //LookCamera = movePlayer.Player.LookCamera;
         LookCamera.Enable();
         LookCamera.performed += Look;
     }
