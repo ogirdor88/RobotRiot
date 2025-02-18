@@ -47,7 +47,7 @@ public class Health : MonoBehaviour
 
         if(_livesCount == 0)
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("Game Over");
         }
     }
 
@@ -70,7 +70,7 @@ public class Health : MonoBehaviour
         if (_outOfLives)
         {
             //GameOver will go here
-            Debug.Log("GAME OVER");
+            SceneManager.LoadScene("Game Over");
         }
         else
         {
