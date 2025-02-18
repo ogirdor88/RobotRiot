@@ -130,7 +130,9 @@ public class PlayerMovement : MonoBehaviour
         transform.forward = Vector3.Slerp(transform.forward, moveDir.normalized, Time.deltaTime * moveSpeed);*/
 
         Vector3 movedir = new Vector3(moveDirection.x, 0, moveDirection.y);
+        //rotation based on movement 
         Quaternion targetRotation = Quaternion.LookRotation(movedir, Vector3.up);
+        //rotate player
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, moveSpeed * Time.deltaTime);
 
         if (isSprinting)
