@@ -190,14 +190,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MovePlayer(InputAction.CallbackContext context)
+    public void MovePlayer(InputAction.CallbackContext context)
     {
         vertical = context.ReadValue<Vector2>().y;
         horizontal = context.ReadValue<Vector2>().x;
         moving = true;
 
     }
-    private void StopPlayer(InputAction.CallbackContext context)
+    public void StopPlayer(InputAction.CallbackContext context)
     {
         vertical = context.ReadValue<Vector2>().y;
         horizontal = context.ReadValue<Vector2>().x;
@@ -207,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void updateMovement()
+    public void updateMovement()
     {
         if (moving)
         {
@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         }*/
     }
 
-    private void Shoot(InputAction.CallbackContext context)
+    public void Shoot(InputAction.CallbackContext context)
     {
         if(botMode)
         {
@@ -269,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void Jump(InputAction.CallbackContext context) 
+    public void Jump(InputAction.CallbackContext context) 
     {
         if(isGrounded)
         {
@@ -279,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SwitchModes(InputAction.CallbackContext context)
+    public void SwitchModes(InputAction.CallbackContext context)
     {
         botMode = !botMode;
         // this is set up just for inital prototyping purposes
@@ -304,26 +304,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SpeedBoost(InputAction.CallbackContext context)
+    public void SpeedBoost(InputAction.CallbackContext context)
     {
         isSprinting = true;
         Debug.Log("Boost");
         moveSpeed = moveSpeed * 3f;
     }
-    private void EndBoost(InputAction.CallbackContext context)
+    public void EndBoost(InputAction.CallbackContext context)
     {
         isSprinting = false;
         Debug.Log("BoostStopped");
         moveSpeed = originalMoveSpeed;
     }
 
-    private void ReloadWeapon(InputAction.CallbackContext context)
+    public void ReloadWeapon(InputAction.CallbackContext context)
     {
         Debug.Log("Reloading");
     }
 
     //wait 1 second before recharging the stamina bar
-    private IEnumerator RechargeStamina()
+    public IEnumerator RechargeStamina()
     {
         yield return new WaitForSeconds(1f);
 
