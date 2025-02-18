@@ -10,7 +10,10 @@ public class LaserGun : MonoBehaviour
     private float speedOfProjectile;
     [SerializeField] private PlayerMovement playerMove;
     [SerializeField] private GameObject projectile;
-    [SerializeField] private bool canShoot = true;
+    //[SerializeField] private bool canShoot = true;
+
+    // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
+    public bool canShoot = true;
 
     private void Awake()
     {
