@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -246,13 +247,15 @@ public class PlayerMovement : MonoBehaviour
             moving = false;
         }
     }
-
+    private Vector2 input;
     public void CamMove(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        rotateY += input.x * lookSense;
-        rotateX += input.y * lookSense * -1;
+        input = context.ReadValue<Vector2>();
+        //rotateY += input.x * lookSense;
+        //rotateX += input.y * lookSense * -1;
         looking = true;
+
+        Debug.Log(context.ReadValue<Vector2>());
     }
 
     public void CamStop(InputAction.CallbackContext context)
@@ -267,12 +270,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdateLooking()
     {
-       
-            
-            transform.localEulerAngles = new Vector3(0, rotateY, 0);
+        rotateY += input.x * lookSense;
+        rotateX += input.y * lookSense * -1;
 
-            // Rotate camera along X axis
-            cam.transform.localEulerAngles = new Vector3(Mathf.Clamp(rotateX, -35f, 70f), 0, 0);
+        transform.localEulerAngles = new Vector3(0, rotateY, 0);
+
+        rotateX = Mathf.Clamp(rotateX, -35f, 70f);
+        // Rotate camera along X axis
+        cam.transform.localEulerAngles = new Vector3(rotateX, 0, 0);
         
     }
     public void updateMovement()
