@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 5187478951126092425}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de1aedf5627585741b68bc7ed8fb665f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shot: 0
   moveSpeed: 10
   jumpForce: 8
   StaminaBar: {fileID: 0}
@@ -314,8 +315,8 @@ MonoBehaviour:
   _currentHealth: 0
   _livesCount: 3
   _spawnPoint: {x: 0, y: 0, z: 0}
+  _outOfLives: 0
   _healthSlider: {fileID: 8178300746259595907}
-  _weaponsObjects: {fileID: 0}
 --- !u!1 &2281374683378743489
 GameObject:
   m_ObjectHideFlags: 0
