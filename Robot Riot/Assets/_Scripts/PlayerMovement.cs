@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         lookaround.Disable();*/
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         /*//get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
@@ -253,6 +253,8 @@ public class PlayerMovement : MonoBehaviour
         rotateY += input.x * lookSense;
         rotateX += input.y * lookSense * -1;
         looking = true;
+
+        Debug.Log(context.ReadValue<Vector2>());
     }
 
     public void CamStop(InputAction.CallbackContext context)
