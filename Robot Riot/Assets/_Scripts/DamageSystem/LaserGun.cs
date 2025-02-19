@@ -28,7 +28,6 @@ public class LaserGun : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.forward * 100, Color.green);
         if (playerMove == null)
         {
             playerMove = transform.parent.GetComponent<PlayerMovement>();
