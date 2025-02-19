@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4500028203285613346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.02098, y: 0.0085278, z: -0.00062727}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0227401, y: 0.0227401, z: 0.0227401}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -277,6 +277,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 23
 --- !u!2083052967 &6693610616453634609
 VisualEffect:
   m_ObjectHideFlags: 0
