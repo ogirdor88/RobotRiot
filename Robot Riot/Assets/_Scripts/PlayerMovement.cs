@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField]
-    private float moveSpeed;
+    public float moveSpeed;
     private float originalMoveSpeed;
     [SerializeField]
     private float jumpForce;

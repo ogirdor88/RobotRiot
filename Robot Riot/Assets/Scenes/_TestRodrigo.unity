@@ -564,6 +564,63 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1001 &1497842661512982094
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893532889826365009, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668557193521946773, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+      propertyPath: m_Name
+      value: Ice_Spikes_Finished
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
 --- !u!1001 &1899520901924143066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -575,6 +632,10 @@ PrefabInstance:
     - target: {fileID: 4889993319708585596, guid: 6a556c4da0a495b40bbd5e39920af76c, type: 3}
       propertyPath: m_Name
       value: ResourcesSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889993319708585596, guid: 6a556c4da0a495b40bbd5e39920af76c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982477793641166767, guid: 6a556c4da0a495b40bbd5e39920af76c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,6 +734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 9014285773481952792, guid: cda83fc35ea1bf14f9fe9fa73ffa5276, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -730,6 +795,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrapSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 8831151629891228522, guid: 55989c454a3bb344d8d73fd89e476edc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -746,3 +815,4 @@ SceneRoots:
   - {fileID: 189001215}
   - {fileID: 285426258}
   - {fileID: 827585114}
+  - {fileID: 1497842661512982094}
