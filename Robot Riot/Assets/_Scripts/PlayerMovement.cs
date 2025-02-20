@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {
         botMode = false;
     }
+
     private void OnEnable()
     {
        /* // Set up movement
@@ -275,7 +276,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localEulerAngles = new Vector3(0, rotateY, 0);
 
-        rotateX = Mathf.Clamp(rotateX, -35f, 70f);
+        rotateX = Mathf.Clamp(rotateX, -50f, 70f);
         // Rotate camera along X axis
         cam.transform.localEulerAngles = new Vector3(rotateX, 0, 0);
         
