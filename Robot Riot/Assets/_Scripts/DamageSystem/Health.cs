@@ -23,8 +23,12 @@ public class Health : MonoBehaviour
 
     //[SerializeField] private int _weaponDamage;
 
+    public bool isProtected = false;
+
     private void Awake()
     {
+        isProtected = false;
+
         //set Players health to max
         _currentHealth = _startHealth;
         _spawnPoint = transform.position;
@@ -49,6 +53,7 @@ public class Health : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
+        _healthSlider.value = _currentHealth;
     }
 
     private void FixedUpdate()
@@ -60,8 +65,16 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        _healthSlider.value = _currentHealth;
+        if (!isProtected)
+        {
+            _currentHealth -= damage;
+            _healthSlider.value = _currentHealth;
+            Debug.Log("DAMAGED");
+        }
+        else
+        {
+            Debug.Log("ALL GOOD");
+        }
     }
 
     private void Respawn()
@@ -88,11 +101,17 @@ public class Health : MonoBehaviour
             //Destroy(other.gameObject);
             _healthSlider.value = _currentHealth;
         }
-        /*
-        if (other.gameObject.tag == "SpawnPoint")
+        if(other.gameObject.tag == "PowerRibbon")
         {
-            _spawnPoint = other.gameObject.transform.position;
+            StartCoroutine(PlayerProtected());
+            Destroy(other.gameObject);
         }
-        */
+    }
+
+    IEnumerator PlayerProtected()
+    {
+        isProtected = true;
+        yield return new WaitForSecondsRealtime(5f);
+        isProtected = false;
     }
 }

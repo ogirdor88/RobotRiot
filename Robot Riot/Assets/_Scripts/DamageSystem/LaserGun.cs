@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform muzzle2;
     [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
@@ -27,17 +28,32 @@ public class LaserGun : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.forward * 100, Color.green);
         if (playerMove == null)
         {
-            playerMove = transform.parent.GetComponent<PlayerMovement>();
+            //playerMove = transform.parent.GetComponent<PlayerMovement>();
+            playerMove = transform.parent.GetComponentInParent<PlayerMovement>();
             Debug.Log("yes");
         }
-        if (playerMove.shot && canShoot)
+
+        Debug.Log(weapon.damage);
+        
+        if(muzzle2 != null)
         {
-            StartCoroutine(Shooting());
-            Debug.Log("shot");
-            playerMove.shot = false;
+            if (playerMove.shot && canShoot)
+            {
+                StartCoroutine(DuealShooting());
+                Debug.Log("shot2");
+                playerMove.shot = false;
+            }
+        }
+        else
+        {
+            if (playerMove.shot && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot");
+                playerMove.shot = false;
+            }
         }
     }
 
@@ -54,6 +70,16 @@ public class LaserGun : MonoBehaviour
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        yield return new WaitForSeconds(timeToFire);
+        canShoot = true;
+    }
+    IEnumerator DuealShooting()
+    {
+        canShoot = false;
+        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
+        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
+        newProjectile2.GetComponent<Rigidbody>().AddForce(newProjectile2.transform.up * speedOfProjectile);
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }
