@@ -30,15 +30,19 @@ public class LaserGun : MonoBehaviour
     {
         if (playerMove == null)
         {
-            playerMove = transform.parent.GetComponent<PlayerMovement>();
+            //playerMove = transform.parent.GetComponent<PlayerMovement>();
+            playerMove = transform.parent.GetComponentInParent<PlayerMovement>();
             Debug.Log("yes");
         }
+
+        Debug.Log(weapon.damage);
+        
         if(muzzle2 != null)
         {
             if (playerMove.shot && canShoot)
             {
-                StartCoroutine(Shooting());
-                Debug.Log("shot");
+                StartCoroutine(DuealShooting());
+                Debug.Log("shot2");
                 playerMove.shot = false;
             }
         }
@@ -66,6 +70,16 @@ public class LaserGun : MonoBehaviour
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        yield return new WaitForSeconds(timeToFire);
+        canShoot = true;
+    }
+    IEnumerator DuealShooting()
+    {
+        canShoot = false;
+        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
+        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
+        newProjectile2.GetComponent<Rigidbody>().AddForce(newProjectile2.transform.up * speedOfProjectile);
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }

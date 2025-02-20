@@ -31,7 +31,7 @@ public class MatchTimer : MonoBehaviour
     }
     private void Update()
     {
-        if(playerManager.players.Count >= 2)
+        if(playerManager.playerCount >= 2)
         {
             if (currentTime > 0 && !stop)
             {
