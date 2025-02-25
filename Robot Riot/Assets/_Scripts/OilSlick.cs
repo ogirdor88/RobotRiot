@@ -10,14 +10,23 @@ public class OilSlick : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        gameObject.GetComponent<Renderer>().material.color = Color.black;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") 
         {
+            //Vector3 dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
+            //dir = dir.normalized;
             player.GetComponent<PlayerMovement>().enabled = false;
+
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        player.GetComponent<Rigidbody>().AddForce(GameObject.Find("rotationPoint").transform.forward * 30, ForceMode.Force);
     }
 
     private void OnTriggerExit(Collider other)
