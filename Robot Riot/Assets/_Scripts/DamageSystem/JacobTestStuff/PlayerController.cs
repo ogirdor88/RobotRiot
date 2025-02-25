@@ -2,36 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class PlayerController : MonoBehaviour
 {
-    //[SerializeField] private InputActionAsset _playerControls;
     private CharacterController _playerCC;
-    //private Rigidbody _playerRB;
+    [SerializeField] private GameObject _camera;
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
     private Vector3 _moveInput = Vector3.zero;
 
+    private Vector2 _cameraMove;
+
     private float _playerSpeed = 4f;
-    private float _jumpHieght = 1.5f;
+    private float _jumpHieght = 1f;
     private float _gravity = -20;
     private float vertical;
     private float horizontal;
+    private float originalMoveSpeed;
+
+    private float rotateX;
+    private float rotateY;
+    private float lookSens;
 
     private bool isSprinting = false;
-    [SerializeField] private bool isGrounded;
+    private bool isGrounded;
     private bool isJumping;
     private bool jump;
-    public bool isShooting = false;
-    bool moving = false;
+    private bool botMode = false;
 
-    float jumponce = 0;
+    public bool isShooting = false;
+
     private void Awake()
     {
         _playerCC = gameObject.GetComponent<CharacterController>();
-        //_playerRB = GetComponent<Rigidbody>();
 
+        originalMoveSpeed = _playerSpeed;
+
+        botMode = false;
         isShooting = false;
     }
     private void Update()
@@ -45,7 +55,6 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.blue, 1.15f);
         updateMove();
         updateJump();
     }
@@ -58,10 +67,8 @@ public class PlayerController : MonoBehaviour
     }
     public void Move(InputAction.CallbackContext context)
     {
-
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
-        moving = true;
     }
     #endregion
     #region Jump
@@ -71,6 +78,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && _jumpFoce.y < 0)
         {
             _jumpFoce.y = -3f;
+            jump = true;
         }
         _jumpFoce.y += _gravity * Time.deltaTime;
         _playerCC.Move(_jumpFoce * Time.deltaTime);
@@ -78,7 +86,87 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+        if (jump)
+        {
+            _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+        }
+        jump = false;
+    }
+    #endregion
+    #region Camera
+    public void CamMove(InputAction.CallbackContext context)
+    {
+        _cameraMove = context.ReadValue<Vector2>();
+    }
+    public void UpdateLooking()
+    {
+        rotateY += _cameraMove.x * lookSens;
+        rotateX += _cameraMove.y * lookSens * -1;
+
+        transform.localEulerAngles = new Vector3(0, rotateY, 0);
+
+        rotateX = Mathf.Clamp(rotateX, -50f, 70f);
+        // Rotate camera along X axis
+        _camera.transform.localEulerAngles = new Vector3(rotateX, 0, 0);
+
+    }
+    #endregion
+    #region Shooting/Reload
+    public void Shoot(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            if (botMode)
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = this.transform.position;
+            }
+            else
+            {
+                Debug.Log("Pew");
+                isShooting = true;
+            }
+        }
+    }
+    public void ReloadWeapon(InputAction.CallbackContext context)
+    {
+        Debug.Log("Reloading");
+    }
+    #endregion
+    #region Bot Mode
+    public void SwitchModes(InputAction.CallbackContext context)
+    {
+        botMode = !botMode;
+        // this is set up just for inital prototyping purposes
+        // will be changed later
+        if (botMode)
+        {
+            this.GetComponent<Renderer>().material.color = Color.green;
+            _playerSpeed = _playerSpeed * 1.25f;
+
+            Debug.Log("Bot Mode");
+        }
+
+        if (!botMode)
+        {
+            this.GetComponent<Renderer>().material.color = Color.blue;
+            _playerSpeed = originalMoveSpeed;
+            Debug.Log("Combat Mode");
+        }
+    }
+    #endregion
+    #region Sprinting
+    public void SpeedBoost(InputAction.CallbackContext context)
+    {
+        isSprinting = true;
+        Debug.Log("Boost");
+        _playerSpeed = _playerSpeed * 3f;
+    }
+    public void EndBoost(InputAction.CallbackContext context)
+    {
+        isSprinting = false;
+        Debug.Log("BoostStopped");
+        _playerSpeed = originalMoveSpeed;
     }
     #endregion
 }

@@ -46,15 +46,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Movement1"",
-                    ""type"": ""Value"",
-                    ""id"": ""c4334836-5bf8-4ae0-875f-61e4c23f61f9"",
-                    ""expectedControlType"": ""Stick"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""7190197b-5088-4560-a976-0201758be0ed"",
@@ -64,7 +55,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Transform"",
+                    ""name"": ""BotMode"",
                     ""type"": ""Button"",
                     ""id"": ""a8f71742-f027-4ffb-8d04-d3899545e29e"",
                     ""expectedControlType"": ""Button"",
@@ -156,7 +147,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -167,7 +158,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -178,7 +169,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -189,7 +180,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -197,10 +188,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""af6230a2-8630-450f-b720-2d9f1548c6ae"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -211,7 +202,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Controller"",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -223,7 +214,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""BotMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -234,7 +225,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Transform"",
+                    ""action"": ""BotMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -244,7 +235,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -255,7 +246,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Controller"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -266,7 +257,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -277,7 +268,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Controller"",
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -416,17 +407,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fbd55757-f8df-4c1f-8164-f62bbb2ce047"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ea2e77bd-ecd6-45a7-9fc1-d659f7be85a7"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -479,9 +459,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Movement1 = m_Player.FindAction("Movement1", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_Transform = m_Player.FindAction("Transform", throwIfNotFound: true);
+        m_Player_BotMode = m_Player.FindAction("BotMode", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
         m_Player_DeployTraps = m_Player.FindAction("DeployTraps", throwIfNotFound: true);
@@ -551,9 +530,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Movement1;
     private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_Transform;
+    private readonly InputAction m_Player_BotMode;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Boost;
     private readonly InputAction m_Player_DeployTraps;
@@ -566,9 +544,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Movement1 => m_Wrapper.m_Player_Movement1;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
-        public InputAction @Transform => m_Wrapper.m_Player_Transform;
+        public InputAction @BotMode => m_Wrapper.m_Player_BotMode;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputAction @DeployTraps => m_Wrapper.m_Player_DeployTraps;
@@ -590,15 +567,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Movement1.started += instance.OnMovement1;
-            @Movement1.performed += instance.OnMovement1;
-            @Movement1.canceled += instance.OnMovement1;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
-            @Transform.started += instance.OnTransform;
-            @Transform.performed += instance.OnTransform;
-            @Transform.canceled += instance.OnTransform;
+            @BotMode.started += instance.OnBotMode;
+            @BotMode.performed += instance.OnBotMode;
+            @BotMode.canceled += instance.OnBotMode;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -627,15 +601,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Movement1.started -= instance.OnMovement1;
-            @Movement1.performed -= instance.OnMovement1;
-            @Movement1.canceled -= instance.OnMovement1;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
-            @Transform.started -= instance.OnTransform;
-            @Transform.performed -= instance.OnTransform;
-            @Transform.canceled -= instance.OnTransform;
+            @BotMode.started -= instance.OnBotMode;
+            @BotMode.performed -= instance.OnBotMode;
+            @BotMode.canceled -= instance.OnBotMode;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -693,9 +664,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnMovement1(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
-        void OnTransform(InputAction.CallbackContext context);
+        void OnBotMode(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnDeployTraps(InputAction.CallbackContext context);

@@ -120,16 +120,19 @@ public class PlayerMove : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (botMode)
+        if (context.phase == InputActionPhase.Started)
         {
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = this.transform.position;
-            Debug.Log("Deploying Trap");
-        }
-        else
-        {
-            Debug.Log("Pew");
-            shot = true;
+            if (botMode)
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = this.transform.position;
+                Debug.Log("Deploying Trap");
+            }
+            else
+            {
+                Debug.Log("Pew");
+                shot = true;
+            }
         }
     }
 

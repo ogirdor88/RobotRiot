@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         morph.performed += SwitchModes;*/
 
         player.FindAction("morph").started += SwitchModes;
-        morph = movePlayer.Player.Transform;
+        morph = movePlayer.Player.BotMode;
 
         /*//set up the Boost
         boost = movePlayer.Player.Boost;
