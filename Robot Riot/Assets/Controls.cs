@@ -265,8 +265,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aca6b102-168b-49da-bbf3-d85bb898576f"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
                     ""action"": ""Boost"",
