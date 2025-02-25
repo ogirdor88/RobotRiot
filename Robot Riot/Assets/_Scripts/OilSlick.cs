@@ -6,6 +6,9 @@ public class OilSlick : MonoBehaviour
 {
     private GameObject player;
 
+    [SerializeField]
+    private float slideForce;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,7 @@ public class OilSlick : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        player.GetComponent<Rigidbody>().AddForce(GameObject.Find("rotationPoint").transform.forward * 30, ForceMode.Force);
+        player.GetComponent<Rigidbody>().AddForce(GameObject.Find("rotationPoint").transform.forward * slideForce, ForceMode.Force);
     }
 
     private void OnTriggerExit(Collider other)
