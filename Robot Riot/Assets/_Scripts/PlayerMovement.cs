@@ -438,6 +438,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Oil")
         {
             moveSpeed = originalMoveSpeed;
-            sliding = false;        }
+            sliding = false;       
+        }
     }
 }
