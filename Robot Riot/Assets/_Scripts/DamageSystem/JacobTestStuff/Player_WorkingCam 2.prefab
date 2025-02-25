@@ -1077,7 +1077,19 @@ MonoBehaviour:
     m_ActionId: 7190197b-5088-4560-a976-0201758be0ed
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4494525818658075708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SwitchModes
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a8f71742-f027-4ffb-8d04-d3899545e29e
     m_ActionName: Player/Transform[/Keyboard/q]
   - m_PersistentCalls:
@@ -1097,7 +1109,19 @@ MonoBehaviour:
     m_ActionId: 8c3ed92a-a9f9-41e2-83fb-5e2e2b9ed401
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4494525818658075708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SpeedBoost
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7aedf08b-ae57-433b-bf58-deeed79ec20b
     m_ActionName: Player/Boost[/Keyboard/shift]
   - m_PersistentCalls:
@@ -1105,7 +1129,19 @@ MonoBehaviour:
     m_ActionId: 4b2e5661-81b7-4c34-828f-4db015037f35
     m_ActionName: Player/DeployTraps[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4494525818658075708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ReloadWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8dc1896e-7cbc-461b-9af7-e421ab8cb5bf
     m_ActionName: Player/Reload[/Keyboard/r]
   - m_PersistentCalls:
@@ -1113,11 +1149,35 @@ MonoBehaviour:
     m_ActionId: 3878b9c0-2286-4e45-9297-6ab1b603dbc8
     m_ActionName: Player/Scroll[/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4494525818658075708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: EndBoost
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3c6b55c4-eab5-421d-875b-ed0ac3cba654
     m_ActionName: Player/BoostStop[/Keyboard/shift,/XInputControllerWindows/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -4494525818658075708}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: CamMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eca31dd7-220a-41d1-85d9-e020fcede89d
     m_ActionName: Player/Turning
   m_NeverAutoSwitchControlSchemes: 1
@@ -1137,7 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cc8c4ee0922ca408a15309beafbec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 8475565038511617158}
+  _camera: {fileID: 6647079904456145984}
   isShooting: 0
 --- !u!114 &4224360769593516785
 MonoBehaviour:

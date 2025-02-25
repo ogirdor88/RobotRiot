@@ -8,7 +8,7 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController _playerCC;
-    [SerializeField] private GameObject _camera;
+    [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
@@ -23,9 +23,8 @@ public class PlayerController : MonoBehaviour
     private float horizontal;
     private float originalMoveSpeed;
 
-    private float rotateX;
-    private float rotateY;
-    private float lookSens;
+    private float xRotaion = 0f;
+    private float lookSens = 1.8f;
 
     private bool isSprinting = false;
     private bool isGrounded;
@@ -55,12 +54,13 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
-        updateMove();
-        updateJump();
+        UpdateMove();
+        UpdateJump();
+        UpdateCamera();
     }
 
     #region Movement
-    private void updateMove()
+    private void UpdateMove()
     {
         _moveInput = transform.right * horizontal + transform.forward * vertical;
         _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     #endregion
     #region Jump
 
-    private void updateJump()
+    private void UpdateJump()
     {
         if (isGrounded && _jumpFoce.y < 0)
         {
@@ -98,17 +98,17 @@ public class PlayerController : MonoBehaviour
     {
         _cameraMove = context.ReadValue<Vector2>();
     }
-    public void UpdateLooking()
+    public void UpdateCamera()
     {
-        rotateY += _cameraMove.x * lookSens;
-        rotateX += _cameraMove.y * lookSens * -1;
+        float rotateX = _cameraMove.x * lookSens;
+        float rotateY = _cameraMove.y * lookSens;
 
-        transform.localEulerAngles = new Vector3(0, rotateY, 0);
+        transform.Rotate(Vector3.up * rotateX);
 
-        rotateX = Mathf.Clamp(rotateX, -50f, 70f);
-        // Rotate camera along X axis
-        _camera.transform.localEulerAngles = new Vector3(rotateX, 0, 0);
+        xRotaion -= rotateY;
+        xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
 
+        _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
     }
     #endregion
     #region Shooting/Reload
