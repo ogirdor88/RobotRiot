@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Weapons weapon;
     private float startDist;
     private bool hit = false;
+    public int bonusDamage;
 
     private void Start()
     {
@@ -33,7 +34,7 @@ public class Projectile : MonoBehaviour
             var health = other.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(weapon.damage);
+                health.TakeDamage(weapon.damage + bonusDamage);
             }
             Destroy(this.gameObject);
         }
