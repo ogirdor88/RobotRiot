@@ -9,7 +9,7 @@ public class LaserGun : MonoBehaviour
     [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
-    [SerializeField] private PlayerMovement playerMove;
+    [SerializeField] private PlayerController playerMove;
     [SerializeField] private GameObject projectile;
     //[SerializeField] private bool canShoot = true;
 
@@ -31,7 +31,7 @@ public class LaserGun : MonoBehaviour
         if (playerMove == null)
         {
             //playerMove = transform.parent.GetComponent<PlayerMovement>();
-            playerMove = transform.parent.GetComponentInParent<PlayerMovement>();
+            playerMove = transform.parent.GetComponentInParent<PlayerController>();
             Debug.Log("yes");
         }
 
@@ -39,20 +39,20 @@ public class LaserGun : MonoBehaviour
         
         if(muzzle2 != null)
         {
-            if (playerMove.shot && canShoot)
+            if (playerMove.isShooting && canShoot)
             {
                 StartCoroutine(DuealShooting());
                 Debug.Log("shot2");
-                playerMove.shot = false;
+                playerMove.isShooting = false;
             }
         }
         else
         {
-            if (playerMove.shot && canShoot)
+            if (playerMove.isShooting && canShoot)
             {
                 StartCoroutine(Shooting());
                 Debug.Log("shot");
-                playerMove.shot = false;
+                playerMove.isShooting = false;
             }
         }
     }
