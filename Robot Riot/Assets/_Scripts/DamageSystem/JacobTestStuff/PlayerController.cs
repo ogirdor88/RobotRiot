@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -62,6 +63,14 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private void UpdateMove()
     {
+        if (isSprinting)
+        {
+            _playerSpeed = 10f;
+        }
+        else
+        {
+            _playerSpeed = originalMoveSpeed;
+        }
         _moveInput = transform.right * horizontal + transform.forward * vertical;
         _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
     }
@@ -158,15 +167,20 @@ public class PlayerController : MonoBehaviour
     #region Sprinting
     public void SpeedBoost(InputAction.CallbackContext context)
     {
-        isSprinting = true;
-        Debug.Log("Boost");
-        _playerSpeed = _playerSpeed * 3f;
+        if (context.phase == InputActionPhase.Performed)
+        {
+            isSprinting = true;
+        }
+        if(context.phase == InputActionPhase.Canceled)
+        {
+            isSprinting = false;
+        }
     }
     public void EndBoost(InputAction.CallbackContext context)
     {
-        isSprinting = false;
+        //isSprinting = false;
         Debug.Log("BoostStopped");
-        _playerSpeed = originalMoveSpeed;
+        //_playerSpeed = originalMoveSpeed;
     }
     #endregion
 }
