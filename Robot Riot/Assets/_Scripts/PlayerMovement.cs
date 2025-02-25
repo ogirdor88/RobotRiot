@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
     public float lookSense;
 
+    // Bonus Damage
+    public int bonusDamage;
+
 
     [SerializeField]
     private float moveSpeed;

@@ -42,7 +42,7 @@ public class BallonSword : MonoBehaviour
             var health = other.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(weapon.damage);
+                health.TakeDamage(weapon.damage + transform.parent.GetComponent<PlayerMovement>().bonusDamage);
             }
             Debug.Log("SAASSAASASA");
         }

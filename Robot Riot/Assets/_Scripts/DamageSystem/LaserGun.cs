@@ -54,6 +54,8 @@ public class LaserGun : MonoBehaviour
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        if (transform.parent.GetComponent<PlayerMovement>())
+            newProjectile.GetComponent<Projectile>().bonusDamage = transform.parent.GetComponent<PlayerMovement>().bonusDamage;
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }
