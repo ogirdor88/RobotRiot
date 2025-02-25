@@ -61,8 +61,8 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
-        //updateMovement();
-        //UpdateLooking();
+        updateMovement();
+        UpdateLooking();
 
         RaycastHit hit;
 
