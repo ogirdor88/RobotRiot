@@ -20,6 +20,9 @@ public class Health : MonoBehaviour
 
     // Players health slider
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private Image _healthFill;
+    [SerializeField] private Gradient _healthColor;
+    [SerializeField] private Text _healthText;
 
     //[SerializeField] private int _weaponDamage;
 
@@ -28,12 +31,11 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         isProtected = false;
+        _spawnPoint = transform.position;
+        _outOfLives = false;
 
         //set Players health to max
-        _currentHealth = _startHealth;
-        _spawnPoint = transform.position;
-        _healthSlider.value = _currentHealth;
-        _outOfLives = false;
+        SetMaxHealth(_startHealth);
     }
 
     private void Update()
@@ -44,23 +46,10 @@ public class Health : MonoBehaviour
         {
             Respawn();
         }
-        if (_livesCount == 1)
+        if (_livesCount <= 1)
         {
             _outOfLives = true;
         }
-
-        if(_livesCount == 0)
-        {
-            SceneManager.LoadScene(3);
-        }
-        _healthSlider.value = _currentHealth;
-    }
-
-    private void FixedUpdate()
-    {
-        //sets slider to the players health
-        //_healthSlider.value = _currentHealth;
-
     }
 
     public void TakeDamage(int damage)
@@ -69,6 +58,8 @@ public class Health : MonoBehaviour
         {
             _currentHealth -= damage;
             _healthSlider.value = _currentHealth;
+            _healthText.text = _currentHealth.ToString();
+            _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
             Debug.Log("DAMAGED");
         }
         else
@@ -76,20 +67,24 @@ public class Health : MonoBehaviour
             Debug.Log("ALL GOOD");
         }
     }
-
+    public void SetMaxHealth(int health)
+    {
+        _currentHealth = health;
+        _healthSlider.value = _currentHealth;
+        _healthText.text = _currentHealth.ToString();
+        _healthFill.color = _healthColor.Evaluate(1f);
+    }
     private void Respawn()
     {
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {
-            //GameOver will go here
-            Debug.Log("GAME OVER");
+            SceneManager.LoadScene(3);
         }
         else
         {
             _livesCount--;
-            _currentHealth = _startHealth;
-            _healthSlider.value = _currentHealth;
+            SetMaxHealth(_startHealth);
         }
     }
 
@@ -97,9 +92,7 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.tag == "Healthpack")
         {
-            _currentHealth = _startHealth;
-            //Destroy(other.gameObject);
-            _healthSlider.value = _currentHealth;
+            SetMaxHealth(_startHealth);
         }
         if(other.gameObject.tag == "PowerRibbon")
         {
