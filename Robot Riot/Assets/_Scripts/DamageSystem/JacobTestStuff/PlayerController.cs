@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private float xRotaion = 0f;
     private float lookSens = 1.8f;
+    private float lookSensOriginal;
 
     private bool isSprinting = false;
     private bool isGrounded;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
         botMode = false;
         isShooting = false;
+        lookSensOriginal = lookSens;
     }
     private void Update()
     {
@@ -111,6 +113,15 @@ public class PlayerController : MonoBehaviour
     }
     public void UpdateCamera()
     {
+        if (slide)
+        {
+            lookSens = 0;
+        }
+        else
+        {
+            lookSens = lookSensOriginal;
+        }
+
         float rotateX = _cameraMove.x * lookSens;
         float rotateY = _cameraMove.y * lookSens;
 
@@ -118,11 +129,7 @@ public class PlayerController : MonoBehaviour
 
         xRotaion -= rotateY;
         xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
-
-        if(!slide)
         _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
-        else
-            _camera.transform.localRotation = _camera.transform.localRotation;
     }
     #endregion
     #region Shooting/Reload
