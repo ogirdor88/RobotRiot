@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
     private Vector3 _moveInput = Vector3.zero;
+    private Vector3 _moveDir = Vector3.zero;
 
     private Vector2 _cameraMove;
 
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool jump;
     private bool botMode = false;
+    private bool slide = false;
 
     public bool isShooting = false;
 
@@ -117,7 +119,10 @@ public class PlayerController : MonoBehaviour
         xRotaion -= rotateY;
         xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
 
+        if(!slide)
         _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+        else
+            _camera.transform.localRotation = _camera.transform.localRotation;
     }
     #endregion
     #region Shooting/Reload
@@ -181,6 +186,37 @@ public class PlayerController : MonoBehaviour
         //isSprinting = false;
         Debug.Log("BoostStopped");
         //_playerSpeed = originalMoveSpeed;
+    }
+    #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Oil")
+        {
+            slide = true;
+            _moveDir = _moveInput;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Oil")
+        {
+            slide = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Oil")
+        {
+            OilSlide();
+        }
+    }
+    #region Slide
+    private void OilSlide()
+    {
+        _playerCC.Move(_moveDir * _playerSpeed*2 * Time.deltaTime);
     }
     #endregion
 }
