@@ -99,6 +99,7 @@ public class Health : MonoBehaviour
     }
     private void Respawn()
     {
+        Debug.Log("Does this work?");
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {

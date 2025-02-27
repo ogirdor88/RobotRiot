@@ -7,6 +7,7 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
+using UnityEditor.Experimental.GraphView;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal, vertical;
 
     [SerializeField]
-    private bool moving, looking;
+    private bool moving, looking, sliding;
 
 
     //cam stuff
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField]
-    private float moveSpeed;
+    public float moveSpeed;
     private float originalMoveSpeed;
     [SerializeField]
     private float jumpForce;
@@ -78,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
         isSprinting = false;
         originalMoveSpeed = moveSpeed;
+        sliding = false;
     }
 
     private void Start()
@@ -213,6 +215,11 @@ public class PlayerMovement : MonoBehaviour
 
         updateMovement();
         UpdateLooking();
+
+        if (sliding)
+        {
+            OilSlide();
+        }
 
          /*rotateY += Input.GetAxis("Mouse X") * lookSense;
          rotateX += Input.GetAxis("Mouse Y") * lookSense * -1;*/
@@ -412,6 +419,30 @@ public class PlayerMovement : MonoBehaviour
             //update the stamina bar
             StaminaBar.fillAmount = stamina / maxStamina;
             yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Oil")
+        {
+            moveSpeed = moveSpeed * 2;
+            sliding = true;
+        }
+    }
+
+    private void OilSlide()
+    {
+        Vector3 slideDir = (Vector3.forward * vertical) + (Vector3.right * horizontal);
+        playerRB.AddForce(slideDir.normalized * 15, ForceMode.Force);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Oil")
+        {
+            moveSpeed = originalMoveSpeed;
+            sliding = false;       
         }
     }
 }
