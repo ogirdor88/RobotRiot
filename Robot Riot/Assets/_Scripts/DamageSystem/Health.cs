@@ -31,11 +31,19 @@ public class Health : MonoBehaviour
 
     public bool isProtected = false;
 
+    // Allows this to be on non-player objects
+    private bool isPlayer;
+
     private void Awake()
     {
         isProtected = false;
         _spawnPoint = transform.position;
         _outOfLives = false;
+
+        if (gameObject.GetComponent<PlayerController>())
+            isPlayer = true;
+        else
+            isPlayer = false;
 
         //set Players health to max
         SetMaxHealth(_startHealth);
@@ -47,31 +55,37 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            Respawn();
+            if (isPlayer)
+                Respawn();
+            else
+                Destroy(this.gameObject);
         }
 
-        switch (_livesCount)
+        if (isPlayer)
         {
-            case 3:
-                Life1.SetActive(true); 
-                Life2.SetActive(true); 
-                Life3.SetActive(true); 
-                break;
-            case 2:
-                Life1.SetActive(true);
-                Life2.SetActive(true);
-                Life3.SetActive(false);
-                break;
-            case 1:
-                Life1.SetActive(true);
-                Life2.SetActive(false);
-                _outOfLives = true;
-                break;
-            case 0:
-                Life1.SetActive(false);
-                break;
-            default:
-                break;
+            switch (_livesCount)
+            {
+                case 3:
+                    Life1.SetActive(true);
+                    Life2.SetActive(true);
+                    Life3.SetActive(true);
+                    break;
+                case 2:
+                    Life1.SetActive(true);
+                    Life2.SetActive(true);
+                    Life3.SetActive(false);
+                    break;
+                case 1:
+                    Life1.SetActive(true);
+                    Life2.SetActive(false);
+                    _outOfLives = true;
+                    break;
+                case 0:
+                    Life1.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -80,9 +94,12 @@ public class Health : MonoBehaviour
         if (!isProtected)
         {
             _currentHealth -= damage;
-            _healthSlider.value = _currentHealth;
-            _healthText.text = _currentHealth.ToString();
-            _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
+            if (isPlayer)
+            {
+                _healthSlider.value = _currentHealth;
+                _healthText.text = _currentHealth.ToString();
+                _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
+            }
             Debug.Log("DAMAGED");
         }
         else
@@ -93,9 +110,12 @@ public class Health : MonoBehaviour
     public void SetMaxHealth(int health)
     {
         _currentHealth = health;
-        _healthSlider.value = _currentHealth;
-        _healthText.text = _currentHealth.ToString();
-        _healthFill.color = _healthColor.Evaluate(1f);
+        if (isPlayer)
+        {
+            _healthSlider.value = _currentHealth;
+            _healthText.text = _currentHealth.ToString();
+            _healthFill.color = _healthColor.Evaluate(1f);
+        }
     }
     private void Respawn()
     {
@@ -114,11 +134,11 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Healthpack")
+        if (other.gameObject.tag == "Healthpack" && isPlayer)
         {
             SetMaxHealth(_startHealth);
         }
-        if(other.gameObject.tag == "PowerRibbon")
+        if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);

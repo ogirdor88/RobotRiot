@@ -29,16 +29,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.GetComponent<Health>())
         {
-            var health = other.GetComponent<Health>();
-            if (health != null)
-            {
-                health.TakeDamage(weapon.damage + bonusDamage);
-            }
+            other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
             Destroy(this.gameObject);
         }
-        if (other.gameObject && other.gameObject.tag != "Player" && other.gameObject.tag != "Weapon")
+        if (other.gameObject && other.gameObject.tag != "Weapon")
         {
             Destroy(this.gameObject);
         }
