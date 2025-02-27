@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController _playerCC;
+    [SerializeField] private CharacterController _playerCC;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -44,16 +45,12 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _playerCC = gameObject.GetComponent<CharacterController>();
-
+        _playerCC = gameObject.AddComponent<CharacterController>();
         originalMoveSpeed = _playerSpeed;
-
         botMode = false;
         isShooting = false;
         lookSensOriginal = lookSens;
-
         RandomSword();
-
     }
     private void Update()
     {
