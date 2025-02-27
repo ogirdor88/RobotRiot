@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using UnityEngine.Windows;
+using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
     public bool isShooting = false;
 
+    [SerializeField]
+    private List<GameObject> swords;
+
     private void Awake()
     {
         _playerCC = gameObject.GetComponent<CharacterController>();
@@ -47,6 +51,9 @@ public class PlayerController : MonoBehaviour
         botMode = false;
         isShooting = false;
         lookSensOriginal = lookSens;
+
+        RandomSword();
+
     }
     private void Update()
     {
@@ -198,6 +205,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //when the player enters the oil trap, get a reffrence to the character's direction and speed
+        //then you set slide bool to be true
         if(other.tag == "Oil")
         {
             slide = true;
@@ -207,6 +216,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //when you exit the oil trap set the bool to false
         if (other.tag == "Oil")
         {
             slide = false;
@@ -215,6 +225,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //while you are in the oil make the player slide
         if (other.tag == "Oil")
         {
             OilSlide();
@@ -223,7 +234,18 @@ public class PlayerController : MonoBehaviour
     #region Slide
     private void OilSlide()
     {
+        //move the player in the direction that they entered the oil and double the speed to make it seem slick
         _playerCC.Move(_moveDir * _playerSpeed*2 * Time.deltaTime);
+    }
+    #endregion
+
+    #region Sword
+    private void RandomSword()
+    {
+        // get a random number from 0 to the sword count
+        //tunr on that sword
+        int rand = Random.Range(0, swords.Count);
+        swords[rand].gameObject.SetActive(true);
     }
     #endregion
 }
