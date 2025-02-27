@@ -23,6 +23,9 @@ public class Health : MonoBehaviour
     [SerializeField] private Image _healthFill;
     [SerializeField] private Gradient _healthColor;
     [SerializeField] private Text _healthText;
+    [SerializeField] private GameObject Life1;
+    [SerializeField] private GameObject Life2;
+    [SerializeField] private GameObject Life3;
 
     //[SerializeField] private int _weaponDamage;
 
@@ -46,9 +49,29 @@ public class Health : MonoBehaviour
         {
             Respawn();
         }
-        if (_livesCount <= 1)
+
+        switch (_livesCount)
         {
-            _outOfLives = true;
+            case 3:
+                Life1.SetActive(true); 
+                Life2.SetActive(true); 
+                Life3.SetActive(true); 
+                break;
+            case 2:
+                Life1.SetActive(true);
+                Life2.SetActive(true);
+                Life3.SetActive(false);
+                break;
+            case 1:
+                Life1.SetActive(true);
+                Life2.SetActive(false);
+                _outOfLives = true;
+                break;
+            case 0:
+                Life1.SetActive(false);
+                break;
+            default:
+                break;
         }
     }
 
