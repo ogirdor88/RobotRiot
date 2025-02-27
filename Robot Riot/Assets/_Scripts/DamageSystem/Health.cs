@@ -31,6 +31,8 @@ public class Health : MonoBehaviour
 
     public bool isProtected = false;
 
+    private PlayerController _playerController;
+
     // Allows this to be on non-player objects
     private bool isPlayer;
 
@@ -41,14 +43,19 @@ public class Health : MonoBehaviour
         _outOfLives = false;
 
         if (gameObject.GetComponent<PlayerController>())
+        {
             isPlayer = true;
+            _playerController = GetComponent<PlayerController>();
+        }
         else
+        {
             isPlayer = false;
+            _playerController = null;
+        }
 
         //set Players health to max
         SetMaxHealth(_startHealth);
     }
-
     private void Update()
     {
         //_weaponDamage = _weaponsObjects.weaponDmage;
@@ -56,7 +63,7 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0)
         {
             if (isPlayer)
-                Respawn();
+                StartCoroutine(PlayerController());
             else
                 Destroy(this.gameObject);
         }
@@ -143,6 +150,15 @@ public class Health : MonoBehaviour
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
         }
+    }
+
+    IEnumerator PlayerController()
+    {
+        _playerController._playerCC.enabled = false;
+        yield return new WaitForSeconds(1f);
+        Respawn();
+        yield return new WaitForSeconds(1f);
+        _playerController._playerCC.enabled = true;
     }
 
     IEnumerator PlayerProtected()

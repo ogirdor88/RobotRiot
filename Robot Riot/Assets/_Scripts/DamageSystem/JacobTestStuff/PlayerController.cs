@@ -10,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CharacterController _playerCC;
+    public CharacterController _playerCC;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
