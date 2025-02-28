@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Weapons weapon;
     private float startDist;
     private bool hit = false;
-    public LayerMask layerMask;
+    public int bonusDamage;
 
     private void Start()
     {
@@ -29,16 +29,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.GetComponent<Health>())
         {
-            var health = other.GetComponent<Health>();
-            if (health != null)
-            {
-                health.TakeDamage(weapon.damage);
-            }
+            other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
             Destroy(this.gameObject);
         }
-        if (other.gameObject && other.gameObject.tag != "Player")
+        if (other.gameObject && other.gameObject.tag != "Weapon")
         {
             Destroy(this.gameObject);
         }

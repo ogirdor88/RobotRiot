@@ -9,7 +9,7 @@ public class Mine : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Health>().TakeDamage(3);
+            other.gameObject.GetComponent<Health>().TakeDamage(15);
             Destroy(gameObject);
         }
     }
