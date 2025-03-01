@@ -63,9 +63,14 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0)
         {
             if (isPlayer)
-                StartCoroutine(PlayerController());
+            {
+                Respawn();
+            }
             else
+            {
                 Destroy(this.gameObject);
+            }
+                
         }
 
         if (isPlayer)
@@ -127,6 +132,7 @@ public class Health : MonoBehaviour
     private void Respawn()
     {
         Debug.Log("Does this work?");
+        _playerController._playerCC.enabled = false;
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {
@@ -137,6 +143,7 @@ public class Health : MonoBehaviour
             _livesCount--;
             SetMaxHealth(_startHealth);
         }
+        _playerController._playerCC.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -150,15 +157,6 @@ public class Health : MonoBehaviour
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
         }
-    }
-
-    IEnumerator PlayerController()
-    {
-        _playerController._playerCC.enabled = false;
-        yield return new WaitForSeconds(1f);
-        Respawn();
-        yield return new WaitForSeconds(1f);
-        _playerController._playerCC.enabled = true;
     }
 
     IEnumerator PlayerProtected()
