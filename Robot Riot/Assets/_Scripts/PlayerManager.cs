@@ -52,8 +52,10 @@ public class PlayerManager : MonoBehaviour
         StartCoroutine(TurnCamOff());
         Transform playerParent = player.transform;
         playerCount++;
+        Debug.Log("Player Number:" + playerCount);
         playerParent.position = startingPoints[players.Count -1].position;
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
+        player.gameObject.GetComponent<Health>().playerNumber = playerCount;
     }
 
     IEnumerator TurnCamOff()
