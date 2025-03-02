@@ -42,15 +42,21 @@ public class BallonSword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" && other.gameObject.transform != this.gameObject.transform.parent.parent)
+        
+        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent)
         {
             var health = other.GetComponent<Health>();
             if (health != null)
             {
                 health.TakeDamage(weapon.damage + bonusDamage);
             }
+            Debug.Log("Hit health" + other.gameObject);
             Debug.Log("SAASSAASASA");
         }
+        /*else if (other.GetComponent<Health>())
+        {
+            Debug.Log("Hit health" + other.gameObject);
+        }*/
     }
 
     IEnumerator Shooting()
