@@ -57,14 +57,6 @@ public class LaserGun : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("player detected");
-        }
-    }
-
     IEnumerator Shooting()
     {
         canShoot = false;
