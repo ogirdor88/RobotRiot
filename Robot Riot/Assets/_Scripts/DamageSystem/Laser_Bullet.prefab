@@ -262,7 +262,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &-3607057712405409127
 MonoBehaviour:
@@ -277,9 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 23
+  bonusDamage: 0
 --- !u!2083052967 &6693610616453634609
 VisualEffect:
   m_ObjectHideFlags: 0
