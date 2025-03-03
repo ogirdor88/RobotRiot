@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     public int loser;
 
     public static GameManager Instance;
+
+    /*public PlayerInputManager playerOne;
+    public PlayerInputManager playerTwo;*/
 
     private void Awake()
     {
@@ -28,4 +32,16 @@ public class GameManager : MonoBehaviour
         loser = playerLost;
         SceneManager.LoadScene(3);
     }
+
+    /*public void RegisterPlayer(PlayerInputManager player)
+    {
+        if(playerOne == null)
+        {
+            playerOne = player;
+        }
+        else if(playerTwo == null)
+        {
+            playerTwo = player;
+        }
+    }*/
 }

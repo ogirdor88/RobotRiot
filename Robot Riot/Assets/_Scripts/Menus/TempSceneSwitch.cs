@@ -15,9 +15,15 @@ public class TempSceneSwitch : MonoBehaviour
             playerWonText.text = "Player " + GameObject.FindObjectOfType<GameManager>().loser.ToString() + " loses!";
         }
         else
+        {
             playerWonText.text = "Nobody wins";
+        }
     }
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void HowToScreen()
     {
         SceneManager.LoadScene(1);
