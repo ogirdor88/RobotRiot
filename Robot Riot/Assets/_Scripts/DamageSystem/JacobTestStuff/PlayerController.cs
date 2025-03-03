@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
-    private CharacterController _playerCC;
+    public CharacterController _playerCC;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -42,19 +43,36 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> swords;
 
+    private PlayerInput playerInput;
+
     private void Awake()
     {
-        _playerCC = gameObject.GetComponent<CharacterController>();
+        playerInput = GetComponent<PlayerInput>();
+        InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
+        if (device != null)
+        {
+            playerInput.SwitchCurrentControlScheme(device);
+        }
+        Vector3 spawnPos = PlayerManager.Instance.GetSpawnPosition(playerInput.playerIndex);
+        if(spawnPos != Vector3.zero)
+        {
+            transform.position = spawnPos;
+        }
 
+
+        _playerCC = gameObject.AddComponent<CharacterController>();
         originalMoveSpeed = _playerSpeed;
-
         botMode = false;
         isShooting = false;
         lookSensOriginal = lookSens;
-
         RandomSword();
-
     }
+
+    private void Start()
+    {
+        PlayerManager.Instance.RegisterPlayer(playerInput);
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -66,6 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        Debug.Log("sprint " + isSprinting);
         UpdateMove();
         UpdateJump();
         UpdateCamera();

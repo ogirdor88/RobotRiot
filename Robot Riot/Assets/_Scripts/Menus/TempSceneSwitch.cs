@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class TempSceneSwitch : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TMP_Text playerWonText;
+
+    private void Awake()
     {
-        
+        if (GameObject.FindObjectOfType<GameManager>())
+        {
+            playerWonText.text = "Player " + GameObject.FindObjectOfType<GameManager>().loser.ToString() + " loses!";
+        }
+        else
+        {
+            playerWonText.text = "Nobody wins";
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadNextScene()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
     public void HowToScreen()
     {
         SceneManager.LoadScene(1);

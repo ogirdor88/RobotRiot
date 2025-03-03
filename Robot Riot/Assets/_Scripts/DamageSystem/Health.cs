@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     //Players current health
     [SerializeField] private int _currentHealth;
-
+    private int missingHealth;
     [SerializeField] private int _livesCount;
 
     [SerializeField] private Vector3 _spawnPoint;
@@ -23,10 +23,21 @@ public class Health : MonoBehaviour
     [SerializeField] private Image _healthFill;
     [SerializeField] private Gradient _healthColor;
     [SerializeField] private Text _healthText;
+    [SerializeField] private GameObject Life1;
+    [SerializeField] private GameObject Life2;
+    [SerializeField] private GameObject Life3;
 
     //[SerializeField] private int _weaponDamage;
 
     public bool isProtected = false;
+
+    private PlayerController _playerController;
+
+    // Allows this to be on non-player objects
+    private bool isPlayer;
+
+    // Keep track of what player this is
+    public int playerNumber;
 
     private void Awake()
     {
@@ -34,21 +45,63 @@ public class Health : MonoBehaviour
         _spawnPoint = transform.position;
         _outOfLives = false;
 
+        if (gameObject.GetComponent<PlayerController>())
+        {
+            isPlayer = true;
+            _playerController = GetComponent<PlayerController>();
+        }
+        else
+        {
+            isPlayer = false;
+            _playerController = null;
+        }
+
         //set Players health to max
         SetMaxHealth(_startHealth);
     }
-
     private void Update()
     {
         //_weaponDamage = _weaponsObjects.weaponDmage;
+        missingHealth = _startHealth - _currentHealth;
 
         if (_currentHealth <= 0)
         {
-            Respawn();
+            if (isPlayer)
+            {
+                Respawn();
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+                
         }
-        if (_livesCount <= 1)
+
+        if (isPlayer)
         {
-            _outOfLives = true;
+            switch (_livesCount)
+            {
+                case 3:
+                    Life1.SetActive(true);
+                    Life2.SetActive(true);
+                    Life3.SetActive(true);
+                    break;
+                case 2:
+                    Life1.SetActive(true);
+                    Life2.SetActive(true);
+                    Life3.SetActive(false);
+                    break;
+                case 1:
+                    Life1.SetActive(true);
+                    Life2.SetActive(false);
+                    _outOfLives = true;
+                    break;
+                case 0:
+                    Life1.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -57,9 +110,12 @@ public class Health : MonoBehaviour
         if (!isProtected)
         {
             _currentHealth -= damage;
-            _healthSlider.value = _currentHealth;
-            _healthText.text = _currentHealth.ToString();
-            _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
+            if (isPlayer)
+            {
+                _healthSlider.value = _currentHealth;
+                _healthText.text = _currentHealth.ToString();
+                _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
+            }
             Debug.Log("DAMAGED");
         }
         else
@@ -70,35 +126,46 @@ public class Health : MonoBehaviour
     public void SetMaxHealth(int health)
     {
         _currentHealth = health;
-        _healthSlider.value = _currentHealth;
-        _healthText.text = _currentHealth.ToString();
-        _healthFill.color = _healthColor.Evaluate(1f);
+        if (isPlayer)
+        {
+            _healthSlider.value = _currentHealth;
+            _healthText.text = _currentHealth.ToString();
+            _healthFill.color = _healthColor.Evaluate(1f);
+        }
     }
     private void Respawn()
     {
         Debug.Log("Does this work?");
+        _playerController._playerCC.enabled = false;
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
+            //GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
             _livesCount--;
             SetMaxHealth(_startHealth);
         }
+        _playerController._playerCC.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Healthpack")
+        if (other.gameObject.tag == "Healthpack" && isPlayer)
         {
             SetMaxHealth(_startHealth);
         }
-        if(other.gameObject.tag == "PowerRibbon")
+        if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
+        }
+        if(other.gameObject.tag == "EnergyDrink")
+        {
+            _currentHealth = _currentHealth + (missingHealth / 2);
         }
     }
 
