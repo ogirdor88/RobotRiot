@@ -13,8 +13,9 @@ public class Projectile : MonoBehaviour
     {
         startDist = transform.position;
     }
-    private void FixedUpdate()
+    private void Update()
     {
+        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.up * weapon.prjectileSpeed);
         float dis = Vector3.Distance(startDist, transform.position);
         if(dis >= weapon.maxDistance)
         {

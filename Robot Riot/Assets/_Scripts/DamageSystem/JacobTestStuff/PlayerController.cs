@@ -43,8 +43,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> swords;
 
+    private PlayerInput playerInput;
+
     private void Awake()
     {
+        playerInput = GetComponent<PlayerInput>();
+        InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
+        if (device != null)
+        {
+            playerInput.SwitchCurrentControlScheme(device);
+        }
+        Vector3 spawnPos = PlayerManager.Instance.GetSpawnPosition(playerInput.playerIndex);
+        if(spawnPos != Vector3.zero)
+        {
+            transform.position = spawnPos;
+        }
+
+
         _playerCC = gameObject.AddComponent<CharacterController>();
         originalMoveSpeed = _playerSpeed;
         botMode = false;
@@ -52,6 +67,12 @@ public class PlayerController : MonoBehaviour
         lookSensOriginal = lookSens;
         RandomSword();
     }
+
+    private void Start()
+    {
+        PlayerManager.Instance.RegisterPlayer(playerInput);
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -63,6 +84,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        Debug.Log("sprint " + isSprinting);
         UpdateMove();
         UpdateJump();
         UpdateCamera();
