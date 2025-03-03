@@ -6,16 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class TempSceneSwitch : MonoBehaviour
 {
-    [SerializeField] private TMP_Text playerWonText;
+    [SerializeField] private TMP_Text player1Text;
+    [SerializeField] private TMP_Text player2Text;
 
     private void Awake()
     {
         if (GameObject.FindObjectOfType<GameManager>())
         {
-            playerWonText.text = "Player " + GameObject.FindObjectOfType<GameManager>().loser.ToString() + " loses!";
+            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
+            if (gameManager.loser == 1)
+            {
+                player1Text.text = "You Lost!";
+                player2Text.text = "You Win!";
+            }
+            else if (gameManager.loser == 2)
+            {
+                player1Text.text = "You Win!";
+                player2Text.text = "You Lose!";
+            }
         }
         else
-            playerWonText.text = "Nobody wins";
+        {
+            player1Text.text = "Nobody wins";
+            player2Text.text = "Nobody wins";
+        }
     }
 
     public void HowToScreen()
