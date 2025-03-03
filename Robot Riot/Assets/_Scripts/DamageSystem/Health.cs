@@ -36,6 +36,9 @@ public class Health : MonoBehaviour
     // Allows this to be on non-player objects
     private bool isPlayer;
 
+    // Keep track of what player this is
+    public int playerNumber;
+
     private void Awake()
     {
         isProtected = false;
@@ -137,7 +140,8 @@ public class Health : MonoBehaviour
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
+            GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
         }
         else
         {
