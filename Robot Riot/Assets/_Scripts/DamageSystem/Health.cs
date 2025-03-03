@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     //Players current health
     [SerializeField] private int _currentHealth;
-
+    private int missingHealth;
     [SerializeField] private int _livesCount;
 
     [SerializeField] private Vector3 _spawnPoint;
@@ -59,6 +59,7 @@ public class Health : MonoBehaviour
     private void Update()
     {
         //_weaponDamage = _weaponsObjects.weaponDmage;
+        missingHealth = _startHealth - _currentHealth;
 
         if (_currentHealth <= 0)
         {
@@ -156,6 +157,10 @@ public class Health : MonoBehaviour
         {
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
+        }
+        if(other.gameObject.tag == "EnergyDrink")
+        {
+            _currentHealth = _currentHealth + (missingHealth / 2);
         }
     }
 
