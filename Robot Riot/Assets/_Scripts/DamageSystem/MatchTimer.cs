@@ -14,6 +14,9 @@ public class MatchTimer : MonoBehaviour
     public bool suddenDeath;
     public bool stop;
 
+
+    [SerializeField] private PlayerManager playerManager;
+
     private void Awake()
     {
         //converts time to seconds
@@ -28,26 +31,30 @@ public class MatchTimer : MonoBehaviour
     }
     private void Update()
     {
-        if (currentTime > 0 && !stop)
+        if(playerManager.playerCount >= 2)
         {
-            currentTime -= Time.deltaTime;
-            DisplayTime(currentTime);
+            if (currentTime > 0 && !stop)
+            {
+                currentTime -= Time.deltaTime;
+                DisplayTime(currentTime);
+            }
+            else if (!stop)
+            {
+                currentTime = suddenDeathTime;
+                suddenDeath = true;
+                Debug.Log("START SUDDEN DEATH");
+            }
+            if (currentTime <= 0 && suddenDeath)
+            {
+                Debug.Log("Over");
+                stop = true;
+            }
         }
-        else if (!stop)
-        {
-            currentTime = suddenDeathTime;
-            suddenDeath = true;
-            Debug.Log("START SUDDEN DEATH");
-        }
-        if (currentTime <= 0 && suddenDeath)
-        {
-            Debug.Log("Over");
-            stop = true;
-        }
+        
 
     }
 
-    private void DisplayTime( float displayTime)
+    private void DisplayTime(float displayTime)
     {
         displayTime = Mathf.Max(displayTime, 0);
         float minutes = Mathf.FloorToInt(displayTime / 60);

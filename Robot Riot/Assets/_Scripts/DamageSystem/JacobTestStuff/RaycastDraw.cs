@@ -13,6 +13,6 @@ public class RaycastDraw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector3.forward * 100, Color.green);
+        Debug.DrawRay(transform.position, Vector3.forward, Color.green);
     }
 }

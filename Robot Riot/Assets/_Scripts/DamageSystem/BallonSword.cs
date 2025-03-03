@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BallonSword : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement playerMove;
+    [SerializeField] private PlayerController playerMove;
     [SerializeField] private Weapons weapon;
-    [SerializeField] private BoxCollider damageCollider;
+    [SerializeField] private Collider damageCollider;
     private float timeToFire;
+
+    public int bonusDamage = 0;
+
     //[SerializeField] private bool canShoot = true;
+
+    [SerializeField] private GameObject swordVFX;
 
     // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
     public bool canShoot = true;
@@ -17,42 +22,50 @@ public class BallonSword : MonoBehaviour
     {
         canShoot = true;
         timeToFire = weapon.fireRate;
-        damageCollider.GetComponent<BoxCollider>();
+        damageCollider.GetComponent<Collider>();
         damageCollider.enabled = false;
     }
     private void Update()
     {
         if (playerMove == null)
         {
-            playerMove = transform.parent.GetComponent<PlayerMovement>();
+            playerMove = transform.parent.GetComponentInParent<PlayerController>();
             Debug.Log("yes");
         }
-        if (playerMove.shot && canShoot)
+        if (playerMove.isShooting && canShoot)
         {
             StartCoroutine(Shooting());
             Debug.Log("shot");
-            playerMove.shot = false;
+            playerMove.isShooting = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        
+        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent)
         {
             var health = other.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(weapon.damage);
+                health.TakeDamage(weapon.damage + bonusDamage);
             }
+            Debug.Log("Hit health" + other.gameObject);
             Debug.Log("SAASSAASASA");
         }
+        /*else if (other.GetComponent<Health>())
+        {
+            Debug.Log("Hit health" + other.gameObject);
+        }*/
     }
 
     IEnumerator Shooting()
     {
         canShoot = false;
         damageCollider.enabled = true;
+        GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
         yield return new WaitForSeconds(timeToFire);
+        Destroy(vfx);
         damageCollider.enabled = false;
         canShoot = true;
     }

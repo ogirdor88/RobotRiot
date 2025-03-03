@@ -5,35 +5,57 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private Weapons weapon;
-    private float startDist;
+    private Vector3 startDist;
+    private bool hit = false;
+    public int bonusDamage;
 
     private void Start()
     {
-        startDist = 0f;
+        startDist = transform.position;
     }
     private void FixedUpdate()
     {
-        startDist++;
-        if(startDist >= weapon.maxDistance)
+        float dis = Vector3.Distance(startDist, transform.position);
+        if(dis >= weapon.maxDistance)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+
+        }
+        if(hit)
+        {
+            Destroy(gameObject);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.GetComponent<Health>())
         {
-            var health = other.GetComponent<Health>();
-            if (health != null)
+            if (weapon.weaponType == WeaponType.Projectile)
             {
-                health.TakeDamage(weapon.damage);
+                GetComponent<Rigidbody>().isKinematic = true;
+                transform.localScale = new Vector3(3f, 3f, 3f);
+                other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
+                Destroy(gameObject, .05f);
             }
-            Destroy(this.gameObject);
+            else
+            {
+                other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
+                Destroy(gameObject);
+            }
         }
-        if (other.gameObject)
+        if (other.gameObject && other.gameObject.tag != "Weapon")
         {
-            Destroy(this.gameObject);
+            if(weapon.weaponType == WeaponType.Projectile)
+            {
+                GetComponent<Rigidbody>().isKinematic = true;
+                transform.localScale = new Vector3(3f, 3f, 3f);
+                Destroy(gameObject, .05f);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

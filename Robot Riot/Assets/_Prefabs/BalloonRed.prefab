@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4795704057792466614}
   - component: {fileID: 9025157855605543016}
   - component: {fileID: 3822402229090399674}
+  - component: {fileID: 3498593425997299954}
+  - component: {fileID: 1361016777357174801}
   m_Layer: 0
   m_Name: BalloonRed
   m_TagString: Untagged
@@ -83,3 +85,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3498593425997299954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530927218884165751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29156468500881640b2ad028c8eff640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMove: {fileID: 0}
+  weapon: {fileID: 11400000, guid: 8a86bb56d32862c47a51955c5db19509, type: 2}
+  damageCollider: {fileID: 1829446935376796829, guid: 74de2de1b97bb664280885856357ea64, type: 3}
+  bonusDamage: 0
+  swordVFX: {fileID: 7803591796957527705, guid: 74de2de1b97bb664280885856357ea64, type: 3}
+  canShoot: 1
+--- !u!136 &1361016777357174801
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530927218884165751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 231.96727
+  m_Height: 1294.8195
+  m_Direction: 1
+  m_Center: {x: 0, y: 451.4571, z: 0}
