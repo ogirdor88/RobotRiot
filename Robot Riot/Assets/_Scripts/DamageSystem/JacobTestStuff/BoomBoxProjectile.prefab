@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3225319755655760957}
   - component: {fileID: 5254764630761722463}
   - component: {fileID: 8772692528405672941}
+  - component: {fileID: 8106381576041761994}
   m_Layer: 0
   m_Name: BoomBoxProjectile
   m_TagString: Untagged
@@ -144,6 +145,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5174007e01aa2f749bd28bc644fc2a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
+  bonusDamage: 0
+--- !u!114 &8106381576041761994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463556052629705279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ea2930892d5c0498edb33599999c69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
