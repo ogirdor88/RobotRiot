@@ -196,8 +196,9 @@ public class PlayerController : MonoBehaviour
         {
             if (botMode)
             {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = this.transform.position;
+                /* GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                 cube.transform.position = this.transform.position;*/
+                Debug.Log("Trap");
             }
             else
             {
@@ -219,16 +220,16 @@ public class PlayerController : MonoBehaviour
         // will be changed later
         if (botMode)
         {
-            this.GetComponent<Renderer>().material.color = Color.green;
-            _playerSpeed = _playerSpeed * 1.25f;
+            /*this.GetComponent<Renderer>().material.color = Color.green;
+            _playerSpeed = _playerSpeed * 1.25f;*/
 
             Debug.Log("Bot Mode");
         }
 
         if (!botMode)
         {
-            this.GetComponent<Renderer>().material.color = Color.blue;
-            _playerSpeed = originalMoveSpeed;
+            /*this.GetComponent<Renderer>().material.color = Color.blue;
+            _playerSpeed = originalMoveSpeed;*/
             Debug.Log("Combat Mode");
         }
     }
