@@ -1351,7 +1351,11 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _healthText: {fileID: 0}
+  Life1: {fileID: 0}
+  Life2: {fileID: 0}
+  Life3: {fileID: 0}
   isProtected: 0
+  playerNumber: 0
 --- !u!114 &8455610639263661145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,9 +1644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29156468500881640b2ad028c8eff640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMove: {fileID: 41436545698664617}
+  playerMove: {fileID: 0}
   weapon: {fileID: 11400000, guid: 8a86bb56d32862c47a51955c5db19509, type: 2}
   damageCollider: {fileID: 7720039916976374682}
+  bonusDamage: 0
   swordVFX: {fileID: 0}
   canShoot: 1
 --- !u!65 &7720039916976374682

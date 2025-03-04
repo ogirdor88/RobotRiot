@@ -45,6 +45,13 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInput playerInput;
 
+    //Boost Variable
+    [SerializeField]
+    private UnityEngine.UI.Image StaminaBar;
+    [SerializeField]
+    private float stamina, maxStamina, boostCost;
+    private Coroutine recharge;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -96,6 +103,15 @@ public class PlayerController : MonoBehaviour
         if (isSprinting)
         {
             _playerSpeed = 10f;
+            stamina -= boostCost * Time.deltaTime;
+            if (stamina < 0)
+            {
+                stamina = 0;
+                isSprinting = false;
+            }
+            StaminaBar.fillAmount = stamina / maxStamina;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
         }
         else
         {
@@ -108,6 +124,21 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
+    }
+
+    public IEnumerator RechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while (stamina < maxStamina)
+        {
+            stamina += boostCost / 10f;
+            //if the stamina bar gets full set the stamina to max stamina
+            if (stamina > maxStamina) stamina = maxStamina;
+            //update the stamina bar
+            StaminaBar.fillAmount = stamina / maxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
     }
     #endregion
     #region Jump
