@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour
     public void GameOver(int playerLost)
     {
         loser = playerLost;
-        SceneManager.LoadScene(3);
+        //SceneManager.LoadScene(3);
+        Debug.Log("Player Lost:" + playerLost);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /*public void RegisterPlayer(PlayerInputManager player)
