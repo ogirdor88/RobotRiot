@@ -10,7 +10,7 @@ using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CharacterController _playerCC;
+    public CharacterController _playerCC;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -43,8 +43,30 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private List<GameObject> swords;
 
+    private PlayerInput playerInput;
+
+    //Boost Variable
+    [SerializeField]
+    private UnityEngine.UI.Image StaminaBar;
+    [SerializeField]
+    private float stamina, maxStamina, boostCost;
+    private Coroutine recharge;
+
     private void Awake()
     {
+        playerInput = GetComponent<PlayerInput>();
+        InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
+        if (device != null)
+        {
+            playerInput.SwitchCurrentControlScheme(device);
+        }
+        Vector3 spawnPos = PlayerManager.Instance.GetSpawnPosition(playerInput.playerIndex);
+        if(spawnPos != Vector3.zero)
+        {
+            transform.position = spawnPos;
+        }
+
+
         _playerCC = gameObject.AddComponent<CharacterController>();
         originalMoveSpeed = _playerSpeed;
         botMode = false;
@@ -52,6 +74,12 @@ public class PlayerController : MonoBehaviour
         lookSensOriginal = lookSens;
         RandomSword();
     }
+
+    private void Start()
+    {
+        PlayerManager.Instance.RegisterPlayer(playerInput);
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -63,6 +91,7 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        Debug.Log("sprint " + isSprinting);
         UpdateMove();
         UpdateJump();
         UpdateCamera();
@@ -74,6 +103,15 @@ public class PlayerController : MonoBehaviour
         if (isSprinting)
         {
             _playerSpeed = 10f;
+            stamina -= boostCost * Time.deltaTime;
+            if (stamina < 0)
+            {
+                stamina = 0;
+                isSprinting = false;
+            }
+            StaminaBar.fillAmount = stamina / maxStamina;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
         }
         else
         {
@@ -86,6 +124,21 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = context.ReadValue<Vector2>().x;
         vertical = context.ReadValue<Vector2>().y;
+    }
+
+    public IEnumerator RechargeStamina()
+    {
+        yield return new WaitForSeconds(1f);
+
+        while (stamina < maxStamina)
+        {
+            stamina += boostCost / 10f;
+            //if the stamina bar gets full set the stamina to max stamina
+            if (stamina > maxStamina) stamina = maxStamina;
+            //update the stamina bar
+            StaminaBar.fillAmount = stamina / maxStamina;
+            yield return new WaitForSeconds(.1f);
+        }
     }
     #endregion
     #region Jump

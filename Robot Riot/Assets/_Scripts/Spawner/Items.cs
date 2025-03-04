@@ -5,6 +5,8 @@ using UnityEngine;
 public class Items : MonoBehaviour
 {
     [SerializeField]
+    protected ItemObject Item;
+    [SerializeField]
     private float rotateSpeed;
     // Update is called once per frame
     void Update()

@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
 
     //Players current health
     [SerializeField] private int _currentHealth;
-
+    private int missingHealth;
     [SerializeField] private int _livesCount;
 
     [SerializeField] private Vector3 _spawnPoint;
@@ -31,8 +31,13 @@ public class Health : MonoBehaviour
 
     public bool isProtected = false;
 
+    private PlayerController _playerController;
+
     // Allows this to be on non-player objects
     private bool isPlayer;
+
+    // Keep track of what player this is
+    public int playerNumber;
 
     private void Awake()
     {
@@ -41,24 +46,35 @@ public class Health : MonoBehaviour
         _outOfLives = false;
 
         if (gameObject.GetComponent<PlayerController>())
+        {
             isPlayer = true;
+            _playerController = GetComponent<PlayerController>();
+        }
         else
+        {
             isPlayer = false;
+            _playerController = null;
+        }
 
         //set Players health to max
         SetMaxHealth(_startHealth);
     }
-
     private void Update()
     {
         //_weaponDamage = _weaponsObjects.weaponDmage;
+        missingHealth = _startHealth - _currentHealth;
 
         if (_currentHealth <= 0)
         {
             if (isPlayer)
+            {
                 Respawn();
+            }
             else
+            {
                 Destroy(this.gameObject);
+            }
+                
         }
 
         if (isPlayer)
@@ -120,16 +136,20 @@ public class Health : MonoBehaviour
     private void Respawn()
     {
         Debug.Log("Does this work?");
+        _playerController._playerCC.enabled = false;
         this.gameObject.transform.position = _spawnPoint;
         if (_outOfLives)
         {
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
+            //GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
             _livesCount--;
             SetMaxHealth(_startHealth);
         }
+        _playerController._playerCC.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -142,6 +162,10 @@ public class Health : MonoBehaviour
         {
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
+        }
+        if(other.gameObject.tag == "EnergyDrink")
+        {
+            _currentHealth = _currentHealth + (missingHealth / 2);
         }
     }
 
