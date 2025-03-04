@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Health : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
+        playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
+
         isProtected = false;
         _spawnPoint = transform.position;
         _outOfLives = false;
@@ -141,8 +144,8 @@ public class Health : MonoBehaviour
         if (_outOfLives)
         {
             //SceneManager.LoadScene(3);
-            //GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {

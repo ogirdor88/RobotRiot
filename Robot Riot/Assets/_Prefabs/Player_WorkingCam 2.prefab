@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: 5511766767085980875}
   - component: {fileID: -4494525818658075708}
   - component: {fileID: 4224360769593516785}
+  - component: {fileID: 2307207599813030940}
   m_Layer: 0
   m_Name: Player_WorkingCam 2
   m_TagString: Player
@@ -1035,6 +1036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cc8c4ee0922ca408a15309beafbec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCC: {fileID: 0}
   _camera: {fileID: 6647079904456145984}
   isShooting: 0
   swords:
@@ -1096,6 +1098,24 @@ MonoBehaviour:
   Life2: {fileID: 6558270508956552996}
   Life3: {fileID: 5212549091224433823}
   isProtected: 0
+  playerNumber: 0
+--- !u!114 &2307207599813030940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836610378913511681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a450523cc7d92e4e8b46b46955b1f8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui: {fileID: 0}
+  droppedPrefab: {fileID: 0}
+  inventory:
+    m_Keys: []
+    m_Values: []
 --- !u!1 &5840971170713482841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -34.1, y: 0}
+  m_AnchoredPosition: {x: -34.100006, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8595700313884982
@@ -1675,7 +1695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -64.9, y: 0}
+  m_AnchoredPosition: {x: -64.899994, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &515601341974053602

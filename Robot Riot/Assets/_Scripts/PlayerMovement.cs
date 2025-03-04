@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*//get the inputs for movement
+        //get the inputs for movement
         moveDirection = move.ReadValue<Vector2>();
 
 
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
                 //transform.Translate(new Vector3(moveDirection.x, 0, moveDirection.y) * Time.deltaTime * moveSpeed);
                 transform.Translate(transform.forward * Time.deltaTime * moveSpeed);
             }
-        }*/
+        }
 
         updateMovement();
         UpdateLooking();

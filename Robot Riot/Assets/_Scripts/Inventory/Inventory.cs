@@ -10,9 +10,6 @@ public class Inventory : MonoBehaviour
     public InventoryUI ui;
 
     [SerializeField]
-    GameObject droppedPrefab;
-
-    [SerializeField]
     SerializedDictionary<string, ItemObject> inventory = new();
 
     private void OnTriggerEnter(Collider other)
