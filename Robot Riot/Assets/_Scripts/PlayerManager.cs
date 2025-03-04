@@ -42,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         playerInputManager.onPlayerJoined += AddPlayer;
+        Debug.Log("Functional");
     }
 
     private void OnDisable()
@@ -68,7 +69,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Player Number:" + playerCount);
         playerParent.position = startingPoints[players.Count -1].position;
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
-        player.gameObject.GetComponent<Health>().playerNumber = playerCount;
+        //player.gameObject.GetComponent<Health>().playerNumber = playerCount;
     }
 
     public void RegisterPlayer(PlayerInput player)

@@ -43,7 +43,7 @@ public class BallonSword : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent)
+        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent.parent)
         {
             var health = other.GetComponent<Health>();
             if (health != null)
