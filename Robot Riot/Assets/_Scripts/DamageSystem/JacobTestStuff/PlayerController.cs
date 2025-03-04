@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         botMode = false;
         isShooting = false;
         lookSensOriginal = lookSens;
-        RandomSword();
+       // RandomSword();
     }
 
     private void Start()
