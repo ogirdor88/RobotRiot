@@ -62,8 +62,8 @@ public class LaserGun : MonoBehaviour
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
-        if (transform.root.GetComponent<PlayerController>())
-            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
+        if (transform.root.GetComponent<PlayerMovement>())
+            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerMovement>().bonusDamage;
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }
@@ -74,10 +74,10 @@ public class LaserGun : MonoBehaviour
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
         GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
         newProjectile2.GetComponent<Rigidbody>().AddForce(newProjectile2.transform.up * speedOfProjectile);
-        if (transform.root.GetComponent<PlayerController>())
+        if (transform.root.GetComponent<PlayerMovement>())
         {
-            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
-            newProjectile2.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
+            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerMovement>().bonusDamage;
+            newProjectile2.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerMovement>().bonusDamage;
         }
 
         yield return new WaitForSeconds(timeToFire);
