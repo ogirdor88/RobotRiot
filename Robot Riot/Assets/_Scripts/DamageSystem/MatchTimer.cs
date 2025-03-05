@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchTimer : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class MatchTimer : MonoBehaviour
         suddenDeath = false;
         stop = false;
         currentTime = startTime;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void Update()
     {
@@ -54,11 +56,21 @@ public class MatchTimer : MonoBehaviour
 
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentTime = startTime;
+    }
+
     private void DisplayTime(float displayTime)
     {
         displayTime = Mathf.Max(displayTime, 0);
         float minutes = Mathf.FloorToInt(displayTime / 60);
         float sec = Mathf.FloorToInt(displayTime % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, sec);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
