@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _cameraMove;
 
-    private float _playerSpeed = 4f;
     private float _jumpHieght = 1f;
     private float _gravity = -20;
     private float vertical;
@@ -31,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private float lookSens = 1.8f;
     private float lookSensOriginal;
 
+    public float _playerSpeed = 4f;
+
     private bool isSprinting = false;
     private bool isGrounded;
     private bool isJumping;
@@ -39,6 +40,9 @@ public class PlayerController : MonoBehaviour
     private bool slide = false;
 
     public bool isShooting = false;
+
+
+    public int bonusDamage;
 
     [SerializeField]
     private List<GameObject> swords;

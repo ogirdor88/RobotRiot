@@ -12227,10 +12227,17 @@ MonoBehaviour:
   startingPoints:
   - {fileID: 1957702727}
   - {fileID: 484716160}
+  startingPointsLvl2: []
   playerLayers: []
   startCamera: {fileID: 1552231941}
   moveImage: {fileID: 300310103}
   playerCount: 0
+  sceneNum: 0
+--- !u!1 &1415276527 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6037790363581587148, guid: 450d89e373485184eaacc4c0e74a31f4, type: 3}
+  m_PrefabInstance: {fileID: 1919053625105441865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1427137298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17439,6 +17446,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069745425}
   m_CullTransparentMesh: 1
+--- !u!1 &2078047287 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8344976282877772381, guid: 450d89e373485184eaacc4c0e74a31f4, type: 3}
+  m_PrefabInstance: {fileID: 1919053625105441865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2084021084
 GameObject:
   m_ObjectHideFlags: 0
@@ -17989,6 +18001,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 12.28
       objectReference: {fileID: 0}
+    - target: {fileID: 929192213056264162, guid: 450d89e373485184eaacc4c0e74a31f4, type: 3}
+      propertyPath: spawn1
+      value: 
+      objectReference: {fileID: 2078047287}
+    - target: {fileID: 929192213056264162, guid: 450d89e373485184eaacc4c0e74a31f4, type: 3}
+      propertyPath: spawn2
+      value: 
+      objectReference: {fileID: 1415276527}
     - target: {fileID: 1334919028494137469, guid: 450d89e373485184eaacc4c0e74a31f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.511
