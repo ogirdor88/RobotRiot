@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PowerCandyEffect : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
+    private PlayerController playerMovement;
 
     // Get player health and start causing damage.
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<PlayerController>();
         StartCoroutine(CountDown());
     }
 
