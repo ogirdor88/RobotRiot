@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class PowerCandyEffect : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
+    private PlayerController playerController;
 
     // Get player health and start causing damage.
     private void Awake()
     {
-        playerMovement = GetComponent<PlayerMovement>();
+        playerController = GetComponent<PlayerController>();
         StartCoroutine(CountDown());
     }
 
     IEnumerator CountDown()
     {
-        playerMovement.bonusDamage += 2;
+        playerController.bonusDamage += 2;
         yield return new WaitForSeconds(10);
-        playerMovement.bonusDamage -= 2;
+        playerController.bonusDamage -= 2;
         Destroy(this);
     }
 }

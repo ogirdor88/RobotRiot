@@ -49,8 +49,8 @@ public class Cannon : MonoBehaviour
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * speedOfProjectile);
-        if (transform.root.GetComponent<PlayerMovement>())
-            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerMovement>().bonusDamage;
+        if (transform.root.GetComponent<PlayerController>())
+            newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
     }
