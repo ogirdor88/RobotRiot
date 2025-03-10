@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserGun : MonoBehaviour
+public class LaserGun : Weapon
 {
     [SerializeField] private Transform muzzle;
     [SerializeField] private Transform muzzle2;
     [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
-    [SerializeField] private PlayerController playerMove;
     [SerializeField] private GameObject projectile;
     //[SerializeField] private bool canShoot = true;
 
-    // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
-    public bool canShoot = true;
 
     private void Awake()
     {
@@ -28,12 +25,6 @@ public class LaserGun : MonoBehaviour
 
     private void Update()
     {
-        if (playerMove == null)
-        {
-            //playerMove = transform.parent.GetComponent<PlayerMovement>();
-            playerMove = transform.parent.GetComponentInParent<PlayerController>();
-            Debug.Log("yes");
-        }
 
         Debug.Log(weapon.damage);
         

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4166226672817730352}
   - component: {fileID: 6833271110810140565}
   - component: {fileID: 5723434082912322903}
+  - component: {fileID: -1097453417894033767}
   m_Layer: 0
-  m_Name: LaserGun
+  m_Name: LaserGun_OLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-1097453417894033767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141657628257974899}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.013434992, y: 0.032853488, z: 0.042324454}
+  m_Center: {x: 1.676522e-16, y: 0.016426744, z: -0.0117974775}

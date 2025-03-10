@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallonSword : MonoBehaviour
+public class BallonSword : Weapon
 {
-    [SerializeField] private PlayerController playerMove;
     [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
 
-    public int bonusDamage = 0;
 
     //[SerializeField] private bool canShoot = true;
 
     [SerializeField] private GameObject swordVFX;
 
-    // Temporarily public so we can stop cooldown issues when swapping with the placeholder system
-    public bool canShoot = true;
 
     private void Start()
     {
@@ -27,11 +23,6 @@ public class BallonSword : MonoBehaviour
     }
     private void Update()
     {
-        if (playerMove == null)
-        {
-            playerMove = transform.parent.GetComponentInParent<PlayerController>();
-            Debug.Log("yes");
-        }
         if (playerMove.isShooting && canShoot)
         {
             StartCoroutine(Shooting());
