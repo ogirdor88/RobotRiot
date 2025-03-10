@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         botMode = false;
         isShooting = false;
         lookSensOriginal = lookSens;
-       // RandomSword();
+        RandomSword();
     }
 
     private void Start()
@@ -300,7 +300,9 @@ public class PlayerController : MonoBehaviour
         // get a random number from 0 to the sword count
         //tunr on that sword
         int rand = Random.Range(0, swords.Count);
-        swords[rand].gameObject.SetActive(true);
+        //swords[rand].gameObject.SetActive(true);
+        Debug.Log("Creating Sword");
+        gameObject.GetComponent<InventoryManager>().ForceAddWeapon(Instantiate(swords[rand]));
     }
     #endregion
 }

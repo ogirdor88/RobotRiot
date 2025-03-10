@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2551094063414792458}
   - component: {fileID: 4393651961206633177}
+  - component: {fileID: 1978341609066866415}
   m_Layer: 0
   m_Name: TwinLaser
   m_TagString: Weapon
@@ -46,12 +47,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slot: 0
+  bonusDamage: 0
+  playerMove: {fileID: 0}
   muzzle: {fileID: 7991667050543702073}
   muzzle2: {fileID: 7389287355028170158}
   weapon: {fileID: 11400000, guid: aec1d645d13da3a488b1653b3aea982f, type: 2}
-  playerMove: {fileID: 0}
   projectile: {fileID: 1610702329485098589, guid: 04fe1431fa16be64388d02463f3b70a5, type: 3}
   canShoot: 1
+--- !u!65 &1978341609066866415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050663651240776235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4362009805733401962
 GameObject:
   m_ObjectHideFlags: 0
