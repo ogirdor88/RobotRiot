@@ -7,9 +7,17 @@ public class ElectricTrap : MonoBehaviour
 {
     bool triggered;
     public GameObject ElectricVFX;
+
+    [SerializeField] private int coolDown;
+    private bool canDeploy = false;
+
+    private void Awake()
+    {
+        StartCoroutine(WaitForCooldown());
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && canDeploy)
         {
             if (!triggered)
             {
@@ -27,5 +35,11 @@ public class ElectricTrap : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ElectricVFX.SetActive(false);
         Destroy(gameObject);
+    }
+
+    IEnumerator WaitForCooldown()
+    {
+        yield return new WaitForSeconds(coolDown);
+        canDeploy = true;
     }
 }
