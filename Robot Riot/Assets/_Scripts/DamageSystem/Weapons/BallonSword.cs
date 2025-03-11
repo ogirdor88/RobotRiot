@@ -34,7 +34,7 @@ public class BallonSword : Weapon
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent.parent)
+        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent)
         {
             var health = other.GetComponent<Health>();
             if (health != null)
