@@ -109,6 +109,10 @@ public class PlayerController : MonoBehaviour
         UpdateMove();
         UpdateJump();
         UpdateCamera();
+        if (!isSprinting)
+        {
+            StaminaBar.fillAmount = stamina / maxStamina;
+        }
     }
 
     #region Movement
