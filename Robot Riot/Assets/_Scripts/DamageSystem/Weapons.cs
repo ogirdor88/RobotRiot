@@ -11,4 +11,12 @@ public class Weapons : ScriptableObject
     public float maxDistance;
     [Tooltip("Gets Multiplied by 100")]
     public float prjectileSpeed;
+    public WeaponType weaponType;
+}
+
+public enum WeaponType
+{
+    Hitscan,
+    Projectile,
+    Melee
 }

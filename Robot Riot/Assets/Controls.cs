@@ -116,6 +116,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextLeftSlot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b941c19d-5ab3-4e5b-b759-5d41a4750931"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextRightSlot"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8bc75f8-08e6-4dc3-a79a-017eb0fd82a2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -265,7 +283,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aca6b102-168b-49da-bbf3-d85bb898576f"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Controller"",
@@ -299,7 +317,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6a736529-d927-4d33-85c9-448ffcecbc5d"",
                     ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Reload"",
@@ -437,6 +455,50 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""328c6197-7c75-42c2-b1ba-fed4d08e5c62"",
+                    ""path"": ""<Keyboard>/leftBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLeftSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d918d8a5-759e-4be8-bf10-b89a80884d07"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextLeftSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""682b88f1-ef68-4dc1-b7f9-408a2122ac0d"",
+                    ""path"": ""<Keyboard>/rightBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextRightSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7002d289-3e22-4f86-8f3c-dbcd8dea2fe4"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""NextRightSlot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -478,6 +540,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
+        m_Player_NextLeftSlot = m_Player.FindAction("NextLeftSlot", throwIfNotFound: true);
+        m_Player_NextRightSlot = m_Player.FindAction("NextRightSlot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -549,6 +613,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Scroll;
     private readonly InputAction m_Player_BoostStop;
+    private readonly InputAction m_Player_NextLeftSlot;
+    private readonly InputAction m_Player_NextRightSlot;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -563,6 +629,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
+        public InputAction @NextLeftSlot => m_Wrapper.m_Player_NextLeftSlot;
+        public InputAction @NextRightSlot => m_Wrapper.m_Player_NextRightSlot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -602,6 +670,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started += instance.OnBoostStop;
             @BoostStop.performed += instance.OnBoostStop;
             @BoostStop.canceled += instance.OnBoostStop;
+            @NextLeftSlot.started += instance.OnNextLeftSlot;
+            @NextLeftSlot.performed += instance.OnNextLeftSlot;
+            @NextLeftSlot.canceled += instance.OnNextLeftSlot;
+            @NextRightSlot.started += instance.OnNextRightSlot;
+            @NextRightSlot.performed += instance.OnNextRightSlot;
+            @NextRightSlot.canceled += instance.OnNextRightSlot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -636,6 +710,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BoostStop.started -= instance.OnBoostStop;
             @BoostStop.performed -= instance.OnBoostStop;
             @BoostStop.canceled -= instance.OnBoostStop;
+            @NextLeftSlot.started -= instance.OnNextLeftSlot;
+            @NextLeftSlot.performed -= instance.OnNextLeftSlot;
+            @NextLeftSlot.canceled -= instance.OnNextLeftSlot;
+            @NextRightSlot.started -= instance.OnNextRightSlot;
+            @NextRightSlot.performed -= instance.OnNextRightSlot;
+            @NextRightSlot.canceled -= instance.OnNextRightSlot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -683,5 +763,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnReload(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnBoostStop(InputAction.CallbackContext context);
+        void OnNextLeftSlot(InputAction.CallbackContext context);
+        void OnNextRightSlot(InputAction.CallbackContext context);
     }
 }

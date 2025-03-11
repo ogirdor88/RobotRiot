@@ -664,6 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4760d9fd7b3930249a12c3ebb82abe0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
 --- !u!1 &612312110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,10 +1300,10 @@ MonoBehaviour:
     2. The first to knock the other
     out three (3) times wins
 
-    3. Traps are located around the level and deal
-    damage
+    3. Traps and Weapons are located around the level
+    and deal damage
 
-    4. You can swap weapons at any time'
+    4. Pick up new Weapons and swap to them with X.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -1665,7 +1667,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 501790552}
         m_TargetAssemblyTypeName: TempSceneSwitch, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: LoadNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

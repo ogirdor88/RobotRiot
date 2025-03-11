@@ -5,12 +5,26 @@ using UnityEngine;
 // Mines deal 3 damage
 public class Mine : MonoBehaviour
 {
+    [SerializeField] private int coolDown;
+    private bool canDeploy = false;
+
+    private void Awake()
+    {
+        StartCoroutine(WaitForCooldown());
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && canDeploy)
         {
             other.gameObject.GetComponent<Health>().TakeDamage(15);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator WaitForCooldown()
+    {
+        yield return new WaitForSeconds(coolDown);
+        canDeploy = true;
     }
 }

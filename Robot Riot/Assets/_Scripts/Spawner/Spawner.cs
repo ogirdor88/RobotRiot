@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     private float spawndelay;
 
     private bool spawned;
-    private GameObject spawnedItem;
+    //private GameObject spawnedItem;
 
     private void Update()
     {
@@ -37,14 +37,16 @@ public class Spawner : MonoBehaviour
         int rand = Random.Range(0, items.Count);
 
         //spawn the random item
-       spawnedItem = Instantiate(items[rand], new Vector3(transform.position.x,transform.position.y + 2, transform.position.z), Quaternion.identity);
+       //spawnedItem = Instantiate(items[rand], new Vector3(transform.position.x,transform.position.y + .5f, transform.position.z), Quaternion.identity);
+       Instantiate(items[rand], new Vector3(transform.position.x,transform.position.y + .5f, transform.position.z), Quaternion.identity);
         //set the spawned bool to true
        spawned = true;
     }
 
     private void ConstantSpawn(int index)
     {
-        spawnedItem = Instantiate(items[index], new Vector3(transform.position.x, transform.position.y + 2, transform.position.z), Quaternion.identity);
+        //spawnedItem = Instantiate(items[index], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
+        Instantiate(items[index], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
         //set the spawned bool to true
         spawned = true;
     }
@@ -59,7 +61,7 @@ public class Spawner : MonoBehaviour
     {
         if (other.tag == "Player") 
         {
-            Destroy(spawnedItem);
+            //Destroy(spawnedItem);
             StartCoroutine(NewSpawnDelay());
         }
     }
