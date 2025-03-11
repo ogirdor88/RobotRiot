@@ -9,6 +9,14 @@ public class OilSlick : MonoBehaviour
     [SerializeField]
     private float slideForce;
 
+    [SerializeField] private int coolDown;
+    private bool canDeploy = false;
+
+    private void Awake()
+    {
+        StartCoroutine(WaitForCooldown());
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +26,7 @@ public class OilSlick : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player") 
+        if (other.tag == "Player" && canDeploy) 
         {
             //Vector3 dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
             //dir = dir.normalized;
@@ -35,5 +43,11 @@ public class OilSlick : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         player.GetComponent<PlayerController>().enabled = true;
+    }
+
+    IEnumerator WaitForCooldown()
+    {
+        yield return new WaitForSeconds(coolDown);
+        canDeploy = true;
     }
 }
