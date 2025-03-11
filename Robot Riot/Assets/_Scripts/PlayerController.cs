@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> swords;
+    [SerializeField]
+    private GameObject combatGEO, combatRootControl, botGEO, botRootControl;
 
     private PlayerInput playerInput;
 
@@ -77,6 +79,8 @@ public class PlayerController : MonoBehaviour
         isShooting = false;
         lookSensOriginal = lookSens;
         RandomSword();
+        botGEO.SetActive(false);
+        botRootControl.SetActive(false);
     }
 
     private void Start()
@@ -226,6 +230,11 @@ public class PlayerController : MonoBehaviour
         {
             /*this.GetComponent<Renderer>().material.color = Color.green;
             _playerSpeed = _playerSpeed * 1.25f;*/
+            botGEO.SetActive(true);
+            botRootControl.SetActive(true);
+
+            combatGEO.SetActive(false);
+            combatRootControl.SetActive(false);
 
             Debug.Log("Bot Mode");
         }
@@ -235,6 +244,11 @@ public class PlayerController : MonoBehaviour
             /*this.GetComponent<Renderer>().material.color = Color.blue;
             _playerSpeed = originalMoveSpeed;*/
             Debug.Log("Combat Mode");
+            botGEO.SetActive(false);
+            botRootControl.SetActive(false);
+
+            combatGEO.SetActive(true);
+            combatRootControl.SetActive(true);
         }
     }
     #endregion

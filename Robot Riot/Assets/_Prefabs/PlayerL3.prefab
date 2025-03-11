@@ -1064,6 +1064,8 @@ Transform:
   m_Children:
   - {fileID: 7318332145717001020}
   - {fileID: 6243062505222739800}
+  - {fileID: 1373178731742579083}
+  - {fileID: 8173191098950142310}
   - {fileID: 2331351249997435172}
   - {fileID: 2812339786675274820}
   m_Father: {fileID: 6267858276500188347}
@@ -1297,7 +1299,11 @@ MonoBehaviour:
   - {fileID: 7019766487495377553, guid: ddc663af0c1ae0848a9cdb65f630aae3, type: 3}
   - {fileID: 7530927218884165751, guid: f6bd40827e788844f84f969a88c25ab3, type: 3}
   - {fileID: 3090136429270564519, guid: bd8a583d48ea50c47a0d781a66379f6c, type: 3}
-  StaminaBar: {fileID: 0}
+  combatGEO: {fileID: 8012893460042220224}
+  combatRootControl: {fileID: 6949447227164930140}
+  botGEO: {fileID: 9018843669011443939}
+  botRootControl: {fileID: 4736026457940496817}
+  StaminaBar: {fileID: 7634451105460208279}
   stamina: 100
   maxStamina: 100
   boostCost: 20
@@ -1553,6 +1559,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5114812225715190353}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4736026457940496817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8173191098950142310}
+  m_Layer: 0
+  m_Name: L3Bot:Root_Ctrl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8173191098950142310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4736026457940496817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3144958297754959827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4811452207854557068
 GameObject:
@@ -2885,5 +2922,36 @@ Transform:
   m_Children:
   - {fileID: 3245648421935850303}
   - {fileID: 1325362417041768146}
+  m_Father: {fileID: 3144958297754959827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9018843669011443939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373178731742579083}
+  m_Layer: 0
+  m_Name: L3Bot:Geo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373178731742579083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018843669011443939}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 3144958297754959827}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
