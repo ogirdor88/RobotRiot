@@ -28,14 +28,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1274969571066084393}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.274, y: -1.015, z: 0.73}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9012357411603426366}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &6969238108077209875
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -101,11 +101,11 @@ MonoBehaviour:
   slot: 1
   bonusDamage: 0
   playerMove: {fileID: 0}
+  canShoot: 1
   muzzle: {fileID: 9012357411603426366}
   muzzle2: {fileID: 0}
   weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   projectile: {fileID: 2557240884926126808, guid: 7e0f747add98d96408c688063e4261b3, type: 3}
-  canShoot: 1
 --- !u!65 &2081274918492958747
 BoxCollider:
   m_ObjectHideFlags: 0
