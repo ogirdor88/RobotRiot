@@ -24,7 +24,7 @@ public class DeployTrapWeapon : Weapon
             if (playerMove.isShooting && canShoot)
             {
                 Debug.Log("Deployed Trap");
-                GameObject deployedTrap = Instantiate(trap, this.gameObject.transform.parent.parent.transform.position, this.gameObject.transform.parent.parent.transform.rotation);
+                GameObject deployedTrap = Instantiate(trap, new Vector3(this.gameObject.transform.parent.parent.transform.position.x, this.gameObject.transform.parent.parent.transform.position.y - 0.05f, this.gameObject.transform.parent.parent.transform.position.z), this.gameObject.transform.parent.parent.transform.rotation);
                 Destroy(gameObject);
             }
         }
