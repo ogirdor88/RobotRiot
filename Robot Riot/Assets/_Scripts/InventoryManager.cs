@@ -23,14 +23,18 @@ public class InventoryManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>())
+        if (other.gameObject.tag == "Item" && other.GetComponent<Weapon>())
+        {
+            //Instantiate(other.)
+        }
+        else if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>())
         {
             Debug.Log("Got Weapon");
             Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
             if (!inventory[other.GetComponent<Weapon>().slot])
             {
                 other.gameObject.transform.position = weaponLocation.transform.position;
-                other.gameObject.transform.rotation = other.gameObject.transform.rotation * gameObject.transform.rotation;
+                other.gameObject.transform.rotation =  weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
                 other.gameObject.transform.parent = weaponLocation.transform.parent;
                 if (inventory[activeSlot])
                 {
@@ -68,7 +72,7 @@ public class InventoryManager : MonoBehaviour
     public void ForceAddWeapon(GameObject weapon)
     {
         weapon.gameObject.transform.position = weaponLocation.transform.position;
-        weapon.gameObject.transform.rotation = weapon.gameObject.transform.rotation * gameObject.transform.rotation;
+        weapon.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * weaponLocation.transform.rotation;
         weapon.gameObject.transform.parent = weaponLocation.transform.parent;
 
         if (inventory[activeSlot])
@@ -128,7 +132,7 @@ public class InventoryManager : MonoBehaviour
                 }
                 else
                 {
-                    slotGoal = 0;
+                    slotGoal = -1;
                 }
                 for (; slot != slotGoal; slot += slotchange)
                 {
@@ -168,7 +172,7 @@ public class InventoryManager : MonoBehaviour
                 else
                 {
                     slot = inventory.Length - 1;
-                    slotGoal = 0;
+                    slotGoal = -1;
                 }
                 for (; slot != slotGoal; slot += slotchange)
                 {
