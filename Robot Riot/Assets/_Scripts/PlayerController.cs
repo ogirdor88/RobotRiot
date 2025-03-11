@@ -86,6 +86,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerManager.Instance.RegisterPlayer(playerInput);
+        _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
+        _playerCC.height = 1.5f;
     }
 
     private void Update()
@@ -235,6 +237,8 @@ public class PlayerController : MonoBehaviour
 
             combatGEO.SetActive(false);
             combatRootControl.SetActive(false);
+            _playerCC.center = new Vector3(0f, 0.6f, 0f);
+            _playerCC.height = 1f;
 
             Debug.Log("Bot Mode");
         }
@@ -249,6 +253,8 @@ public class PlayerController : MonoBehaviour
 
             combatGEO.SetActive(true);
             combatRootControl.SetActive(true);
+            _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
+            _playerCC.height = 1.5f;
         }
     }
     #endregion
