@@ -160,15 +160,22 @@ public class Health : MonoBehaviour
         if (other.gameObject.tag == "Healthpack" && isPlayer)
         {
             SetMaxHealth(_startHealth);
+            Destroy(other.gameObject);
+            Debug.Log("Collecteed H");
         }
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
             Destroy(other.gameObject);
+            Debug.Log("Collecteed PR");
         }
         if(other.gameObject.tag == "EnergyDrink")
         {
-            _currentHealth = _currentHealth + (missingHealth / 2);
+            int newHealth = _currentHealth + 50;
+            _playerController.stamina += 50;
+            SetMaxHealth(newHealth);
+            Destroy(other.gameObject);
+            Debug.Log("Collecteed ED");
         }
     }
 

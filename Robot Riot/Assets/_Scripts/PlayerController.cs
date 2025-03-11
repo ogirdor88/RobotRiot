@@ -11,6 +11,7 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController _playerCC;
+    private CapsuleCollider _playerCollider;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image StaminaBar;
     [SerializeField]
-    private float stamina, maxStamina, boostCost;
+    public float stamina, maxStamina, boostCost;
     private Coroutine recharge;
 
     private void Awake()
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
 
         _playerCC = gameObject.AddComponent<CharacterController>();
+        _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         originalMoveSpeed = _playerSpeed;
         botMode = false;
         isShooting = false;
@@ -88,6 +90,8 @@ public class PlayerController : MonoBehaviour
         PlayerManager.Instance.RegisterPlayer(playerInput);
         _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
         _playerCC.height = 1.5f;
+        _playerCollider.center = _playerCC.center;
+        _playerCollider.height = _playerCC.height;
     }
 
     private void Update()
@@ -239,6 +243,8 @@ public class PlayerController : MonoBehaviour
             combatRootControl.SetActive(false);
             _playerCC.center = new Vector3(0f, 0.6f, 0f);
             _playerCC.height = 1f;
+            _playerCollider.center = _playerCC.center;
+            _playerCollider.height = _playerCC.height;
 
             Debug.Log("Bot Mode");
         }
@@ -255,6 +261,8 @@ public class PlayerController : MonoBehaviour
             combatRootControl.SetActive(true);
             _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
             _playerCC.height = 1.5f;
+            _playerCollider.center = _playerCC.center;
+            _playerCollider.height = _playerCC.height;
         }
     }
     #endregion
