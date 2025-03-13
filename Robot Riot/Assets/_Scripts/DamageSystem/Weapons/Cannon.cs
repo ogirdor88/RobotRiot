@@ -26,12 +26,14 @@ public class Cannon : Weapon
     {
 
         Debug.Log(weapon.damage);
-
-        if (playerMove.isShooting && canShoot)
+        if (playerMove)
         {
-            StartCoroutine(Shooting());
-            Debug.Log("shot2");
-            playerMove.isShooting = false;
+            if (playerMove.isShooting && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot2");
+                playerMove.isShooting = false;
+            }
         }
     }
 

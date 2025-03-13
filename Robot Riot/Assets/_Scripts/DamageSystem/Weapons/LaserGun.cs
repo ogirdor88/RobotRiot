@@ -27,23 +27,25 @@ public class LaserGun : Weapon
     {
 
         Debug.Log(weapon.damage);
-        
-        if(muzzle2 != null)
+        if (playerMove)
         {
-            if (playerMove.isShooting && canShoot)
+            if (muzzle2 != null)
             {
-                StartCoroutine(DuealShooting());
-                Debug.Log("shot2");
-                playerMove.isShooting = false;
+                if (playerMove.isShooting && canShoot)
+                {
+                    StartCoroutine(DuealShooting());
+                    Debug.Log("shot2");
+                    playerMove.isShooting = false;
+                }
             }
-        }
-        else
-        {
-            if (playerMove.isShooting && canShoot)
+            else
             {
-                StartCoroutine(Shooting());
-                Debug.Log("shot");
-                playerMove.isShooting = false;
+                if (playerMove.isShooting && canShoot)
+                {
+                    StartCoroutine(Shooting());
+                    Debug.Log("shot");
+                    playerMove.isShooting = false;
+                }
             }
         }
     }
