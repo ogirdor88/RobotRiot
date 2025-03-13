@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2551094063414792458}
   - component: {fileID: 4393651961206633177}
-  - component: {fileID: 1978341609066866415}
+  - component: {fileID: 7326768329506179616}
   m_Layer: 0
   m_Name: TwinLaser
   m_TagString: Weapon
@@ -47,15 +47,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slot: 0
+  slot: 9
   bonusDamage: 0
   playerMove: {fileID: 0}
+  canShoot: 1
   muzzle: {fileID: 7991667050543702073}
   muzzle2: {fileID: 7389287355028170158}
   weapon: {fileID: 11400000, guid: aec1d645d13da3a488b1653b3aea982f, type: 2}
   projectile: {fileID: 1610702329485098589, guid: 04fe1431fa16be64388d02463f3b70a5, type: 3}
-  canShoot: 1
---- !u!65 &1978341609066866415
+--- !u!65 &7326768329506179616
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6011202432160027622}
-  m_Mesh: {fileID: -3535089659065258161, guid: 3ea24c5cc5d229c4f9f97236d5f89f77, type: 3}
+  m_Mesh: {fileID: -3535089659065258161, guid: 23471b3d24749154b9b6e3d4b46d5f85, type: 3}
 --- !u!23 &3355202648602518017
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6197889129030187029}
-  m_Mesh: {fileID: -3535089659065258161, guid: 3ea24c5cc5d229c4f9f97236d5f89f77, type: 3}
+  m_Mesh: {fileID: -3535089659065258161, guid: 23471b3d24749154b9b6e3d4b46d5f85, type: 3}
 --- !u!23 &8414463431970228157
 MeshRenderer:
   m_ObjectHideFlags: 0
