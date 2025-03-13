@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isJumping;
     private bool jump;
-    private bool botMode = false;
+    public bool botMode = false;
     private bool slide = false;
 
     public bool isShooting = false;
