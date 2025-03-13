@@ -65,8 +65,7 @@ public class Health : MonoBehaviour
     private void Update()
     {
         //_weaponDamage = _weaponsObjects.weaponDmage;
-        missingHealth = _startHealth - _currentHealth;
-
+        //missingHealth = _startHealth - _currentHealth;
         if (_currentHealth <= 0)
         {
             if (isPlayer)
@@ -172,7 +171,19 @@ public class Health : MonoBehaviour
         if(other.gameObject.tag == "EnergyDrink")
         {
             int newHealth = _currentHealth + 50;
-            _playerController.stamina += 50;
+            if(newHealth >= _startHealth)
+            {
+                newHealth = _startHealth;
+            }
+            float newStamina = _playerController.stamina + 50f;
+            if(newStamina >= _playerController.maxStamina)
+            {
+                _playerController.stamina = _playerController.maxStamina;
+            }
+            else
+            {
+                _playerController.stamina = newStamina;
+            }
             SetMaxHealth(newHealth);
             Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
