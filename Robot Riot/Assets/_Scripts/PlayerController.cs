@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour
     public float stamina, maxStamina, boostCost;
     private Coroutine recharge;
 
+    private float smoothMoveX;
+    private float smoothMoveY;
+    private float animationDampTime = 0.1f;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -146,8 +150,11 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        animator.SetFloat("Velocity Z", vertical);
-        animator.SetFloat("Velocity X", horizontal);
+        smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
+        smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
+
+        animator.SetFloat("Velocity X", smoothMoveX);
+        animator.SetFloat("Velocity Z", smoothMoveY);
         animator.SetBool("Jump", !isGrounded);
     }
 
