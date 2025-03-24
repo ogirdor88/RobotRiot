@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
-    private Animator animator;
+    public Animator animator;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -156,6 +156,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Velocity X", smoothMoveX);
         animator.SetFloat("Velocity Z", smoothMoveY);
         animator.SetBool("Jump", !isGrounded);
+
+        bool isMoving = horizontal != 0 || vertical != 0;
+        animator.SetBool("IsMoving", isMoving);
     }
 
     public void Move(InputAction.CallbackContext context)
