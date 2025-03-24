@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
+    private Animator animator;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -105,10 +107,13 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        
         Debug.Log("sprint " + isSprinting);
         UpdateMove();
         UpdateJump();
         UpdateCamera();
+        UpdateAnimation();
+
         if (!isSprinting)
         {
             StaminaBar.fillAmount = stamina / maxStamina;
@@ -138,10 +143,19 @@ public class PlayerController : MonoBehaviour
         _moveInput = transform.right * horizontal + transform.forward * vertical;
         _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
     }
+
+    private void UpdateAnimation()
+    {
+        animator.SetFloat("Velocity Z", vertical);
+        animator.SetFloat("Velocity X", horizontal);
+        animator.SetBool("Jump", !isGrounded);
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
-        vertical = context.ReadValue<Vector2>().y;
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontal = input.x;
+        vertical = input.y;
     }
 
     public IEnumerator RechargeStamina()
