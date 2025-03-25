@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
     public Animator animator;
+    public GameObject animatorCombat;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = GetComponent<Animator>();
+        animator = animatorCombat.GetComponent<Animator>();
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -149,19 +150,6 @@ public class PlayerController : MonoBehaviour
         }
         _moveInput = transform.right * horizontal + transform.forward * vertical;
         _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
-    }
-
-    private void UpdateAnimation()
-    {
-        smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
-        smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
-
-        animator.SetFloat("Velocity X", smoothMoveX);
-        animator.SetFloat("Velocity Z", smoothMoveY);
-        animator.SetBool("Jump", !jump);
-
-        bool isMoving = horizontal != 0 || vertical != 0;
-        animator.SetBool("IsMoving", isMoving);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -320,6 +308,24 @@ public class PlayerController : MonoBehaviour
         //isSprinting = false;
         Debug.Log("BoostStopped");
         //_playerSpeed = originalMoveSpeed;
+    }
+    #endregion
+    #region Animation
+    private void UpdateAnimation()
+    {
+        //Move Animations
+        smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
+        smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
+        animator.SetFloat("Velocity X", smoothMoveX);
+        animator.SetFloat("Velocity Z", smoothMoveY);
+        bool isMoving = horizontal != 0 || vertical != 0;
+        animator.SetBool("IsMoving", isMoving);
+
+        //Jump animation
+        animator.SetBool("Jump", !jump);
+        
+        //Bot Place trap animation
+
     }
     #endregion
 
