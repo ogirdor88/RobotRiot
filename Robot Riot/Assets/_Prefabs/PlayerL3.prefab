@@ -1265,11 +1265,35 @@ MonoBehaviour:
     m_ActionId: 3c6b55c4-eab5-421d-875b-ed0ac3cba654
     m_ActionName: Player/BoostStop[/Keyboard/shift,/XInputControllerWindows/buttonEast,/XInputControllerWindows1/buttonEast]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2802743366849314342}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: ChangeWeaponLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b941c19d-5ab3-4e5b-b759-5d41a4750931
     m_ActionName: Player/NextLeftSlot[/Keyboard/leftBracket,/XInputControllerWindows/leftShoulder,/DualShock4GamepadHID/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2802743366849314342}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: ChangeWeaponRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c8bc75f8-08e6-4dc3-a79a-017eb0fd82a2
     m_ActionName: Player/NextRightSlot[/Keyboard/rightBracket,/XInputControllerWindows/rightShoulder,/DualShock4GamepadHID/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
@@ -1295,6 +1319,7 @@ MonoBehaviour:
   _playerSpeed: 4
   botMode: 0
   isShooting: 0
+  istrapping: 0
   bonusDamage: 0
   swords:
   - {fileID: 974300951606109261, guid: a1297581b67615e41b9794817d2e578c, type: 3}

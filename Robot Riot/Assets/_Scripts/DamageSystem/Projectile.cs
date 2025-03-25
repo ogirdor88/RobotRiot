@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     private Vector3 startDist;
     private bool hit = false;
     public int bonusDamage;
+    public GameObject VFX;
 
     private void Start()
     {
@@ -45,12 +46,14 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
         if (other.gameObject && other.gameObject.tag != "Weapon")
         {
             if(weapon.weaponType == WeaponType.Projectile)
             {
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localScale = new Vector3(3f, 3f, 3f);
+                VFX.SetActive(true);
                 Destroy(gameObject, .05f);
             }
             else
