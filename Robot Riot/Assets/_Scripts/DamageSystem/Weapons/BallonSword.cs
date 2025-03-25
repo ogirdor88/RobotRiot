@@ -52,6 +52,7 @@ public class BallonSword : Weapon
 
     IEnumerator Shooting()
     {
+        playerMove.animator.Play("L3 Swing");
         canShoot = false;
         damageCollider.enabled = true;
         GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
@@ -59,5 +60,6 @@ public class BallonSword : Weapon
         Destroy(vfx);
         damageCollider.enabled = false;
         canShoot = true;
+        //playerMove.animator.SetBool("Swing", !playerMove.isShooting);
     }
 }

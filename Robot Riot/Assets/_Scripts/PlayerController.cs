@@ -94,10 +94,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerManager.Instance.RegisterPlayer(playerInput);
-        _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
-        _playerCC.height = 1.5f;
+        _playerCC.center = new Vector3(0f, 0.75f, 0.05f);
+        _playerCC.height = 1.25f;
+        _playerCC.radius = 0.45f;
         _playerCollider.center = _playerCC.center;
         _playerCollider.height = _playerCC.height;
+        _playerCollider.radius = _playerCC.radius;
     }
 
     private void Update()
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Velocity X", smoothMoveX);
         animator.SetFloat("Velocity Z", smoothMoveY);
-        animator.SetBool("Jump", !isGrounded);
+        //animator.SetBool("Jump", !isGrounded);
 
         bool isMoving = horizontal != 0 || vertical != 0;
         animator.SetBool("IsMoving", isMoving);
@@ -247,7 +249,6 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Pew");
                 
                 isShooting = true;
-                animator.SetBool("Shoot", isShooting);
 
             }
         }
@@ -274,8 +275,10 @@ public class PlayerController : MonoBehaviour
             combatRootControl.SetActive(false);
             _playerCC.center = new Vector3(0f, 0.6f, 0f);
             _playerCC.height = 1f;
+            _playerCC.radius = 0.35f;
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
+            _playerCollider.radius = _playerCC.radius;
 
             Debug.Log("Bot Mode");
         }
@@ -290,10 +293,12 @@ public class PlayerController : MonoBehaviour
 
             combatGEO.SetActive(true);
             combatRootControl.SetActive(true);
-            _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
-            _playerCC.height = 1.5f;
+            _playerCC.center = new Vector3(0f, 0.75f, 0.05f);
+            _playerCC.height = 1.25f;
+            _playerCC.radius = 0.45f;
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
+            _playerCollider.radius = _playerCC.radius;
         }
     }
     #endregion
