@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
     public bool botMode = false;
     private bool slide = false;
 
-    public bool isShooting = false;
+    public bool isShooting = false; 
+    public bool istrapping = false;
 
 
     public int bonusDamage;
@@ -243,12 +244,14 @@ public class PlayerController : MonoBehaviour
                 /* GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                  cube.transform.position = this.transform.position;*/
                 Debug.Log("Trap");
+                istrapping = true;
             }
             else
             {
                 Debug.Log("Pew");
                 
                 isShooting = true;
+                istrapping = true;
 
             }
         }

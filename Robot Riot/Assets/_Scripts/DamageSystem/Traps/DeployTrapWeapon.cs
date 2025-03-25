@@ -7,7 +7,6 @@ public class DeployTrapWeapon : Weapon
     [SerializeField] private Weapons weapon;
     private float timeToFire;
 
-
     //[SerializeField] private bool canShoot = true;
 
     [SerializeField] private GameObject trap;
@@ -21,10 +20,11 @@ public class DeployTrapWeapon : Weapon
     {
         if (playerMove)
         {
-            if (playerMove.isShooting && canShoot)
+            if (playerMove.istrapping && canShoot)
             {
                 Debug.Log("Deployed Trap");
                 GameObject deployedTrap = Instantiate(trap, new Vector3(this.gameObject.transform.parent.parent.transform.position.x, this.gameObject.transform.parent.parent.transform.position.y - 0.05f, this.gameObject.transform.parent.parent.transform.position.z), this.gameObject.transform.parent.parent.transform.rotation);
+                playerMove.istrapping = false;
                 playerMove.isShooting = false;
                 Destroy(gameObject);
             }

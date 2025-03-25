@@ -10,4 +10,5 @@ public class Weapon : MonoBehaviour
     public PlayerController playerMove;
 
     public bool canShoot = true;
+    public bool canTrap = true;
 }
