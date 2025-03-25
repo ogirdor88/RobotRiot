@@ -9,6 +9,7 @@ public class IceSpikes : MonoBehaviour
     // Start is called before the first frame update
     public GameObject VFX;
     public float slowAmount = 1;
+    bool triggered;
 
 
     [SerializeField] private int coolDown;
@@ -27,6 +28,21 @@ public class IceSpikes : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "Player" && canDeploy)
+        {
+            if (!triggered)
+            {
+
+                Debug.Log("hitplayer");
+                other.GetComponent<PlayerController>()._playerSpeed = slowAmount;
+                VFX.SetActive(true);
+
+            }
+        }
+    }
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
         if (canDeploy)
         {
             Debug.Log("hitplayer");
@@ -36,6 +52,7 @@ public class IceSpikes : MonoBehaviour
             
 
     }
+    */
 
     private void OnTriggerExit(Collider other)
     {
