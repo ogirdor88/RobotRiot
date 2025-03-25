@@ -245,7 +245,10 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Pew");
+                
                 isShooting = true;
+                animator.SetBool("Shoot", isShooting);
+
             }
         }
     }
