@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d714d5d915671d349be582c8721d81a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item: {fileID: 0}
   rotateSpeed: 80
 --- !u!1 &2569817338287373379
 GameObject:
@@ -57,9 +58,10 @@ GameObject:
   - component: {fileID: 2176384173460896226}
   - component: {fileID: 2032749940345028781}
   - component: {fileID: 4751874255249873280}
+  - component: {fileID: 3862435578015200150}
   m_Layer: 0
   m_Name: Health_Pack_low
-  m_TagString: Untagged
+  m_TagString: Healthpack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,3 +131,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3862435578015200150
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2569817338287373379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.015659645, y: 0.026208606, z: 0.015659647}
+  m_Center: {x: 4.656613e-10, y: 5.0931703e-10, z: -9.313226e-10}

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 // This should be applied to the player.
@@ -22,7 +21,7 @@ public class ElectricStatusEffect : MonoBehaviour
     {
         if (seconds >= 5)
             Destroy(this);
-        health.TakeDamage(1);
+        health.TakeDamage(7);
         seconds += 1;
     }
 }

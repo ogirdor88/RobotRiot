@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 4925118198833731340}
   - component: {fileID: 4361430487374166261}
   - component: {fileID: 2947670665031547772}
+  - component: {fileID: 2570536028320913002}
   m_Layer: 0
   m_Name: Finish_Ribbon
-  m_TagString: Untagged
+  m_TagString: PowerRibbon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,4 +97,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d714d5d915671d349be582c8721d81a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item: {fileID: 0}
   rotateSpeed: 80
+--- !u!65 &2570536028320913002
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390727734862630688}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5233873, y: 0.38803527, z: 0.1191481}
+  m_Center: {x: 0.000000014901161, y: 0.000000014901161, z: 0}
