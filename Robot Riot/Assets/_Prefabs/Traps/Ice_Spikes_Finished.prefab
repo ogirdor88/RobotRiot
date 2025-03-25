@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1185837, y: 0.39181316, z: 0.15724593}
-  m_Center: {x: -0.00000017881393, y: 0.000000007450581, z: 0}
+  m_Size: {x: 1.1185837, y: 2.1950822, z: 0.3132727}
+  m_Center: {x: -0.00000017881393, y: 0.90163445, z: 0.013599277}
 --- !u!114 &5903211942149012834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad94ec06acb44614c9e0dc5ac643f40d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VFX: {fileID: 1935949240026680073}
+  slowAmount: 1
   coolDown: 3
 --- !u!1001 &6355445014571580858
 PrefabInstance:
@@ -168,15 +170,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4723589961294587341, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4823016563444201139, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
       propertyPath: m_Name
       value: IceSpike
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823016563444201139, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
+--- !u!1 &1935949240026680073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4823016563444201139, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
+  m_PrefabInstance: {fileID: 6355445014571580858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7793706706697425436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3754838142542639014, guid: 575b9d92a52f4dd489edeb1afc75c454, type: 3}
