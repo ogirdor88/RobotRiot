@@ -36,6 +36,8 @@ public class LaserGun : Weapon
                     StartCoroutine(DuealShooting());
                     Debug.Log("shot2");
                     playerMove.isShooting = false;
+                    
+
                 }
             }
             else
@@ -45,6 +47,7 @@ public class LaserGun : Weapon
                     StartCoroutine(Shooting());
                     Debug.Log("shot");
                     playerMove.isShooting = false;
+                    
                 }
             }
         }
@@ -59,6 +62,7 @@ public class LaserGun : Weapon
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
+        playerMove.animator.SetBool("Shoot", !canShoot);
     }
     IEnumerator DuealShooting()
     {
@@ -75,5 +79,6 @@ public class LaserGun : Weapon
 
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
+        playerMove.animator.SetBool("Shoot", !canShoot);
     }
 }
