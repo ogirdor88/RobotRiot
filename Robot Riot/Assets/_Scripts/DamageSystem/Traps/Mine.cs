@@ -7,7 +7,7 @@ public class Mine : MonoBehaviour
 {
     [SerializeField] private int coolDown;
     private bool canDeploy = false;
-
+    public int WeaponDamage;
     private void Awake()
     {
         StartCoroutine(WaitForCooldown());
@@ -17,7 +17,7 @@ public class Mine : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && canDeploy)
         {
-            other.gameObject.GetComponent<Health>().TakeDamage(15);
+            other.gameObject.GetComponent<Health>().TakeDamage(WeaponDamage);
             Destroy(gameObject);
         }
     }

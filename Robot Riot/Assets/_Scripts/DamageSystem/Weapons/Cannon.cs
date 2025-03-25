@@ -39,6 +39,7 @@ public class Cannon : Weapon
 
     IEnumerator Shooting()
     {
+        playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * speedOfProjectile);
@@ -46,5 +47,6 @@ public class Cannon : Weapon
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
+        //playerMove.animator.SetBool("Shoot", !playerMove.isShooting);
     }
 }

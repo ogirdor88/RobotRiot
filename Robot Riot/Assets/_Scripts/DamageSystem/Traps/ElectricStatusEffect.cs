@@ -21,7 +21,7 @@ public class ElectricStatusEffect : MonoBehaviour
     {
         if (seconds >= 5)
             Destroy(this);
-        health.TakeDamage(1);
+        health.TakeDamage(7);
         seconds += 1;
     }
 }

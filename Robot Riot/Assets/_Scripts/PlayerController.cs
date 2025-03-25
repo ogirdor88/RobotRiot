@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
+    public Animator animator;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -59,9 +60,14 @@ public class PlayerController : MonoBehaviour
     public float stamina, maxStamina, boostCost;
     private Coroutine recharge;
 
+    private float smoothMoveX;
+    private float smoothMoveY;
+    private float animationDampTime = 0.1f;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        animator = GetComponent<Animator>();
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -88,10 +94,12 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerManager.Instance.RegisterPlayer(playerInput);
-        _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
-        _playerCC.height = 1.5f;
+        _playerCC.center = new Vector3(0f, 0.75f, 0.05f);
+        _playerCC.height = 1.25f;
+        _playerCC.radius = 0.45f;
         _playerCollider.center = _playerCC.center;
         _playerCollider.height = _playerCC.height;
+        _playerCollider.radius = _playerCC.radius;
     }
 
     private void Update()
@@ -105,10 +113,13 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+        
         Debug.Log("sprint " + isSprinting);
         UpdateMove();
         UpdateJump();
         UpdateCamera();
+        UpdateAnimation();
+
         if (!isSprinting)
         {
             StaminaBar.fillAmount = stamina / maxStamina;
@@ -138,10 +149,25 @@ public class PlayerController : MonoBehaviour
         _moveInput = transform.right * horizontal + transform.forward * vertical;
         _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
     }
+
+    private void UpdateAnimation()
+    {
+        smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
+        smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
+
+        animator.SetFloat("Velocity X", smoothMoveX);
+        animator.SetFloat("Velocity Z", smoothMoveY);
+        //animator.SetBool("Jump", !isGrounded);
+
+        bool isMoving = horizontal != 0 || vertical != 0;
+        animator.SetBool("IsMoving", isMoving);
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
-        vertical = context.ReadValue<Vector2>().y;
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontal = input.x;
+        vertical = input.y;
     }
 
     public IEnumerator RechargeStamina()
@@ -221,7 +247,9 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Pew");
+                
                 isShooting = true;
+
             }
         }
     }
@@ -247,8 +275,10 @@ public class PlayerController : MonoBehaviour
             combatRootControl.SetActive(false);
             _playerCC.center = new Vector3(0f, 0.6f, 0f);
             _playerCC.height = 1f;
+            _playerCC.radius = 0.35f;
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
+            _playerCollider.radius = _playerCC.radius;
 
             Debug.Log("Bot Mode");
         }
@@ -263,10 +293,12 @@ public class PlayerController : MonoBehaviour
 
             combatGEO.SetActive(true);
             combatRootControl.SetActive(true);
-            _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
-            _playerCC.height = 1.5f;
+            _playerCC.center = new Vector3(0f, 0.75f, 0.05f);
+            _playerCC.height = 1.25f;
+            _playerCC.radius = 0.45f;
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
+            _playerCollider.radius = _playerCC.radius;
         }
     }
     #endregion
