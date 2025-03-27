@@ -62,7 +62,7 @@ public class BoomBox : Weapon
         //currentProjectile.transform.localScale += new Vector3(power / maxPower, power / maxPower, power / maxPower);
         currentProjectile.transform.localScale = new Vector3(originalScale.x + (power * 0.01f), originalScale.y + (power * 0.01f), originalScale.z + (power * 0.01f));
         currentProjectile.GetComponent<BoxCollider>().size = currentProjectile.transform.localScale;
-        currentProjectile.transform.position = flameLocation.transform.root.position;
+        currentProjectile.transform.position = flameLocation.transform.position;
         currentProjectile.transform.rotation = transform.rotation;
         if (power > 0 && attemptCharge)
             StartCoroutine(Recharge(false));
