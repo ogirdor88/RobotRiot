@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = animatorCombat.GetComponent<Animator>();
+        //animator = animatorCombat.GetComponent<Animator>();
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
