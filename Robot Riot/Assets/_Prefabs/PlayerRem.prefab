@@ -984,6 +984,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c8bc75f8-08e6-4dc3-a79a-017eb0fd82a2
     m_ActionName: Player/NextRightSlot[/Keyboard/rightBracket,/XInputControllerWindows/rightShoulder,/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8912206807533983730}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5640bb4d-cf8d-48f7-ad9f-bb32582e3ffa
+    m_ActionName: Player/Pause[/Keyboard/p,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 477121cb-00a9-415a-adf9-a38371974a9d
+    m_ActionName: UI/Up[/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0d8c900-210d-4d71-bb6c-5c8605aee2c6
+    m_ActionName: UI/Down[/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6ec1fcf5-fde3-4cc9-a0a6-ecf936ef812e
+    m_ActionName: UI/Left[/XInputControllerWindows/dpad/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 207b9f5f-5c2a-4a85-a6d6-e7c513a1d5dc
+    m_ActionName: UI/Right[/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 63bcf222-dc3d-4797-bcf2-3d14240d6b36
+    m_ActionName: UI/Interact[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1002,10 +1038,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCC: {fileID: 0}
+  animator: {fileID: 0}
+  animatorCombat: {fileID: 0}
   _camera: {fileID: 7878649723409669292}
   _playerSpeed: 4
   botMode: 0
   isShooting: 0
+  istrapping: 0
   bonusDamage: 0
   swords:
   - {fileID: 974300951606109261, guid: a1297581b67615e41b9794817d2e578c, type: 3}

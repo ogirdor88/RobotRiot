@@ -134,6 +134,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""5640bb4d-cf8d-48f7-ad9f-bb32582e3ffa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -499,6 +508,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""NextRightSlot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a12aeaa1-0d40-4679-a38e-49c3f9d53ea6"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8bf52a9-6fd5-4645-bebd-bd1da512e6cb"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -650,6 +681,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_BoostStop = m_Player.FindAction("BoostStop", throwIfNotFound: true);
         m_Player_NextLeftSlot = m_Player.FindAction("NextLeftSlot", throwIfNotFound: true);
         m_Player_NextRightSlot = m_Player.FindAction("NextRightSlot", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
@@ -730,6 +762,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BoostStop;
     private readonly InputAction m_Player_NextLeftSlot;
     private readonly InputAction m_Player_NextRightSlot;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -746,6 +779,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @BoostStop => m_Wrapper.m_Player_BoostStop;
         public InputAction @NextLeftSlot => m_Wrapper.m_Player_NextLeftSlot;
         public InputAction @NextRightSlot => m_Wrapper.m_Player_NextRightSlot;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -791,6 +825,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @NextRightSlot.started += instance.OnNextRightSlot;
             @NextRightSlot.performed += instance.OnNextRightSlot;
             @NextRightSlot.canceled += instance.OnNextRightSlot;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -831,6 +868,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @NextRightSlot.started -= instance.OnNextRightSlot;
             @NextRightSlot.performed -= instance.OnNextRightSlot;
             @NextRightSlot.canceled -= instance.OnNextRightSlot;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -958,6 +998,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnBoostStop(InputAction.CallbackContext context);
         void OnNextLeftSlot(InputAction.CallbackContext context);
         void OnNextRightSlot(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

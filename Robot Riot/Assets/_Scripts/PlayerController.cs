@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
     #region Shooting/Reload
     public void Shoot(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
             if (botMode)
             {
@@ -237,11 +237,15 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Debug.Log("Pew");
-                
+
                 isShooting = true;
                 istrapping = true;
 
             }
+        }
+        if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+        {
+            isShooting = false;
         }
     }
     public void ReloadWeapon(InputAction.CallbackContext context)
@@ -374,6 +378,14 @@ public class PlayerController : MonoBehaviour
         //swords[rand].gameObject.SetActive(true);
         Debug.Log("Creating Sword");
         gameObject.GetComponent<InventoryManager>().ForceAddWeapon(Instantiate(swords[rand]));
+    }
+    #endregion
+
+    #region Pause
+    public void PauseGame()
+    {
+        Debug.Log("Pausing Game");
+        GameObject.FindObjectOfType<GameManager>().PauseGame();
     }
     #endregion
 }

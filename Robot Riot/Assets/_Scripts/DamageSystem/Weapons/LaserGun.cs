@@ -26,7 +26,7 @@ public class LaserGun : Weapon
     private void Update()
     {
 
-        Debug.Log(weapon.damage);
+        //Debug.Log(weapon.damage);
         if (playerMove)
         {
             if (muzzle2 != null)
