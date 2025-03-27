@@ -15,8 +15,6 @@ public class BoomBox : Weapon
 
     [SerializeField] private int maxPower;
 
-    private bool isRecharging;
-
     private Vector3 originalScale;
 
     private bool attemptCharge;
@@ -42,17 +40,14 @@ public class BoomBox : Weapon
     }
     private void Update()
     {
-        if (playerMove.isShooting && !isRecharging)
+        if (playerMove.isShooting)
         {
             FireWeapon();
         }
         if (!playerMove.isShooting)
         {
-            isRecharging = true;
             StopFiring();
         }
-        if (power == maxPower)
-            isRecharging = false;
     }
 
     private void FireWeapon()
@@ -78,8 +73,8 @@ public class BoomBox : Weapon
     {
         Destroy(currentProjectile);
         damageCollider.enabled = false;
-        if (power < maxPower && attemptCharge)
-            StartCoroutine(Recharge(true));
+        if (power == 0)
+            Destroy(this.gameObject);
     }
 
     /*private void OnTriggerEnter(Collider other)
@@ -100,20 +95,11 @@ public class BoomBox : Weapon
     IEnumerator Recharge(bool Recharging)
     {
         attemptCharge = false;
-        if (Recharging)
+        power--;
+        if (power == 0)
         {
-            power++;
+            StopFiring();
         }
-        if (!Recharging)
-        {
-            power--;
-            if (power == 0)
-            {
-                isRecharging = true;
-                StopFiring();
-            }
-        }
-    
         yield return new WaitForSeconds(timeToFire);
         attemptCharge = true;
     }
