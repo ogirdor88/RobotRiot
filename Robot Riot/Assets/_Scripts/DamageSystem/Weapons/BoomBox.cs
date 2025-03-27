@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 
 // Make sure to track how long it's being used and shrink as needed
@@ -13,6 +14,8 @@ public class BoomBox : Weapon
     [SerializeField] private int power;
 
     [SerializeField] private int maxPower;
+
+    private bool isRecharging;
 
     private Vector3 originalScale;
 
@@ -39,14 +42,17 @@ public class BoomBox : Weapon
     }
     private void Update()
     {
-        if (playerMove.isShooting)
+        if (playerMove.isShooting && !isRecharging)
         {
             FireWeapon();
         }
         if (!playerMove.isShooting)
         {
+            isRecharging = true;
             StopFiring();
         }
+        if (power == maxPower)
+            isRecharging = false;
     }
 
     private void FireWeapon()
@@ -95,10 +101,20 @@ public class BoomBox : Weapon
     {
         attemptCharge = false;
         if (Recharging)
+        {
             power++;
+        }
         if (!Recharging)
+        {
             power--;
-        yield return new WaitForSeconds(timeToFire * 0.1f);
+            if (power == 0)
+            {
+                isRecharging = true;
+                StopFiring();
+            }
+        }
+    
+        yield return new WaitForSeconds(timeToFire);
         attemptCharge = true;
     }
 }
