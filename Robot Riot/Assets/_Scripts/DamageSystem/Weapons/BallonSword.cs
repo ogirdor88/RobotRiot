@@ -56,6 +56,8 @@ public class BallonSword : Weapon
         canShoot = false;
         damageCollider.enabled = true;
         GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
+        vfx.GetComponent<HitboxDamage>().weapon = weapon;
+        vfx.GetComponent<HitboxDamage>().playerMove = playerMove;
         yield return new WaitForSeconds(timeToFire);
         Destroy(vfx);
         damageCollider.enabled = false;

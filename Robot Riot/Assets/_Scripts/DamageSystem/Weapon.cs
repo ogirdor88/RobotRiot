@@ -11,4 +11,5 @@ public class Weapon : MonoBehaviour
 
     public bool canShoot = true;
     public bool canTrap = true;
+    public bool isContinousWeapon;
 }

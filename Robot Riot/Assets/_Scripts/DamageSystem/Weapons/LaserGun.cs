@@ -12,6 +12,10 @@ public class LaserGun : Weapon
     [SerializeField] private GameObject projectile;
     //[SerializeField] private bool canShoot = true;
 
+    [SerializeField] private AudioSource firingSound;
+    [SerializeField] private AudioSource dualFiringSound1;
+    [SerializeField] private AudioSource dualFiringSound2;
+
 
     private void Awake()
     {
@@ -26,7 +30,7 @@ public class LaserGun : Weapon
     private void Update()
     {
 
-        Debug.Log(weapon.damage);
+        //Debug.Log(weapon.damage);
         if (playerMove)
         {
             if (muzzle2 != null)
@@ -61,6 +65,7 @@ public class LaserGun : Weapon
         //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
         if (transform.root.GetComponent<PlayerController>())
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
+        firingSound.Play();
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;
 
@@ -79,6 +84,8 @@ public class LaserGun : Weapon
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
             newProjectile2.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         }
+        dualFiringSound1.Play();
+        dualFiringSound2.Play();
 
         yield return new WaitForSeconds(timeToFire);
         canShoot = true;

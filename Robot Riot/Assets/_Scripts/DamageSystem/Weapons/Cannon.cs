@@ -25,7 +25,7 @@ public class Cannon : Weapon
     private void Update()
     {
 
-        Debug.Log(weapon.damage);
+        //Debug.Log(weapon.damage);
         if (playerMove)
         {
             if (playerMove.isShooting && canShoot)
