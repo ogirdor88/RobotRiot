@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image StaminaBar;
     [SerializeField]
+    private TMP_Text boostText;
+    [SerializeField]
     public float stamina, maxStamina, boostCost;
     private Coroutine recharge;
 
@@ -141,6 +143,7 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
             }
             StaminaBar.fillAmount = stamina / maxStamina;
+            boostText.text = "Boost: " + (int)stamina + "/" + (int)maxStamina;
             if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
         }
@@ -170,6 +173,7 @@ public class PlayerController : MonoBehaviour
             if (stamina > maxStamina) stamina = maxStamina;
             //update the stamina bar
             StaminaBar.fillAmount = stamina / maxStamina;
+            boostText.text = "Boost: " + (int)stamina + "/" + (int)maxStamina;
             yield return new WaitForSeconds(.1f);
         }
     }
