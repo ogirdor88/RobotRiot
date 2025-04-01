@@ -13,6 +13,8 @@ public class BallonSword : Weapon
 
     [SerializeField] private GameObject swordVFX;
 
+    [SerializeField] private AudioSource hitSound;
+
 
     private void Start()
     {
@@ -23,11 +25,14 @@ public class BallonSword : Weapon
     }
     private void Update()
     {
-        if (playerMove.isShooting && canShoot)
+        if (playerMove)
         {
-            StartCoroutine(Shooting());
-            Debug.Log("shot");
-            playerMove.isShooting = false;
+            if (playerMove.isShooting && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot");
+                playerMove.isShooting = false;
+            }
         }
     }
 
@@ -40,6 +45,7 @@ public class BallonSword : Weapon
             if (health != null)
             {
                 health.TakeDamage(weapon.damage + bonusDamage);
+                hitSound.Play();
             }
             Debug.Log("Hit health" + other.gameObject);
             Debug.Log("SAASSAASASA");
@@ -58,6 +64,7 @@ public class BallonSword : Weapon
         GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
         vfx.GetComponent<HitboxDamage>().weapon = weapon;
         vfx.GetComponent<HitboxDamage>().playerMove = playerMove;
+        vfx.GetComponent<HitboxDamage>().hitSound = hitSound;
         yield return new WaitForSeconds(timeToFire);
         Destroy(vfx);
         damageCollider.enabled = false;
