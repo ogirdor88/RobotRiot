@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
     public Animator animator;
-    public GameObject animatorCombat;
+    public GameObject combatAnimator;
+    public GameObject botAnimator;
     [SerializeField] private Transform _camera;
 
     private Vector3 _playerVelo;
@@ -69,7 +70,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = animatorCombat.GetComponent<Animator>();
+        animator = combatAnimator.GetComponent<Animator>();
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private void UpdateMove()
     {
-        if (isSprinting)
+        if (isSprinting && botMode)
         {
             _playerSpeed = 10f;
             stamina -= boostCost * Time.deltaTime;
@@ -229,8 +230,6 @@ public class PlayerController : MonoBehaviour
         {
             if (botMode)
             {
-                /* GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                 cube.transform.position = this.transform.position;*/
                 Debug.Log("Trap");
                 istrapping = true;
             }
@@ -239,13 +238,30 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Pew");
 
                 isShooting = true;
-                istrapping = true;
+                //istrapping = true;
 
             }
         }
-        if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+        //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+        //{
+        //    isShooting = false;
+        //}
+
+        if (context.phase == InputActionPhase.Canceled)
         {
-            isShooting = false;
+            if (botMode)
+            {
+                Debug.Log("Trap");
+                istrapping = false;
+            }
+            else
+            {
+                Debug.Log("Pew");
+
+                isShooting = false;
+                //istrapping = true;
+
+            }
         }
     }
     public void ReloadWeapon(InputAction.CallbackContext context)
@@ -261,6 +277,7 @@ public class PlayerController : MonoBehaviour
         // will be changed later
         if (botMode)
         {
+            animator = botAnimator.GetComponent<Animator>();
             botGEO.SetActive(true);
             botRootControl.SetActive(true);
 
@@ -278,8 +295,8 @@ public class PlayerController : MonoBehaviour
 
         if (!botMode)
         {
-            /*this.GetComponent<Renderer>().material.color = Color.blue;
-            _playerSpeed = originalMoveSpeed;*/
+            animator = combatAnimator.GetComponent<Animator>();
+
             Debug.Log("Combat Mode");
             botGEO.SetActive(false);
             botRootControl.SetActive(false);
@@ -298,7 +315,7 @@ public class PlayerController : MonoBehaviour
     #region Sprinting
     public void SpeedBoost(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && botMode)
         {
             isSprinting = true;
         }

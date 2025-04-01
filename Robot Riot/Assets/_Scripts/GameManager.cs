@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // Figure out who won and send them to the game over screen
