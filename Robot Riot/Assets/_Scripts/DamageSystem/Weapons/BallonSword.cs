@@ -25,11 +25,14 @@ public class BallonSword : Weapon
     }
     private void Update()
     {
-        if (playerMove.isShooting && canShoot)
+        if (playerMove)
         {
-            StartCoroutine(Shooting());
-            Debug.Log("shot");
-            playerMove.isShooting = false;
+            if (playerMove.isShooting && canShoot)
+            {
+                StartCoroutine(Shooting());
+                Debug.Log("shot");
+                playerMove.isShooting = false;
+            }
         }
     }
 

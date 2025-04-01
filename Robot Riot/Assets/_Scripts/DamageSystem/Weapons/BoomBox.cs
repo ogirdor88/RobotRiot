@@ -40,13 +40,16 @@ public class BoomBox : Weapon
     }
     private void Update()
     {
-        if (playerMove.isShooting)
+        if (playerMove)
         {
-            FireWeapon();
-        }
-        if (!playerMove.isShooting)
-        {
-            StopFiring();
+            if (playerMove.isShooting)
+            {
+                FireWeapon();
+            }
+            if (!playerMove.isShooting)
+            {
+                StopFiring();
+            }
         }
     }
 
