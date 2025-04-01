@@ -113,6 +113,8 @@ public class PlayerController : MonoBehaviour
         _playerCollider.radius = _playerCC.radius;
         sensSliderX.value = (lookSensX / 10f);
         sensSliderY.value = (lookSensY / 10f);
+        sensSliderX.enabled = false;
+        sensSliderY.enabled = false;
     }
 
     private void Update()
@@ -243,6 +245,12 @@ public class PlayerController : MonoBehaviour
     {
         lookSensYOriginal = sensSliderY.value * 10;
         sensYValue.text = lookSensYOriginal.ToString();
+    }
+    public void Pause(InputAction.CallbackContext context)
+    {
+        sensSliderX.enabled = !sensSliderX.enabled;
+        sensSliderY.enabled = !sensSliderY.enabled;
+
     }
     #endregion
     #region Shooting/Reload
