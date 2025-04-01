@@ -13,6 +13,8 @@ public class HitboxDamage : MonoBehaviour
 
     private bool canShoot;
 
+    public AudioSource hitSound;
+
     private void Start()
     {
         canShoot = true;
@@ -38,6 +40,8 @@ public class HitboxDamage : MonoBehaviour
             if (health != null)
             {
                 health.TakeDamage(weapon.damage + bonusDamage);
+                if (hitSound)
+                    hitSound.Play();
             }
             Debug.Log("Hit health" + other.gameObject);
             Debug.Log("SAASSAASASA");
