@@ -50,12 +50,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d480e480488d61242904a160e3c67c85, type: 3}
       propertyPath: m_Name
-      value: whiskeyBottle_1
+      value: _whiskeyBottle_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d480e480488d61242904a160e3c67c85, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5933973071778603123}
     - targetCorrespondingSourceObject: {fileID: 358252945491033304, guid: d480e480488d61242904a160e3c67c85, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5728043645860661037}
@@ -134,3 +137,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.8213005, y: 10.89567, z: 4.9682617}
   m_Center: {x: -0.029230118, y: 29.735535, z: 0.3479004}
+--- !u!1 &1122198224756790117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d480e480488d61242904a160e3c67c85, type: 3}
+  m_PrefabInstance: {fileID: 239729299555282484}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &5933973071778603123
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122198224756790117}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
