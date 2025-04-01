@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.Windows;
 //using static UnityEditor.Progress;
 
@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public GameObject combatAnimator;
     public GameObject botAnimator;
     [SerializeField] private Transform _camera;
+    [SerializeField] private Slider sensSliderX;
+    [SerializeField] private Slider sensSliderY;
+    [SerializeField] private Text sensXValue;
+    [SerializeField] private Text sensYValue;
+
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
@@ -31,8 +36,10 @@ public class PlayerController : MonoBehaviour
     private float originalMoveSpeed;
 
     private float xRotaion = 0f;
-    private float lookSens = 1.8f;
-    private float lookSensOriginal;
+    private float lookSensX = 1f;
+    private float lookSensY = 1f;
+    private float lookSensXOriginal;
+    private float lookSensYOriginal;
 
     public float _playerSpeed = 4f;
 
@@ -70,7 +77,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = combatAnimator.GetComponent<Animator>();
+        animator = combatAnimator.GetComponent<Animator>(); 
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -88,7 +95,8 @@ public class PlayerController : MonoBehaviour
         originalMoveSpeed = _playerSpeed;
         botMode = false;
         isShooting = false;
-        lookSensOriginal = lookSens;
+        lookSensXOriginal = lookSensX;
+        lookSensYOriginal = lookSensY;
         RandomSword();
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
@@ -103,6 +111,8 @@ public class PlayerController : MonoBehaviour
         _playerCollider.center = _playerCC.center;
         _playerCollider.height = _playerCC.height;
         _playerCollider.radius = _playerCC.radius;
+        sensSliderX.value = (lookSensX / 10f);
+        sensSliderY.value = (lookSensY / 10f);
     }
 
     private void Update()
@@ -206,21 +216,33 @@ public class PlayerController : MonoBehaviour
     {
         if (slide)
         {
-            lookSens = 0;
+            lookSensX = 0;
+            lookSensY = 0;
         }
         else
         {
-            lookSens = lookSensOriginal;
+            lookSensX = lookSensXOriginal;
+            lookSensY = lookSensYOriginal;
         }
 
-        float rotateX = _cameraMove.x * lookSens;
-        float rotateY = _cameraMove.y * lookSens;
+        float rotateX = _cameraMove.x * lookSensX;
+        float rotateY = _cameraMove.y * lookSensY;
 
         transform.Rotate(Vector3.up * rotateX);
 
         xRotaion -= rotateY;
         xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
         _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+    }
+    public void ChangeSensX()
+    {
+        lookSensXOriginal = sensSliderX.value * 10;
+        sensXValue.text = lookSensXOriginal.ToString();
+    }
+    public void ChangeSensY()
+    {
+        lookSensYOriginal = sensSliderY.value * 10;
+        sensYValue.text = lookSensYOriginal.ToString();
     }
     #endregion
     #region Shooting/Reload
