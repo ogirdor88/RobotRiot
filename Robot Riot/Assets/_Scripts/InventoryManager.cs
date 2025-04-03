@@ -34,9 +34,6 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
             if(!this.GetComponent<PlayerController>().botMode)
             {
-                //if the inventory slot is empty, set up the weapon on the player
-                if (!inventory[other.GetComponent<Weapon>().slot])
-                {
                     other.gameObject.transform.position = weaponLocation.transform.position;
                     other.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
                     other.gameObject.transform.parent = weaponLocation.transform.parent;
@@ -60,7 +57,6 @@ public class InventoryManager : MonoBehaviour
                         other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
                     }
                 }
-            }
         }
     }
 
@@ -146,7 +142,7 @@ public class InventoryManager : MonoBehaviour
                 for (; slot != slotGoal; slot += slotchange)
                 {
                     Debug.Log("Next Open Slot Test is " + slot + " with the goal of "  + slotGoal);
-                    if (inventory[slot] != null && slot != oldSlot)
+                    if (inventory[slot] != null && slot != oldSlot && gameObject.GetComponent<PlayerController>().botMode == inventory[slot].GetComponent<Weapon>().canTrap)
                     {
                         //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                         Debug.Log("The slot I found is " + slot);
@@ -186,7 +182,7 @@ public class InventoryManager : MonoBehaviour
                 for (; slot != slotGoal; slot += slotchange)
                 {
                     Debug.Log("Current Slot Test is " + slot);
-                    if (inventory[slot] != null)
+                    if (inventory[slot] != null && gameObject.GetComponent<PlayerController>().botMode == inventory[slot].GetComponent<Weapon>().canTrap)
                     {
                         //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                         activeSlot = slot;
