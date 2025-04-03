@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         RandomSword();
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
+        boostText.text = "" + (int)maxStamina;
     }
 
     private void Start()
@@ -160,7 +161,7 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
             }
             StaminaBar.fillAmount = stamina / maxStamina;
-            boostText.text = "Boost: " + (int)stamina + "/" + (int)maxStamina;
+            boostText.text = "" + (int)stamina;
             if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
         }
@@ -190,7 +191,7 @@ public class PlayerController : MonoBehaviour
             if (stamina > maxStamina) stamina = maxStamina;
             //update the stamina bar
             StaminaBar.fillAmount = stamina / maxStamina;
-            boostText.text = "Boost: " + (int)stamina + "/" + (int)maxStamina;
+            boostText.text = "" + (int)stamina;
             yield return new WaitForSeconds(.1f);
         }
     }
