@@ -27,29 +27,38 @@ public class InventoryManager : MonoBehaviour
         {
             //Instantiate(other.)
         }
+        //if you run into a weapon
         else if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>() && !other.GetComponent<Weapon>().playerMove)
         {
             Debug.Log("Got Weapon");
             Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
-            if (!inventory[other.GetComponent<Weapon>().slot])
+            if(!this.GetComponent<PlayerController>().botMode)
             {
-                other.gameObject.transform.position = weaponLocation.transform.position;
-                other.gameObject.transform.rotation =  weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
-                other.gameObject.transform.parent = weaponLocation.transform.parent;
-                if (inventory[activeSlot])
+                //if the inventory slot is empty, set up the weapon on the player
+                if (!inventory[other.GetComponent<Weapon>().slot])
                 {
-                    inventory[activeSlot].SetActive(false);
-                    inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
-                }
-                activeSlot = other.GetComponent<Weapon>().slot;
-                /*
-                if (activeSlot != other.GetComponent<Weapon>().slot)
-                    other.gameObject.SetActive(false);
-                */
-                if (!other.gameObject.GetComponent<Weapon>().playerMove)
-                {
-                    inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
-                    other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                    other.gameObject.transform.position = weaponLocation.transform.position;
+                    other.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
+                    other.gameObject.transform.parent = weaponLocation.transform.parent;
+                    //turn off current weapon or trap
+                    if (inventory[activeSlot])
+                    {
+                        inventory[activeSlot].SetActive(false);
+                        inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
+                    }
+                    //change the current slot to the weapon you just picked up
+                    activeSlot = other.GetComponent<Weapon>().slot;
+                    /*
+                    if (activeSlot != other.GetComponent<Weapon>().slot)
+                        other.gameObject.SetActive(false);
+                    */
+
+                    // this prevents you from taking the other players weapons
+                    if (!other.gameObject.GetComponent<Weapon>().playerMove)
+                    {
+                        inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
+                        other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                    }
                 }
             }
         }
