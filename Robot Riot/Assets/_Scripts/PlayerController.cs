@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image StaminaBar;
     [SerializeField]
+    private TMP_Text boostText;
+    [SerializeField]
     public float stamina, maxStamina, boostCost;
     private Coroutine recharge;
 
@@ -89,7 +91,6 @@ public class PlayerController : MonoBehaviour
             transform.position = spawnPos;
         }
 
-
         _playerCC = gameObject.AddComponent<CharacterController>();
         _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         originalMoveSpeed = _playerSpeed;
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
         RandomSword();
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
+        boostText.text = "" + (int)maxStamina;
     }
 
     private void Start()
@@ -113,8 +115,8 @@ public class PlayerController : MonoBehaviour
         _playerCollider.radius = _playerCC.radius;
         sensSliderX.value = (lookSensX / 10f);
         sensSliderY.value = (lookSensY / 10f);
-        sensSliderX.enabled = false;
-        sensSliderY.enabled = false;
+        sensSliderX.gameObject.SetActive(false);
+        sensSliderY.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -139,6 +141,11 @@ public class PlayerController : MonoBehaviour
         {
             StaminaBar.fillAmount = stamina / maxStamina;
         }
+        if (Time.timeScale == 1f)
+        {
+            sensSliderX.gameObject.SetActive(false);
+            sensSliderY.gameObject.SetActive(false);
+        }
     }
 
     #region Movement
@@ -154,6 +161,7 @@ public class PlayerController : MonoBehaviour
                 isSprinting = false;
             }
             StaminaBar.fillAmount = stamina / maxStamina;
+            boostText.text = "" + (int)stamina;
             if (recharge != null) StopCoroutine(recharge);
             recharge = StartCoroutine(RechargeStamina());
         }
@@ -183,6 +191,7 @@ public class PlayerController : MonoBehaviour
             if (stamina > maxStamina) stamina = maxStamina;
             //update the stamina bar
             StaminaBar.fillAmount = stamina / maxStamina;
+            boostText.text = "" + (int)stamina;
             yield return new WaitForSeconds(.1f);
         }
     }
@@ -239,18 +248,20 @@ public class PlayerController : MonoBehaviour
     public void ChangeSensX()
     {
         lookSensXOriginal = sensSliderX.value * 10;
-        sensXValue.text = lookSensXOriginal.ToString();
+        sensXValue.text = lookSensXOriginal.ToString("F2");
     }
     public void ChangeSensY()
     {
         lookSensYOriginal = sensSliderY.value * 10;
-        sensYValue.text = lookSensYOriginal.ToString();
+        sensYValue.text = lookSensYOriginal.ToString("F2");
     }
     public void Pause(InputAction.CallbackContext context)
     {
-        sensSliderX.enabled = !sensSliderX.enabled;
-        sensSliderY.enabled = !sensSliderY.enabled;
-
+        if (Time.timeScale == 0f)
+        {
+            sensSliderX.gameObject.SetActive(true);
+            sensSliderY.gameObject.SetActive(true);
+        }
     }
     #endregion
     #region Shooting/Reload
