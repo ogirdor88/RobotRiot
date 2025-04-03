@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider sensSliderY;
     [SerializeField] private Text sensXValue;
     [SerializeField] private Text sensYValue;
-
+    public GameObject canvas;
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
