@@ -89,7 +89,6 @@ public class PlayerController : MonoBehaviour
             transform.position = spawnPos;
         }
 
-
         _playerCC = gameObject.AddComponent<CharacterController>();
         _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         originalMoveSpeed = _playerSpeed;
@@ -113,8 +112,8 @@ public class PlayerController : MonoBehaviour
         _playerCollider.radius = _playerCC.radius;
         sensSliderX.value = (lookSensX / 10f);
         sensSliderY.value = (lookSensY / 10f);
-        sensSliderX.enabled = false;
-        sensSliderY.enabled = false;
+        sensSliderX.gameObject.SetActive(false);
+        sensSliderY.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -138,6 +137,11 @@ public class PlayerController : MonoBehaviour
         if (!isSprinting)
         {
             StaminaBar.fillAmount = stamina / maxStamina;
+        }
+        if (Time.timeScale == 1f)
+        {
+            sensSliderX.gameObject.SetActive(false);
+            sensSliderY.gameObject.SetActive(false);
         }
     }
 
@@ -239,18 +243,20 @@ public class PlayerController : MonoBehaviour
     public void ChangeSensX()
     {
         lookSensXOriginal = sensSliderX.value * 10;
-        sensXValue.text = lookSensXOriginal.ToString();
+        sensXValue.text = lookSensXOriginal.ToString("F2");
     }
     public void ChangeSensY()
     {
         lookSensYOriginal = sensSliderY.value * 10;
-        sensYValue.text = lookSensYOriginal.ToString();
+        sensYValue.text = lookSensYOriginal.ToString("F2");
     }
     public void Pause(InputAction.CallbackContext context)
     {
-        sensSliderX.enabled = !sensSliderX.enabled;
-        sensSliderY.enabled = !sensSliderY.enabled;
-
+        if (Time.timeScale == 0f)
+        {
+            sensSliderX.gameObject.SetActive(true);
+            sensSliderY.gameObject.SetActive(true);
+        }
     }
     #endregion
     #region Shooting/Reload
