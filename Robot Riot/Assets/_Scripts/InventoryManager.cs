@@ -27,7 +27,7 @@ public class InventoryManager : MonoBehaviour
         {
             //Instantiate(other.)
         }
-        else if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>())
+        else if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>() && !other.GetComponent<Weapon>().playerMove)
         {
             Debug.Log("Got Weapon");
             Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);

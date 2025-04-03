@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 3919328045722645532}
   - component: {fileID: 203225470026924594}
   - component: {fileID: 7652953963967295131}
-  - component: {fileID: 6553606145133152943}
   - component: {fileID: 5335322022124184624}
+  - component: {fileID: 2804061567186076746}
   m_Layer: 0
   m_Name: Boombox_Smile
   m_TagString: Weapon
@@ -65,6 +65,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1086814461921026120}
+  - {fileID: 1550012625961089206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &203225470026924594
@@ -117,26 +118,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6553606145133152943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4763255842225768508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slot: 2
-  bonusDamage: 0
-  playerMove: {fileID: 0}
-  canShoot: 1
-  muzzle: {fileID: 1086814461921026120}
-  muzzle2: {fileID: 0}
-  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
-  projectile: {fileID: 3463556052629705279, guid: e0efd149ae5a4a04b8a6132a50bca9b5, type: 3}
 --- !u!65 &5335322022124184624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,3 +139,58 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02044067, y: 0.013387384, z: 0.008198919}
   m_Center: {x: -9.313226e-10, y: -0.0059144804, z: 0}
+--- !u!114 &2804061567186076746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763255842225768508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afc2d4be548c1d4a8e095ab5a52a3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: 2
+  bonusDamage: 0
+  playerMove: {fileID: 0}
+  canShoot: 1
+  canTrap: 1
+  isContinousWeapon: 1
+  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
+  damageCollider: {fileID: 1829446935376796829, guid: f00fc466ecca8ac46b6e965f9ae12d0f, type: 3}
+  power: 0
+  maxPower: 10
+  boomBoxVFX: {fileID: 7803591796957527705, guid: f00fc466ecca8ac46b6e965f9ae12d0f, type: 3}
+  flameLocation: {fileID: 5739772852851768491}
+--- !u!1 &5739772852851768491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1550012625961089206}
+  m_Layer: 0
+  m_Name: FlameLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1550012625961089206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739772852851768491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.0062, z: 0.032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3919328045722645532}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

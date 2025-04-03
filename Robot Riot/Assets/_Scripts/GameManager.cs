@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public GameObject pauseScreen;
+
     /*public PlayerInputManager playerOne;
     public PlayerInputManager playerTwo;*/
 
@@ -23,7 +25,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     // Figure out who won and send them to the game over screen
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
         //SceneManager.LoadScene(3);
         Debug.Log("Player Lost:" + playerLost);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PauseGame()
+    {
+        pauseScreen.SetActive(true);
     }
 
     /*public void RegisterPlayer(PlayerInputManager player)

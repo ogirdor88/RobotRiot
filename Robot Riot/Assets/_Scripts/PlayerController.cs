@@ -4,7 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using UnityEngine.Windows;
 //using static UnityEditor.Progress;
 
@@ -13,8 +13,14 @@ public class PlayerController : MonoBehaviour
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
     public Animator animator;
-    public GameObject animatorCombat;
+    public GameObject combatAnimator;
+    public GameObject botAnimator;
     [SerializeField] private Transform _camera;
+    [SerializeField] private Slider sensSliderX;
+    [SerializeField] private Slider sensSliderY;
+    [SerializeField] private Text sensXValue;
+    [SerializeField] private Text sensYValue;
+
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
@@ -30,8 +36,10 @@ public class PlayerController : MonoBehaviour
     private float originalMoveSpeed;
 
     private float xRotaion = 0f;
-    private float lookSens = 1.8f;
-    private float lookSensOriginal;
+    private float lookSensX = 1f;
+    private float lookSensY = 1f;
+    private float lookSensXOriginal;
+    private float lookSensYOriginal;
 
     public float _playerSpeed = 4f;
 
@@ -71,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = animatorCombat.GetComponent<Animator>();
+        animator = combatAnimator.GetComponent<Animator>(); 
         InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         if (device != null)
         {
@@ -83,13 +91,13 @@ public class PlayerController : MonoBehaviour
             transform.position = spawnPos;
         }
 
-
         _playerCC = gameObject.AddComponent<CharacterController>();
         _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         originalMoveSpeed = _playerSpeed;
         botMode = false;
         isShooting = false;
-        lookSensOriginal = lookSens;
+        lookSensXOriginal = lookSensX;
+        lookSensYOriginal = lookSensY;
         RandomSword();
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
@@ -104,6 +112,10 @@ public class PlayerController : MonoBehaviour
         _playerCollider.center = _playerCC.center;
         _playerCollider.height = _playerCC.height;
         _playerCollider.radius = _playerCC.radius;
+        sensSliderX.value = (lookSensX / 10f);
+        sensSliderY.value = (lookSensY / 10f);
+        sensSliderX.gameObject.SetActive(false);
+        sensSliderY.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -128,12 +140,17 @@ public class PlayerController : MonoBehaviour
         {
             StaminaBar.fillAmount = stamina / maxStamina;
         }
+        if (Time.timeScale == 1f)
+        {
+            sensSliderX.gameObject.SetActive(false);
+            sensSliderY.gameObject.SetActive(false);
+        }
     }
 
     #region Movement
     private void UpdateMove()
     {
-        if (isSprinting)
+        if (isSprinting && botMode)
         {
             _playerSpeed = 10f;
             stamina -= boostCost * Time.deltaTime;
@@ -209,15 +226,17 @@ public class PlayerController : MonoBehaviour
     {
         if (slide)
         {
-            lookSens = 0;
+            lookSensX = 0;
+            lookSensY = 0;
         }
         else
         {
-            lookSens = lookSensOriginal;
+            lookSensX = lookSensXOriginal;
+            lookSensY = lookSensYOriginal;
         }
 
-        float rotateX = _cameraMove.x * lookSens;
-        float rotateY = _cameraMove.y * lookSens;
+        float rotateX = _cameraMove.x * lookSensX;
+        float rotateY = _cameraMove.y * lookSensY;
 
         transform.Rotate(Vector3.up * rotateX);
 
@@ -225,25 +244,62 @@ public class PlayerController : MonoBehaviour
         xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
         _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
     }
+    public void ChangeSensX()
+    {
+        lookSensXOriginal = sensSliderX.value * 10;
+        sensXValue.text = lookSensXOriginal.ToString("F2");
+    }
+    public void ChangeSensY()
+    {
+        lookSensYOriginal = sensSliderY.value * 10;
+        sensYValue.text = lookSensYOriginal.ToString("F2");
+    }
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (Time.timeScale == 0f)
+        {
+            sensSliderX.gameObject.SetActive(true);
+            sensSliderY.gameObject.SetActive(true);
+        }
+    }
     #endregion
     #region Shooting/Reload
     public void Shoot(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
             if (botMode)
             {
-                /* GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                 cube.transform.position = this.transform.position;*/
                 Debug.Log("Trap");
                 istrapping = true;
             }
             else
             {
                 Debug.Log("Pew");
-                
+
                 isShooting = true;
-                istrapping = true;
+                //istrapping = true;
+
+            }
+        }
+        //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+        //{
+        //    isShooting = false;
+        //}
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            if (botMode)
+            {
+                Debug.Log("Trap");
+                istrapping = false;
+            }
+            else
+            {
+                Debug.Log("Pew");
+
+                isShooting = false;
+                //istrapping = true;
 
             }
         }
@@ -261,6 +317,7 @@ public class PlayerController : MonoBehaviour
         // will be changed later
         if (botMode)
         {
+            animator = botAnimator.GetComponent<Animator>();
             botGEO.SetActive(true);
             botRootControl.SetActive(true);
 
@@ -278,8 +335,8 @@ public class PlayerController : MonoBehaviour
 
         if (!botMode)
         {
-            /*this.GetComponent<Renderer>().material.color = Color.blue;
-            _playerSpeed = originalMoveSpeed;*/
+            animator = combatAnimator.GetComponent<Animator>();
+
             Debug.Log("Combat Mode");
             botGEO.SetActive(false);
             botRootControl.SetActive(false);
@@ -298,7 +355,7 @@ public class PlayerController : MonoBehaviour
     #region Sprinting
     public void SpeedBoost(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && botMode)
         {
             isSprinting = true;
         }
@@ -378,6 +435,14 @@ public class PlayerController : MonoBehaviour
         //swords[rand].gameObject.SetActive(true);
         Debug.Log("Creating Sword");
         gameObject.GetComponent<InventoryManager>().ForceAddWeapon(Instantiate(swords[rand]));
+    }
+    #endregion
+
+    #region Pause
+    public void PauseGame()
+    {
+        Debug.Log("Pausing Game");
+        GameObject.FindObjectOfType<GameManager>().PauseGame();
     }
     #endregion
 }
