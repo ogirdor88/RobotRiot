@@ -552,8 +552,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCC: {fileID: 0}
   animator: {fileID: 3304544985414519367}
-  animatorCombat: {fileID: 3865053104746014086}
+  combatAnimator: {fileID: 0}
+  botAnimator: {fileID: 0}
   _camera: {fileID: 2331351249997435172}
+  sensSliderX: {fileID: 0}
+  sensSliderY: {fileID: 0}
+  sensXValue: {fileID: 0}
+  sensYValue: {fileID: 0}
   _playerSpeed: 4
   botMode: 0
   isShooting: 0
@@ -569,6 +574,7 @@ MonoBehaviour:
   botGEO: {fileID: 9018843669011443939}
   botRootControl: {fileID: 4736026457940496817}
   StaminaBar: {fileID: 7634451105460208279}
+  boostText: {fileID: 0}
   stamina: 100
   maxStamina: 100
   boostCost: 20
