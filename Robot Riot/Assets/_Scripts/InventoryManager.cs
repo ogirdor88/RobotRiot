@@ -217,16 +217,18 @@ public class InventoryManager : MonoBehaviour
                     inventory[activeSlot].transform.parent = weaponLocation.transform.parent;
                 }
             }
-
-            else if (inventory[activeSlot + slotchange] && !foundSlot && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
-            {
-                //Debug.Log("Slot ahead: " + (activeSlot += slotchange));
-                inventory[activeSlot].gameObject.SetActive(false);
-                inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
-                activeSlot += slotchange;
-                Debug.Log("Setting " + activeSlot + " active");
-                Debug.Log("This is number 2");
-                inventory[activeSlot].gameObject.SetActive(true);
+            else if ((activeSlot + slotchange) >= 0 && (activeSlot + slotchange) <= inventory.Length - 1)
+            { 
+                if (inventory[activeSlot + slotchange] && !foundSlot && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+                {
+                    //Debug.Log("Slot ahead: " + (activeSlot += slotchange));
+                    inventory[activeSlot].gameObject.SetActive(false);
+                    inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
+                    activeSlot += slotchange;
+                    Debug.Log("Setting " + activeSlot + " active");
+                    Debug.Log("This is number 2");
+                    inventory[activeSlot].gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -252,11 +254,15 @@ public class InventoryManager : MonoBehaviour
 
         // Slot is invalid, which means we need to loop around.
         if ((activeSlot + slotchange) < 0 || (activeSlot + slotchange) > inventory.Length - 1)
+        {
+            if(gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
             shouldLoop = true;
+        }
+           
         else if (inventory[activeSlot + slotchange] == null)
         {
-            shouldLoop = true;
-            checkForSlot = true;
+                shouldLoop = true;
+                checkForSlot = true;
         }
         inventory[activeSlot].SetActive(false);
         // Check if the next slot is open, if not loop around
@@ -304,6 +310,10 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("This is number 3");
                 inventory[activeSlot].gameObject.SetActive(true);
                 inventory[activeSlot].transform.parent = weaponLocation.transform.parent;
+            }
+            else
+            {
+                Debug.Log("Nothing found");
             }
         }
         if (shouldLoop && !foundSlot)
@@ -355,15 +365,18 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        else if (inventory[activeSlot + slotchange] && !foundSlot && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+        else if ((activeSlot + slotchange) >= 0 && (activeSlot + slotchange) <= inventory.Length - 1)
         {
-            //Debug.Log("Slot ahead: " + (activeSlot += slotchange));
-            inventory[activeSlot].gameObject.SetActive(false);
-            inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
-            activeSlot += slotchange;
-            Debug.Log("Setting " + activeSlot + " active");
-            Debug.Log("This is number 2");
-            inventory[activeSlot].gameObject.SetActive(true);
+            if (inventory[activeSlot + slotchange] && !foundSlot && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+            {
+                //Debug.Log("Slot ahead: " + (activeSlot += slotchange));
+                inventory[activeSlot].gameObject.SetActive(false);
+                inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
+                activeSlot += slotchange;
+                Debug.Log("Setting " + activeSlot + " active");
+                Debug.Log("This is number 2");
+                inventory[activeSlot].gameObject.SetActive(true);
+            }
         }
     }
 }
