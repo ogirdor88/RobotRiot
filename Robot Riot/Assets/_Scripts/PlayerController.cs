@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Windows;
+using UnityEngine.XR;
 //using static UnityEditor.Progress;
 
 public class PlayerController : MonoBehaviour
@@ -80,11 +81,11 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         animator = combatAnimator.GetComponent<Animator>(); 
-        InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
-        if (device != null)
+        //InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
+        /*if (device != null)
         {
             playerInput.SwitchCurrentControlScheme(device);
-        }
+        }*/
         Vector3 spawnPos = PlayerManager.Instance.GetSpawnPosition(playerInput.playerIndex);
         if(spawnPos != Vector3.zero)
         {
@@ -314,6 +315,7 @@ public class PlayerController : MonoBehaviour
     public void SwitchModes(InputAction.CallbackContext context)
     {
         botMode = !botMode;
+        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
         // this is set up just for inital prototyping purposes
         // will be changed later
         if (botMode)
