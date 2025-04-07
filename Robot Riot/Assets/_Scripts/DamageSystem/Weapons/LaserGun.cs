@@ -35,6 +35,7 @@ public class LaserGun : Weapon
         {
             if (muzzle2 != null)
             {
+                playerMove.owner = gameObject;
                 if (playerMove.isShooting && canShoot)
                 {
                     StartCoroutine(DuealShooting());
@@ -46,6 +47,7 @@ public class LaserGun : Weapon
             }
             else
             {
+                playerMove.owner = gameObject;
                 if (playerMove.isShooting && canShoot)
                 {
                     StartCoroutine(Shooting());
@@ -62,7 +64,9 @@ public class LaserGun : Weapon
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
+        //newProjectile.transform.SetParent(muzzle);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
+        projectileController.owner = playerMove.gameObject;
 
         RaycastHit shootHit;
         if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
@@ -75,7 +79,7 @@ public class LaserGun : Weapon
         else
         {
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
-            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.prjectileSpeed;
+            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance;
             projectileController.hitShot = true;
         }
 
@@ -93,8 +97,12 @@ public class LaserGun : Weapon
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
         GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
+        //newProjectile.transform.SetParent(muzzle);
+        //newProjectile2.transform.SetParent(muzzle2);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
         Projectile projectileController2 = newProjectile.GetComponent<Projectile>();
+        projectileController.owner = playerMove.gameObject;
+        projectileController2.owner = playerMove.gameObject;
 
         RaycastHit shootHit;
         if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))

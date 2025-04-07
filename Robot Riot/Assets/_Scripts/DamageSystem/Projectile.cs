@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public int bonusDamage;
     public GameObject VFX;
     public ProjectileType projectileType;
+    public GameObject owner;
 
     public Vector3 target { get; set; }
     public bool hitShot { get; set; }
@@ -23,7 +24,6 @@ public class Projectile : MonoBehaviour
         if(projectileType == ProjectileType.HitScan)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, weapon.prjectileSpeed * Time.deltaTime);
-
         }
 
         float dis = Vector3.Distance(startDist, transform.position);
@@ -51,12 +51,15 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
-                Destroy(gameObject);
+                if (other.gameObject != owner)
+                {
+                    other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
+                    Destroy(gameObject);
+                }
             }
         }
 
-        if (other.gameObject && other.gameObject.tag != "Weapon")
+        if (other.gameObject != owner && other.gameObject.tag != "Weapon")
         {
             if(weapon.weaponType == WeaponType.Projectile)
             {

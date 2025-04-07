@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
     private float smoothMoveY;
     private float animationDampTime = 0.1f;
 
+    public GameObject owner;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
