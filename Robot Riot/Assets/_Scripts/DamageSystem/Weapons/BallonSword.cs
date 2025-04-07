@@ -7,6 +7,7 @@ public class BallonSword : Weapon
     [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
+    [SerializeField] private GameObject owner;
 
 
     //[SerializeField] private bool canShoot = true;
@@ -19,12 +20,13 @@ public class BallonSword : Weapon
     {
         canShoot = true;
         damageCollider.enabled = false;
+        owner = playerMove.gameObject;
     }
     private void Update()
     {
         if (playerMove)
         {
-            playerMove.owner = gameObject;
+            owner = playerMove.gameObject;
             if (playerMove.isShooting && canShoot)
             {
                 StartCoroutine(Shooting());
@@ -39,7 +41,7 @@ public class BallonSword : Weapon
         
         if (other.GetComponent<Health>())
         {
-            if(other.gameObject != playerMove.owner)
+            if(other.gameObject != owner)
             {
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
                 hitSound.Play();
