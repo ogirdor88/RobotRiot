@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     [SerializeField] private int _startHealth;
 
     //Players current health
-    [SerializeField] private int _currentHealth;
+    [SerializeField] public int _currentHealth;
     private int missingHealth;
     [SerializeField] private int _livesCount;
 
