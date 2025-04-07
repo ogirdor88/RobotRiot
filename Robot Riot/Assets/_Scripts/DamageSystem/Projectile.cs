@@ -9,6 +9,10 @@ public class Projectile : MonoBehaviour
     private bool hit = false;
     public int bonusDamage;
     public GameObject VFX;
+    public ProjectileType projectileType;
+
+    public Vector3 target { get; set; }
+    public bool hitShot { get; set; }
 
     private void Start()
     {
@@ -16,7 +20,12 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.up * weapon.prjectileSpeed);
+        if(projectileType == ProjectileType.HitScan)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, weapon.prjectileSpeed * Time.deltaTime);
+
+        }
+
         float dis = Vector3.Distance(startDist, transform.position);
         if(dis >= weapon.maxDistance)
         {
@@ -62,4 +71,10 @@ public class Projectile : MonoBehaviour
             }
         }
     }
+}
+
+public enum ProjectileType
+{
+    Prjectile,
+    HitScan
 }
