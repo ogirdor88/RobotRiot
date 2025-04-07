@@ -62,7 +62,23 @@ public class LaserGun : Weapon
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        Projectile projectileController = newProjectile.GetComponent<Projectile>();
+
+        RaycastHit shootHit;
+        if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
+        {
+            //using forward cause we are we know the where it is going
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+            projectileController.target = shootHit.point;
+            projectileController.hitShot = true;
+        }
+        else
+        {
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
+            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.prjectileSpeed;
+            projectileController.hitShot = true;
+        }
+
         if (transform.root.GetComponent<PlayerController>())
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         firingSound.Play();
@@ -76,9 +92,29 @@ public class LaserGun : Weapon
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
         GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
-        newProjectile2.GetComponent<Rigidbody>().AddForce(newProjectile2.transform.up * speedOfProjectile);
+        Projectile projectileController = newProjectile.GetComponent<Projectile>();
+        Projectile projectileController2 = newProjectile.GetComponent<Projectile>();
+
+        RaycastHit shootHit;
+        if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
+        {
+            //using forward cause we are we know the where it is going
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+            projectileController.target = shootHit.point;
+            projectileController2.target = shootHit.point;
+            projectileController.hitShot = true;
+            projectileController2.hitShot = true;
+        }
+        else
+        {
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
+            //up is used here cause the prefab is messed up
+            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.prjectileSpeed;
+            projectileController2.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.prjectileSpeed;
+            projectileController.hitShot = true;
+            projectileController2.hitShot = true;
+        }
         if (transform.root.GetComponent<PlayerController>())
         {
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
