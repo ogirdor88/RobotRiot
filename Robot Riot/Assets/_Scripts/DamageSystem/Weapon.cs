@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public Weapons weapon;
+
     public int slot;
     public int bonusDamage = 0;
 

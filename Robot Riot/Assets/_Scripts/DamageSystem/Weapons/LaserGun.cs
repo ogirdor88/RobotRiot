@@ -6,7 +6,6 @@ public class LaserGun : Weapon
 {
     [SerializeField] private Transform muzzle;
     [SerializeField] private Transform muzzle2;
-    [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
     [SerializeField] private GameObject projectile;
