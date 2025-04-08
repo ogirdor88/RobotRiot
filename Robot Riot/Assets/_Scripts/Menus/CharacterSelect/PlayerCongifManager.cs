@@ -12,6 +12,7 @@ public class PlayerCongifManager : MonoBehaviour
     private int maxPlayer = 2;
      
     public static PlayerCongifManager instance { get; private set; }
+    public GameObject playerInfo;
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class PlayerCongifManager : MonoBehaviour
             //initialize the playerConfigManager
             //initialize the playerConfig list
             instance = this;
-            DontDestroyOnLoad(instance);
+            //DontDestroyOnLoad(instance);
             playerConfigs = new List<PlayerConfiguration>();
         }
     }
@@ -34,6 +35,8 @@ public class PlayerCongifManager : MonoBehaviour
     public void SetPlayerCharacter(int index, GameObject prefab)
     {
         playerConfigs[index].PlayerPrefab = prefab;
+        playerInfo.GetComponent<PlayerInfo>().GetPlayerCharacter(prefab);
+        playerInfo.GetComponent<PlayerInfo>().WhoGoesWhere();
     }
 
     public void ReadyPlayer(int index)

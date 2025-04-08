@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     private Dictionary<int, InputDevice> playerDevice = new();
     private Dictionary<int, Vector3> playerSpawnPosition = new();
 
+    GameObject player1, player2;
+
     private void Awake()
     {
         if (Instance == null)
@@ -38,6 +40,8 @@ public class PlayerManager : MonoBehaviour
         startCamera.enabled = true;
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        GetCharacters();
     }
 
     private void OnEnable()
@@ -81,10 +85,10 @@ public class PlayerManager : MonoBehaviour
             playerSpawnPosition[player.playerIndex] = player.transform.position;
         }
     }
-    public InputDevice GetPlayerDevice(int playerIndex)
+    /*public InputDevice GetPlayerDevice(int playerIndex)
     {
         return playerDevice.ContainsKey(playerIndex) ? playerDevice[playerIndex] : null;
-    }
+    }*/
 
     public Vector3 GetSpawnPosition(int playerIndex)
     {
@@ -116,4 +120,18 @@ public class PlayerManager : MonoBehaviour
             moveImage.SetActive(false);
         }
     }
+
+    private void GetCharacters()
+    {
+        GameObject info = GameObject.Find("PlayerInfo");
+
+        GameObject player1, player2;
+
+        player1 = info.GetComponent<PlayerInfo>().characters[0];
+        player2 = info.GetComponent<PlayerInfo>().characters[1];
+
+        PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[1] });
+        PlayerInput.Instantiate(player2, 1, "Controls", -1,new[] { Gamepad.all[1] });
+    }
+    
 }
