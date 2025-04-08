@@ -63,7 +63,7 @@ public class LaserGun : Weapon
     {
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
-        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
+        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.transform.localRotation);
         //newProjectile.transform.SetParent(muzzle);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
         projectileController.owner = playerMove.gameObject;
@@ -75,12 +75,16 @@ public class LaserGun : Weapon
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
             projectileController.target = shootHit.point;
             projectileController.hitShot = true;
+            muzzle.transform.LookAt(projectileController.target);
+            newProjectile.transform.LookAt(projectileController.target);
+            //muzzle.transform.Rotate(100f, 0f, 0f);
         }
         else
         {
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
             projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance;
             projectileController.hitShot = true;
+            muzzle.transform.LookAt(playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance);
         }
 
         if (transform.root.GetComponent<PlayerController>())
@@ -111,6 +115,8 @@ public class LaserGun : Weapon
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
             projectileController.target = shootHit.point;
             projectileController2.target = shootHit.point;
+            muzzle.transform.LookAt(projectileController.target);
+            muzzle2.transform.LookAt(projectileController2.target);
             projectileController.hitShot = true;
             projectileController2.hitShot = true;
         }
@@ -118,8 +124,8 @@ public class LaserGun : Weapon
         {
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
             //up is used here cause the prefab is messed up
-            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.prjectileSpeed;
-            projectileController2.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.prjectileSpeed;
+            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.maxDistance;
+            projectileController2.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.maxDistance;
             projectileController.hitShot = true;
             projectileController2.hitShot = true;
         }
