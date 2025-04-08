@@ -81,9 +81,12 @@ public class LaserGun : Weapon
         else
         {
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
-            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance;
+            
+            Vector3 forwardDirection = playerMove.canvas.transform.forward;
+            Vector3 fallbackTarget = playerMove.canvas.transform.position + forwardDirection * weapon.maxDistance;
+
+            projectileController.target = fallbackTarget;
             projectileController.hitShot = true;
-            muzzle.transform.LookAt(playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance);
         }
 
         if (transform.root.GetComponent<PlayerController>())
@@ -112,6 +115,7 @@ public class LaserGun : Weapon
         {
             //using forward cause we are we know the where it is going
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+
             projectileController.target = shootHit.point;
             projectileController2.target = shootHit.point;
             muzzle.transform.LookAt(projectileController.target);
@@ -123,10 +127,16 @@ public class LaserGun : Weapon
         {
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
             //up is used here cause the prefab is messed up
-            projectileController.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.maxDistance;
-            projectileController2.target = playerMove.canvas.transform.position + playerMove.canvas.transform.up * weapon.maxDistance;
+            Vector3 forwardDirection = playerMove.canvas.transform.forward;
+            Vector3 fallbackTarget = playerMove.canvas.transform.position + forwardDirection * weapon.maxDistance;
+
+            projectileController.target = fallbackTarget;
+            projectileController2.target = fallbackTarget;
             projectileController.hitShot = true;
             projectileController2.hitShot = true;
+
+            muzzle.transform.LookAt(fallbackTarget);
+            muzzle2.transform.LookAt(fallbackTarget);
         }
         if (transform.root.GetComponent<PlayerController>())
         {
