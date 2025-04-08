@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
     public void ForceAddWeapon(GameObject weapon)
     {
         weapon.gameObject.transform.position = weaponLocation.transform.position;
-        weapon.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * weaponLocation.transform.rotation;
+        weapon.gameObject.transform.rotation = weaponLocation.transform.rotation;
         weapon.gameObject.transform.parent = weaponLocation.transform.parent;
 
         if (inventory[activeSlot])
