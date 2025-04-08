@@ -13,6 +13,8 @@ public class Weapons : ScriptableObject
     public float prjectileSpeed;
     public WeaponType weaponType;
     public Texture2D weaponTexure;
+    public int ammo;
+    public string weaponName;
 }
 
 public enum WeaponType

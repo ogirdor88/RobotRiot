@@ -16,6 +16,7 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] private RawImage prevWeaponIcon2;
     [SerializeField] private TMP_Text weaponName;
     [SerializeField] private TMP_Text weaponDesc;
+    [SerializeField] private TMP_Text weaponAmmo;
 
     public void UpdateWeapon()
     {
@@ -102,11 +103,16 @@ public class WeaponUI : MonoBehaviour
         }
         if (weaponName != null)
         {
-            weaponName.text = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(currentWeapon.GetComponent<Weapon>().weapon));
+            //weaponName.text = Path.GetFileNameWithoutExtension(AssetDatabase.GetAssetPath(currentWeapon.GetComponent<Weapon>().weapon));
+            weaponName.text = currentWeapon.GetComponent<Weapon>().weapon.weaponName;
         }
         if (weaponDesc != null)
         {
             weaponDesc.text = "DMG: " + currentWeapon.GetComponent<Weapon>().weapon.damage.ToString();
+        }
+        if (weaponAmmo != null)
+        {
+            weaponAmmo.text = "AMMO: " + currentWeapon.GetComponent<Weapon>().remainingAmmo.ToString();
         }
     }
 }
