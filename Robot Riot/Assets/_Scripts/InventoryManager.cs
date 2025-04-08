@@ -269,7 +269,8 @@ public class InventoryManager : MonoBehaviour
                 shouldLoop = true;
                 checkForSlot = true;
         }
-        inventory[activeSlot].SetActive(false);
+        if (inventory[activeSlot] != null)
+            inventory[activeSlot].SetActive(false);
         // Check if the next slot is open, if not loop around
         if (checkForSlot)
         {
