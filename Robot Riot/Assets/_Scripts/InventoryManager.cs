@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private GameObject weaponLocation;
 
+    [SerializeField] private GameObject inventoryUI;
+
     private void Awake()
     {
         //inventory = new GameObject[5];
@@ -54,6 +56,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
                     other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                    inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
                 }
         }
     }
@@ -88,6 +91,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventory[weapon.GetComponent<Weapon>().slot] = weapon.gameObject;
             weapon.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+            inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
         }
     }
 
@@ -230,6 +234,7 @@ public class InventoryManager : MonoBehaviour
                     inventory[activeSlot].gameObject.SetActive(true);
                 }
             }
+            inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
         }
     }
     public void SwapSlot(bool direction)
@@ -378,5 +383,6 @@ public class InventoryManager : MonoBehaviour
                 inventory[activeSlot].gameObject.SetActive(true);
             }
         }
+        inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
     }
 }

@@ -7,7 +7,6 @@ using UnityEngine.Rendering.UI;
 // Make sure to track how long it's being used and shrink as needed
 public class BoomBox : Weapon
 {
-    [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
 

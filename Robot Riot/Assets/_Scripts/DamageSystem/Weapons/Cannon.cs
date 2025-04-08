@@ -5,7 +5,6 @@ using UnityEngine;
 public class Cannon : Weapon
 {
     [SerializeField] private Transform muzzle;
-    [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
     [SerializeField] private GameObject projectile;
