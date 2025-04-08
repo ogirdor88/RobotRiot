@@ -2250,7 +2250,6 @@ Transform:
   - {fileID: 3900719235415631754}
   - {fileID: 2048191019401390722}
   - {fileID: 2173667176789783066}
-  - {fileID: 2502370956874300212}
   m_Father: {fileID: 2137365111533144133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3546489377329538304
@@ -3198,12 +3197,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5688314975913512702}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.037, y: -0.224, z: 0.186}
+  m_LocalRotation: {x: -0.40314588, y: -0.08089877, z: -0.059012104, w: -0.90964085}
+  m_LocalPosition: {x: 0.24566497, y: -0.5541685, z: 0.20463556}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 2502370956874300212}
+  m_Father: {fileID: 391282026344951859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1773428102 &5263873586896467796
 ParentConstraint:
@@ -4093,13 +4092,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7785324447686412553}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.72345555, y: 0.11356402, z: -0.26613098, w: 0.62680906}
-  m_LocalPosition: {x: 0.1211, y: 0.0896, z: 0.2391}
+  m_LocalRotation: {x: -0.40314588, y: -0.08089877, z: -0.059012104, w: -0.90964085}
+  m_LocalPosition: {x: 0.16374439, y: -0.2762832, z: 0.25164363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3597325195260712305}
-  m_Father: {fileID: 2453429512234142720}
+  m_Children: []
+  m_Father: {fileID: 391282026344951859}
   m_LocalEulerAnglesHint: {x: 75.326, y: -106.647, z: -138.059}
 --- !u!1 &7820729290989147979
 GameObject:
@@ -4388,6 +4386,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6613978578730346907}
+  - {fileID: 2502370956874300212}
+  - {fileID: 3597325195260712305}
   m_Father: {fileID: 1535063126654066727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8343226259933022147
@@ -5187,6 +5187,7 @@ MonoBehaviour:
   stamina: 100
   maxStamina: 100
   boostCost: 20
+  owner: {fileID: 0}
 --- !u!114 &3615163168465011546
 MonoBehaviour:
   m_ObjectHideFlags: 0
