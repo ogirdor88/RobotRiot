@@ -25,6 +25,8 @@ public class WeaponUI : MonoBehaviour
         GameObject nextWeapon2 = null;
         GameObject prevWeapon1 = null;
         GameObject prevWeapon2 = null;
+
+        // Set up each object
         if (transform.parent.parent.GetComponent<InventoryManager>().inventory[transform.parent.parent.GetComponent<InventoryManager>().activeSlot] != null)
             currentWeapon = transform.parent.parent.GetComponent<InventoryManager>().inventory[transform.parent.parent.GetComponent<InventoryManager>().activeSlot];
         if (transform.parent.parent.GetComponent<InventoryManager>().activeSlot + 1 < transform.parent.parent.GetComponent<InventoryManager>().inventory.Length)
@@ -41,35 +43,61 @@ public class WeaponUI : MonoBehaviour
         prevWeaponIcon1.GetComponent<RawImage>().texture = null;
         prevWeaponIcon2.GetComponent<RawImage>().texture = null;
 
+        // Assign textures
         if (currentWeapon != null)
         {
             //weaponTexture = AssetPreview.GetAssetPreview(currentWeapon);
             weaponTexture = currentWeapon.GetComponent<Weapon>().weapon.weaponTexure;
             weaponIcon.GetComponent<RawImage>().texture = weaponTexture;
+            weaponIcon.color = new Color(weaponIcon.color.r, weaponIcon.color.g, weaponIcon.color.b, 100);
+        }
+        else
+        {
+            weaponIcon.color = new Color(weaponIcon.color.r, weaponIcon.color.g, weaponIcon.color.b, 0);
         }
         if (nextWeapon1 != null)
         {
             //weaponTexture = AssetPreview.GetAssetPreview(nextWeapon1);
             weaponTexture = nextWeapon1.GetComponent<Weapon>().weapon.weaponTexure;
             nextWeaponIcon1.GetComponent<RawImage>().texture = weaponTexture;
+            nextWeaponIcon1.color = new Color(nextWeaponIcon1.color.r, nextWeaponIcon1.color.g, nextWeaponIcon1.color.b, 100);
+        }
+        else
+        {
+            nextWeaponIcon1.color = new Color(nextWeaponIcon1.color.r, nextWeaponIcon1.color.g, nextWeaponIcon1.color.b, 0);
         }
         if (nextWeapon2 != null)
         {
             //weaponTexture = AssetPreview.GetAssetPreview(nextWeapon2);
             weaponTexture = nextWeapon2.GetComponent<Weapon>().weapon.weaponTexure;
             nextWeaponIcon2.GetComponent<RawImage>().texture = weaponTexture;
+            nextWeaponIcon2.color = new Color(nextWeaponIcon2.color.r, nextWeaponIcon2.color.g, nextWeaponIcon2.color.b, 100);
+        }
+        else
+        {
+            nextWeaponIcon2.color = new Color(nextWeaponIcon2.color.r, nextWeaponIcon2.color.g, nextWeaponIcon2.color.b, 0);
         }
         if (prevWeapon1 != null)
         {
             //weaponTexture = AssetPreview.GetAssetPreview(prevWeapon1);
             weaponTexture = prevWeapon1.GetComponent<Weapon>().weapon.weaponTexure;
             prevWeaponIcon1.GetComponent<RawImage>().texture = weaponTexture;
+            prevWeaponIcon1.color = new Color(prevWeaponIcon1.color.r, prevWeaponIcon1.color.g, prevWeaponIcon1.color.b, 100);
+        }
+        else
+        {
+            prevWeaponIcon1.color = new Color(prevWeaponIcon1.color.r, prevWeaponIcon1.color.g, prevWeaponIcon1.color.b, 0);
         }
         if (prevWeapon2 != null)
         {
             //weaponTexture = AssetPreview.GetAssetPreview(prevWeapon2);
             weaponTexture = prevWeapon2.GetComponent<Weapon>().weapon.weaponTexure;
             prevWeaponIcon2.GetComponent<RawImage>().texture = weaponTexture;
+            prevWeaponIcon2.color = new Color(prevWeaponIcon2.color.r, prevWeaponIcon2.color.g, prevWeaponIcon2.color.b, 100);
+        }
+        else
+        {
+            prevWeaponIcon2.color = new Color(prevWeaponIcon2.color.r, prevWeaponIcon2.color.g, prevWeaponIcon2.color.b, 0);
         }
         if (weaponName != null)
         {

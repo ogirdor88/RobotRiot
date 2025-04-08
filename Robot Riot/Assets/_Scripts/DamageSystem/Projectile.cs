@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviour
     private Vector3 velocity;
     private float gravity = -5f;
 
+    private bool didDamage;
+
 
     public Vector3 target { get; set; }
     public bool hitShot { get; set; }
@@ -53,18 +55,22 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Health>())
+        if(other.GetComponent<Health>() && !didDamage)
         {
             if (weapon.weaponType == WeaponType.Projectile && other.gameObject != owner)
             {
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localScale = new Vector3(3f, 3f, 3f);
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
+                Debug.Log("Did Damage");
+                didDamage = true;
                 Destroy(gameObject, .05f);
             }
             else if(other.gameObject != owner)
             {
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
+                Debug.Log("Did Damage if else");
+                didDamage = true;
                 Destroy(gameObject);
             }
         }
@@ -75,8 +81,10 @@ public class Projectile : MonoBehaviour
             {
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localScale = new Vector3(3f, 3f, 3f);
-                VFX.SetActive(true);
+                GameObject VFXObject = Instantiate(VFX, transform.position, transform.rotation);
+                //VFX.SetActive(true);
                 Destroy(gameObject, .05f);
+                Destroy(VFXObject, VFXObject.GetComponent<ParticleSystem>().main.duration);
             }
             else
             {
