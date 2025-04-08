@@ -80,8 +80,10 @@ public class Projectile : MonoBehaviour
             if(weapon.weaponType == WeaponType.Projectile)
             {
                 GetComponent<Rigidbody>().isKinematic = true;
-                transform.localScale = new Vector3(3f, 3f, 3f);
                 GameObject VFXObject = Instantiate(VFX, transform.position, transform.rotation);
+                //VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
+                transform.localScale = new Vector3(3f, 3f, 3f);
+                
                 //VFX.SetActive(true);
                 Destroy(gameObject, .05f);
                 Destroy(VFXObject, VFXObject.GetComponent<ParticleSystem>().main.duration);
