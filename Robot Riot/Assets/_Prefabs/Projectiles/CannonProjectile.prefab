@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2849032244300588996}
   - component: {fileID: 5363142899016930603}
   - component: {fileID: 7773391637650376182}
-  - component: {fileID: 498841305701746321}
+  - component: {fileID: 3135260288460679842}
   - component: {fileID: -4767390789679947088}
   m_Layer: 0
   m_Name: CannonProjectile
@@ -33,8 +33,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2450459590138697753}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2849032244300588996
@@ -108,7 +107,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &498841305701746321
+--- !u!54 &3135260288460679842
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,75 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: bfdcb0514fe62604aabf38add902e133, type: 2}
   bonusDamage: 0
-  VFX: {fileID: 6121756820313161996}
---- !u!1001 &1592608946428704703
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 9166070352290909918}
-    m_Modifications:
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4823016563444201139, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_Name
-      value: ConfettiCannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4823016563444201139, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
---- !u!4 &2450459590138697753 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3754838142542639014, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-  m_PrefabInstance: {fileID: 1592608946428704703}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6121756820313161996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4823016563444201139, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
-  m_PrefabInstance: {fileID: 1592608946428704703}
-  m_PrefabAsset: {fileID: 0}
+  VFX: {fileID: 4823016563444201139, guid: 153fd0119808e1f42b80dea5d50e930c, type: 3}
+  projectileType: 0
+  owner: {fileID: 0}

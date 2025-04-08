@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BallonSword : Weapon
 {
-    [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
     [SerializeField] private GameObject owner;

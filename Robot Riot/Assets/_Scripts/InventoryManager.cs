@@ -17,6 +17,8 @@ public class InventoryManager : MonoBehaviour
 
     [SerializeField] private GameObject weaponLocation;
 
+    [SerializeField] private GameObject inventoryUI;
+
     private void Awake()
     {
         //inventory = new GameObject[5];
@@ -54,6 +56,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
                     other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                    inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
                 }
         }
     }
@@ -75,7 +78,7 @@ public class InventoryManager : MonoBehaviour
     public void ForceAddWeapon(GameObject weapon)
     {
         weapon.gameObject.transform.position = weaponLocation.transform.position;
-        weapon.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * weaponLocation.transform.rotation;
+        weapon.gameObject.transform.rotation = weaponLocation.transform.rotation;
         weapon.gameObject.transform.parent = weaponLocation.transform.parent;
 
         if (inventory[activeSlot])
@@ -88,6 +91,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventory[weapon.GetComponent<Weapon>().slot] = weapon.gameObject;
             weapon.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+            inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
         }
     }
 
@@ -230,6 +234,7 @@ public class InventoryManager : MonoBehaviour
                     inventory[activeSlot].gameObject.SetActive(true);
                 }
             }
+            inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
         }
     }
     public void SwapSlot(bool direction)
@@ -264,7 +269,8 @@ public class InventoryManager : MonoBehaviour
                 shouldLoop = true;
                 checkForSlot = true;
         }
-        inventory[activeSlot].SetActive(false);
+        if (inventory[activeSlot] != null)
+            inventory[activeSlot].SetActive(false);
         // Check if the next slot is open, if not loop around
         if (checkForSlot)
         {
@@ -378,5 +384,6 @@ public class InventoryManager : MonoBehaviour
                 inventory[activeSlot].gameObject.SetActive(true);
             }
         }
+        inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
     }
 }
