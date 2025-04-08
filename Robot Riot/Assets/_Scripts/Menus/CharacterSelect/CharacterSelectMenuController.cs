@@ -19,6 +19,7 @@ public class CharacterSelectMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ignore player input for a second so that the player can choose a character and not instantly get sent to the ready screen
         if(Time.time > ignoreInputTime) 
         {
             inputEnabled = true;
@@ -35,7 +36,9 @@ public class CharacterSelectMenuController : MonoBehaviour
     public void SetCharacter(GameObject prefab)
     {
         if(!inputEnabled) { return; }
-
+        //instantiate the playercharacter
+        //change the panels to the ready screen 
+        //select the ready button
         PlayerCongifManager.instance.SetPlayerCharacter(playerindex, prefab);
         readyPanel1.SetActive(true);
         readyButton.Select();
@@ -45,6 +48,8 @@ public class CharacterSelectMenuController : MonoBehaviour
 
     public void ReadyPlayer()
     {
+        //when the ready button is pressed set the player's ready bool to true
+        // turn off the ready button to display the ready message
         if (!inputEnabled) { return; }
         PlayerCongifManager.instance.ReadyPlayer(playerindex);
         readyButton.gameObject.SetActive(false);

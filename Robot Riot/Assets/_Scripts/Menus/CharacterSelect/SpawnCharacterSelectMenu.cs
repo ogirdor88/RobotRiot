@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.UI;
 
 public class SpawnCharacterSelectMenu : MonoBehaviour
 {
+    // this spawns the player select UI
     public GameObject characterSelectMenuPrefab;
     public PlayerInput input;
     private void Awake()

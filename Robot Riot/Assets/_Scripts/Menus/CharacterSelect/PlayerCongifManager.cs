@@ -15,12 +15,15 @@ public class PlayerCongifManager : MonoBehaviour
 
     private void Awake()
     {
+        // if there is a playerConfigManager already, throw the debug message
         if (instance != null)
         {
             Debug.Log("Trying to creat another instance of a singleton");
         }
         else
         {
+            //initialize the playerConfigManager
+            //initialize the playerConfig list
             instance = this;
             DontDestroyOnLoad(instance);
             playerConfigs = new List<PlayerConfiguration>();
@@ -39,22 +42,25 @@ public class PlayerCongifManager : MonoBehaviour
         //if all the players are joined and all the players are ready
         if(playerConfigs.Count == maxPlayer && playerConfigs.All(p => p.isReady == true)) 
         {
+            //check which sceen they will go to 
             if(GameObject.Find("Factory"))
             {
                 SceneManager.LoadScene("Lvl1_Facility");
             }
-            if (GameObject.Find("City"))
+            else if (GameObject.Find("City"))
             {
                 SceneManager.LoadScene("Lvl2_Village");
             }
-            if (GameObject.Find("Oasis"))
+            else if (GameObject.Find("Oasis"))
             {
                 SceneManager.LoadScene("Lvl3_Oasis");
             }
-            if (GameObject.Find("West"))
+            else if (GameObject.Find("West"))
             {
                 SceneManager.LoadScene("Lvl4_West");
             }
+            else
+                SceneManager.LoadScene("Lvl1_Facility");
         }
     }
 
