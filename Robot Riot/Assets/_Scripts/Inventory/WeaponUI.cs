@@ -76,6 +76,7 @@ public class WeaponUI : MonoBehaviour
         else
         {
             nextWeaponIcon2.color = new Color(nextWeaponIcon2.color.r, nextWeaponIcon2.color.g, nextWeaponIcon2.color.b, 0);
+            //Debug.Log("transparent");
         }
         if (prevWeapon1 != null)
         {
