@@ -54,7 +54,7 @@ public class BoomBox : Weapon
 
     private void FireWeapon()
     {
-        playerMove.animator.Play("L3 Swing");
+        playerMove.animator.Play("L3 Shoot");
         damageCollider.enabled = true;
         if (!currentProjectile)
         {
