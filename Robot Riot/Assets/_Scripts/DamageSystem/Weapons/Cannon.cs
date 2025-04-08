@@ -60,7 +60,8 @@ public class Cannon : Weapon
             Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
             projectileContainer.target = playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance;
             projectileContainer.hitShot = true;
-            muzzle.transform.LookAt(playerMove.canvas.transform.position + playerMove.canvas.transform.forward * weapon.maxDistance);
+            muzzle.transform.LookAt(projectileContainer.target);
+            newProjectile.transform.LookAt(projectileContainer.target);
         }
 
         //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * speedOfProjectile);
