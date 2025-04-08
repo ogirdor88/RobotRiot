@@ -179,16 +179,28 @@ public class LevelSelect : MonoBehaviour
                 switch (level)
                 {
                     case 1:
-                        SceneManager.LoadScene(3);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Factory"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 2:
-                        SceneManager.LoadScene(4);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("City"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 3:
-                        SceneManager.LoadScene(5);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Oasis"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 4:
-                        SceneManager.LoadScene(6);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("West"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                 }
             }

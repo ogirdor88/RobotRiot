@@ -39,7 +39,22 @@ public class PlayerCongifManager : MonoBehaviour
         //if all the players are joined and all the players are ready
         if(playerConfigs.Count == maxPlayer && playerConfigs.All(p => p.isReady == true)) 
         {
-            SceneManager.LoadScene("LevelSelect");
+            if(GameObject.Find("Factory"))
+            {
+                SceneManager.LoadScene("Lvl1_Facility");
+            }
+            if (GameObject.Find("City"))
+            {
+                SceneManager.LoadScene("Lvl2_Village");
+            }
+            if (GameObject.Find("Oasis"))
+            {
+                SceneManager.LoadScene("Lvl3_Oasis");
+            }
+            if (GameObject.Find("West"))
+            {
+                SceneManager.LoadScene("Lvl4_West");
+            }
         }
     }
 
