@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
     public bool isShooting = false; 
     public bool istrapping = false;
 
-
     public int bonusDamage;
 
     [SerializeField]
@@ -81,10 +80,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject owner;
 
+    public bool isChanging = false;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = combatAnimator.GetComponent<Animator>(); 
+        animator = combatAnimator.GetComponent<Animator>();
         //InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         /*if (device != null)
         {
@@ -318,10 +319,21 @@ public class PlayerController : MonoBehaviour
     #region Bot Mode
     public void SwitchModes(InputAction.CallbackContext context)
     {
-        botMode = !botMode;
-        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
+        if (isChanging == false)
+        {
+            StartCoroutine(SwitchMode());
+        }
         // this is set up just for inital prototyping purposes
         // will be changed later
+    }
+
+    IEnumerator SwitchMode()
+    {
+        animator.Play("L3Combat_Transform");
+        isChanging = true;
+        yield return new WaitForSecondsRealtime(2f);
+        botMode = !botMode;
+        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();
@@ -336,6 +348,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
+
 
             Debug.Log("Bot Mode");
         }
@@ -357,6 +370,8 @@ public class PlayerController : MonoBehaviour
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
         }
+        yield return new WaitForSeconds(1);
+        isChanging = false;
     }
     #endregion
     #region Sprinting
