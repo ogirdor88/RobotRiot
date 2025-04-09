@@ -331,12 +331,13 @@ public class PlayerController : MonoBehaviour
     {
         animator.Play("L3Combat_Transform");
         isChanging = true;
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(1.5f);
         botMode = !botMode;
         gameObject.GetComponent<InventoryManager>().SwapSlot(true);
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();
+            //combatAnimator.transform.position = new Vector3(combatAnimator.transform.position.x, 0f, combatAnimator.transform.position.z);
             botGEO.SetActive(true);
             botRootControl.SetActive(true);
 
@@ -356,7 +357,7 @@ public class PlayerController : MonoBehaviour
         if (!botMode)
         {
             animator = combatAnimator.GetComponent<Animator>();
-
+            //botAnimator.transform.position = new Vector3(botAnimator.transform.position.x, 0f, botAnimator.transform.position.z);
             Debug.Log("Combat Mode");
             botGEO.SetActive(false);
             botRootControl.SetActive(false);
