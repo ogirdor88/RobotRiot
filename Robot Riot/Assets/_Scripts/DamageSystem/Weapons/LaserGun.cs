@@ -6,7 +6,6 @@ public class LaserGun : Weapon
 {
     [SerializeField] private Transform muzzle;
     [SerializeField] private Transform muzzle2;
-    [SerializeField] protected Weapons weapon;
     private float timeToFire;
     private float speedOfProjectile;
     [SerializeField] private GameObject projectile;
@@ -35,6 +34,7 @@ public class LaserGun : Weapon
         {
             if (muzzle2 != null)
             {
+                playerMove.owner = gameObject;
                 if (playerMove.isShooting && canShoot)
                 {
                     StartCoroutine(DuealShooting());
@@ -46,6 +46,7 @@ public class LaserGun : Weapon
             }
             else
             {
+                playerMove.owner = gameObject;
                 if (playerMove.isShooting && canShoot)
                 {
                     StartCoroutine(Shooting());
@@ -61,8 +62,33 @@ public class LaserGun : Weapon
     {
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
-        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
+        GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.transform.localRotation);
+        //newProjectile.transform.SetParent(muzzle);
+        Projectile projectileController = newProjectile.GetComponent<Projectile>();
+        projectileController.owner = playerMove.gameObject;
+
+        RaycastHit shootHit;
+        if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
+        {
+            //using forward cause we are we know the where it is going
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+            projectileController.target = shootHit.point;
+            projectileController.hitShot = true;
+            muzzle.transform.LookAt(projectileController.target);
+            newProjectile.transform.LookAt(projectileController.target);
+            //muzzle.transform.Rotate(100f, 0f, 0f);
+        }
+        else
+        {
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
+            
+            Vector3 forwardDirection = playerMove.canvas.transform.forward;
+            Vector3 fallbackTarget = playerMove.canvas.transform.position + forwardDirection * weapon.maxDistance;
+
+            projectileController.target = fallbackTarget;
+            projectileController.hitShot = true;
+        }
+
         if (transform.root.GetComponent<PlayerController>())
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         firingSound.Play();
@@ -76,9 +102,42 @@ public class LaserGun : Weapon
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.rotation);
-        newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.up * speedOfProjectile);
         GameObject newProjectile2 = Instantiate(projectile, muzzle2.transform.position, muzzle2.rotation);
-        newProjectile2.GetComponent<Rigidbody>().AddForce(newProjectile2.transform.up * speedOfProjectile);
+        //newProjectile.transform.SetParent(muzzle);
+        //newProjectile2.transform.SetParent(muzzle2);
+        Projectile projectileController = newProjectile.GetComponent<Projectile>();
+        Projectile projectileController2 = newProjectile.GetComponent<Projectile>();
+        projectileController.owner = playerMove.gameObject;
+        projectileController2.owner = playerMove.gameObject;
+
+        RaycastHit shootHit;
+        if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
+        {
+            //using forward cause we are we know the where it is going
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+
+            projectileController.target = shootHit.point;
+            projectileController2.target = shootHit.point;
+            muzzle.transform.LookAt(projectileController.target);
+            muzzle2.transform.LookAt(projectileController2.target);
+            projectileController.hitShot = true;
+            projectileController2.hitShot = true;
+        }
+        else
+        {
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
+            //up is used here cause the prefab is messed up
+            Vector3 forwardDirection = playerMove.canvas.transform.forward;
+            Vector3 fallbackTarget = playerMove.canvas.transform.position + forwardDirection * weapon.maxDistance;
+
+            projectileController.target = fallbackTarget;
+            projectileController2.target = fallbackTarget;
+            projectileController.hitShot = true;
+            projectileController2.hitShot = true;
+
+            muzzle.transform.LookAt(fallbackTarget);
+            muzzle2.transform.LookAt(fallbackTarget);
+        }
         if (transform.root.GetComponent<PlayerController>())
         {
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;

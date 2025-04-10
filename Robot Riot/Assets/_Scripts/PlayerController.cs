@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Slider sensSliderY;
     [SerializeField] private Text sensXValue;
     [SerializeField] private Text sensYValue;
-
+    public GameObject canvas;
 
     private Vector3 _playerVelo;
     private Vector3 _jumpFoce;
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _moveDir = Vector3.zero;
 
     private Vector2 _cameraMove;
+
+    public LayerMask layerMask;
 
     private float _jumpHieght = 1f;
     private float _gravity = -20;
@@ -76,6 +78,8 @@ public class PlayerController : MonoBehaviour
     private float smoothMoveX;
     private float smoothMoveY;
     private float animationDampTime = 0.1f;
+
+    public GameObject owner;
 
     private void Awake()
     {
@@ -281,7 +285,7 @@ public class PlayerController : MonoBehaviour
 
                 isShooting = true;
                 //istrapping = true;
-
+                
             }
         }
         //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BallonSword : Weapon
 {
-    [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
+    [SerializeField] private GameObject owner;
 
 
     //[SerializeField] private bool canShoot = true;
@@ -15,18 +15,17 @@ public class BallonSword : Weapon
 
     [SerializeField] private AudioSource hitSound;
 
-
     private void Start()
     {
         canShoot = true;
-        timeToFire = weapon.fireRate;
-        damageCollider.GetComponent<Collider>();
         damageCollider.enabled = false;
+        owner = playerMove.gameObject;
     }
     private void Update()
     {
         if (playerMove)
         {
+            owner = playerMove.gameObject;
             if (playerMove.isShooting && canShoot)
             {
                 StartCoroutine(Shooting());
@@ -39,12 +38,11 @@ public class BallonSword : Weapon
     private void OnTriggerEnter(Collider other)
     {
         
-        if (other.GetComponent<Health>() && other.gameObject.transform != this.gameObject.transform.parent.parent)
+        if (other.GetComponent<Health>())
         {
-            var health = other.GetComponent<Health>();
-            if (health != null)
+            if(other.gameObject != owner)
             {
-                health.TakeDamage(weapon.damage + bonusDamage);
+                other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
                 hitSound.Play();
             }
             Debug.Log("Hit health" + other.gameObject);

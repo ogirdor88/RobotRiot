@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   slot: 0
   bonusDamage: 0
   playerMove: {fileID: 0}
@@ -105,8 +106,10 @@ MonoBehaviour:
   isContinousWeapon: 0
   muzzle: {fileID: 3954297664434757183}
   muzzle2: {fileID: 0}
-  weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   projectile: {fileID: 7811403480679189027, guid: 7e0f747add98d96408c688063e4261b3, type: 3}
+  firingSound: {fileID: 0}
+  dualFiringSound1: {fileID: 0}
+  dualFiringSound2: {fileID: 0}
 --- !u!1 &54407250800653950
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
   slot: 0
   bonusDamage: 0
   playerMove: {fileID: 0}
@@ -624,8 +628,10 @@ MonoBehaviour:
   isContinousWeapon: 0
   muzzle: {fileID: 3687595223262932441}
   muzzle2: {fileID: 0}
-  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
   projectile: {fileID: 3463556052629705279, guid: e0efd149ae5a4a04b8a6132a50bca9b5, type: 3}
+  firingSound: {fileID: 0}
+  dualFiringSound1: {fileID: 0}
+  dualFiringSound2: {fileID: 0}
 --- !u!1 &2359840668338889942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1406,7 @@ RectTransform:
   - {fileID: 5192784531511685191}
   - {fileID: 9213006777816140135}
   - {fileID: 4264121107291290733}
+  - {fileID: 2225547463878285103}
   m_Father: {fileID: 7355845797761407942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1425,7 +1432,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1567,6 +1574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb4dc7b886e65f44ade4ed972c17319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: bfdcb0514fe62604aabf38add902e133, type: 2}
   slot: 0
   bonusDamage: 0
   playerMove: {fileID: 0}
@@ -1574,7 +1582,6 @@ MonoBehaviour:
   canTrap: 1
   isContinousWeapon: 0
   muzzle: {fileID: 7304833197774279871}
-  weapon: {fileID: 11400000, guid: bfdcb0514fe62604aabf38add902e133, type: 2}
   projectile: {fileID: 7966945022996964063, guid: e0df5eb0e5699454b93712697a83ada9, type: 3}
 --- !u!1 &8813486634341035225
 GameObject:
@@ -1987,6 +1994,68 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7530927218884165751, guid: f6bd40827e788844f84f969a88c25ab3, type: 3}
   m_PrefabInstance: {fileID: 5285985906782571340}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6217778829817654845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2043271388488364130}
+    m_Modifications:
+    - target: {fileID: 475384097899077662, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_Name
+      value: WeaponsUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -221
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+--- !u!4 &2225547463878285103 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+  m_PrefabInstance: {fileID: 6217778829817654845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7034499175368834093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2311,8 +2380,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCC: {fileID: 0}
   animator: {fileID: 0}
-  animatorCombat: {fileID: 0}
+  combatAnimator: {fileID: 0}
+  botAnimator: {fileID: 0}
   _camera: {fileID: 6489852589277933443}
+  sensSliderX: {fileID: 0}
+  sensSliderY: {fileID: 0}
+  sensXValue: {fileID: 0}
+  sensYValue: {fileID: 0}
+  canvas: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   _playerSpeed: 4
   botMode: 0
   isShooting: 0
@@ -2328,9 +2406,11 @@ MonoBehaviour:
   botGEO: {fileID: 0}
   botRootControl: {fileID: 0}
   StaminaBar: {fileID: 0}
+  boostText: {fileID: 0}
   stamina: 100
   maxStamina: 100
   boostCost: 20
+  owner: {fileID: 0}
 --- !u!114 &6916655408377682925
 MonoBehaviour:
   m_ObjectHideFlags: 0

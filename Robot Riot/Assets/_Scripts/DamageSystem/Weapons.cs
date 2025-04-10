@@ -12,6 +12,7 @@ public class Weapons : ScriptableObject
     [Tooltip("Gets Multiplied by 100")]
     public float prjectileSpeed;
     public WeaponType weaponType;
+    public Texture2D weaponTexure;
 }
 
 public enum WeaponType

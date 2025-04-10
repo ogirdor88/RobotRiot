@@ -7,7 +7,6 @@ using UnityEngine.Rendering.UI;
 // Make sure to track how long it's being used and shrink as needed
 public class BoomBox : Weapon
 {
-    [SerializeField] private Weapons weapon;
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
 
@@ -55,7 +54,7 @@ public class BoomBox : Weapon
 
     private void FireWeapon()
     {
-        playerMove.animator.Play("L3 Swing");
+        playerMove.animator.Play("L3 BoomBox");
         damageCollider.enabled = true;
         if (!currentProjectile)
         {
