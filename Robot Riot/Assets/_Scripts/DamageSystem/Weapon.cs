@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
 
     public int slot;
     public int bonusDamage = 0;
+    public int remainingAmmo;
 
     public PlayerController playerMove;
 

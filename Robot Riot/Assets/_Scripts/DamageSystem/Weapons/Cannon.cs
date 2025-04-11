@@ -19,6 +19,7 @@ public class Cannon : Weapon
     {
         canShoot = true;
         timeToFire = weapon.fireRate;
+        remainingAmmo = weapon.ammo;
     }
 
     private void Update()
@@ -43,6 +44,8 @@ public class Cannon : Weapon
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.localRotation);
         Projectile projectileContainer = newProjectile.GetComponent<Projectile>();
         projectileContainer.owner = playerMove.gameObject;
+        remainingAmmo--;
+        playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
 
         RaycastHit shootHit;
         if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
@@ -67,8 +70,14 @@ public class Cannon : Weapon
         //newProjectile.GetComponent<Rigidbody>().AddForce(newProjectile.transform.forward * speedOfProjectile);
         if (transform.root.GetComponent<PlayerController>())
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
-        yield return new WaitForSeconds(timeToFire);
-        canShoot = true;
+
+        if (remainingAmmo == 0)
+            Destroy(gameObject);
+        else
+        {
+            yield return new WaitForSeconds(timeToFire);
+            canShoot = true;
+        }
         //playerMove.animator.SetBool("Shoot", !playerMove.isShooting);
     }
 }
