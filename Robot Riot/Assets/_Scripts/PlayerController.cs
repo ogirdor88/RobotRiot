@@ -11,11 +11,21 @@ using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
+
     public CharacterController _playerCC;
     private CapsuleCollider _playerCollider;
     public Animator animator;
+
+    [Header("Bots")]
     public GameObject combatAnimator;
+    private Vector3 initialCombatPosition; // Store the initial local position
+    private Quaternion initialCombatRotation;
+
     public GameObject botAnimator;
+    private Vector3 initialBotPosition; // Store the initial local position
+    private Quaternion initialBotRotation;
+
+
     [SerializeField] private Transform _camera;
     [SerializeField] private Slider sensSliderX;
     [SerializeField] private Slider sensSliderY;
@@ -56,7 +66,6 @@ public class PlayerController : MonoBehaviour
     public bool isShooting = false; 
     public bool istrapping = false;
 
-
     public int bonusDamage;
 
     [SerializeField]
@@ -81,10 +90,12 @@ public class PlayerController : MonoBehaviour
 
     public GameObject owner;
 
+    public bool isChanging = false;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        animator = combatAnimator.GetComponent<Animator>(); 
+        animator = combatAnimator.GetComponent<Animator>();
         //InputDevice device = PlayerManager.Instance.GetPlayerDevice(playerInput.playerIndex);
         /*if (device != null)
         {
@@ -122,6 +133,18 @@ public class PlayerController : MonoBehaviour
         sensSliderY.value = (lookSensY / 10f);
         sensSliderX.gameObject.SetActive(false);
         sensSliderY.gameObject.SetActive(false);
+
+        if (combatAnimator != null)
+        {
+            // Store the initial local position and rotation
+            initialCombatPosition = combatAnimator.transform.localPosition;
+            initialCombatRotation = combatAnimator.transform.localRotation;
+
+            initialBotPosition = botAnimator.transform.localPosition;
+            initialBotRotation = botAnimator.transform.localRotation;
+        }
+
+        
     }
 
     private void Update()
@@ -318,13 +341,26 @@ public class PlayerController : MonoBehaviour
     #region Bot Mode
     public void SwitchModes(InputAction.CallbackContext context)
     {
-        botMode = !botMode;
-        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
+        if (isChanging == false)
+        {
+            StartCoroutine(SwitchMode());
+        }
         // this is set up just for inital prototyping purposes
         // will be changed later
+    }
+
+    IEnumerator SwitchMode()
+    {
+        animator.Play("L3Combat_Transform");
+        isChanging = true;
+        yield return new WaitForSecondsRealtime(.4f);
+        botMode = !botMode;
+        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();
+            //animator.applyRootMotion = false;
+            //combatAnimator.transform.position = new Vector3(combatAnimator.transform.position.x, 0f, combatAnimator.transform.position.z);
             botGEO.SetActive(true);
             botRootControl.SetActive(true);
 
@@ -336,6 +372,10 @@ public class PlayerController : MonoBehaviour
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
+            //Animation animationComponent;
+            animator.Play("L3Combat_Transform", 0, .3f);
+            
+
 
             Debug.Log("Bot Mode");
         }
@@ -343,7 +383,8 @@ public class PlayerController : MonoBehaviour
         if (!botMode)
         {
             animator = combatAnimator.GetComponent<Animator>();
-
+            //animator.applyRootMotion = false;
+            //botAnimator.transform.position = new Vector3(botAnimator.transform.position.x, 0f, botAnimator.transform.position.z);
             Debug.Log("Combat Mode");
             botGEO.SetActive(false);
             botRootControl.SetActive(false);
@@ -356,8 +397,47 @@ public class PlayerController : MonoBehaviour
             _playerCollider.center = _playerCC.center;
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
+            animator.Play("L3Combat_Transform", 0, .3f);
+
         }
+        
+        yield return new WaitForSeconds(.1f);
+        isChanging = false;
+        StartCoroutine(ResetToCenter());
+
     }
+
+    IEnumerator ResetToCenter()
+    {
+
+        float duration = 0.3f; // Duration of the lerp
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            // Lerp position and rotation
+            combatAnimator.transform.localPosition = Vector3.Lerp(combatAnimator.transform.localPosition, initialCombatPosition, elapsedTime / duration);
+            combatAnimator.transform.localRotation = Quaternion.Lerp(combatAnimator.transform.localRotation, initialCombatRotation, elapsedTime / duration);
+
+
+            botAnimator.transform.localPosition = Vector3.Lerp(botAnimator.transform.localPosition, initialBotPosition, elapsedTime / duration);
+            botAnimator.transform.localRotation = Quaternion.Lerp(botAnimator.transform.localRotation, initialBotRotation, elapsedTime / duration);
+            yield return null;
+        }
+
+        // Ensure final position and rotation are set
+        combatAnimator.transform.localPosition = initialCombatPosition;
+        combatAnimator.transform.localRotation = initialCombatRotation;
+
+        botAnimator.transform.localPosition = initialBotPosition;
+        botAnimator.transform.localRotation = initialBotRotation;
+
+        Debug.Log("Player position and rotation reset to center.");
+    }
+
+
     #endregion
     #region Sprinting
     public void SpeedBoost(InputAction.CallbackContext context)
