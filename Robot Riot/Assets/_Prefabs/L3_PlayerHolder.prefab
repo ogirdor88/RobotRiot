@@ -4591,7 +4591,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b53ebf5cf77922e4ab1ad706774b25d5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -5121,13 +5121,14 @@ MonoBehaviour:
   combatGEO: {fileID: 1197060246337157796}
   combatRootControl: {fileID: 4517117712127001235}
   botGEO: {fileID: 40986433621347557}
-  botRootControl: {fileID: 5710873637962336142}
+  botRootControl: {fileID: 7355242883359317162}
   StaminaBar: {fileID: 8358541528225792730}
   boostText: {fileID: 4703784381154673348}
   stamina: 100
   maxStamina: 100
   boostCost: 20
   owner: {fileID: 0}
+  isChanging: 0
 --- !u!114 &3615163168465011546
 MonoBehaviour:
   m_ObjectHideFlags: 0

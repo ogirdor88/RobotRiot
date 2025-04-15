@@ -15,7 +15,6 @@ public class LaserGun : Weapon
     [SerializeField] private AudioSource dualFiringSound1;
     [SerializeField] private AudioSource dualFiringSound2;
 
-
     private void Awake()
     {
         speedOfProjectile = weapon.prjectileSpeed * 300f;
@@ -24,6 +23,7 @@ public class LaserGun : Weapon
     {
         canShoot = true;
         timeToFire = weapon.fireRate;
+        remainingAmmo = weapon.ammo;
     }
 
     private void Update()
@@ -66,6 +66,8 @@ public class LaserGun : Weapon
         //newProjectile.transform.SetParent(muzzle);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
         projectileController.owner = playerMove.gameObject;
+        remainingAmmo--;
+        playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
 
         RaycastHit shootHit;
         if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
@@ -92,8 +94,13 @@ public class LaserGun : Weapon
         if (transform.root.GetComponent<PlayerController>())
             newProjectile.GetComponent<Projectile>().bonusDamage = transform.root.GetComponent<PlayerController>().bonusDamage;
         firingSound.Play();
-        yield return new WaitForSeconds(timeToFire);
-        canShoot = true;
+        if (remainingAmmo == 0)
+            Destroy(gameObject);
+        else
+        {
+            yield return new WaitForSeconds(timeToFire);
+            canShoot = true;
+        }
 
         //playerMove.animator.SetBool("Shoot", !playerMove.isShooting);
     }
@@ -109,6 +116,8 @@ public class LaserGun : Weapon
         Projectile projectileController2 = newProjectile.GetComponent<Projectile>();
         projectileController.owner = playerMove.gameObject;
         projectileController2.owner = playerMove.gameObject;
+        remainingAmmo -= 2;
+        playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
 
         RaycastHit shootHit;
         if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
@@ -146,8 +155,13 @@ public class LaserGun : Weapon
         dualFiringSound1.Play();
         dualFiringSound2.Play();
 
-        yield return new WaitForSeconds(timeToFire);
-        canShoot = true;
+        if (remainingAmmo <= 0)
+            Destroy(gameObject);
+        else
+        {
+            yield return new WaitForSeconds(timeToFire);
+            canShoot = true;
+        }
         //playerMove.animator.SetBool("Shoot", !canShoot);
     }
 }

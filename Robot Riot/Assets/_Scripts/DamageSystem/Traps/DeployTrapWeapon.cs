@@ -27,6 +27,7 @@ public class DeployTrapWeapon : Weapon
                 GameObject deployedTrap = Instantiate(trap, new Vector3(this.gameObject.transform.parent.parent.transform.position.x, this.gameObject.transform.parent.parent.transform.position.y + 0.5f, this.gameObject.transform.parent.parent.transform.position.z), this.gameObject.transform.parent.parent.transform.rotation);
                 playerMove.istrapping = false;
                 playerMove.isShooting = false;
+                playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
                 Destroy(gameObject);
             }
         }

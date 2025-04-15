@@ -18,13 +18,15 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        FindAnyObjectByType(typeof(GameManager));
         if (Instance != null)
         {
-            Destroy(gameObject);
+            Destroy(Instance);
+            Instance = this;
             return;
         }
-
-        Instance = this;
+        else
+            Instance = this;
     }
 
     // Figure out who won and send them to the game over screen

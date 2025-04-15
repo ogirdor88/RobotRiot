@@ -10,9 +10,9 @@ public class BoomBox : Weapon
     [SerializeField] private Collider damageCollider;
     private float timeToFire;
 
-    [SerializeField] private int power;
+    //[SerializeField] private int power;
 
-    [SerializeField] private int maxPower;
+    //[SerializeField] private int maxPower;
 
     private Vector3 originalScale;
 
@@ -32,7 +32,8 @@ public class BoomBox : Weapon
         canShoot = true;
         attemptCharge = true;
         timeToFire = weapon.fireRate;
-        power = maxPower;
+        //power = maxPower;
+        remainingAmmo = weapon.ammo;
         damageCollider.GetComponent<Collider>();
         damageCollider.enabled = false;
         originalScale = boomBoxVFX.transform.root.localScale;
@@ -63,11 +64,11 @@ public class BoomBox : Weapon
             currentProjectile.GetComponent<HitboxDamage>().playerMove = playerMove;
         }
         //currentProjectile.transform.localScale += new Vector3(power / maxPower, power / maxPower, power / maxPower);
-        currentProjectile.transform.localScale = new Vector3(originalScale.x + (power * 0.01f), originalScale.y + (power * 0.01f), originalScale.z + (power * 0.01f));
+        currentProjectile.transform.localScale = new Vector3(originalScale.x + (remainingAmmo * 0.01f), originalScale.y + (remainingAmmo * 0.01f), originalScale.z + (remainingAmmo * 0.01f));
         currentProjectile.GetComponent<BoxCollider>().size = currentProjectile.transform.localScale;
         currentProjectile.transform.position = flameLocation.transform.position;
         currentProjectile.transform.rotation = transform.rotation;
-        if (power > 0 && attemptCharge)
+        if (remainingAmmo > 0 && attemptCharge)
             StartCoroutine(Recharge(false));
     }
 
@@ -75,7 +76,7 @@ public class BoomBox : Weapon
     {
         Destroy(currentProjectile);
         damageCollider.enabled = false;
-        if (power == 0)
+        if (remainingAmmo == 0)
             Destroy(this.gameObject);
     }
 
@@ -97,11 +98,12 @@ public class BoomBox : Weapon
     IEnumerator Recharge(bool Recharging)
     {
         attemptCharge = false;
-        power--;
-        if (power == 0)
+        remainingAmmo--;
+        if (remainingAmmo == 0)
         {
             StopFiring();
         }
+        playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
         yield return new WaitForSeconds(timeToFire);
         attemptCharge = true;
     }
