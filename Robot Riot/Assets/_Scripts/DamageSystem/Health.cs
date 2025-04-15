@@ -202,19 +202,19 @@ public class Health : MonoBehaviour
         //yield return new WaitForSecondsRealtime(5f);
         for (int i = 5; i >= 0; i--)
         {
-            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerRibbonTexure, "Power Ribbon", i);
+            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerRibbonTexure, "Power Ribbon", i, 5);
             yield return new WaitForSeconds(1);
         }
-        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
         isProtected = false;
     }
     IEnumerator ObtainedPowerUp(string name, Texture2D icon)
     {
         isProtected = true;
         //yield return new WaitForSecondsRealtime(5f);
-        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(icon, "Obtained " + name, -1);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(icon, "Obtained " + name, -1, -1);
         yield return new WaitForSeconds(2);
-        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
         isProtected = false;
     }
 }

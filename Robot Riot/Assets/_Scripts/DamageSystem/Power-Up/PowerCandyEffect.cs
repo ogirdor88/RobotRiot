@@ -22,11 +22,11 @@ public class PowerCandyEffect : MonoBehaviour
         playerMovement.bonusDamage += 2;
         for (int i = 10; i >= 0; i--)
         {
-            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerUpTexure, "Power Candy", i);
+            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerUpTexure, "Power Candy", i, 10);
             yield return new WaitForSeconds(1);
         }
         playerMovement.bonusDamage -= 2;
-        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, 10);
         Destroy(this);
     }
 }
