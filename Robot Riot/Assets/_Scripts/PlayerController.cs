@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -92,6 +93,9 @@ public class PlayerController : MonoBehaviour
 
     public bool isChanging = false;
 
+    [SerializeField]
+    private CinemachineImpulseSource impulseScource;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -153,6 +157,7 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.15f))
         {
             isGrounded = true;
+            //impulseScource.GenerateImpulse();
         }
         else
         {
@@ -232,6 +237,7 @@ public class PlayerController : MonoBehaviour
         {
             _jumpFoce.y = -3f;
             jump = true;
+            //impulseScource.GenerateImpulse();
         }
         _jumpFoce.y += _gravity * Time.deltaTime;
         _playerCC.Move(_jumpFoce * Time.deltaTime);
@@ -301,14 +307,16 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Trap");
                 istrapping = true;
+                impulseScource.GenerateImpulse();
             }
             else
             {
                 Debug.Log("Pew");
 
                 isShooting = true;
+                impulseScource.GenerateImpulse();
                 //istrapping = true;
-                
+
             }
         }
         //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)

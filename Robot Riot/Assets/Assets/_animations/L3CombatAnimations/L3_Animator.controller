@@ -724,7 +724,7 @@ AnimatorState:
   m_PrefabAsset: {fileID: 0}
   m_Name: Blend Tree
   m_Speed: 1
-  m_CycleOffset: 0
+  m_CycleOffset: 0.5
   m_Transitions:
   - {fileID: -2293892063499755516}
   - {fileID: -7023629345366227895}
@@ -742,10 +742,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 9014437344930149185}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: Velocity Z
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_CycleOffsetParameter: Blend
+  m_TimeParameter: Blend
 --- !u!1102 &8470358282836866000
 AnimatorState:
   serializedVersion: 6
@@ -839,7 +839,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 3877ec1594a853d4b81a5b7dae62ff77, type: 2}
     m_Threshold: 1
     m_Position: {x: 1, y: 0}
-    m_TimeScale: -1
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
