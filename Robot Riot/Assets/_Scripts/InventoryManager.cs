@@ -18,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject weaponLocation;
 
     public GameObject inventoryUI;
+    public GameObject powerUpUI;
 
     private void Awake()
     {
