@@ -40,6 +40,10 @@ public class Health : MonoBehaviour
     // Keep track of what player this is
     public int playerNumber;
 
+    public Texture2D powerRibbonTexure;
+    public Texture2D healthPackTexure;
+    public Texture2D energyDrinkTexure;
+
     private void Awake()
     {
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
@@ -159,6 +163,7 @@ public class Health : MonoBehaviour
         if (other.gameObject.tag == "Healthpack" && isPlayer)
         {
             SetMaxHealth(_startHealth);
+            StartCoroutine(ObtainedPowerUp("Health Pack", healthPackTexure));
             Destroy(other.gameObject);
             Debug.Log("Collecteed H");
         }
@@ -185,6 +190,7 @@ public class Health : MonoBehaviour
                 _playerController.stamina = newStamina;
             }
             SetMaxHealth(newHealth);
+            StartCoroutine(ObtainedPowerUp("Energy Drink", energyDrinkTexure));
             Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
         }
@@ -193,7 +199,22 @@ public class Health : MonoBehaviour
     IEnumerator PlayerProtected()
     {
         isProtected = true;
-        yield return new WaitForSecondsRealtime(5f);
+        //yield return new WaitForSecondsRealtime(5f);
+        for (int i = 5; i >= 0; i--)
+        {
+            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerRibbonTexure, "Power Ribbon", i, 5);
+            yield return new WaitForSeconds(1);
+        }
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
+        isProtected = false;
+    }
+    IEnumerator ObtainedPowerUp(string name, Texture2D icon)
+    {
+        isProtected = true;
+        //yield return new WaitForSecondsRealtime(5f);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(icon, "Obtained " + name, -1, -1);
+        yield return new WaitForSeconds(2);
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
         isProtected = false;
     }
 }

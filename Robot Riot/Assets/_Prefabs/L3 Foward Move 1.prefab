@@ -100,6 +100,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   slot: 0
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
   canTrap: 1
@@ -622,6 +623,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
   slot: 0
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
   canTrap: 1
@@ -1407,6 +1409,7 @@ RectTransform:
   - {fileID: 9213006777816140135}
   - {fileID: 4264121107291290733}
   - {fileID: 2225547463878285103}
+  - {fileID: 3082695249160147058}
   m_Father: {fileID: 7355845797761407942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1577,6 +1580,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: bfdcb0514fe62604aabf38add902e133, type: 2}
   slot: 0
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
   canTrap: 1
@@ -1744,6 +1748,108 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2577848953279286934, guid: a1297581b67615e41b9794817d2e578c, type: 3}
   m_PrefabInstance: {fileID: 189236744493277736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &690009363046963224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2043271388488364130}
+    m_Modifications:
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388574604752050217, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+      propertyPath: m_Name
+      value: PowerupUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+--- !u!224 &3082695249160147058 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2545810473541044330, guid: e84061e9225190644ba011bf94bb43f3, type: 3}
+  m_PrefabInstance: {fileID: 690009363046963224}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1731246422127643147
 PrefabInstance:
@@ -2411,6 +2517,7 @@ MonoBehaviour:
   maxStamina: 100
   boostCost: 20
   owner: {fileID: 0}
+  isChanging: 0
 --- !u!114 &6916655408377682925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2466,6 +2573,9 @@ MonoBehaviour:
   Life3: {fileID: 6427593773571202102}
   isProtected: 0
   playerNumber: 0
+  powerRibbonTexure: {fileID: 2800000, guid: b6e9d381afe68c449a7808ef906f351a, type: 3}
+  healthPackTexure: {fileID: 0}
+  energyDrinkTexure: {fileID: 2800000, guid: 88643a09bcd36e94da6866da524c83c3, type: 3}
 --- !u!114 &8921305048966970112
 MonoBehaviour:
   m_ObjectHideFlags: 0
