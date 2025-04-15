@@ -17,16 +17,16 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider _playerCollider;
     public Animator animator;
 
-    [Header("Bots")]
+    [Header("Bots Starting Values")]
     public GameObject combatAnimator;
-    private Vector3 initialCombatPosition; // Store the initial local position
-    private Quaternion initialCombatRotation;
+    public Vector3 initialCombatPosition; // Store the initial local position
+    public Quaternion initialCombatRotation;
 
     public GameObject botAnimator;
-    private Vector3 initialBotPosition; // Store the initial local position
-    private Quaternion initialBotRotation;
+    public Vector3 initialBotPosition; // Store the initial local position
+    public Quaternion initialBotRotation;
 
-
+    [SerializeField] private GameObject lookAtRotator;
     [SerializeField] private Transform _camera;
     [SerializeField] private Slider sensSliderX;
     [SerializeField] private Slider sensSliderY;
@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private float originalMoveSpeed;
 
     private float xRotaion = 0f;
-    private float lookSensX = 1f;
-    private float lookSensY = 1f;
+    private float lookSensX = 1.7f;
+    private float lookSensY = 1.7f;
     private float lookSensXOriginal;
     private float lookSensYOriginal;
 
@@ -122,6 +122,18 @@ public class PlayerController : MonoBehaviour
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
         boostText.text = "" + (int)maxStamina;
+
+        if (combatAnimator != null)
+        {
+            // Store the initial local position and rotation
+            initialCombatPosition = combatAnimator.transform.localPosition;
+            initialCombatRotation = combatAnimator.transform.localRotation;
+
+            initialBotPosition = botAnimator.transform.localPosition;
+            initialBotRotation = botAnimator.transform.localRotation;
+
+            initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
+        }
     }
 
     private void Start()
@@ -138,15 +150,7 @@ public class PlayerController : MonoBehaviour
         sensSliderX.gameObject.SetActive(false);
         sensSliderY.gameObject.SetActive(false);
 
-        if (combatAnimator != null)
-        {
-            // Store the initial local position and rotation
-            initialCombatPosition = combatAnimator.transform.localPosition;
-            initialCombatRotation = combatAnimator.transform.localRotation;
-
-            initialBotPosition = botAnimator.transform.localPosition;
-            initialBotRotation = botAnimator.transform.localRotation;
-        }
+        
 
         
     }
