@@ -19,7 +19,12 @@ public class ControlPanel : MonoBehaviour
         
     }
 
-    public void ControlPress()
+    public void CreditsPress()
+    {
+        panel.gameObject.SetActive(true);
+    }
+
+    public void ItemListPress()
     {
         panel.gameObject.SetActive(true);
     }
