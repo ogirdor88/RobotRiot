@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerCandyEffect : MonoBehaviour
 {
     private PlayerController playerMovement;
+    public Texture2D powerUpTexure;
 
     // Get player health and start causing damage.
     private void Awake()
@@ -15,9 +16,17 @@ public class PowerCandyEffect : MonoBehaviour
 
     IEnumerator CountDown()
     {
+        // Power Candy can't send the power candy texture fast enough, so this fixes that
+        yield return new WaitForSeconds(0.01f);
+        //gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerUpTexure, "Power Candy", 10);
         playerMovement.bonusDamage += 2;
-        yield return new WaitForSeconds(10);
+        for (int i = 10; i >= 0; i--)
+        {
+            gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(powerUpTexure, "Power Candy", i);
+            yield return new WaitForSeconds(1);
+        }
         playerMovement.bonusDamage -= 2;
+        gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1);
         Destroy(this);
     }
 }
