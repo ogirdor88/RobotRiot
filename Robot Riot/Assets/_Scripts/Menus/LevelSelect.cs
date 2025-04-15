@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelect : MonoBehaviour
 {
-    [SerializeField]
+    #region OldSelect
+
+    /*[SerializeField]
     private GameObject select, buttonSelect, lsUnfocused;
 
     private int level, button;
@@ -212,5 +214,7 @@ public class LevelSelect : MonoBehaviour
             }
             Debug.Log("Interact");
         }
-    }
+    }*/
+    #endregion
+
 }

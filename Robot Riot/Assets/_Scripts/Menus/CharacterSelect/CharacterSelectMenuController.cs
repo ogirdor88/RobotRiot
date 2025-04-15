@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CharacterSelectMenuController : MonoBehaviour
@@ -11,7 +14,9 @@ public class CharacterSelectMenuController : MonoBehaviour
     [SerializeField]
     private GameObject menuPanel1;
     [SerializeField]
-    private Button readyButton;
+    private Button readyButton, l3Button, fleaButton, tankerButton, remButton;
+    [SerializeField]
+    private TMP_Text CharacterName;
 
     private float ignoreInputTime = 1.5f;
     private bool inputEnabled;
@@ -19,6 +24,8 @@ public class CharacterSelectMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ChangeText();
+
         //ignore player input for a second so that the player can choose a character and not instantly get sent to the ready screen
         if(Time.time > ignoreInputTime) 
         {
@@ -53,5 +60,28 @@ public class CharacterSelectMenuController : MonoBehaviour
         if (!inputEnabled) { return; }
         PlayerCongifManager.instance.ReadyPlayer(playerindex);
         readyButton.gameObject.SetActive(false);
+    }
+
+    //checks which button is active and changes the character name text accordinglys
+    private void ChangeText()
+    {
+        if (EventSystem.current.currentSelectedGameObject == l3Button.gameObject)
+        {
+            CharacterName.text = "L3";
+            Debug.Log("le 3 button");
+        }
+        if (EventSystem.current.currentSelectedGameObject == fleaButton.gameObject)
+        {
+            CharacterName.text = "Flea";
+        }
+        if (EventSystem.current.currentSelectedGameObject == tankerButton.gameObject)
+        {
+            CharacterName.text = "Tanker";
+        }
+        if (EventSystem.current.currentSelectedGameObject == remButton.gameObject)
+        {
+            CharacterName.text = "Rem";
+        }
+
     }
 }
