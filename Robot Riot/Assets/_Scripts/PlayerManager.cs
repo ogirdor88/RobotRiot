@@ -130,7 +130,7 @@ public class PlayerManager : MonoBehaviour
         player1 = info.GetComponent<PlayerInfo>().characters[0];
         player2 = info.GetComponent<PlayerInfo>().characters[1];
 
-        PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[1] });
+        PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[0] });
         PlayerInput.Instantiate(player2, 1, "Controls", -1,new[] { Gamepad.all[1] });
     }
     
