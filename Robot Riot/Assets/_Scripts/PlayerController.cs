@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,16 +17,16 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider _playerCollider;
     public Animator animator;
 
-    [Header("Bots")]
+    [Header("Bots Starting Values")]
     public GameObject combatAnimator;
-    private Vector3 initialCombatPosition; // Store the initial local position
-    private Quaternion initialCombatRotation;
+    public Vector3 initialCombatPosition; // Store the initial local position
+    public Quaternion initialCombatRotation;
 
     public GameObject botAnimator;
-    private Vector3 initialBotPosition; // Store the initial local position
-    private Quaternion initialBotRotation;
+    public Vector3 initialBotPosition; // Store the initial local position
+    public Quaternion initialBotRotation;
 
-
+    [SerializeField] private GameObject lookAtRotator;
     [SerializeField] private Transform _camera;
     [SerializeField] private Slider sensSliderX;
     [SerializeField] private Slider sensSliderY;
@@ -49,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private float originalMoveSpeed;
 
     private float xRotaion = 0f;
-    private float lookSensX = 1f;
-    private float lookSensY = 1f;
+    private float lookSensX = 2.4f;
+    private float lookSensY = 2.4f;
     private float lookSensXOriginal;
     private float lookSensYOriginal;
 
@@ -92,6 +93,9 @@ public class PlayerController : MonoBehaviour
 
     public bool isChanging = false;
 
+    [SerializeField]
+    private CinemachineImpulseSource impulseScource;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -118,6 +122,18 @@ public class PlayerController : MonoBehaviour
         botGEO.SetActive(false);
         botRootControl.SetActive(false);
         boostText.text = "" + (int)maxStamina;
+
+        if (combatAnimator != null)
+        {
+            // Store the initial local position and rotation
+            initialCombatPosition = combatAnimator.transform.localPosition;
+            initialCombatRotation = combatAnimator.transform.localRotation;
+
+            initialBotPosition = botAnimator.transform.localPosition;
+            initialBotRotation = botAnimator.transform.localRotation;
+
+            initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
+        }
     }
 
     private void Start()
@@ -134,16 +150,14 @@ public class PlayerController : MonoBehaviour
         sensSliderX.gameObject.SetActive(false);
         sensSliderY.gameObject.SetActive(false);
 
-        if (combatAnimator != null)
-        {
-            // Store the initial local position and rotation
-            initialCombatPosition = combatAnimator.transform.localPosition;
-            initialCombatRotation = combatAnimator.transform.localRotation;
+        
 
-            initialBotPosition = botAnimator.transform.localPosition;
-            initialBotRotation = botAnimator.transform.localRotation;
-        }
+        
+    }
 
+    private void FixedUpdate()
+    {
+        UpdateCamera();
         
     }
 
@@ -153,17 +167,19 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.15f))
         {
             isGrounded = true;
+            //impulseScource.GenerateImpulse();
         }
         else
         {
             isGrounded = false;
         }
         
-        Debug.Log("sprint " + isSprinting);
+        //Debug.Log("sprint " + isSprinting);
         UpdateMove();
-        UpdateJump();
-        UpdateCamera();
         UpdateAnimation();
+        UpdateJump();
+        //UpdateCamera();
+        
 
         if (!isSprinting)
         {
@@ -232,6 +248,7 @@ public class PlayerController : MonoBehaviour
         {
             _jumpFoce.y = -3f;
             jump = true;
+            //impulseScource.GenerateImpulse();
         }
         _jumpFoce.y += _gravity * Time.deltaTime;
         _playerCC.Move(_jumpFoce * Time.deltaTime);
@@ -253,25 +270,28 @@ public class PlayerController : MonoBehaviour
     }
     public void UpdateCamera()
     {
-        if (slide)
-        {
-            lookSensX = 0;
-            lookSensY = 0;
-        }
-        else
-        {
-            lookSensX = lookSensXOriginal;
-            lookSensY = lookSensYOriginal;
-        }
+        
+            if (slide)
+            {
+                lookSensX = 0;
+                lookSensY = 0;
+            }
+            else
+            {
+                lookSensX = lookSensXOriginal;
+                lookSensY = lookSensYOriginal;
+            }
 
-        float rotateX = _cameraMove.x * lookSensX;
-        float rotateY = _cameraMove.y * lookSensY;
+            float rotateX = _cameraMove.x * lookSensX;
+            float rotateY = _cameraMove.y * lookSensY;
 
-        transform.Rotate(Vector3.up * rotateX);
+            transform.Rotate(Vector3.up * rotateX);
 
-        xRotaion -= rotateY;
-        xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
-        _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+            xRotaion -= rotateY;
+            xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
+            _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+        
+        
     }
     public void ChangeSensX()
     {
@@ -301,14 +321,16 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Trap");
                 istrapping = true;
+                impulseScource.GenerateImpulse();
             }
             else
             {
                 Debug.Log("Pew");
 
                 isShooting = true;
+                impulseScource.GenerateImpulse();
                 //istrapping = true;
-                
+
             }
         }
         //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
@@ -374,7 +396,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.radius = _playerCC.radius;
             //Animation animationComponent;
             animator.Play("L3Combat_Transform", 0, .3f);
-            
+            //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(false);
 
 
             Debug.Log("Bot Mode");
@@ -398,7 +420,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
             animator.Play("L3Combat_Transform", 0, .3f);
-
+            //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(true);
         }
         
         yield return new WaitForSeconds(.1f);
