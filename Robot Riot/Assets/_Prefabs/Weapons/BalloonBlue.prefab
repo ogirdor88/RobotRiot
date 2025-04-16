@@ -108,9 +108,9 @@ MonoBehaviour:
   canTrap: 0
   isContinousWeapon: 0
   damageCollider: {fileID: 6669369819151148101}
-  owner: {fileID: 0}
   swordVFX: {fileID: 7803591796957527705, guid: 74de2de1b97bb664280885856357ea64, type: 3}
   impulseScource: {fileID: 4553499716116979821}
+  owner: {fileID: 0}
   hitSound: {fileID: 4516838306164449888}
 --- !u!136 &6669369819151148101
 CapsuleCollider:
@@ -283,4 +283,4 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0.001, y: -0.001, z: 0}
+  m_DefaultVelocity: {x: 1, y: 1, z: -1}
