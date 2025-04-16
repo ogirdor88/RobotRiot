@@ -1,5 +1,7 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallonSword : Weapon
@@ -12,6 +14,7 @@ public class BallonSword : Weapon
     //[SerializeField] private bool canShoot = true;
 
     [SerializeField] private GameObject swordVFX;
+    [SerializeField] public CinemachineImpulseSource impulseScource;
 
     [SerializeField] private AudioSource hitSound;
 
@@ -20,6 +23,7 @@ public class BallonSword : Weapon
         canShoot = true;
         damageCollider.enabled = false;
         owner = playerMove.gameObject;
+        impulseScource.m_ImpulseDefinition.m_ImpulseChannel = owner.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
     }
     private void Update()
     {
@@ -57,6 +61,8 @@ public class BallonSword : Weapon
     IEnumerator Shooting()
     {
         playerMove.animator.Play("L3 Swing");
+        
+        
         canShoot = false;
         damageCollider.enabled = true;
         GameObject vfx = Instantiate(swordVFX, transform.position, transform.rotation);
@@ -64,6 +70,11 @@ public class BallonSword : Weapon
         vfx.GetComponent<HitboxDamage>().playerMove = playerMove;
         vfx.GetComponent<HitboxDamage>().hitSound = hitSound;
         yield return new WaitForSeconds(timeToFire);
+
+        Vector3 direction = new Vector3(1, 1, -1);
+        impulseScource.GenerateImpulse(direction * 3);
+
+
         Destroy(vfx);
         damageCollider.enabled = false;
         canShoot = true;

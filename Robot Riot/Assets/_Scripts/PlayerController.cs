@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
     private float originalMoveSpeed;
 
     private float xRotaion = 0f;
-    private float lookSensX = 1.7f;
-    private float lookSensY = 1.7f;
+    private float lookSensX = 2.4f;
+    private float lookSensY = 2.4f;
     private float lookSensXOriginal;
     private float lookSensYOriginal;
 
@@ -155,6 +155,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        UpdateCamera();
+        
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -168,11 +174,12 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
         
-        Debug.Log("sprint " + isSprinting);
+        //Debug.Log("sprint " + isSprinting);
         UpdateMove();
-        UpdateJump();
-        UpdateCamera();
         UpdateAnimation();
+        UpdateJump();
+        //UpdateCamera();
+        
 
         if (!isSprinting)
         {
@@ -263,25 +270,28 @@ public class PlayerController : MonoBehaviour
     }
     public void UpdateCamera()
     {
-        if (slide)
-        {
-            lookSensX = 0;
-            lookSensY = 0;
-        }
-        else
-        {
-            lookSensX = lookSensXOriginal;
-            lookSensY = lookSensYOriginal;
-        }
+        
+            if (slide)
+            {
+                lookSensX = 0;
+                lookSensY = 0;
+            }
+            else
+            {
+                lookSensX = lookSensXOriginal;
+                lookSensY = lookSensYOriginal;
+            }
 
-        float rotateX = _cameraMove.x * lookSensX;
-        float rotateY = _cameraMove.y * lookSensY;
+            float rotateX = _cameraMove.x * lookSensX;
+            float rotateY = _cameraMove.y * lookSensY;
 
-        transform.Rotate(Vector3.up * rotateX);
+            transform.Rotate(Vector3.up * rotateX);
 
-        xRotaion -= rotateY;
-        xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
-        _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+            xRotaion -= rotateY;
+            xRotaion = Mathf.Clamp(xRotaion, -50f, 60f);
+            _camera.transform.localRotation = Quaternion.Euler(xRotaion, 0f, 0f);
+        
+        
     }
     public void ChangeSensX()
     {
@@ -386,7 +396,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.radius = _playerCC.radius;
             //Animation animationComponent;
             animator.Play("L3Combat_Transform", 0, .3f);
-            
+            //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(false);
 
 
             Debug.Log("Bot Mode");
@@ -410,7 +420,7 @@ public class PlayerController : MonoBehaviour
             _playerCollider.height = _playerCC.height;
             _playerCollider.radius = _playerCC.radius;
             animator.Play("L3Combat_Transform", 0, .3f);
-
+            //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(true);
         }
         
         yield return new WaitForSeconds(.1f);

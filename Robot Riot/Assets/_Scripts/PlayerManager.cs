@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Player Layer Cameras")]
     [SerializeField] public List<LayerMask> playerLayers;
+    //[SerializeField] public List<mask>
     // public List<LayerMask> playerLayers;
 
     private void Awake()
@@ -72,6 +73,8 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
         StartCoroutine(TurnCamOff());
         Transform playerParent = player.transform;
+
+        
         playerCount++;
         //Debug.Log("Player Number:" + playerCount);
 
@@ -80,11 +83,30 @@ public class PlayerManager : MonoBehaviour
 
         //Convert Layer mask from bit to int
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
-        playerParent.GetComponentInChildren<CinemachineBrain>().gameObject.layer = layerToAdd;
+        //playerParent.GetComponentInChildren<CinemachineBrain>().gameObject.layer = layerToAdd;
+
+        
         playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
+        //playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
 
-        //player.gameObject.GetComponent<Health>().playerNumber = playerCount;
+
+        //set the channelmasking for cinemachines recoil channels
+        if(playerCount < 2)
+        {
+            playerCount = 1;
+            
+        }
+        else if(playerCount == 2)
+        {
+            playerCount = 3;
+        }     
+        playerParent.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask = playerCount + 1;
+
+        Debug.Log(playerCount + "PlayerCount");
+
+
+        //player.gameObject.GetComponent<Health>().playerNumber = playerCount + 1;
     }
 
     public void RegisterPlayer(PlayerInput player)
