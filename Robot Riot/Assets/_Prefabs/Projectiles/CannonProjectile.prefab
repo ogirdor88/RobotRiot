@@ -166,17 +166,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
-    m_ImpulseChannel: -1
-    m_ImpulseShape: 3
+    m_ImpulseChannel: 6
+    m_ImpulseShape: 0
     m_CustomImpulseShape:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -0.000021729618
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.25361827
+        value: 0.16120303
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5587599
+        value: -0.09850414
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.0016313195
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_ImpulseDuration: 0.2
     m_ImpulseType: 1
-    m_DissipationRate: 0.933
+    m_DissipationRate: 0.945
     m_RawSignal: {fileID: 0}
     m_AmplitudeGain: 1
     m_FrequencyGain: 1
@@ -203,6 +239,6 @@ MonoBehaviour:
     m_ImpactRadius: 100
     m_DirectionMode: 0
     m_DissipationMode: 2
-    m_DissipationDistance: 50
+    m_DissipationDistance: 30
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: 0, z: -2}
+  m_DefaultVelocity: {x: 0, y: 0, z: 0}

@@ -58,11 +58,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(weapon.weaponType == WeaponType.Projectile)
-        {
-            impulseScource.GenerateImpulse(transform.position);
 
-        }
+        
 
         if (other.GetComponent<Health>() && !didDamage)
         {
@@ -98,7 +95,9 @@ public class Projectile : MonoBehaviour
                 VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 //VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 transform.localScale = new Vector3(3f, 3f, 3f);
-                
+
+                impulseScource.GenerateImpulse(transform.position);
+
                 //VFX.SetActive(true);
                 Destroy(gameObject, .05f);
                 Destroy(VFXObject, VFXObject.GetComponent<ParticleSystem>().main.duration);

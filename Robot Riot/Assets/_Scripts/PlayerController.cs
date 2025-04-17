@@ -442,24 +442,26 @@ public class PlayerController : MonoBehaviour
     IEnumerator SetCameraDistance(float newDistance)
     {
         CinemachineVirtualCamera virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-        CinemachineFramingTransposer framingTransposer = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        float initialDistance = virtualCamera.m_CameraDistance;
+        Cinemachine3rdPersonFollow thridPersonFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        float initialDistance = thridPersonFollow.CameraDistance;
 
         float elapsedTime = 0f;
-        float lerpDuration = 0.7f; // Duration of the lerp
+        float lerpDuration = 0.4f; // Duration of the lerp
+
+        Debug.Log("New Distance: " + newDistance);
 
         while (elapsedTime < lerpDuration)
         {
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / lerpDuration;
 
-            framingTransposer.m_CameraDistance = Mathf.Lerp(initialDistance, newDistance, t);
+            thridPersonFollow.CameraDistance = Mathf.Lerp(initialDistance, newDistance, t);
 
             yield return null; // Wait for the next frame
         }
 
         // Ensure the final distance is set to the exact newDistance
-        framingTransposer.m_CameraDistance = newDistance;
+        thridPersonFollow.CameraDistance = newDistance;
     }
     
 
