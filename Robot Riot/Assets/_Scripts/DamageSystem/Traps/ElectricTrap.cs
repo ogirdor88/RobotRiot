@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class ElectricTrap : MonoBehaviour
 
     [SerializeField] private int coolDown;
     private bool canDeploy = false;
+
+    [SerializeField] public CinemachineImpulseSource impulseScource;
+
 
     private void Awake()
     {
@@ -25,6 +29,9 @@ public class ElectricTrap : MonoBehaviour
                 other.gameObject.AddComponent<ElectricStatusEffect>();
                 triggered = true;
                 StartCoroutine(ElectricTrapVFX());
+
+                impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+
             }
         }
     }

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 2123264735180729008}
   - component: {fileID: 2145769069811070301}
   - component: {fileID: 6203946290225006268}
+  - component: {fileID: 2252800482557703270}
   m_Layer: 0
   m_Name: LaserGun_Smile
   m_TagString: Weapon
@@ -130,19 +131,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   slot: 1
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
-  canShoot: 1
+  canShoot: 0
   canTrap: 0
   isContinousWeapon: 0
   muzzle: {fileID: 2720422796932307686}
   muzzle2: {fileID: 0}
-  weapon: {fileID: 11400000, guid: 2c124588ae13ff24795086afcc3a5c05, type: 2}
   projectile: {fileID: 2557240884926126808, guid: 7e0f747add98d96408c688063e4261b3, type: 3}
   firingSound: {fileID: 6203946290225006268}
   dualFiringSound1: {fileID: 0}
   dualFiringSound2: {fileID: 0}
+  owner: {fileID: 0}
+  impulseScource: {fileID: 2252800482557703270}
 --- !u!65 &2145769069811070301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -260,3 +264,92 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2252800482557703270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026912718064922048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 0
+    m_ImpulseShape: 0
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 4.384513
+        outSlope: 4.384513
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.19956447
+        value: 0.87499297
+        inSlope: 1.9008286
+        outSlope: 1.9008286
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7466938
+        value: 0.55609554
+        inSlope: -1.3862958
+        outSlope: -1.3862958
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.0014218576
+        inSlope: -2.189736
+        outSlope: -2.189736
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 1
+    m_DissipationRate: 0.225
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: -1, y: 2, z: 0}

@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Cannon : Weapon
 {
@@ -10,6 +12,9 @@ public class Cannon : Weapon
     [SerializeField] private GameObject projectile;
     //[SerializeField] private bool canShoot = true;
 
+    [SerializeField] private GameObject owner;
+
+    [SerializeField] public CinemachineImpulseSource impulseScource;
 
     private void Awake()
     {
@@ -20,8 +25,14 @@ public class Cannon : Weapon
         canShoot = true;
         timeToFire = weapon.fireRate;
         remainingAmmo = weapon.ammo;
+
+
+        //owner = playerMove.gameObject;
+        //impulseScource.m_ImpulseDefinition.m_ImpulseChannel = owner.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
+
     }
 
+    
     private void Update()
     {
 
@@ -42,6 +53,11 @@ public class Cannon : Weapon
         playerMove.animator.Play("L3 Shoot");
         canShoot = false;
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.localRotation);
+
+        //Generate camer impulse
+        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+
+
         Projectile projectileContainer = newProjectile.GetComponent<Projectile>();
         projectileContainer.owner = playerMove.gameObject;
         remainingAmmo--;

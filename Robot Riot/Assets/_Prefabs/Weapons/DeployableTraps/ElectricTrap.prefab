@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4934140058809435846}
   - component: {fileID: 1090219541610357932}
   - component: {fileID: 2801478580473641795}
+  - component: {fileID: -5242187742035804818}
   m_Layer: 0
   m_Name: ElectricTrap
   m_TagString: Weapon
@@ -119,12 +120,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc11dfce1b5acd4daf5f3f713fa8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 61d590acb3ee31940af17f8da6ece1b3, type: 2}
   slot: 8
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
+  canTrap: 1
+  isContinousWeapon: 0
   weapon: {fileID: 11400000, guid: 61d590acb3ee31940af17f8da6ece1b3, type: 2}
   trap: {fileID: 1360894426891545844, guid: 6bdb760ab3a186a4bad61f27f063ccfd, type: 3}
+  impulseScource: {fileID: -5242187742035804818}
+--- !u!114 &-5242187742035804818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360894426891545844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 0
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.6
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 4}
 --- !u!1001 &6990065975588295664
 PrefabInstance:
   m_ObjectHideFlags: 0

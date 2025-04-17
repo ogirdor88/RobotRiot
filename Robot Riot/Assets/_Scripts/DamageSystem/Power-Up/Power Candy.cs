@@ -6,11 +6,14 @@ public class PowerCandy : MonoBehaviour
 {
     [SerializeField] private AudioSource powerUpSound;
     private AudioSource newAudio;
+    public Texture2D powerUpTexure;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.AddComponent<PowerCandyEffect>();
+            other.GetComponent<PowerCandyEffect>().powerUpTexure = powerUpTexure;
             newAudio = Instantiate(powerUpSound, other.gameObject.transform);
             newAudio.gameObject.transform.parent = other.gameObject.transform;
             newAudio.Play();

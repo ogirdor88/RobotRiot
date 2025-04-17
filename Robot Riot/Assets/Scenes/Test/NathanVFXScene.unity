@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3280,11 +3280,85 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFlea
       objectReference: {fileID: 0}
+    - target: {fileID: 8111937620197006770, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: field of view
+      value: 60.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.7861018
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.116000056
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.513009
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9815136
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.1810499
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.06103513
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415959746696964712, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.011258534
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 668229276671242038, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7897958477175998341}
   m_SourcePrefab: {fileID: 100100000, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+--- !u!1 &7897958477175998340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 668229276671242038, guid: b635d9ec5c5bb4047be3ebc04e11edeb, type: 3}
+  m_PrefabInstance: {fileID: 7897958477175998339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7897958477175998341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7897958477175998340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     private List<PlayerInput> players = new List<PlayerInput>();
     [SerializeField] private List<Transform> startingPoints;
     [SerializeField] private List<Transform> startingPointsLvl2;
-    [SerializeField] private List<LayerMask> playerLayers;
+    
     private PlayerInputManager playerInputManager;
     [SerializeField] private Camera startCamera;
     [SerializeField] private GameObject moveImage;
@@ -22,6 +23,10 @@ public class PlayerManager : MonoBehaviour
     private Dictionary<int, Vector3> playerSpawnPosition = new();
 
     GameObject player1, player2;
+    [Header("Player Layer Cameras")]
+    [SerializeField] public List<LayerMask> playerLayers;
+    //[SerializeField] public List<mask>
+    // public List<LayerMask> playerLayers;
 
     private void Awake()
     {
@@ -47,6 +52,7 @@ public class PlayerManager : MonoBehaviour
     private void OnEnable()
     {
         playerInputManager.onPlayerJoined += AddPlayer;
+
         Debug.Log("Functional");
     }
 
@@ -70,11 +76,40 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
         StartCoroutine(TurnCamOff());
         Transform playerParent = player.transform;
+
+        
         playerCount++;
         //Debug.Log("Player Number:" + playerCount);
-        playerParent.position = startingPoints[players.Count -1].position;
+
+        playerParent.position = startingPoints[players.Count - 1].position;
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
-        //player.gameObject.GetComponent<Health>().playerNumber = playerCount;
+
+        //Convert Layer mask from bit to int
+        int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
+        //playerParent.GetComponentInChildren<CinemachineBrain>().gameObject.layer = layerToAdd;
+
+        
+        playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
+        //playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
+        playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
+
+
+        //set the channelmasking for cinemachines recoil channels
+        if(playerCount < 2)
+        {
+            playerCount = 1;
+            
+        }
+        else if(playerCount == 2)
+        {
+            playerCount = 3;
+        }     
+        playerParent.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask = playerCount + 1;
+
+        Debug.Log(playerCount + "PlayerCount");
+
+
+        //player.gameObject.GetComponent<Health>().playerNumber = playerCount + 1;
     }
 
     public void RegisterPlayer(PlayerInput player)

@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class LaserGun : Weapon
 {
@@ -15,6 +17,10 @@ public class LaserGun : Weapon
     [SerializeField] private AudioSource dualFiringSound1;
     [SerializeField] private AudioSource dualFiringSound2;
 
+    [SerializeField] private GameObject owner;
+
+    [SerializeField] public CinemachineImpulseSource impulseScource;
+
     private void Awake()
     {
         speedOfProjectile = weapon.prjectileSpeed * 300f;
@@ -24,6 +30,8 @@ public class LaserGun : Weapon
         canShoot = true;
         timeToFire = weapon.fireRate;
         remainingAmmo = weapon.ammo;
+        //owner = playerMove.gameObject;
+        //impulseScource.m_ImpulseDefinition.m_ImpulseChannel = owner.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
     }
 
     private void Update()
@@ -61,8 +69,19 @@ public class LaserGun : Weapon
     IEnumerator Shooting()
     {
         playerMove.animator.Play("L3 Shoot");
+        //playerMove.GetComponent<CinemachineImpulseSource>
         canShoot = false;
+
+        
+
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.transform.localRotation);
+
+        //generate recoil impulse from weapon that player holding weapon will catch
+        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+
+        //
+
+
         //newProjectile.transform.SetParent(muzzle);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
         projectileController.owner = playerMove.gameObject;

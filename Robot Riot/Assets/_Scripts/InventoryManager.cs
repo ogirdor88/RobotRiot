@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using static Unity.VisualScripting.Member;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject weaponLocation;
 
     public GameObject inventoryUI;
+    public GameObject powerUpUI;
 
     private void Awake()
     {
@@ -31,6 +34,12 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("Got Weapon");
             Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
+            
+            //apply impulse channel to the weapon so that the weapon recoil is sending to the correct player
+            other.GetComponent<CinemachineImpulseSource>().m_ImpulseDefinition.m_ImpulseChannel = gameObject.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
+            //
+
+
             if (inventory[other.GetComponent<Weapon>().slot] != null && other.GetComponent<Weapon>().canTrap != true && inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo < inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo)
             {
                 inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo = inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo;
