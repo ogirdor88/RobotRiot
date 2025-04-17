@@ -81,6 +81,7 @@ public class Projectile : MonoBehaviour
             {
                 GetComponent<Rigidbody>().isKinematic = true;
                 GameObject VFXObject = Instantiate(VFX, transform.position, transform.rotation);
+                VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 //VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 transform.localScale = new Vector3(3f, 3f, 3f);
                 
