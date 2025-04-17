@@ -45,12 +45,12 @@ public class WeaponUI : MonoBehaviour
         prevWeaponIcon1.GetComponent<RawImage>().texture = null;
         prevWeaponIcon2.GetComponent<RawImage>().texture = null;
 
-        /*if (transform.parent.parent.GetComponent<PlayerController>().botMode)
-            botMode.text = "YOU ARE IN BOT MODE";
+        if (transform.parent.parent.GetComponent<PlayerController>().botMode)
+            botMode.text = "BOT MODE";
         else
-            botMode.text = "YOU ARE NOT IN BOT MODE";*/
+            botMode.text = "COMBAT MODE";
 
-        botMode.text = "BOT MODE: " + transform.parent.parent.GetComponent<PlayerController>().botMode.ToString().ToUpper();
+        //botMode.text = "BOT MODE: " + transform.parent.parent.GetComponent<PlayerController>().botMode.ToString().ToUpper();
 
         // Assign textures
         if (currentWeapon != null)
