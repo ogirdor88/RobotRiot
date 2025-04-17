@@ -259,11 +259,14 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (jump)
+        if (!GameStartCountdown.isCountingDown)
         {
-            _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+            if (jump)
+            {
+                _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+            }
+            jump = false;
         }
-        jump = false;
     }
     #endregion
     #region Camera
@@ -369,9 +372,12 @@ public class PlayerController : MonoBehaviour
     #region Bot Mode
     public void SwitchModes(InputAction.CallbackContext context)
     {
-        if (isChanging == false)
+        if (!GameStartCountdown.isCountingDown)
         {
-            StartCoroutine(SwitchMode());
+            if (isChanging == false)
+            {
+                StartCoroutine(SwitchMode());
+            }
         }
         // this is set up just for inital prototyping purposes
         // will be changed later
