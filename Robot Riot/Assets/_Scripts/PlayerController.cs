@@ -195,26 +195,29 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private void UpdateMove()
     {
-        if (isSprinting && botMode)
+        if (!GameStartCountdown.isCountingDown)
         {
-            _playerSpeed = 10f;
-            stamina -= boostCost * Time.deltaTime;
-            if (stamina < 0)
+            if (isSprinting && botMode)
             {
-                stamina = 0;
-                isSprinting = false;
+                _playerSpeed = 10f;
+                stamina -= boostCost * Time.deltaTime;
+                if (stamina < 0)
+                {
+                    stamina = 0;
+                    isSprinting = false;
+                }
+                StaminaBar.fillAmount = stamina / maxStamina;
+                boostText.text = "" + (int)stamina;
+                if (recharge != null) StopCoroutine(recharge);
+                recharge = StartCoroutine(RechargeStamina());
             }
-            StaminaBar.fillAmount = stamina / maxStamina;
-            boostText.text = "" + (int)stamina;
-            if (recharge != null) StopCoroutine(recharge);
-            recharge = StartCoroutine(RechargeStamina());
+            else
+            {
+                _playerSpeed = originalMoveSpeed;
+            }
+            _moveInput = transform.right * horizontal + transform.forward * vertical;
+            _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
         }
-        else
-        {
-            _playerSpeed = originalMoveSpeed;
-        }
-        _moveInput = transform.right * horizontal + transform.forward * vertical;
-        _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -256,11 +259,14 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (jump)
+        if (!GameStartCountdown.isCountingDown)
         {
-            _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+            if (jump)
+            {
+                _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
+            }
+            jump = false;
         }
-        jump = false;
     }
     #endregion
     #region Camera
@@ -315,43 +321,46 @@ public class PlayerController : MonoBehaviour
     #region Shooting/Reload
     public void Shoot(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if(!GameStartCountdown.isCountingDown)
         {
-            if (botMode)
+            if (context.phase == InputActionPhase.Performed)
             {
-                Debug.Log("Trap");
-                istrapping = true;
-                impulseScource.GenerateImpulse();
+                if (botMode)
+                {
+                    Debug.Log("Trap");
+                    istrapping = true;
+                    impulseScource.GenerateImpulse();
+                }
+                else
+                {
+                    Debug.Log("Pew");
+
+                    isShooting = true;
+                    impulseScource.GenerateImpulse();
+                    //istrapping = true;
+
+                }
             }
-            else
+            //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+            //{
+            //    isShooting = false;
+            //}
+
+            if (context.phase == InputActionPhase.Canceled)
             {
-                Debug.Log("Pew");
+                if (botMode)
+                {
+                    Debug.Log("Trap");
+                    istrapping = false;
+                }
+                else
+                {
+                    Debug.Log("Pew");
 
-                isShooting = true;
-                impulseScource.GenerateImpulse();
-                //istrapping = true;
+                    isShooting = false;
+                    //istrapping = true;
 
-            }
-        }
-        //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
-        //{
-        //    isShooting = false;
-        //}
-
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            if (botMode)
-            {
-                Debug.Log("Trap");
-                istrapping = false;
-            }
-            else
-            {
-                Debug.Log("Pew");
-
-                isShooting = false;
-                //istrapping = true;
-
+                }
             }
         }
     }
@@ -363,9 +372,12 @@ public class PlayerController : MonoBehaviour
     #region Bot Mode
     public void SwitchModes(InputAction.CallbackContext context)
     {
-        if (isChanging == false)
+        if (!GameStartCountdown.isCountingDown)
         {
-            StartCoroutine(SwitchMode());
+            if (isChanging == false)
+            {
+                StartCoroutine(SwitchMode());
+            }
         }
         // this is set up just for inital prototyping purposes
         // will be changed later

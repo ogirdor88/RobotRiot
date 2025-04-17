@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
     [SerializeField]
+    private TMP_Text levelDisc;
+    [SerializeField]
+    private Button facilityButton, villageButton, oasisButton, westButton;
+
+    #region OldSelect
+
+    /*[SerializeField]
     private GameObject select, buttonSelect, lsUnfocused;
 
     private int level, button;
@@ -179,16 +189,28 @@ public class LevelSelect : MonoBehaviour
                 switch (level)
                 {
                     case 1:
-                        SceneManager.LoadScene(3);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Factory"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 2:
-                        SceneManager.LoadScene(4);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("City"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 3:
-                        SceneManager.LoadScene(5);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Oasis"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 4:
-                        SceneManager.LoadScene(6);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("West"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                 }
             }
@@ -200,5 +222,51 @@ public class LevelSelect : MonoBehaviour
             }
             Debug.Log("Interact");
         }
+    }*/
+    #endregion
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject == facilityButton.gameObject)
+        {
+            levelDisc.text = "Facility";
+        }
+        if (EventSystem.current.currentSelectedGameObject == villageButton.gameObject)
+        {
+            levelDisc.text = "Village";
+        }
+        if (EventSystem.current.currentSelectedGameObject == oasisButton.gameObject)
+        {
+            levelDisc.text = "Oasis";
+        }
+        if (EventSystem.current.currentSelectedGameObject == westButton.gameObject)
+        {
+            levelDisc.text = "West";
+        }
+    }
+
+    public void LevelFacility()
+    {
+        DontDestroyOnLoad(GameObject.Find("Factory"));
+        SceneManager.LoadScene("PlayerSelect");
+
+    }
+
+    public void LevelVillage()
+    {
+        DontDestroyOnLoad(GameObject.Find("City"));
+        SceneManager.LoadScene("PlayerSelect");
+    }
+
+    public void LevelOasis()
+    {
+        DontDestroyOnLoad(GameObject.Find("Oasis"));
+        SceneManager.LoadScene("PlayerSelect");
+    }
+
+    public void LevelWest()
+    {
+        DontDestroyOnLoad(GameObject.Find("West"));
+        SceneManager.LoadScene("PlayerSelect");
     }
 }
