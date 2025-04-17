@@ -6,7 +6,7 @@ public class GameStartCountdown : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> countdown;
-    private bool startCount;
+    private bool startCount, countFinished;
     public static bool isCountingDown;
 
     private void Awake()
@@ -16,19 +16,21 @@ public class GameStartCountdown : MonoBehaviour
 
     void Start()
     {
-        
+        isCountingDown = true;
+        countFinished = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("GamerTEST " +isCountingDown);
         if(startCount)
         {
             isCountingDown = true;
             StartCoroutine(CountDown());
-            isCountingDown=false;
             startCount = false;
         }
+        FightTime();
     }
 
     private IEnumerator CountDown()
@@ -41,6 +43,15 @@ public class GameStartCountdown : MonoBehaviour
             go.SetActive(false);
             Debug.Log("off " + go.name);
             yield return new WaitForSeconds(1);
-        }      
+        } 
+        countFinished = true;
+    }
+
+    private void FightTime()
+    {
+        if(!startCount && countFinished)
+        {
+            isCountingDown=false;
+        }
     }
 }
