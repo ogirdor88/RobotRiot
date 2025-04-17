@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class Mine : MonoBehaviour
     private bool canDeploy = false;
     public int WeaponDamage;
     public GameObject explo;
+
+    [SerializeField] public CinemachineImpulseSource impulseScource;
+
+
     private void Awake()
     {
         StartCoroutine(WaitForCooldown());
@@ -20,6 +25,7 @@ public class Mine : MonoBehaviour
         {
             other.gameObject.GetComponent<Health>().TakeDamage(WeaponDamage);
             explo.SetActive(true);
+            impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
             Destroy(gameObject);
         }
     }

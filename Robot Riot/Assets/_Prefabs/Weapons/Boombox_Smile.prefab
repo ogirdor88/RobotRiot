@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7652953963967295131}
   - component: {fileID: 5335322022124184624}
   - component: {fileID: 2804061567186076746}
+  - component: {fileID: 164936348753626548}
   m_Layer: 0
   m_Name: Boombox_Smile
   m_TagString: Weapon
@@ -151,18 +152,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afc2d4be548c1d4a8e095ab5a52a3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
   slot: 2
   bonusDamage: 0
+  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
   canTrap: 0
   isContinousWeapon: 1
-  weapon: {fileID: 11400000, guid: 82c450b095ccef64d9408b3a93fb19d3, type: 2}
   damageCollider: {fileID: 1829446935376796829, guid: f00fc466ecca8ac46b6e965f9ae12d0f, type: 3}
-  power: 0
-  maxPower: 10
   boomBoxVFX: {fileID: 7803591796957527705, guid: f00fc466ecca8ac46b6e965f9ae12d0f, type: 3}
   flameLocation: {fileID: 5739772852851768491}
+  impulseScource: {fileID: 164936348753626548}
+--- !u!114 &164936348753626548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4763255842225768508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 0
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1 &5739772852851768491
 GameObject:
   m_ObjectHideFlags: 0

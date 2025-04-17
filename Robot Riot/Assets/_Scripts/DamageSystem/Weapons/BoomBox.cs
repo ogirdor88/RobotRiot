@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class BoomBox : Weapon
     private GameObject currentProjectile;
 
     [SerializeField] private GameObject flameLocation;
+
+    [SerializeField] public CinemachineImpulseSource impulseScource;
 
 
     private void Start()
@@ -62,6 +65,9 @@ public class BoomBox : Weapon
             currentProjectile = Instantiate(boomBoxVFX, flameLocation.transform.position, transform.rotation);
             currentProjectile.GetComponent<HitboxDamage>().weapon = weapon;
             currentProjectile.GetComponent<HitboxDamage>().playerMove = playerMove;
+
+            //recoil
+            impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
         }
         //currentProjectile.transform.localScale += new Vector3(power / maxPower, power / maxPower, power / maxPower);
         currentProjectile.transform.localScale = new Vector3(originalScale.x + (remainingAmmo * 0.01f), originalScale.y + (remainingAmmo * 0.01f), originalScale.z + (remainingAmmo * 0.01f));

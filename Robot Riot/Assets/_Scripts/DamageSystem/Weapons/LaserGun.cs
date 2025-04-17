@@ -30,8 +30,8 @@ public class LaserGun : Weapon
         canShoot = true;
         timeToFire = weapon.fireRate;
         remainingAmmo = weapon.ammo;
-        owner = playerMove.gameObject;
-        impulseScource.m_ImpulseDefinition.m_ImpulseChannel = owner.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
+        //owner = playerMove.gameObject;
+        //impulseScource.m_ImpulseDefinition.m_ImpulseChannel = owner.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
     }
 
     private void Update()
@@ -72,10 +72,16 @@ public class LaserGun : Weapon
         //playerMove.GetComponent<CinemachineImpulseSource>
         canShoot = false;
 
-        //Vector3 direction = new Vector3(-1, 1, 1);
-        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+        
 
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.transform.localRotation);
+
+        //generate recoil impulse from weapon that player holding weapon will catch
+        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+
+        //
+
+
         //newProjectile.transform.SetParent(muzzle);
         Projectile projectileController = newProjectile.GetComponent<Projectile>();
         projectileController.owner = playerMove.gameObject;
