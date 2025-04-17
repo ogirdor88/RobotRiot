@@ -164,7 +164,8 @@ public class Health : MonoBehaviour
         {
             SetMaxHealth(_startHealth);
             StartCoroutine(ObtainedPowerUp("Health Pack", healthPackTexure));
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed H");
         }
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
@@ -216,5 +217,24 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(2);
         gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
         isProtected = false;
+    }
+    IEnumerator CountDown(GameObject other)
+    {
+        Debug.Log("See if " + other + " has audio source");
+        if (other.GetComponent<AudioSource>() != null)
+        {
+            Debug.Log(other.GetComponent<AudioSource>().clip);
+            AudioSource newAudio = other.GetComponent<AudioSource>();
+            //gameObject.SetActive(false);
+            other.GetComponent<Collider>().enabled = false;
+            other.GetComponent<MeshRenderer>().enabled = false;
+            newAudio.Play();
+            Debug.Log("Audio Length: " + newAudio.clip.length);
+            yield return new WaitForSeconds(newAudio.clip.length);
+            //Destroy(other);
+            Debug.Log("Killed Audio");
+        }
+        else
+            Destroy(other);
     }
 }
