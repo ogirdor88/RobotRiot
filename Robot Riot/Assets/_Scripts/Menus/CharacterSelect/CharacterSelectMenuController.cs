@@ -66,15 +66,15 @@ public class CharacterSelectMenuController : MonoBehaviour
         {
             l3 =true;
         }
-        if (prefab.name == "PlayerFlea")
+        if (prefab.name == "Flea_Player")
         {
             flea = true;
         }
-        if (prefab.name == "PlayerTanker")
+        if (prefab.name == "Player_Tanker")
         {
             tanker = true;
         }
-        if (prefab.name == "PlayerRem")
+        if (prefab.name == "Player_Rem")
         {
             rem = true;
         }
