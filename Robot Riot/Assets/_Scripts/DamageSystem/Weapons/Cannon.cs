@@ -55,7 +55,7 @@ public class Cannon : Weapon
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.localRotation);
 
         //Generate camer impulse
-        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 5);
 
 
         Projectile projectileContainer = newProjectile.GetComponent<Projectile>();

@@ -93,6 +93,11 @@ public class PlayerController : MonoBehaviour
 
     public bool isChanging = false;
 
+
+    [Header("Camera distance for Combat and Bot")]
+    public float combatDistance = 1.43f;
+    public float botDistance = 2.43f;
+
     [SerializeField]
     private CinemachineImpulseSource impulseScource;
 
@@ -410,7 +415,8 @@ public class PlayerController : MonoBehaviour
             animator.Play("L3Combat_Transform", 0, .3f);
             //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(false);
 
-
+            //Set camera distance to bot distance
+            StartCoroutine(SetCameraDistance(botDistance));
             Debug.Log("Bot Mode");
         }
 
@@ -433,6 +439,8 @@ public class PlayerController : MonoBehaviour
             _playerCollider.radius = _playerCC.radius;
             animator.Play("L3Combat_Transform", 0, .3f);
             //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(true);
+            //Set camera distance to combat distance
+            StartCoroutine(SetCameraDistance(combatDistance));
         }
         
         yield return new WaitForSeconds(.1f);
@@ -440,6 +448,34 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(ResetToCenter());
 
     }
+
+
+    //Lerps the camera distance to the respective mode 
+    IEnumerator SetCameraDistance(float newDistance)
+    {
+        CinemachineVirtualCamera virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        Cinemachine3rdPersonFollow thridPersonFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        float initialDistance = thridPersonFollow.CameraDistance;
+
+        float elapsedTime = 0f;
+        float lerpDuration = 0.4f; // Duration of the lerp
+
+        Debug.Log("New Distance: " + newDistance);
+
+        while (elapsedTime < lerpDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / lerpDuration;
+
+            thridPersonFollow.CameraDistance = Mathf.Lerp(initialDistance, newDistance, t);
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the final distance is set to the exact newDistance
+        thridPersonFollow.CameraDistance = newDistance;
+    }
+    
 
     IEnumerator ResetToCenter()
     {

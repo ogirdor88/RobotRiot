@@ -25,8 +25,7 @@ public class PlayerManager : MonoBehaviour
     GameObject player1, player2;
     [Header("Player Layer Cameras")]
     [SerializeField] public List<LayerMask> playerLayers;
-    //[SerializeField] public List<mask>
-    // public List<LayerMask> playerLayers;
+    
 
     private void Awake()
     {
@@ -85,12 +84,12 @@ public class PlayerManager : MonoBehaviour
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
 
         //Convert Layer mask from bit to int
-        int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
-        //playerParent.GetComponentInChildren<CinemachineBrain>().gameObject.layer = layerToAdd;
 
+
+        int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
         
         playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
-        //playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
+        
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
 
 
