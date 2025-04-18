@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OilSlick : MonoBehaviour
 {
@@ -49,5 +50,15 @@ public class OilSlick : MonoBehaviour
     {
         yield return new WaitForSeconds(coolDown);
         canDeploy = true;
+    }
+
+    public void DisplayName()
+    {
+        Debug.Log("Pete");
+    }
+
+    public void TurnOffButton(GameObject b)
+    {
+       b.GetComponent<Button>().interactable = false;
     }
 }

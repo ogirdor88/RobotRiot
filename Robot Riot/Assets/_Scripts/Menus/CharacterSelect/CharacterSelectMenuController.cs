@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditorInternal;
 using UnityEngine;
@@ -18,8 +19,18 @@ public class CharacterSelectMenuController : MonoBehaviour
     [SerializeField]
     private TMP_Text CharacterName;
 
+    public static bool l3, flea, tanker, rem;
+
     private float ignoreInputTime = 1.5f;
     private bool inputEnabled;
+
+    private void Awake()
+    {
+        l3 = false;
+        flea = false;
+        tanker = false;
+        rem = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -31,7 +42,7 @@ public class CharacterSelectMenuController : MonoBehaviour
         {
             inputEnabled = true;
         }
-        
+        updateButtons();
     }
 
     public void SetPlayerIndex(int pi)
@@ -50,6 +61,23 @@ public class CharacterSelectMenuController : MonoBehaviour
         readyPanel1.SetActive(true);
         readyButton.Select();
         menuPanel1.SetActive(false);
+
+        if(prefab.name == "L3_PlayerHolder") 
+        {
+            l3 =true;
+        }
+        if (prefab.name == "PlayerFlea")
+        {
+            flea = true;
+        }
+        if (prefab.name == "PlayerTanker")
+        {
+            tanker = true;
+        }
+        if (prefab.name == "PlayerRem")
+        {
+            rem = true;
+        }
 
     }
 
@@ -83,5 +111,45 @@ public class CharacterSelectMenuController : MonoBehaviour
             CharacterName.text = "Rem";
         }
 
+    }
+
+    public void DisableL3()
+    {
+        l3 = true;
+        
+    }
+    public void DisableFlea()
+    {
+        flea = true;
+       
+    }
+    public void DisableTanker()
+    {
+        tanker = true;
+        
+    }
+    public void DisableRem()
+    {
+        rem = true;
+    }
+
+    private void updateButtons()
+    {
+        if (l3)
+        {
+            l3Button.GetComponent<Button>().interactable = false;
+        }
+        if (flea)
+        {
+           fleaButton.GetComponent<Button>().interactable = false;
+        }
+        if (tanker)
+        {
+            tankerButton.GetComponent<Button>().interactable = false;
+        }
+        if (rem)
+        {
+            remButton.GetComponent<Button>().interactable = false;
+        }
     }
 }
