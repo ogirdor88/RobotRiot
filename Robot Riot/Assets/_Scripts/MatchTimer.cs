@@ -41,7 +41,7 @@ public class MatchTimer : MonoBehaviour
             {
                 timeText.text = "Sudden Death";
                 suddenDeath = true;
-                Debug.Log("START SUDDEN DEATH");
+                //Debug.Log("START SUDDEN DEATH");
             }
         }
         

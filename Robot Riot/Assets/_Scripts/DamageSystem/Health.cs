@@ -44,6 +44,8 @@ public class Health : MonoBehaviour
     public Texture2D healthPackTexure;
     public Texture2D energyDrinkTexure;
 
+    private bool respawn = true;
+
     private void Awake()
     {
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
@@ -51,6 +53,7 @@ public class Health : MonoBehaviour
         isProtected = false;
         _spawnPoint = transform.position;
         _outOfLives = false;
+        respawn = true;
 
         if (gameObject.GetComponent<PlayerController>())
         {
@@ -85,7 +88,7 @@ public class Health : MonoBehaviour
 
         if (isPlayer)
         {
-            if (MatchTimer.suddenDeath)
+            if (MatchTimer.suddenDeath && respawn)
             {
                 SuddenDeathRespawn();
             }
@@ -172,6 +175,7 @@ public class Health : MonoBehaviour
         //sets player health to 1
         SetMaxHealth(1);
         _playerController._playerCC.enabled = true;
+        respawn = false;
 
     }
 
