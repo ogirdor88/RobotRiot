@@ -85,6 +85,11 @@ public class Health : MonoBehaviour
 
         if (isPlayer)
         {
+            if (MatchTimer.suddenDeath)
+            {
+                SuddenDeathRespawn();
+            }
+
             switch (_livesCount)
             {
                 case 3:
@@ -100,6 +105,7 @@ public class Health : MonoBehaviour
                 case 1:
                     Life1.SetActive(true);
                     Life2.SetActive(false);
+                    Life3.SetActive(false);
                     _outOfLives = true;
                     break;
                 case 0:
@@ -156,6 +162,17 @@ public class Health : MonoBehaviour
             SetMaxHealth(_startHealth);
         }
         _playerController._playerCC.enabled = true;
+    }
+
+    private void SuddenDeathRespawn()
+    {
+        _playerController._playerCC.enabled = false;
+        transform.position = _spawnPoint;
+        _livesCount = 1;
+        //sets player health to 1
+        SetMaxHealth(1);
+        _playerController._playerCC.enabled = true;
+
     }
 
     private void OnTriggerEnter(Collider other)

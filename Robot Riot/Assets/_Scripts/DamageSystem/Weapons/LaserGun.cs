@@ -64,6 +64,12 @@ public class LaserGun : Weapon
                 }
             }
         }
+
+        //When sudden death starts get rid of weapons
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator Shooting()
