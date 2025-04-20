@@ -46,6 +46,12 @@ public class Cannon : Weapon
                 playerMove.isShooting = false;
             }
         }
+
+        //When sudden death starts get rid of weapons
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator Shooting()

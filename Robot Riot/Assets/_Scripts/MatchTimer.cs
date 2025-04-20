@@ -12,9 +12,7 @@ public class MatchTimer : MonoBehaviour
     public float currentTime;
     public Text timeText;
 
-    public bool suddenDeath;
-    public bool stop;
-
+    public static bool suddenDeath;
 
     [SerializeField] private PlayerManager playerManager;
 
@@ -27,7 +25,6 @@ public class MatchTimer : MonoBehaviour
     private void Start()
     {
         suddenDeath = false;
-        stop = false;
         currentTime = startTime;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -35,21 +32,16 @@ public class MatchTimer : MonoBehaviour
     {
         if(playerManager.playerCount >= 2)
         {
-            if (currentTime > 0 && !stop)
+            if (currentTime > 0 && !suddenDeath)
             {
                 currentTime -= Time.deltaTime;
                 DisplayTime(currentTime);
             }
-            else if (!stop)
+            else if (currentTime <= 0)
             {
-                currentTime = suddenDeathTime;
+                timeText.text = "Sudden Death";
                 suddenDeath = true;
-                Debug.Log("START SUDDEN DEATH");
-            }
-            if (currentTime <= 0 && suddenDeath)
-            {
-                Debug.Log("Over");
-                stop = true;
+                //Debug.Log("START SUDDEN DEATH");
             }
         }
         

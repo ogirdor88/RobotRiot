@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,14 @@ public class PowerUpUI : MonoBehaviour
     [SerializeField] private RawImage powerUpIcon;
     [SerializeField] private TMP_Text powerUpName;
     [SerializeField] private TMP_Text powerUpTimeRemaining;
+    [SerializeField] private UnityEngine.UI.Image powerUpBar;
+    [SerializeField] private UnityEngine.UI.Image backPowerUpBar;
 
     private void Start()
     {
-        UpdatePowerup(null, null, -1);
+        UpdatePowerup(null, null, -1, -1);
     }
-    public void UpdatePowerup(Texture2D powerupImage, string name, int time)
+    public void UpdatePowerup(Texture2D powerupImage, string name, int time, int maxTime)
     {
 
         // Assign textures
@@ -32,11 +35,19 @@ public class PowerUpUI : MonoBehaviour
         }
         else
             powerUpName.text = string.Empty;
-        if (powerUpTimeRemaining != null && time >= 0)
+        if (powerUpTimeRemaining != null && powerUpBar != null && time >= 0)
         {
             powerUpTimeRemaining.text = "TIME: " + time.ToString();
+            powerUpBar.fillAmount = (float)time / (float)maxTime;
+            powerUpBar.enabled = true;
+            backPowerUpBar.enabled = true;
         }
         else
+        {
             powerUpTimeRemaining.text = string.Empty;
+            powerUpBar.enabled = false;
+            backPowerUpBar.enabled = false;
+        }
+            
     }
 }
