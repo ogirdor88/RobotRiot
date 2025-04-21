@@ -22,9 +22,11 @@ public class PlayerManager : MonoBehaviour
     private Dictionary<int, InputDevice> playerDevice = new();
     private Dictionary<int, Vector3> playerSpawnPosition = new();
 
+    GameObject player1, player2;
     [Header("Player Layer Cameras")]
     [SerializeField] public List<LayerMask> playerLayers;
-    
+    //[SerializeField] public List<mask>
+    // public List<LayerMask> playerLayers;
 
     private void Awake()
     {
@@ -43,6 +45,8 @@ public class PlayerManager : MonoBehaviour
         startCamera.enabled = true;
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        GetCharacters();
     }
 
     private void OnEnable()
@@ -81,12 +85,12 @@ public class PlayerManager : MonoBehaviour
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
 
         //Convert Layer mask from bit to int
-
-
         int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
+        //playerParent.GetComponentInChildren<CinemachineBrain>().gameObject.layer = layerToAdd;
+
         
         playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
-        
+        //playerParent.GetComponentInChildren<CinemachineFreeLook>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
 
 
@@ -116,10 +120,10 @@ public class PlayerManager : MonoBehaviour
             playerSpawnPosition[player.playerIndex] = player.transform.position;
         }
     }
-    public InputDevice GetPlayerDevice(int playerIndex)
+    /*public InputDevice GetPlayerDevice(int playerIndex)
     {
         return playerDevice.ContainsKey(playerIndex) ? playerDevice[playerIndex] : null;
-    }
+    }*/
 
     public Vector3 GetSpawnPosition(int playerIndex)
     {
@@ -151,4 +155,18 @@ public class PlayerManager : MonoBehaviour
             moveImage.SetActive(false);
         }
     }
+
+    private void GetCharacters()
+    {
+        GameObject info = GameObject.Find("PlayerInfo");
+
+        GameObject player1, player2;
+
+        player1 = info.GetComponent<PlayerInfo>().characters[0];
+        player2 = info.GetComponent<PlayerInfo>().characters[1];
+
+        PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[0] });
+        PlayerInput.Instantiate(player2, 1, "Controls", -1,new[] { Gamepad.all[1] });
+    }
+    
 }

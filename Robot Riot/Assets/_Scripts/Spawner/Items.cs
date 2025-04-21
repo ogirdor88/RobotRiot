@@ -12,11 +12,5 @@ public class Items : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.up * rotateSpeed *Time.deltaTime);
-
-        //When sudden death starts get rid of items
-        if (MatchTimer.suddenDeath)
-        {
-            Destroy(gameObject);
-        }
     }
 }

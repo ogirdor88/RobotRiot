@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2551094063414792458}
   - component: {fileID: 4393651961206633177}
   - component: {fileID: 7326768329506179616}
-  - component: {fileID: 4688187336174866640}
   m_Layer: 0
   m_Name: TwinLaser
   m_TagString: Weapon
@@ -48,22 +47,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24c1dd07c3aa464abf77902905f3530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: aec1d645d13da3a488b1653b3aea982f, type: 2}
   slot: 9
   bonusDamage: 0
-  remainingAmmo: 0
   playerMove: {fileID: 0}
   canShoot: 1
   canTrap: 0
   isContinousWeapon: 0
   muzzle: {fileID: 7991667050543702073}
   muzzle2: {fileID: 7389287355028170158}
+  weapon: {fileID: 11400000, guid: aec1d645d13da3a488b1653b3aea982f, type: 2}
   projectile: {fileID: 1610702329485098589, guid: 04fe1431fa16be64388d02463f3b70a5, type: 3}
   firingSound: {fileID: 0}
   dualFiringSound1: {fileID: 1190754784397065156}
   dualFiringSound2: {fileID: 1729241103086239531}
-  owner: {fileID: 0}
-  impulseScource: {fileID: 4688187336174866640}
 --- !u!65 &7326768329506179616
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -85,95 +81,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4688187336174866640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4050663651240776235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 0
-    m_ImpulseShape: 0
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 4.384513
-        outSlope: 4.384513
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.19956447
-        value: 0.87499297
-        inSlope: 1.9008286
-        outSlope: 1.9008286
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.7466938
-        value: 0.55609554
-        inSlope: -1.3862958
-        outSlope: -1.3862958
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0.0014218576
-        inSlope: -2.189736
-        outSlope: -2.189736
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 1
-    m_DissipationRate: 0.225
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: -1, y: 2, z: 0}
 --- !u!1 &4362009805733401962
 GameObject:
   m_ObjectHideFlags: 0
