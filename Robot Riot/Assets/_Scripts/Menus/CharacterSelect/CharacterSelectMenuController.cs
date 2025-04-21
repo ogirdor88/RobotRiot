@@ -17,7 +17,7 @@ public class CharacterSelectMenuController : MonoBehaviour
     [SerializeField]
     private Button readyButton, l3Button, fleaButton, tankerButton, remButton;
     [SerializeField]
-    private TMP_Text CharacterName;
+    private TMP_Text CharacterName, CharacterDescription;
 
     public static bool l3, flea, tanker, rem;
 
@@ -90,25 +90,38 @@ public class CharacterSelectMenuController : MonoBehaviour
         readyButton.gameObject.SetActive(false);
     }
 
-    //checks which button is active and changes the character name text accordinglys
+    //checks which button is active and changes the character name and description text accordingly
     private void ChangeText()
     {
         if (EventSystem.current.currentSelectedGameObject == l3Button.gameObject)
         {
             CharacterName.text = "L3";
-            Debug.Log("le 3 button");
+            CharacterDescription.text = "L3 is the self-proclaimed hero to his own story." +
+                " He is always ready for adventure but somehow always gets dragged into Flea's shenanigans." +
+                " Is unsuccessful in getting out of them.";
         }
         if (EventSystem.current.currentSelectedGameObject == fleaButton.gameObject)
         {
             CharacterName.text = "Flea";
+            CharacterDescription.text = "Flea is the shifty one of the bunch," +
+                " and he always tries to be sneaky among the others." +
+                " He is the master planner out of our star cast," +
+                " but like most of his plans, the execution is not there. Like at all.";
         }
         if (EventSystem.current.currentSelectedGameObject == tankerButton.gameObject)
         {
             CharacterName.text = "Tanker";
+            CharacterDescription.text = "Tanker is the gentle giant and resident softie at heart." +
+                " He seems like he doesn't care about anyone other than Rem," +
+                " but he's grown to love his bot family. Even Flea.";
         }
         if (EventSystem.current.currentSelectedGameObject == remButton.gameObject)
         {
             CharacterName.text = "Rem";
+            CharacterDescription.text = "Rem is the sensitive soul among her bot brothers," +
+                " always cleaning up after L3 and Flea's messes." +
+                " She joins Tanker when he watches old films they found around The Village," +
+                " but knows how to have a good time and joins in with her brothers; mischief.";
         }
 
     }
