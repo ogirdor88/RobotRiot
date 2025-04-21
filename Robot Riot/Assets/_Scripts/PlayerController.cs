@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     private bool jump;
     public bool botMode = false;
     private bool slide = false;
+    private bool iced = false;
 
     public bool isShooting = false; 
     public bool istrapping = false;
@@ -215,8 +216,16 @@ public class PlayerController : MonoBehaviour
             {
                 _playerSpeed = originalMoveSpeed;
             }
-            _moveInput = transform.right * horizontal + transform.forward * vertical;
-            _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
+            if(iced)
+            {
+                _moveInput = transform.right * horizontal + transform.forward * vertical;
+                _playerCC.Move(_moveInput * _playerSpeed/2 * Time.deltaTime);
+            }
+            else
+            {
+                _moveInput = transform.right * horizontal + transform.forward * vertical;
+                _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -520,6 +529,12 @@ public class PlayerController : MonoBehaviour
             slide = true;
             _moveDir = _moveInput;
         }
+
+        if(other.name == "Ice_Spikes_Finished(Clone)" && other.gameObject.GetComponent<IceSpikes>())
+        {
+            if(other.gameObject.GetComponent<IceSpikes>().count == 1)
+            StartCoroutine(SlowDown());
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -539,12 +554,20 @@ public class PlayerController : MonoBehaviour
             OilSlide();
         }
     }
-    #region Slide
+    #region Slide/Slow
     private void OilSlide()
     {
         //move the player in the direction that they entered the oil and double the speed to make it seem slick
         _playerCC.Move(_moveDir * _playerSpeed*2 * Time.deltaTime);
     }
+
+    private IEnumerator SlowDown()
+    {
+        iced = true;
+        yield return new WaitForSeconds(3);
+        iced = false;
+    }
+
     #endregion
 
     #region Sword

@@ -11,6 +11,7 @@ public class IceSpikes : MonoBehaviour
     public GameObject VFX;
     public float slowAmount = 1;
     bool triggered;
+    public int count = 0;
 
 
     [SerializeField] public CinemachineImpulseSource impulseScource;
@@ -61,18 +62,26 @@ public class IceSpikes : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        StartCoroutine(SlowDelay(other));
+        count++;
     }
 
-    private IEnumerator SlowDelay(Collider other)
+    private IEnumerator IceBreaker()
     {
         yield return new WaitForSeconds(3);
-        other.GetComponent<PlayerController>()._playerSpeed = playerOriSpeed;
+        Destroy(this.gameObject);
     }
 
     IEnumerator WaitForCooldown()
     {
         yield return new WaitForSeconds(coolDown);
         canDeploy = true;
+    }
+
+    private void Update()
+    {
+        if(count >= 2)
+        {
+            StartCoroutine(IceBreaker());
+        }
     }
 }
