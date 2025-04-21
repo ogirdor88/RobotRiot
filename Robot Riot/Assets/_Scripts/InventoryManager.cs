@@ -286,8 +286,11 @@ public class InventoryManager : MonoBehaviour
                 shouldLoop = true;
                 checkForSlot = true;
         }
-        if (inventory[activeSlot] != null)
+        if (inventory[activeSlot] != null && gameObject.GetComponent<PlayerController>().botMode != inventory[activeSlot].GetComponent<Weapon>().canTrap)
             inventory[activeSlot].SetActive(false);
+        else if (inventory[activeSlot] != null && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot].GetComponent<Weapon>().canTrap)
+            inventory[activeSlot].SetActive(true);
+
         // Check if the next slot is open, if not loop around
         if (checkForSlot)
         {
