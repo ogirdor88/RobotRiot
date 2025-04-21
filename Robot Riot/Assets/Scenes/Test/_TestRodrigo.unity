@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: TurnOffButton
         m_Mode: 2
@@ -198,7 +198,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: DisplayName
         m_Mode: 1
@@ -855,6 +855,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301000880}
   m_CullTransparentMesh: 1
+--- !u!114 &365025134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148391280934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc11dfce1b5acd4daf5f3f713fa8dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 6379aa5181429044ba717feef28f34ce, type: 2}
+  slot: 5
+  bonusDamage: 0
+  remainingAmmo: 0
+  playerMove: {fileID: 0}
+  canShoot: 1
+  canTrap: 1
+  isContinousWeapon: 0
+  weapon: {fileID: 0}
+  trap: {fileID: 5358451225811571288, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+  impulseScource: {fileID: 0}
+--- !u!65 &365025135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148391280934}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023307726, y: 0.030471638, z: 0.010138267}
+  m_Center: {x: 0.000018623658, y: -0.0007942687, z: 0}
 --- !u!1 &395243318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1444,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: TurnOffButton
         m_Mode: 2
@@ -1412,7 +1456,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: DisplayName
         m_Mode: 1
@@ -1462,17 +1506,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889117544}
   m_CullTransparentMesh: 1
---- !u!114 &941913497 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1611179603610833313, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-  m_PrefabInstance: {fileID: 2999274527243742709}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fc8100e4c9fdbd4297cdca908752559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &950286730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2591,7 +2624,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: DisplayName
         m_Mode: 1
@@ -2603,7 +2636,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 941913497}
+      - m_Target: {fileID: 4594690981192383572}
         m_TargetAssemblyTypeName: OilSlick, Assembly-CSharp
         m_MethodName: TurnOffButton
         m_Mode: 2
@@ -3018,6 +3051,41 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0633e149a0e1e12499db6f01d35ea5b8, type: 3}
+--- !u!4 &543450652315048860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148391280934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.945, y: 1.066, z: 0}
+  m_LocalScale: {x: 19.77, y: 19.77, z: 19.77}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &919132148391280934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543450652315048860}
+  - component: {fileID: 3469287838313239609}
+  - component: {fileID: 1711813854250311923}
+  - component: {fileID: 365025135}
+  - component: {fileID: 365025134}
+  m_Layer: 0
+  m_Name: GasCan
+  m_TagString: Weapon
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1001 &1497842661512982094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3079,6 +3147,48 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe066b10bc81be4487c1bf7990e5f96, type: 3}
+--- !u!23 &1711813854250311923
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148391280934}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0d4b1fbd6335a844f8138b82306be12a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1001 &1899520901924143066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3140,63 +3250,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a556c4da0a495b40bbd5e39920af76c, type: 3}
---- !u!1001 &2999274527243742709
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.35738802
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.597
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.275895
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5073211910564144230, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5329939077614498981, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
-      propertyPath: m_Name
-      value: OilSlick
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
 --- !u!1001 &3167417648286082089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3258,6 +3311,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4224daf325cc54e94fbaa490fa2a50, type: 3}
+--- !u!33 &3469287838313239609
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148391280934}
+  m_Mesh: {fileID: -816357472990021684, guid: 8d5d7a331bd8173439a42a65d050846b, type: 3}
 --- !u!1001 &3947070430469046682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3327,6 +3388,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26120ab01c345ee4b92cce9d5deda72c, type: 3}
+--- !u!114 &4594690981192383572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7439266713335311385, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+  m_PrefabInstance: {fileID: 6732117608595358845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc8100e4c9fdbd4297cdca908752559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &6732117608595358845
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5358451225811571288, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_Name
+      value: OilSlickDeploy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039741182155315185, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
 --- !u!1001 &6888424090172019081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3727,7 +3856,6 @@ SceneRoots:
   - {fileID: 189001215}
   - {fileID: 827585114}
   - {fileID: 1497842661512982094}
-  - {fileID: 2999274527243742709}
   - {fileID: 1472311668}
   - {fileID: 728871937}
   - {fileID: 1554737916}
@@ -3743,3 +3871,5 @@ SceneRoots:
   - {fileID: 1523624287}
   - {fileID: 3153788}
   - {fileID: 984305003}
+  - {fileID: 6732117608595358845}
+  - {fileID: 543450652315048860}
