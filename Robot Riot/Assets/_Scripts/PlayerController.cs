@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image StaminaBar;
     [SerializeField]
-    private TMP_Text boostText;
+    private Text boostText;
     [SerializeField]
     public float stamina, maxStamina, boostCost;
     private Coroutine recharge;

@@ -19,6 +19,14 @@ public class Mine : MonoBehaviour
         StartCoroutine(WaitForCooldown());
     }
 
+    private void Start()
+    {
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject, 5f);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player" && canDeploy)
