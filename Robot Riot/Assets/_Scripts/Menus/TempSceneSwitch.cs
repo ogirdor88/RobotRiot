@@ -15,7 +15,7 @@ public class TempSceneSwitch : MonoBehaviour
     [SerializeField] private GameObject items;
     [SerializeField] private Button creditsX, itemsX, creditsButton, itemsButton;
 
-    private void Awake()
+   /* private void Awake()
     {
         if (GameObject.FindObjectOfType<GameManager>())
         {
@@ -40,7 +40,7 @@ public class TempSceneSwitch : MonoBehaviour
         }
         //credits.SetActive(false);
         //items.SetActive(false);
-    }
+    }*/
 
     public void LoadNextScene()
     {
