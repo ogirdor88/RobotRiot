@@ -11,6 +11,10 @@ public class IceSpikes : MonoBehaviour
     public GameObject VFX;
     public float slowAmount = 1;
     bool triggered;
+    public int count = 0;
+    [SerializeField]
+    private AudioSource iceSound;
+    private AudioSource newAudio;
 
 
     [SerializeField] public CinemachineImpulseSource impulseScource;
@@ -26,8 +30,8 @@ public class IceSpikes : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        playerOriSpeed = player.GetComponent<PlayerController>()._playerSpeed;
+        /*player = GameObject.FindWithTag("Player");
+        playerOriSpeed = player.GetComponent<PlayerController>()._playerSpeed;*/
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,9 +42,13 @@ public class IceSpikes : MonoBehaviour
             {
 
                 Debug.Log("Icetriggered");
-                other.GetComponent<PlayerController>()._playerSpeed = slowAmount;
+                //other.GetComponent<PlayerController>()._playerSpeed = slowAmount;
                 impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
                 VFX.SetActive(true);
+                newAudio = Instantiate(iceSound, other.gameObject.transform);
+                newAudio.gameObject.transform.parent = other.gameObject.transform;
+                newAudio.Play();
+                StartCoroutine(IceBreaker());
 
             }
         }
@@ -61,13 +69,15 @@ public class IceSpikes : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        StartCoroutine(SlowDelay(other));
+        count++;
     }
 
-    private IEnumerator SlowDelay(Collider other)
+    private IEnumerator IceBreaker()
     {
         yield return new WaitForSeconds(3);
-        other.GetComponent<PlayerController>()._playerSpeed = playerOriSpeed;
+        //gameObject.SetActive(false);
+        Destroy(this.gameObject);
+        Destroy(newAudio.gameObject);
     }
 
     IEnumerator WaitForCooldown()
@@ -75,4 +85,12 @@ public class IceSpikes : MonoBehaviour
         yield return new WaitForSeconds(coolDown);
         canDeploy = true;
     }
+/*
+    private void Update()
+    {
+        if(count >= 2)
+        {
+            StartCoroutine(IceBreaker());
+        }
+    }*/
 }
