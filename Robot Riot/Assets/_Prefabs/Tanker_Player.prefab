@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0.00012207031, y: -0.000061035156}
   m_SizeDelta: {x: 391.59503, y: 49.20349}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &59801078247843186
@@ -1142,7 +1142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.00015258789}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.00012207031}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1532417055937492557
@@ -1414,8 +1414,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829888269412116134}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.60499895, y: 0.40517893, z: -0.42517728, w: -0.5376157}
-  m_LocalPosition: {x: 0.44799948, y: 0.4229957, z: 0.028995514}
+  m_LocalRotation: {x: -0.60499823, y: 0.40517846, z: -0.42517698, w: -0.537617}
+  m_LocalPosition: {x: 0.447999, y: 0.4229954, z: 0.028995514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1432,12 +1432,12 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: 0.44799948, y: 0.4229957, z: 0.028995514}
-  m_RotationAtRest: {x: 84.30233, y: 127.463394, z: -160.5236}
+  m_TranslationAtRest: {x: 0.447999, y: 0.4229954, z: 0.028995514}
+  m_RotationAtRest: {x: 84.30247, y: 127.46282, z: -160.52426}
   m_TranslationOffsets:
-  - {x: 0.011378765, y: 0.16360033, z: -0.015925407}
+  - {x: 0.011378527, y: 0.16360056, z: -0.015925407}
   m_RotationOffsets:
-  - {x: -81.587, y: -33.47014, z: 44.484287}
+  - {x: -81.587166, y: -33.470222, z: 44.48428}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -1463,7 +1463,7 @@ GameObject:
   - component: {fileID: 3581683436635544708}
   - component: {fileID: 2096943238059646790}
   - component: {fileID: 8580426375218677518}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MainCamerawithCinamachineBrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9043925025704008655}
   - component: {fileID: 3142479835501354645}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1925,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0.000045776367}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0.000061035156}
   m_SizeDelta: {x: 103.53, y: 127.05}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7893931042679012607
@@ -1978,7 +1978,7 @@ GameObject:
   - component: {fileID: 2572770850705000035}
   - component: {fileID: 8177947305188993141}
   - component: {fileID: 1554263456854434930}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5432,6 +5432,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 63bcf222-dc3d-4797-bcf2-3d14240d6b36
     m_ActionName: UI/Interact[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c635617a-6bef-4fde-ad47-327f1d29239b
+    m_ActionName: UI/Movement[/XInputControllerWindows/leftStick,/XInputControllerWindows1/leftStick,/XInputControllerWindows/dpad/up,/XInputControllerWindows1/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows1/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows1/dpad/left,/XInputControllerWindows/dpad/right,/XInputControllerWindows1/dpad/right]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -5488,8 +5492,6 @@ MonoBehaviour:
   boostCost: 20
   owner: {fileID: 0}
   isChanging: 0
-  combatDistance: 1.43
-  botDistance: 2.43
   impulseScource: {fileID: 3921688300185951729}
 --- !u!114 &3615163168465011546
 MonoBehaviour:
