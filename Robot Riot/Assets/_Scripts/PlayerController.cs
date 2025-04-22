@@ -112,8 +112,6 @@ public class PlayerController : MonoBehaviour
             transform.position = spawnPos;
         }
 
-        _playerCC = gameObject.AddComponent<CharacterController>();
-        _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         originalMoveSpeed = _playerSpeed;
         botMode = false;
         isShooting = false;
@@ -140,6 +138,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerManager.Instance.RegisterPlayer(playerInput);
+        _playerCC = gameObject.AddComponent<CharacterController>();
+        _playerCollider = gameObject.AddComponent<CapsuleCollider>();
         _playerCC.center = new Vector3(0f, 0.65f, 0.05f);
         _playerCC.height = 1.5f;
         _playerCC.radius = 0.5f;
@@ -150,10 +150,6 @@ public class PlayerController : MonoBehaviour
         sensSliderY.value = (lookSensY / 10f);
         sensSliderX.gameObject.SetActive(false);
         sensSliderY.gameObject.SetActive(false);
-
-        
-
-        
     }
 
     private void FixedUpdate()
