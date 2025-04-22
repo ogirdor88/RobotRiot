@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
     private bool jump;
     public bool botMode = false;
     private bool slide = false;
-    private bool iced = false;
 
     public bool isShooting = false; 
     public bool istrapping = false;
@@ -93,6 +92,11 @@ public class PlayerController : MonoBehaviour
     public GameObject owner;
 
     public bool isChanging = false;
+
+
+    [Header("Camera distance for Combat and Bot")]
+    public float combatDistance = 1.43f;
+    public float botDistance = 2.43f;
 
     [SerializeField]
     private CinemachineImpulseSource impulseScource;
@@ -196,37 +200,26 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private void UpdateMove()
     {
-        if (!GameStartCountdown.isCountingDown)
+        if (isSprinting && botMode)
         {
-            if (isSprinting && botMode)
+            _playerSpeed = 10f;
+            stamina -= boostCost * Time.deltaTime;
+            if (stamina < 0)
             {
-                _playerSpeed = 10f;
-                stamina -= boostCost * Time.deltaTime;
-                if (stamina < 0)
-                {
-                    stamina = 0;
-                    isSprinting = false;
-                }
-                StaminaBar.fillAmount = stamina / maxStamina;
-                boostText.text = "" + (int)stamina;
-                if (recharge != null) StopCoroutine(recharge);
-                recharge = StartCoroutine(RechargeStamina());
+                stamina = 0;
+                isSprinting = false;
             }
-            else
-            {
-                _playerSpeed = originalMoveSpeed;
-            }
-            if(iced)
-            {
-                _moveInput = transform.right * horizontal + transform.forward * vertical;
-                _playerCC.Move(_moveInput * _playerSpeed/2 * Time.deltaTime);
-            }
-            else
-            {
-                _moveInput = transform.right * horizontal + transform.forward * vertical;
-                _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
-            }
+            StaminaBar.fillAmount = stamina / maxStamina;
+            boostText.text = "" + (int)stamina;
+            if (recharge != null) StopCoroutine(recharge);
+            recharge = StartCoroutine(RechargeStamina());
         }
+        else
+        {
+            _playerSpeed = originalMoveSpeed;
+        }
+        _moveInput = transform.right * horizontal + transform.forward * vertical;
+        _playerCC.Move(_moveInput * _playerSpeed * Time.deltaTime);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -268,14 +261,11 @@ public class PlayerController : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!GameStartCountdown.isCountingDown)
+        if (jump)
         {
-            if (jump)
-            {
-                _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
-            }
-            jump = false;
+            _jumpFoce.y = Mathf.Sqrt(_jumpHieght * -3f * _gravity);
         }
+        jump = false;
     }
     #endregion
     #region Camera
@@ -330,46 +320,43 @@ public class PlayerController : MonoBehaviour
     #region Shooting/Reload
     public void Shoot(InputAction.CallbackContext context)
     {
-        if(!GameStartCountdown.isCountingDown)
+        if (context.phase == InputActionPhase.Performed)
         {
-            if (context.phase == InputActionPhase.Performed)
+            if (botMode)
             {
-                if (botMode)
-                {
-                    Debug.Log("Trap");
-                    istrapping = true;
-                    impulseScource.GenerateImpulse();
-                }
-                else
-                {
-                    Debug.Log("Pew");
-
-                    isShooting = true;
-                    impulseScource.GenerateImpulse();
-                    //istrapping = true;
-
-                }
+                Debug.Log("Trap");
+                istrapping = true;
+                impulseScource.GenerateImpulse();
             }
-            //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
-            //{
-            //    isShooting = false;
-            //}
-
-            if (context.phase == InputActionPhase.Canceled)
+            else
             {
-                if (botMode)
-                {
-                    Debug.Log("Trap");
-                    istrapping = false;
-                }
-                else
-                {
-                    Debug.Log("Pew");
+                Debug.Log("Pew");
 
-                    isShooting = false;
-                    //istrapping = true;
+                isShooting = true;
+                impulseScource.GenerateImpulse();
+                //istrapping = true;
 
-                }
+            }
+        }
+        //if (context.phase == InputActionPhase.Canceled && gameObject.GetComponent<InventoryManager>().inventory[gameObject.GetComponent<InventoryManager>().activeSlot].GetComponent<Weapon>().isContinousWeapon)
+        //{
+        //    isShooting = false;
+        //}
+
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            if (botMode)
+            {
+                Debug.Log("Trap");
+                istrapping = false;
+            }
+            else
+            {
+                Debug.Log("Pew");
+
+                isShooting = false;
+                //istrapping = true;
+
             }
         }
     }
@@ -381,12 +368,9 @@ public class PlayerController : MonoBehaviour
     #region Bot Mode
     public void SwitchModes(InputAction.CallbackContext context)
     {
-        if (!GameStartCountdown.isCountingDown)
+        if (isChanging == false)
         {
-            if (isChanging == false)
-            {
-                StartCoroutine(SwitchMode());
-            }
+            StartCoroutine(SwitchMode());
         }
         // this is set up just for inital prototyping purposes
         // will be changed later
@@ -419,7 +403,8 @@ public class PlayerController : MonoBehaviour
             animator.Play("L3Combat_Transform", 0, .3f);
             //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(false);
 
-
+            //Set camera distance to bot distance
+            StartCoroutine(SetCameraDistance(botDistance));
             Debug.Log("Bot Mode");
         }
 
@@ -442,6 +427,8 @@ public class PlayerController : MonoBehaviour
             _playerCollider.radius = _playerCC.radius;
             animator.Play("L3Combat_Transform", 0, .3f);
             //gameObject.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.SetActive(true);
+            //Set camera distance to combat distance
+            StartCoroutine(SetCameraDistance(combatDistance));
         }
         
         yield return new WaitForSeconds(.1f);
@@ -449,6 +436,34 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(ResetToCenter());
 
     }
+
+
+    //Lerps the camera distance to the respective mode 
+    IEnumerator SetCameraDistance(float newDistance)
+    {
+        CinemachineVirtualCamera virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
+        Cinemachine3rdPersonFollow thridPersonFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        float initialDistance = thridPersonFollow.CameraDistance;
+
+        float elapsedTime = 0f;
+        float lerpDuration = 0.4f; // Duration of the lerp
+
+        Debug.Log("New Distance: " + newDistance);
+
+        while (elapsedTime < lerpDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / lerpDuration;
+
+            thridPersonFollow.CameraDistance = Mathf.Lerp(initialDistance, newDistance, t);
+
+            yield return null; // Wait for the next frame
+        }
+
+        // Ensure the final distance is set to the exact newDistance
+        thridPersonFollow.CameraDistance = newDistance;
+    }
+    
 
     IEnumerator ResetToCenter()
     {
@@ -529,12 +544,6 @@ public class PlayerController : MonoBehaviour
             slide = true;
             _moveDir = _moveInput;
         }
-
-        if(other.name == "Ice_Spikes_Finished(Clone)" && other.gameObject.GetComponent<IceSpikes>())
-        {
-            if(other.gameObject.GetComponent<IceSpikes>().count == 1)
-            StartCoroutine(SlowDown());
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -554,20 +563,12 @@ public class PlayerController : MonoBehaviour
             OilSlide();
         }
     }
-    #region Slide/Slow
+    #region Slide
     private void OilSlide()
     {
         //move the player in the direction that they entered the oil and double the speed to make it seem slick
         _playerCC.Move(_moveDir * _playerSpeed*2 * Time.deltaTime);
     }
-
-    private IEnumerator SlowDown()
-    {
-        iced = true;
-        yield return new WaitForSeconds(3);
-        iced = false;
-    }
-
     #endregion
 
     #region Sword

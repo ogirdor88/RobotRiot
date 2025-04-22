@@ -44,6 +44,8 @@ public class Health : MonoBehaviour
     public Texture2D healthPackTexure;
     public Texture2D energyDrinkTexure;
 
+    private bool respawn = true;
+
     private void Awake()
     {
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
@@ -51,6 +53,7 @@ public class Health : MonoBehaviour
         isProtected = false;
         _spawnPoint = transform.position;
         _outOfLives = false;
+        respawn = true;
 
         if (gameObject.GetComponent<PlayerController>())
         {
@@ -85,6 +88,11 @@ public class Health : MonoBehaviour
 
         if (isPlayer)
         {
+            if (MatchTimer.suddenDeath && respawn)
+            {
+                SuddenDeathRespawn();
+            }
+
             switch (_livesCount)
             {
                 case 3:
@@ -100,6 +108,7 @@ public class Health : MonoBehaviour
                 case 1:
                     Life1.SetActive(true);
                     Life2.SetActive(false);
+                    Life3.SetActive(false);
                     _outOfLives = true;
                     break;
                 case 0:
@@ -158,13 +167,26 @@ public class Health : MonoBehaviour
         _playerController._playerCC.enabled = true;
     }
 
+    private void SuddenDeathRespawn()
+    {
+        _playerController._playerCC.enabled = false;
+        transform.position = _spawnPoint;
+        _livesCount = 1;
+        //sets player health to 1
+        SetMaxHealth(1);
+        _playerController._playerCC.enabled = true;
+        respawn = false;
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Healthpack" && isPlayer)
         {
             SetMaxHealth(_startHealth);
             StartCoroutine(ObtainedPowerUp("Health Pack", healthPackTexure));
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed H");
         }
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
@@ -216,5 +238,24 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(2);
         gameObject.GetComponent<InventoryManager>().powerUpUI.GetComponent<PowerUpUI>().UpdatePowerup(null, null, -1, -1);
         isProtected = false;
+    }
+    IEnumerator CountDown(GameObject other)
+    {
+        Debug.Log("See if " + other + " has audio source");
+        if (other.GetComponent<AudioSource>() != null)
+        {
+            Debug.Log(other.GetComponent<AudioSource>().clip);
+            AudioSource newAudio = other.GetComponent<AudioSource>();
+            //gameObject.SetActive(false);
+            other.GetComponent<Collider>().enabled = false;
+            other.GetComponent<MeshRenderer>().enabled = false;
+            newAudio.Play();
+            Debug.Log("Audio Length: " + newAudio.clip.length);
+            yield return new WaitForSeconds(newAudio.clip.length);
+            //Destroy(other);
+            Debug.Log("Killed Audio");
+        }
+        else
+            Destroy(other);
     }
 }
