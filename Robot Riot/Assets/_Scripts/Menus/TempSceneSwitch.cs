@@ -85,4 +85,15 @@ public class TempSceneSwitch : MonoBehaviour
         credits.SetActive(false);
         creditsButton.Select();
     }
+
+    public void PlayAgain()
+    {
+        Destroy(GameObject.Find("PlayerInfo"));
+        Destroy(GameObject.Find("WinTracker"));
+        Destroy(GameObject.Find("Factory"));
+        Destroy(GameObject.Find("City"));
+        Destroy(GameObject.Find("Oasis"));
+        Destroy(GameObject.Find("West"));
+        SceneManager.LoadScene(2);
+    }
 }

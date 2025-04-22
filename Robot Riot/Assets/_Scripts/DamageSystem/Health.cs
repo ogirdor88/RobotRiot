@@ -53,7 +53,6 @@ public class Health : MonoBehaviour
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
 
         isProtected = false;
-        _spawnPoint = transform.position;
         _outOfLives = false;
         respawn = true;
 
@@ -70,6 +69,11 @@ public class Health : MonoBehaviour
 
         //set Players health to max
         SetMaxHealth(_startHealth);
+    }
+
+    private void Start()
+    {
+        _spawnPoint = transform.position;
     }
     private void Update()
     {
