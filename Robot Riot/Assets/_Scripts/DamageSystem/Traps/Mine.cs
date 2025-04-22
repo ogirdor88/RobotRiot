@@ -23,7 +23,7 @@ public class Mine : MonoBehaviour
     {
         if (MatchTimer.suddenDeath)
         {
-            Destroy(gameObject, 7f);
+            Destroy(gameObject, 5f);
         }
     }
 
