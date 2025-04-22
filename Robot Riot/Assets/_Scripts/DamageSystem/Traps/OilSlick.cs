@@ -11,6 +11,8 @@ public class OilSlick : MonoBehaviour
     [SerializeField]
     private float slideForce;
 
+    
+
     [SerializeField] private int coolDown;
     private bool canDeploy = false;
     [SerializeField] public CinemachineImpulseSource impulseScource;
@@ -35,6 +37,7 @@ public class OilSlick : MonoBehaviour
             //dir = dir.normalized;
             player.GetComponent<PlayerController>().enabled = false;
             impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
+          
 
         }
     }
@@ -53,6 +56,7 @@ public class OilSlick : MonoBehaviour
     {
         yield return new WaitForSeconds(coolDown);
         canDeploy = true;
+
     }
 
     public void DisplayName()
