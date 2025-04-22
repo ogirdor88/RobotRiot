@@ -46,12 +46,6 @@ public class Cannon : Weapon
                 playerMove.isShooting = false;
             }
         }
-
-        //When sudden death starts get rid of weapons
-        if (MatchTimer.suddenDeath)
-        {
-            Destroy(gameObject);
-        }
     }
 
     IEnumerator Shooting()
@@ -61,7 +55,7 @@ public class Cannon : Weapon
         GameObject newProjectile = Instantiate(projectile, muzzle.transform.position, muzzle.localRotation);
 
         //Generate camer impulse
-        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 5);
+        impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
 
 
         Projectile projectileContainer = newProjectile.GetComponent<Projectile>();

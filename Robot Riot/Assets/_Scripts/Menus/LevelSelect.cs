@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
     [SerializeField]
+    private TMP_Text levelDisc, levelName;
+    [SerializeField]
+    private Button facilityButton, villageButton, oasisButton, westButton;
+
+    #region OldSelect
+
+    /*[SerializeField]
     private GameObject select, buttonSelect, lsUnfocused;
 
     private int level, button;
@@ -179,16 +189,28 @@ public class LevelSelect : MonoBehaviour
                 switch (level)
                 {
                     case 1:
-                        SceneManager.LoadScene(3);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Factory"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 2:
-                        SceneManager.LoadScene(4);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("City"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 3:
-                        SceneManager.LoadScene(5);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("Oasis"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                     case 4:
-                        SceneManager.LoadScene(6);
+                        {
+                            DontDestroyOnLoad(GameObject.Find("West"));
+                            SceneManager.LoadScene("PlayerSelect");
+                        }
                         break;
                 }
             }
@@ -200,5 +222,64 @@ public class LevelSelect : MonoBehaviour
             }
             Debug.Log("Interact");
         }
+    }*/
+    #endregion
+
+    private void Update()
+    {
+        if (EventSystem.current.currentSelectedGameObject == facilityButton.gameObject)
+        {
+            levelName.text = "The Facility";
+            levelDisc.text = "The Facility is the place where the bots were first created by The Nameless Man." +
+                " Designed as an observation room above the facility floor" +
+                ", our main bots converted The Facility into their playground once they were old enough," +
+                " and return to test their abilities from time to time.";
+        }
+        if (EventSystem.current.currentSelectedGameObject == villageButton.gameObject)
+        {
+            levelName.text = "The Village";
+            levelDisc.text = "The Village is a mock rendition of the town the bots \"grew up\" in," +
+                " down to the house designs and the repair shop Flea frequented. " +
+                "The bots tried to tunnel their way out of the Village," +
+                " but ended up back in the same room where they started.";
+        }
+        if (EventSystem.current.currentSelectedGameObject == oasisButton.gameObject)
+        {
+            levelName.text = "The Oasis";
+            levelDisc.text = "The Oasis is Rem's dream getaway from her crazy family," +
+                " filled to the brim with her favorite Roman and Greek references she once read about." +
+                " But of course, she never wants to be away from her family, as the other bots populate The Oasis alongside her.";
+        }
+        if (EventSystem.current.currentSelectedGameObject == westButton.gameObject)
+        {
+            levelName.text = "The West";
+            levelDisc.text = "The West is a picture perfect copy of the wild west town Tanker loved to watch in old films." +
+                " Even down to the mines leading from the bank vault and the saloon's poker tables. But… Who are in the photos in the bank?";
+        }
+    }
+
+    public void LevelFacility()
+    {
+        DontDestroyOnLoad(GameObject.Find("Factory"));
+        SceneManager.LoadScene("PlayerSelect");
+
+    }
+
+    public void LevelVillage()
+    {
+        DontDestroyOnLoad(GameObject.Find("City"));
+        SceneManager.LoadScene("PlayerSelect");
+    }
+
+    public void LevelOasis()
+    {
+        DontDestroyOnLoad(GameObject.Find("Oasis"));
+        SceneManager.LoadScene("PlayerSelect");
+    }
+
+    public void LevelWest()
+    {
+        DontDestroyOnLoad(GameObject.Find("West"));
+        SceneManager.LoadScene("PlayerSelect");
     }
 }

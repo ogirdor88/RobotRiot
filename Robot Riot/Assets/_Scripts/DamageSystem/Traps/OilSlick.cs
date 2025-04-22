@@ -1,6 +1,8 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OilSlick : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class OilSlick : MonoBehaviour
 
     [SerializeField] private int coolDown;
     private bool canDeploy = false;
+    [SerializeField] public CinemachineImpulseSource impulseScource;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class OilSlick : MonoBehaviour
             //Vector3 dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
             //dir = dir.normalized;
             player.GetComponent<PlayerController>().enabled = false;
+            impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
 
         }
     }
@@ -49,5 +53,15 @@ public class OilSlick : MonoBehaviour
     {
         yield return new WaitForSeconds(coolDown);
         canDeploy = true;
+    }
+
+    public void DisplayName()
+    {
+        Debug.Log("Pete");
+    }
+
+    public void TurnOffButton(GameObject b)
+    {
+       b.GetComponent<Button>().interactable = false;
     }
 }
