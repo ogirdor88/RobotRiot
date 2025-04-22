@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
 
     [SerializeField] private bool _outOfLives;
 
+    [SerializeField] private int PlayerID;
+
     // Players health slider
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private Image _healthFill;
@@ -153,12 +155,33 @@ public class Health : MonoBehaviour
         Debug.Log("Does this work?");
         _playerController._playerCC.enabled = false;
         this.gameObject.transform.position = _spawnPoint;
+        
         if (_outOfLives)
         {
-            //SceneManager.LoadScene(3);
-            GameObject.FindObjectOfType<WinTracker>().GameOver(playerNumber);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            // Find all Health components
+            Health[] players = GameObject.FindObjectsOfType<Health>();
+
+            int otherPlayerID = -1;
+            // Identify the other player's ID
+            foreach (Health player in players)
+            {
+                if (player.gameObject != this.gameObject) // Exclude self
+                {
+                    otherPlayerID = player.PlayerID;
+                    break; // Assuming only 2 players, exit after finding one
+                }
+            }
+
+            if (otherPlayerID != -1)
+            {
+                GameObject.FindObjectOfType<WinTracker>().GameOver(otherPlayerID);
+            }
+            else
+            {
+                //Debug.LogError("Could not find the other player's Health component!");
+            }
         }
+        
         else
         {
             _livesCount--;
