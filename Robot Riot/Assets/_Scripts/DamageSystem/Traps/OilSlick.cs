@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class OilSlick : MonoBehaviour
 
     [SerializeField] private int coolDown;
     private bool canDeploy = false;
+    [SerializeField] public CinemachineImpulseSource impulseScource;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class OilSlick : MonoBehaviour
             //Vector3 dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
             //dir = dir.normalized;
             player.GetComponent<PlayerController>().enabled = false;
+            impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
 
         }
     }
