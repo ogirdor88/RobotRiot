@@ -132,7 +132,7 @@ public class InventoryManager : MonoBehaviour
         // Slot is invalid, which means we need to loop around.
         if ((activeSlot + slotchange) < 0 || (activeSlot + slotchange) > inventory.Length - 1)
             shouldLoop = true;
-        else if (inventory[activeSlot + slotchange] == null || gameObject.GetComponent<PlayerController>().botMode != inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+        else if (inventory[activeSlot + slotchange] == null)
         {
             shouldLoop = true;
             checkForSlot = true;
@@ -165,12 +165,12 @@ public class InventoryManager : MonoBehaviour
                         activeSlot = slot;
                         break;
                     }
-                    /*else if (inventory[slot] != null && slot != oldSlot && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
+                    else if (inventory[slot] != null && slot != oldSlot && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
                     {
                         //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                         activeSlot = slot;
                         break;
-                    }*/
+                    }
                 }
                 Debug.Log("Final Slot Test was " + slot);
                 if (oldSlot != activeSlot && inventory[activeSlot] && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot].GetComponent<Weapon>().canTrap)
@@ -211,12 +211,12 @@ public class InventoryManager : MonoBehaviour
                         activeSlot = slot;
                         break;
                     }
-                    /*else if (inventory[slot] != null && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
+                    else if (inventory[slot] != null && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
                     {
                         //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                         activeSlot = slot;
                         break;
-                    }*/
+                    }
                     // We completely looped, there's no other slots.
                     //else if (slot == activeSlot)
                     //break;
@@ -277,11 +277,11 @@ public class InventoryManager : MonoBehaviour
         // Slot is invalid, which means we need to loop around.
         if ((activeSlot + slotchange) < 0 || (activeSlot + slotchange) > inventory.Length - 1)
         {
-            //if(gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+            if(gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
             shouldLoop = true;
         }
            
-        else if (inventory[activeSlot + slotchange] == null || gameObject.GetComponent<PlayerController>().botMode != inventory[activeSlot + slotchange].GetComponent<Weapon>().canTrap)
+        else if (inventory[activeSlot + slotchange] == null)
         {
                 shouldLoop = true;
                 checkForSlot = true;
@@ -316,12 +316,12 @@ public class InventoryManager : MonoBehaviour
                     activeSlot = slot;
                     break;
                 }
-                /*else if (inventory[slot] != null && slot != oldSlot && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
+                else if (inventory[slot] != null && slot != oldSlot && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
                 {
                     //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                     activeSlot = slot;
                     break;
-                }*/
+                }
             }
             Debug.Log("Final Slot Test was " + slot);
             if (oldSlot != activeSlot && inventory[activeSlot] && gameObject.GetComponent<PlayerController>().botMode == inventory[activeSlot].GetComponent<Weapon>().canTrap)
@@ -366,12 +366,12 @@ public class InventoryManager : MonoBehaviour
                     activeSlot = slot;
                     break;
                 }
-                /*else if (inventory[slot] != null && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
+                else if (inventory[slot] != null && !gameObject.GetComponent<PlayerController>().botMode == !inventory[slot].GetComponent<Weapon>().canTrap)
                 {
                     //Debug.Log("Available Slot:" + slot + inventory[activeSlot].gameObject);
                     activeSlot = slot;
                     break;
-                }*/
+                }
                 // We completely looped, there's no other slots.
                 //else if (slot == activeSlot)
                 //break;

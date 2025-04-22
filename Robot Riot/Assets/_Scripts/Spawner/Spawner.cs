@@ -18,8 +18,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-       if (!spawned && !MatchTimer.suddenDeath)
-       {
+       if (!spawned)
+        {
             if (random)
             {
                 RandomSpawn();
@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
             {
                 ConstantSpawn(itemNumber);
             }
-       }
+        }
     }
 
     private void RandomSpawn()
