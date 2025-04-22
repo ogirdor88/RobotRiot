@@ -67,6 +67,7 @@ public class Health : MonoBehaviour
             _playerController = null;
         }
 
+
         //set Players health to max
         SetMaxHealth(_startHealth);
     }

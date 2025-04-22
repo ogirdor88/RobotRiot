@@ -133,6 +133,8 @@ public class PlayerController : MonoBehaviour
 
             initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
         }
+        _playerCC = gameObject.AddComponent<CharacterController>();
+        _playerCollider = gameObject.AddComponent<CapsuleCollider>();
     }
 
     private void Start()
