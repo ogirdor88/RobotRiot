@@ -398,18 +398,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1948665305}
+    m_SelectOnDown: {fileID: 1110453438}
+    m_SelectOnLeft: {fileID: 32564212}
+    m_SelectOnRight: {fileID: 32564212}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618728571}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 1
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1258746426}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 1
@@ -856,7 +856,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -876,9 +876,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618728571}
-        m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
-        m_MethodName: ClosePanel
+      - m_Target: {fileID: 934671868}
+        m_TargetAssemblyTypeName: TempSceneSwitch, Assembly-CSharp
+        m_MethodName: BackOutCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1747,18 +1747,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1110453438}
+    m_SelectOnDown: {fileID: 1948665305}
+    m_SelectOnLeft: {fileID: 518056024}
+    m_SelectOnRight: {fileID: 518056024}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1774,7 +1774,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 32564213}
+  m_TargetGraphic: {fileID: 518056025}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2109,7 +2109,6 @@ GameObject:
   - component: {fileID: 618728568}
   - component: {fileID: 618728570}
   - component: {fileID: 618728569}
-  - component: {fileID: 618728571}
   m_Layer: 5
   m_Name: CreditsPanel
   m_TagString: Untagged
@@ -2195,19 +2194,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618728567}
   m_CullTransparentMesh: 1
---- !u!114 &618728571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618728567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c0b533c033b384d9b4e42a3c47fdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 618728567}
 --- !u!1 &669667237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 618728571}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 1
@@ -2371,7 +2357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1278075736}
+  m_FirstSelected: {fileID: 1110453436}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &680258379
@@ -3815,18 +3801,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 32564212}
+    m_SelectOnDown: {fileID: 518056024}
+    m_SelectOnLeft: {fileID: 1110453438}
+    m_SelectOnRight: {fileID: 1110453438}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3842,7 +3828,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 32564213}
+  m_TargetGraphic: {fileID: 1110453439}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -4131,7 +4117,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1675755484}
+    m_SelectOnUp: {fileID: 1151899468}
     m_SelectOnDown: {fileID: 895647641}
     m_SelectOnLeft: {fileID: 1687232703}
     m_SelectOnRight: {fileID: 1278075737}
@@ -4386,18 +4372,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 1494307906}
+    m_SelectOnDown: {fileID: 1278075737}
+    m_SelectOnLeft: {fileID: 1278075737}
+    m_SelectOnRight: {fileID: 1278075737}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -4417,9 +4403,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1258746426}
-        m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
-        m_MethodName: ClosePanel
+      - m_Target: {fileID: 934671868}
+        m_TargetAssemblyTypeName: TempSceneSwitch, Assembly-CSharp
+        m_MethodName: BackOutItems
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4823,14 +4809,13 @@ GameObject:
   - component: {fileID: 1258746425}
   - component: {fileID: 1258746428}
   - component: {fileID: 1258746427}
-  - component: {fileID: 1258746426}
   m_Layer: 5
   m_Name: ItemListPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1258746425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4867,19 +4852,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1258746426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258746424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c0b533c033b384d9b4e42a3c47fdbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1258746424}
 --- !u!114 &1258746427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,7 +4924,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 887621303}
+    m_SelectOnUp: {fileID: 1151899468}
     m_SelectOnDown: {fileID: 1705051788}
     m_SelectOnLeft: {fileID: 1134117744}
     m_SelectOnRight: {fileID: 2102753975}
@@ -6752,7 +6724,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 394006569}
+    m_SelectOnUp: {fileID: 1151899468}
     m_SelectOnDown: {fileID: 1114160182}
     m_SelectOnLeft: {fileID: 2102753975}
     m_SelectOnRight: {fileID: 1134117744}
@@ -7987,7 +7959,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1258746426}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ControlPanel, Assembly-CSharp
         m_MethodName: ClosePanel
         m_Mode: 1
@@ -8089,18 +8061,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 518056024}
+    m_SelectOnDown: {fileID: 32564212}
+    m_SelectOnLeft: {fileID: 1948665305}
+    m_SelectOnRight: {fileID: 1948665305}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.5882353, g: 1, b: 0, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8625,7 +8597,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 887621303}
+    m_SelectOnUp: {fileID: 1151899468}
     m_SelectOnDown: {fileID: 910292824}
     m_SelectOnLeft: {fileID: 1278075737}
     m_SelectOnRight: {fileID: 1687232703}
