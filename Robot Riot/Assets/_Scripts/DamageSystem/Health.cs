@@ -156,7 +156,7 @@ public class Health : MonoBehaviour
         if (_outOfLives)
         {
             //SceneManager.LoadScene(3);
-            GameObject.FindObjectOfType<GameManager>().GameOver(playerNumber);
+            GameObject.FindObjectOfType<WinTracker>().GameOver(playerNumber);
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else

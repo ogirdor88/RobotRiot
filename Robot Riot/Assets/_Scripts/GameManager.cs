@@ -7,16 +7,16 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     // Who won??
-    public int loser;
+    //public int loser;
 
-    public static GameManager Instance;
+    //public static GameManager Instance;
 
     public GameObject pauseScreen;
 
     /*public PlayerInputManager playerOne;
     public PlayerInputManager playerTwo;*/
 
-    private void Awake()
+    /*private void Awake()
     {
         FindAnyObjectByType(typeof(GameManager));
         if (Instance != null)
@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player Lost:" + playerLost);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene("Game Over");
-    }
+    }*/
 
     public void PauseGame()
     {

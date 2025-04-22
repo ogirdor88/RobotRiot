@@ -11,16 +11,16 @@ public class TempSceneSwitch : MonoBehaviour
 
     private void Awake()
     {
-        if (GameObject.FindObjectOfType<GameManager>())
+        if (GameObject.FindObjectOfType<WinTracker>())
         {
-            Debug.Log("Found GameManager");
-            GameManager gameManager = GameObject.FindObjectOfType<GameManager>();
-            if (gameManager.loser == 1)
+            Debug.Log("Found WinTracker");
+            WinTracker winTracker = GameObject.FindObjectOfType<WinTracker>();
+            if (winTracker.loser == 1)
             {
                 player1Text.text = "You Lost!";
                 player2Text.text = "You Win!";
             }
-            else if (gameManager.loser == 2)
+            else if (winTracker.loser == 2)
             {
                 player1Text.text = "You Win!";
                 player2Text.text = "You Lose!";
@@ -28,7 +28,7 @@ public class TempSceneSwitch : MonoBehaviour
         }
         else
         {
-            Debug.Log("Could not find GameManager or starting in gameover scene");
+            Debug.Log("Could not find WinTracker or starting in gameover scene");
             player1Text.text = "Nobody wins";
             player2Text.text = "Nobody wins";
         }
