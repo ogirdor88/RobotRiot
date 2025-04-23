@@ -13,6 +13,10 @@ public class Mine : MonoBehaviour
 
     [SerializeField] public CinemachineImpulseSource impulseScource;
 
+    [SerializeField]
+    private AudioSource explodeSound;
+    private AudioSource newAudio;
+
 
     private void Awake()
     {
@@ -33,8 +37,12 @@ public class Mine : MonoBehaviour
         {
             other.gameObject.GetComponent<Health>().TakeDamage(WeaponDamage);
             explo.SetActive(true);
+            newAudio = Instantiate(explodeSound, other.gameObject.transform);
+            newAudio.gameObject.transform.parent = other.gameObject.transform;
+            newAudio.Play();
             impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
             Destroy(gameObject);
+            Destroy(newAudio);
         }
     }
 
