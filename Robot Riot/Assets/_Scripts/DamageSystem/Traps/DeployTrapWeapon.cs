@@ -38,5 +38,10 @@ public class DeployTrapWeapon : Weapon
                 Destroy(gameObject);
             }
         }
+
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 }

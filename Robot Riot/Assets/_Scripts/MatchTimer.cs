@@ -33,7 +33,7 @@ public class MatchTimer : MonoBehaviour
     }
     private void Update()
     {
-        if(playerManager.playerCount >= 2)
+        if(!GameStartCountdown.isCountingDown)
         {
             if (currentTime > 0 && !stop)
             {
@@ -67,6 +67,7 @@ public class MatchTimer : MonoBehaviour
         float minutes = Mathf.FloorToInt(displayTime / 60);
         float sec = Mathf.FloorToInt(displayTime % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, sec);
+        Debug.Log("PEEM");
     }
 
     private void OnDestroy()

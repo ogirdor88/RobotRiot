@@ -15,7 +15,7 @@ public class TempSceneSwitch : MonoBehaviour
     [SerializeField] private GameObject items;
     [SerializeField] private Button creditsX, itemsX, creditsButton, itemsButton;
 
-    private void Awake()
+   /* private void Awake()
     {
         if (GameObject.FindObjectOfType<GameManager>())
         {
@@ -40,7 +40,7 @@ public class TempSceneSwitch : MonoBehaviour
         }
         //credits.SetActive(false);
         //items.SetActive(false);
-    }
+    }*/
 
     public void LoadNextScene()
     {
@@ -84,5 +84,16 @@ public class TempSceneSwitch : MonoBehaviour
     {
         credits.SetActive(false);
         creditsButton.Select();
+    }
+
+    public void PlayAgain()
+    {
+        Destroy(GameObject.Find("PlayerInfo"));
+        Destroy(GameObject.Find("WinTracker"));
+        Destroy(GameObject.Find("Factory"));
+        Destroy(GameObject.Find("City"));
+        Destroy(GameObject.Find("Oasis"));
+        Destroy(GameObject.Find("West"));
+        SceneManager.LoadScene(2);
     }
 }
