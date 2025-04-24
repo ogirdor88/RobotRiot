@@ -64,6 +64,11 @@ public class LaserGun : Weapon
                 }
             }
         }
+
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator Shooting()

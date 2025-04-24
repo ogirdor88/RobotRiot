@@ -47,7 +47,8 @@ public class Health : MonoBehaviour
     public Texture2D energyDrinkTexure;
 
     private bool respawn = true;
-
+    [SerializeField]
+    private AudioSource deathSound;
     private void Awake()
     {
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
@@ -188,6 +189,7 @@ public class Health : MonoBehaviour
         
         else
         {
+            deathSound.Play();
             _livesCount--;
             SetMaxHealth(_startHealth);
         }
@@ -240,7 +242,8 @@ public class Health : MonoBehaviour
             }
             SetMaxHealth(newHealth);
             StartCoroutine(ObtainedPowerUp("Energy Drink", energyDrinkTexure));
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
         }
     }

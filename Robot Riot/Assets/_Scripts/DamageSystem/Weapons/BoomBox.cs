@@ -54,6 +54,11 @@ public class BoomBox : Weapon
                 StopFiring();
             }
         }
+
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FireWeapon()
