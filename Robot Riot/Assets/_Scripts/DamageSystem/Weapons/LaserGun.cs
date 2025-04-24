@@ -65,7 +65,6 @@ public class LaserGun : Weapon
             }
         }
 
-        //When sudden death starts get rid of weapons
         if (MatchTimer.suddenDeath)
         {
             Destroy(gameObject);
@@ -84,7 +83,6 @@ public class LaserGun : Weapon
 
         //generate recoil impulse from weapon that player holding weapon will catch
         impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
-        newProjectile.GetComponent<CinemachineImpulseSource>().m_ImpulseDefinition.m_ImpulseChannel = gameObject.GetComponent<CinemachineImpulseSource>().m_ImpulseDefinition.m_ImpulseChannel;
 
         //
 

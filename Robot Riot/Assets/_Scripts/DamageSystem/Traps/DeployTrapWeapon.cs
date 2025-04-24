@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DeployTrapWeapon : Weapon
 {
-    //[SerializeField] private Weapons weapon;
+    [SerializeField] private Weapons weapon;
     private float timeToFire;
 
     //[SerializeField] private bool canShoot = true;
@@ -39,7 +39,6 @@ public class DeployTrapWeapon : Weapon
             }
         }
 
-        //When sudden death starts get rid of traps
         if (MatchTimer.suddenDeath)
         {
             Destroy(gameObject);

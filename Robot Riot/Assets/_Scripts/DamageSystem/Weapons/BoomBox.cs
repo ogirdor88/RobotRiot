@@ -54,7 +54,7 @@ public class BoomBox : Weapon
                 StopFiring();
             }
         }
-        //When sudden death starts get rid of weapons
+
         if (MatchTimer.suddenDeath)
         {
             Destroy(gameObject);

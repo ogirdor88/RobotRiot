@@ -1,4 +1,3 @@
-using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +15,6 @@ public class Projectile : MonoBehaviour
     private float gravity = -5f;
 
     private bool didDamage;
-
-    [SerializeField] public CinemachineImpulseSource impulseScource;
-
 
     public Vector3 target { get; set; }
     public bool hitShot { get; set; }
@@ -58,27 +54,19 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        
-
-        if (other.GetComponent<Health>() && !didDamage)
+        if(other.GetComponent<Health>() && !didDamage)
         {
             if (weapon.weaponType == WeaponType.Projectile && other.gameObject != owner)
             {
-                
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localScale = new Vector3(3f, 3f, 3f);
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
-                
-
                 Debug.Log("Did Damage");
                 didDamage = true;
-                Destroy(gameObject, .05f);
+                PlayAudioOnDestroy(gameObject);
             }
             else if(other.gameObject != owner)
             {
-                //Hit Marker Camera Feedback
-                impulseScource.GenerateImpulse(transform.position);
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
                 Debug.Log("Did Damage if else");
                 didDamage = true;
@@ -96,10 +84,8 @@ public class Projectile : MonoBehaviour
                 //VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 transform.localScale = new Vector3(3f, 3f, 3f);
 
-                impulseScource.GenerateImpulse(transform.position);
-
                 //VFX.SetActive(true);
-                Destroy(gameObject, .05f);
+                PlayAudioOnDestroy(gameObject);
                 Destroy(VFXObject, VFXObject.GetComponent<ParticleSystem>().main.duration);
             }
             else
@@ -107,6 +93,33 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void PlayAudioOnDestroy(GameObject obj)
+    {
+        AudioSource confettiNoise = obj.GetComponent<AudioSource>();
+
+        if(confettiNoise!= null && confettiNoise.clip != null)
+        {
+            GameObject temp = new GameObject("Audio");
+            temp.transform.position = obj.transform.position;
+            AudioSource tempAudio = temp.AddComponent<AudioSource>();
+
+            tempAudio.clip = confettiNoise.clip;
+            tempAudio.volume = confettiNoise.volume;
+            tempAudio.pitch = confettiNoise.pitch;
+            tempAudio.spatialBlend = confettiNoise.spatialBlend;
+            tempAudio.minDistance = confettiNoise.minDistance;
+            tempAudio.maxDistance = confettiNoise.maxDistance;
+            tempAudio.rolloffMode = confettiNoise.rolloffMode;
+            tempAudio.outputAudioMixerGroup = confettiNoise.outputAudioMixerGroup;
+
+            tempAudio.Play();
+
+            Destroy(temp, tempAudio.clip.length);
+        }
+
+        Destroy(obj, .05f);
     }
 }
 

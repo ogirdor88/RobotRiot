@@ -13,6 +13,10 @@ public class ElectricTrap : MonoBehaviour
     private bool canDeploy = false;
 
     [SerializeField] public CinemachineImpulseSource impulseScource;
+    
+    [SerializeField]
+    private AudioSource shockSound;
+    private AudioSource newAudio;
 
 
     private void Awake()
@@ -29,6 +33,9 @@ public class ElectricTrap : MonoBehaviour
                 other.gameObject.AddComponent<ElectricStatusEffect>();
                 triggered = true;
                 StartCoroutine(ElectricTrapVFX());
+                newAudio = Instantiate(shockSound, other.gameObject.transform);
+                newAudio.gameObject.transform.parent = other.gameObject.transform;
+                newAudio.Play();
 
                 impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
 
@@ -42,6 +49,7 @@ public class ElectricTrap : MonoBehaviour
         yield return new WaitForSeconds(3f);
         ElectricVFX.SetActive(false);
         Destroy(gameObject);
+        Destroy(newAudio.gameObject);
     }
 
     IEnumerator WaitForCooldown()

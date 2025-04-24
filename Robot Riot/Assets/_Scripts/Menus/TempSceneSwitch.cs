@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Accessibility;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TempSceneSwitch : MonoBehaviour
 {
     [SerializeField] private TMP_Text player1Text;
     [SerializeField] private TMP_Text player2Text;
 
-    private void Awake()
+    [SerializeField] private GameObject credits;
+    [SerializeField] private GameObject items;
+    [SerializeField] private Button creditsX, itemsX, creditsButton, itemsButton;
+
+   /* private void Awake()
     {
         if (GameObject.FindObjectOfType<GameManager>())
         {
@@ -32,7 +38,9 @@ public class TempSceneSwitch : MonoBehaviour
             player1Text.text = "Nobody wins";
             player2Text.text = "Nobody wins";
         }
-    }
+        //credits.SetActive(false);
+        //items.SetActive(false);
+    }*/
 
     public void LoadNextScene()
     {
@@ -51,5 +59,41 @@ public class TempSceneSwitch : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void ShowCredits()
+    {
+        credits.SetActive(true);
+        creditsX.Select();
+        Debug.Log("Credits");
+    }
+
+    public void ShowItems()
+    {
+        items.SetActive(true);
+        itemsX.Select();
+        Debug.Log("Items");
+    }
+
+    public void BackOutItems()
+    {
+        items.SetActive(false);
+        itemsButton.Select();
+    }
+    public void BackOutCredits()
+    {
+        credits.SetActive(false);
+        creditsButton.Select();
+    }
+
+    public void PlayAgain()
+    {
+        Destroy(GameObject.Find("PlayerInfo"));
+        Destroy(GameObject.Find("WinTracker"));
+        Destroy(GameObject.Find("Factory"));
+        Destroy(GameObject.Find("City"));
+        Destroy(GameObject.Find("Oasis"));
+        Destroy(GameObject.Find("West"));
+        SceneManager.LoadScene(2);
     }
 }

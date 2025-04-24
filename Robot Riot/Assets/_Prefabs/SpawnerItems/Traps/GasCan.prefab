@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 3780321940946662081}
   - component: {fileID: 8944862588580932724}
   - component: {fileID: 7082796919805160311}
-  - component: {fileID: 6752117887825067839}
+  - component: {fileID: 2239124333937295743}
+  - component: {fileID: 496312108337726042}
+  - component: {fileID: 8996308946095948572}
   m_Layer: 0
   m_Name: GasCan
-  m_TagString: Item
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6752117887825067839
+--- !u!114 &2239124333937295743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,8 +95,91 @@ MonoBehaviour:
   m_GameObject: {fileID: 6481776364413087068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d714d5d915671d349be582c8721d81a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fc11dfce1b5acd4daf5f3f713fa8dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 0}
-  rotateSpeed: 80
+  weapon: {fileID: 11400000, guid: 1494a031b476e3444a498f996109c16f, type: 2}
+  slot: 5
+  bonusDamage: 0
+  remainingAmmo: 0
+  playerMove: {fileID: 0}
+  canShoot: 1
+  canTrap: 1
+  isContinousWeapon: 0
+  weapon: {fileID: 0}
+  trap: {fileID: 8272463509038763485, guid: b0d8b8863ad6ed947a97fff092826541, type: 3}
+  impulseScource: {fileID: 496312108337726042}
+--- !u!114 &496312108337726042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481776364413087068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.6
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 4}
+--- !u!65 &8996308946095948572
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481776364413087068}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.023307726, y: 0.030471638, z: 0.010138267}
+  m_Center: {x: 0.000018623658, y: -0.0007942687, z: 0}
