@@ -242,7 +242,8 @@ public class Health : MonoBehaviour
             }
             SetMaxHealth(newHealth);
             StartCoroutine(ObtainedPowerUp("Energy Drink", energyDrinkTexure));
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
         }
     }
