@@ -20388,7 +20388,7 @@ PrefabInstance:
     - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_PlayerPrefab
       value: 
-      objectReference: {fileID: 8990356406038168037, guid: 076bdcf415328804e9dc4a1b162f019f, type: 3}
+      objectReference: {fileID: 8990356406038168037, guid: 1a70b1abc40646f40a819d0129e8d876, type: 3}
     - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_JoinAction.m_Action.m_Id
       value: cf433cd5-f107-432f-9f02-8e33817b0e5f
@@ -60329,6 +60329,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1306738839438347910, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: startTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306738839438347910, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
       propertyPath: playerManager
       value: 
       objectReference: {fileID: 1400746111}
@@ -60360,13 +60364,25 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.19994046
       objectReference: {fileID: 0}
+    - target: {fileID: 2730854805632034244, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3007817829187922788, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
       propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654935391502017960, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4667403677772184565, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5919913531426904011, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

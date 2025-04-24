@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-       if (!spawned)
+       if (!spawned && !MatchTimer.suddenDeath)
         {
             if (random)
             {

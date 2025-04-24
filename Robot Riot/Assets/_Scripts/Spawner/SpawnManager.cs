@@ -25,9 +25,8 @@ public class SpawnManager : MonoBehaviour
     private void AssignSpawnPositions()
     {
         SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
-
         foreach (PlayerInput player in FindObjectsOfType<PlayerInput>())
-        {
+        {;
             SpawnPoint spawn = spawnPoints.FirstOrDefault(s => s.playerIndex == player.playerIndex);
             if (spawn != null)
             {
