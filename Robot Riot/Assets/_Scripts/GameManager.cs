@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject pauseScreen;
+    [SerializeField]
+    private Button resumeButton;
 
     /*public PlayerInputManager playerOne;
     public PlayerInputManager playerTwo;*/
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         pauseScreen.SetActive(true);
+        resumeButton.Select();
     }
 
     /*public void RegisterPlayer(PlayerInputManager player)
