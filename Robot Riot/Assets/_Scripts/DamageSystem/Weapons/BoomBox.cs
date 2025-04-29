@@ -64,6 +64,8 @@ public class BoomBox : Weapon
     private void FireWeapon()
     {
         playerMove.animator.Play("L3 BoomBox");
+        if (!GetComponent<AudioSource>().isPlaying)
+            GetComponent<AudioSource>().Play();
         damageCollider.enabled = true;
         if (!currentProjectile)
         {
@@ -86,9 +88,15 @@ public class BoomBox : Weapon
     private void StopFiring()
     {
         Destroy(currentProjectile);
+        GetComponent<AudioSource>().Stop();
         damageCollider.enabled = false;
         if (remainingAmmo == 0)
             Destroy(this.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        StopFiring();
     }
 
     /*private void OnTriggerEnter(Collider other)
