@@ -30,6 +30,8 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject Life2;
     [SerializeField] private GameObject Life3;
 
+    [SerializeField] private Camera _camera;
+
     //[SerializeField] private int _weaponDamage;
 
     public bool isProtected = false;
@@ -198,13 +200,18 @@ public class Health : MonoBehaviour
 
     private void SuddenDeathRespawn()
     {
-        _playerController._playerCC.enabled = false;
-        transform.position = _spawnPoint;
-        _livesCount = 1;
-        //sets player health to 1
-        SetMaxHealth(1);
-        _playerController._playerCC.enabled = true;
-        respawn = false;
+        _camera.enabled = false;
+        if (MatchTimer.camOn)
+        {
+            _playerController._playerCC.enabled = false;
+            transform.position = _spawnPoint;
+            _livesCount = 1;
+            //sets player health to 1
+            SetMaxHealth(1);
+            _playerController._playerCC.enabled = true;
+            respawn = false;
+            _camera.enabled = true;
+        }
 
     }
 

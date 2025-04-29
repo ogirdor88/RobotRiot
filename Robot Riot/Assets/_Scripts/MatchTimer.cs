@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using Unity.VisualScripting;
+using Unity.Burst.Intrinsics;
 
 public class MatchTimer : MonoBehaviour
 {
@@ -15,12 +17,14 @@ public class MatchTimer : MonoBehaviour
 
     public static bool suddenDeath;
     public bool stop;
-    bool clipDone = false;
+
+    public static bool camOn;
 
     float clipLength;
 
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private VideoPlayer sdClip;
+    [SerializeField] private Camera mainCam;
 
     private void Awake()
     {
@@ -30,6 +34,7 @@ public class MatchTimer : MonoBehaviour
     }
     private void Start()
     {
+        camOn = false;
         suddenDeath = false;
         stop = false;
         currentTime = startTime;
@@ -37,53 +42,36 @@ public class MatchTimer : MonoBehaviour
 
         if(sdClip != null)
         {
-            clipLength = (float)sdClip.length; 
+            clipLength = (float)sdClip.length;
+            Debug.LogWarning("GOT LENGTH");
         }
     }
     private void Update()
     {
-        if(sdClip == null)
+        if (!GameStartCountdown.isCountingDown)
         {
-            if (!GameStartCountdown.isCountingDown)
+            if (currentTime > 0 && !stop)
             {
-                if (currentTime > 0 && !stop)
-                {
-                    currentTime -= Time.deltaTime;
-                    DisplayTime(currentTime);
-                }
-                else if (!stop)
-                {
-                    currentTime = suddenDeathTime;
-                    suddenDeath = true;
-                    Debug.Log("START SUDDEN DEATH");
-                }
-                if (currentTime <= 0 && suddenDeath)
-                {
-                    Debug.Log("Over");
-                    stop = true;
-                }
+                currentTime -= Time.deltaTime;
+                DisplayTime(currentTime);
             }
-        }
-        else
-        {
-            if (!GameStartCountdown.isCountingDown)
+            else if (!stop)
             {
-                if (currentTime > 0 && !stop)
+                currentTime = suddenDeathTime;
+                timeText.text = "Sudden Death";
+                suddenDeath = true;
+                if (sdClip != null)
                 {
-                    currentTime -= Time.deltaTime;
-                    DisplayTime(currentTime);
+                    StartCoroutine(PlayClip());
+                    Debug.LogWarning("CLIP PLAY IN IF");
                 }
-                else if (!stop && clipDone)
+                else
                 {
-                    currentTime = suddenDeathTime;
                     suddenDeath = true;
-                    Debug.Log("START SUDDEN DEATH");
+                    camOn = true;
+                    Debug.LogWarning("CLIP NO PLAY IN IF");
                 }
-                if (currentTime <= 0 && suddenDeath)
-                {
-                    Debug.Log("Over");
-                    stop = true;
-                }
+                //Debug.Log("START SUDDEN DEATH");
             }
         }
     }
@@ -99,15 +87,19 @@ public class MatchTimer : MonoBehaviour
         float minutes = Mathf.FloorToInt(displayTime / 60);
         float sec = Mathf.FloorToInt(displayTime % 60);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, sec);
-        Debug.Log("PEEM");
+        //Debug.Log("PEEM");
     }
 
     IEnumerator PlayClip()
     {
+        mainCam.enabled = true;
         sdClip.Play();
+        Debug.LogWarning("CLIP PLAY FIRST");
         yield return new WaitForSeconds(clipLength);
+        camOn = true;
+        stop = true;
+        Debug.LogWarning("CLIP PLAY SECOND");
         Destroy(sdClip.gameObject);
-        clipDone = true;
     }
 
     private void OnDestroy()
