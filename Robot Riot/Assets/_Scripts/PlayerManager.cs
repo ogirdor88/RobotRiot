@@ -79,7 +79,7 @@ public class PlayerManager : MonoBehaviour
 
         
         playerCount++;
-        //Debug.Log("Player Number:" + playerCount);
+        Debug.Log("Player Number:" + playerCount);
 
         playerParent.position = startingPoints[players.Count - 1].position;
         playerParent.rotation = startingPoints[players.Count - 1].rotation;
@@ -166,10 +166,10 @@ public class PlayerManager : MonoBehaviour
         player2 = info.GetComponent<PlayerInfo>().characters[1];
 
         PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[0] });
-        player1.GetComponentInChildren<CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 1");
+        //player1.GetComponentInChildren<CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 1");
 
         PlayerInput.Instantiate(player2, 1, "Controls", -1,new[] { Gamepad.all[1] });
-        player2.GetComponentInChildren <CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 2");
+        //player2.GetComponentInChildren <CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 2");
     }
     
 }
