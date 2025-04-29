@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     private Dictionary<int, InputDevice> playerDevice = new();
     private Dictionary<int, Vector3> playerSpawnPosition = new();
 
-    GameObject player1, player2;
+    [SerializeField] private GameObject player1;
     [Header("Player Layer Cameras")]
     [SerializeField] public List<LayerMask> playerLayers;
     //[SerializeField] public List<mask>
@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
         playerInputManager = FindObjectOfType<PlayerInputManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        GetCharacters();
+        GetCharacter();
     }
 
     private void OnEnable()
@@ -156,7 +156,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void GetCharacters()
+    /*private void GetCharacters()
     {
         GameObject info = GameObject.Find("PlayerInfo");
 
@@ -170,6 +170,10 @@ public class PlayerManager : MonoBehaviour
 
         PlayerInput.Instantiate(player2, 1, "Controls", -1,new[] { Gamepad.all[1] });
         //player2.GetComponentInChildren <CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 2");
-    }
+    }*/
     
+    private void GetCharacter()
+    {
+        PlayerInput.Instantiate(player1, 0, "Controls", -1, new[] { Gamepad.all[0] });
+    }
 }

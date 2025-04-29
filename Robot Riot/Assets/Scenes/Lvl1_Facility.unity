@@ -20479,12 +20479,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2335774994371867019, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.166
+      value: -3.072
       objectReference: {fileID: 0}
     - target: {fileID: 2335774994371867019, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.879
+      value: -12.536
       objectReference: {fileID: 0}
+    - target: {fileID: 3001613055932853273, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: player1
+      value: 
+      objectReference: {fileID: 8990356406038168037, guid: 6785c36ede923ab40b87c5e7055ad5cc, type: 3}
     - target: {fileID: 3001613055932853273, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: moveImage
       value: 
@@ -20507,27 +20511,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3658604407882201471, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.443
+      value: 5.17
       objectReference: {fileID: 0}
     - target: {fileID: 3658604407882201471, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.843
+      value: 10.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_SplitScreen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_JoinBehavior
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_PlayerPrefab
       value: 
       objectReference: {fileID: 8990356406038168037, guid: 6785c36ede923ab40b87c5e7055ad5cc, type: 3}
     - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_MaxPlayerCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_JoinAction.m_Action.m_Id
       value: cf433cd5-f107-432f-9f02-8e33817b0e5f
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_FixedNumberOfSplitScreens
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_JoinAction.m_Action.m_Name
       value: Join
       objectReference: {fileID: 0}
+    - target: {fileID: 3963624307134921318, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_MaintainAspectRatioInSplitScreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4672815840563326413, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
       propertyPath: m_Name
       value: PlayerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672815840563326413, guid: 6a06f0a2d29e5d2468f7284d22b1bdec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -260,26 +260,30 @@ public class LevelSelect : MonoBehaviour
 
     public void LevelFacility()
     {
-        DontDestroyOnLoad(GameObject.Find("Factory"));
-        SceneManager.LoadScene("PlayerSelect");
+        //DontDestroyOnLoad(GameObject.Find("Factory"));
+        //SceneManager.LoadScene("PlayerSelect");
+        SceneManager.LoadScene("Lvl1_Facility");
 
     }
 
     public void LevelVillage()
     {
-        DontDestroyOnLoad(GameObject.Find("City"));
-        SceneManager.LoadScene("PlayerSelect");
+        //DontDestroyOnLoad(GameObject.Find("City"));
+        //SceneManager.LoadScene("PlayerSelect");
+        SceneManager.LoadScene("Lvl2_Village");
     }
 
     public void LevelOasis()
     {
-        DontDestroyOnLoad(GameObject.Find("Oasis"));
-        SceneManager.LoadScene("PlayerSelect");
+        //DontDestroyOnLoad(GameObject.Find("Oasis"));
+        //SceneManager.LoadScene("PlayerSelect");
+        SceneManager.LoadScene("Lvl3_Oasis");
     }
 
     public void LevelWest()
     {
-        DontDestroyOnLoad(GameObject.Find("West"));
-        SceneManager.LoadScene("PlayerSelect");
+        //DontDestroyOnLoad(GameObject.Find("West"));
+        //SceneManager.LoadScene("PlayerSelect");
+        SceneManager.LoadScene("Lvl4_West");
     }
 }

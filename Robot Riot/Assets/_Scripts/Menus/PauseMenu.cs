@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -26,7 +27,9 @@ public class PauseMenu : MonoBehaviour
     // Not implemented yet
     public void LevelSelect()
     {
-
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("LevelSelect");
     }
 
     // Not implemented yet
@@ -38,6 +41,8 @@ public class PauseMenu : MonoBehaviour
     // No menu scene yet.
     public void ReturntoMenu()
     {
-
+        Time.timeScale = 1f;
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("Title");
     }
 }
