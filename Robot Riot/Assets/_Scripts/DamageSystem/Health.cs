@@ -221,7 +221,8 @@ public class Health : MonoBehaviour
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed PR");
         }
         if(other.gameObject.tag == "EnergyDrink")
