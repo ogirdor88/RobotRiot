@@ -17,6 +17,7 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] private TMP_Text weaponName;
     [SerializeField] private TMP_Text weaponDesc;
     [SerializeField] private TMP_Text weaponAmmo;
+    [SerializeField] private TMP_Text ammoWarning;
 
     public void UpdateWeapon()
     {
@@ -112,7 +113,35 @@ public class WeaponUI : MonoBehaviour
         }
         if (weaponAmmo != null)
         {
-            weaponAmmo.text = "AMMO: " + currentWeapon.GetComponent<Weapon>().remainingAmmo.ToString();
+            if (currentWeapon.GetComponent<Weapon>().weapon.ammo != 0)
+            {
+                weaponAmmo.text = "AMMO: " + currentWeapon.GetComponent<Weapon>().remainingAmmo.ToString();
+                weaponAmmo.gameObject.SetActive(true);
+            }
+            else
+                weaponAmmo.gameObject.SetActive(false);
+        }
+        if (ammoWarning != null)
+        {
+            if (currentWeapon.GetComponent<Weapon>().weapon.ammo != 0)
+            {
+                float maxAmmo = (float)currentWeapon.GetComponent<Weapon>().weapon.ammo;
+                Debug.Log("This weapons max ammo is " + maxAmmo);
+                if (currentWeapon.GetComponent<Weapon>().remainingAmmo > 0 && (float)currentWeapon.GetComponent<Weapon>().remainingAmmo < maxAmmo / 2)
+                {
+                    ammoWarning.text = "AMMO WARNING";
+                    ammoWarning.gameObject.SetActive(true);
+                }
+                else if (currentWeapon.GetComponent<Weapon>().remainingAmmo == 0)
+                {
+                    ammoWarning.text = "OUT OF AMMO";
+                    ammoWarning.gameObject.SetActive(true);
+                }
+                else
+                    ammoWarning.gameObject.SetActive(false);
+            }
+            else
+                ammoWarning.gameObject.SetActive(false);
         }
     }
 }
