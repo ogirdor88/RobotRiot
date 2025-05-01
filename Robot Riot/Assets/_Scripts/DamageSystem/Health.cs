@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     //Players current health
     [SerializeField] public int _currentHealth;
     private int missingHealth;
-    [SerializeField] private int _livesCount;
+    [SerializeField] public int _livesCount;
 
     [SerializeField] private Vector3 _spawnPoint;
 
