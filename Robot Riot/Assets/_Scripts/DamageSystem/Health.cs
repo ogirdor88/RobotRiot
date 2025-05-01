@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private PlayerController playerController;
+
     //What health the player should start with
     [SerializeField] private int _startHealth;
 
@@ -72,6 +74,8 @@ public class Health : MonoBehaviour
 
         //set Players health to max
         SetMaxHealth(_startHealth);
+
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -99,6 +103,7 @@ public class Health : MonoBehaviour
         {
             if (MatchTimer.suddenDeath && respawn)
             {
+                playerController.canChange = true;
                 SuddenDeathRespawn();
             }
 
