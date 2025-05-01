@@ -737,9 +737,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4654935391502017960, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4667403677772184565, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166424733180999443, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1661,7 +1669,7 @@ MonoBehaviour:
   startingPoints:
   - {fileID: 0}
   startingPointsLvl2: []
-  startCamera: {fileID: 1827745622}
+  startCamera: {fileID: 827585113}
   moveImage: {fileID: 11605356}
   playerCount: 1
   sceneNum: 0
@@ -1991,11 +1999,6 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7273630422893308417, guid: 3b4daa9ca9a38014cbba92e11f1ee82e, type: 3}
   m_PrefabInstance: {fileID: 1776219646}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &1827745622 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 4280328185092791454, guid: 3c72b94f2afb2c849bc9437b84f84803, type: 3}
-  m_PrefabInstance: {fileID: 412842773}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2031195010
 PrefabInstance:
@@ -2407,6 +2410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OilSlick
       objectReference: {fileID: 0}
+    - target: {fileID: 5329939077614498981, guid: 6715168cf8e4bbd41bbc6459af0d8d8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2680,6 +2687,14 @@ PrefabInstance:
       propertyPath: items.Array.data[2]
       value: 
       objectReference: {fileID: 4026912718064922048, guid: 5a4224daf325cc54e94fbaa490fa2a50, type: 3}
+    - target: {fileID: 4841288348425006885, guid: cda83fc35ea1bf14f9fe9fa73ffa5276, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096321563736696578, guid: cda83fc35ea1bf14f9fe9fa73ffa5276, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7552026555877778678, guid: cda83fc35ea1bf14f9fe9fa73ffa5276, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
