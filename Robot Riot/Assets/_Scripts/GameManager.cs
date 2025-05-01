@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public GameObject pauseScreen;
+    public GameObject pauseScreen, items;
     [SerializeField]
-    private Button resumeButton;
+    private Button resumeButton, itemsXButton, itemsButton;
 
     /*public PlayerInputManager playerOne;
     public PlayerInputManager playerTwo;*/
@@ -59,4 +60,19 @@ public class GameManager : MonoBehaviour
             playerTwo = player;
         }
     }*/
+
+    public void BackOutItems()
+    {
+        pauseScreen.SetActive(true);
+        items.SetActive(false);
+        itemsButton.Select();
+    }
+
+    public void ShowItems()
+    {
+        pauseScreen.SetActive(false);
+        items.SetActive(true);
+        itemsXButton.Select();
+        Debug.Log("Items");
+    }
 }

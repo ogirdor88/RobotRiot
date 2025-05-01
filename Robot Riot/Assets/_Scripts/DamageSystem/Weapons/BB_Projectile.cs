@@ -8,7 +8,7 @@ public class BB_Projectile : MonoBehaviour
     private Vector3 startDist;
     private float growthRate;
     private Vector3 maxSize;
-    private bool hit = false;
+    //private bool hit = false;
     public int bonusDamage;
 
     private void Start()

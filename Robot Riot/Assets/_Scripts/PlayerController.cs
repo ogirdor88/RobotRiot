@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _cameraMove;
 
     public LayerMask layerMask;
+    public LayerMask noCollisionMask;
 
     private float _jumpHieght = 1f;
     private float _gravity = -20;
@@ -100,6 +101,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private AudioSource botSwitchSound;
 
+    [SerializeField] private TMP_Text botText;
+
+    [SerializeField] private CinemachineVirtualCamera virtualCam;
+    [SerializeField] private Cinemachine3rdPersonFollow camCollision;
+
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -137,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
             initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
         }
+        camCollision = virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
     }
 
     private void Start()
@@ -191,6 +199,18 @@ public class PlayerController : MonoBehaviour
             sensSliderX.gameObject.SetActive(false);
             sensSliderY.gameObject.SetActive(false);
         }
+
+        if (botMode)
+        {
+            botText.text = "Bot Mode";
+            camCollision.CameraCollisionFilter = noCollisionMask;
+        }
+        else
+        {
+            botText.text = "Combat Mode";
+            camCollision.CameraCollisionFilter = layerMask;
+        }
+
     }
 
     #region Movement
