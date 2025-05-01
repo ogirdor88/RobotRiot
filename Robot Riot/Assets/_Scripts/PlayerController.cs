@@ -98,6 +98,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CinemachineImpulseSource impulseScource;
 
+    [SerializeField] private AudioSource botSwitchSound;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -397,6 +399,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(.4f);
         botMode = !botMode;
         gameObject.GetComponent<InventoryManager>().SwapSlot(true);
+        if (botSwitchSound != null)
+            botSwitchSound.Play();
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();
