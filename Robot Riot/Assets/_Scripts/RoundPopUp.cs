@@ -17,6 +17,8 @@ public class RoundPopUp : MonoBehaviour
 	//[SerializeField]
 	//public GameObject spawner1, spawner2;
 
+	private bool isSuddenDeath;
+
 	GameObject[] players;
 
 	private void Start()
@@ -24,12 +26,15 @@ public class RoundPopUp : MonoBehaviour
 		// initializes lives for this script
 		lives1 = 3;
 		lives2 = 3;
+		isSuddenDeath = false;
 	}
 
 	void Update()
 	{
 		// searches for two players, adds both to array
 		GameObject[] temp = GameObject.FindGameObjectsWithTag("Player");
+
+		isSuddenDeath = MatchTimer.suddenDeath;
 
 		// once 2 players are detected, adds to final array
 		if (temp.Length == 2)
@@ -52,7 +57,7 @@ public class RoundPopUp : MonoBehaviour
 			//Debug.Log("Player 1 : " + player1.gameObject.GetComponent<Health>()._livesCount);
 
 			//if player 1 loses a life, calls player 2 pop up and return player to other side of map
-			if(lives1 > player1.gameObject.GetComponent<Health>()._livesCount)
+			if(lives1 > player1.gameObject.GetComponent<Health>()._livesCount && !isSuddenDeath)
 			{
 				//Debug.Log("Player 2 wins");
 				//player2.transform.position = spawner2.transform.position;
@@ -60,7 +65,7 @@ public class RoundPopUp : MonoBehaviour
 			}
 
 			// if player 2 loses a life, calls player 1 pop up and return player to other side of map
-			else if(lives2 > player2.gameObject.GetComponent<Health>()._livesCount)
+			else if(lives2 > player2.gameObject.GetComponent<Health>()._livesCount && !isSuddenDeath)
 			{
 				//Debug.Log("Player 1 wins");
 				//player1.transform.position = spawner1.transform.position;
