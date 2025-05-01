@@ -18,6 +18,7 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] private TMP_Text weaponDesc;
     [SerializeField] private TMP_Text weaponAmmo;
     [SerializeField] private TMP_Text ammoWarning;
+    [SerializeField] private TMP_Text botMode;
 
     public void UpdateWeapon()
     {
@@ -44,6 +45,13 @@ public class WeaponUI : MonoBehaviour
         nextWeaponIcon2.GetComponent<RawImage>().texture = null;
         prevWeaponIcon1.GetComponent<RawImage>().texture = null;
         prevWeaponIcon2.GetComponent<RawImage>().texture = null;
+
+        if (transform.parent.parent.GetComponent<PlayerController>().botMode)
+            botMode.text = "BOT MODE";
+        else
+            botMode.text = "COMBAT MODE";
+
+        //botMode.text = "BOT MODE: " + transform.parent.parent.GetComponent<PlayerController>().botMode.ToString().ToUpper();
 
         // Assign textures
         if (currentWeapon != null)

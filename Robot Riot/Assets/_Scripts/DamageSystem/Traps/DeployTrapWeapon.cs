@@ -18,7 +18,7 @@ public class DeployTrapWeapon : Weapon
     private void Start()
     {
         canShoot = true;
-        timeToFire = weapon.fireRate;
+        //timeToFire = weapon.fireRate;
         canTrap = true;
     }
     private void Update()
