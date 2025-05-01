@@ -74,7 +74,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (other.gameObject != owner && other.gameObject.tag != "Weapon")
+        if (other.gameObject != owner && other.gameObject.tag != "Weapon" && other.gameObject.tag != "Spawner")
         {
             if(weapon.weaponType == WeaponType.Projectile)
             {
