@@ -29,12 +29,22 @@ public class PauseMenu : MonoBehaviour
     public void LevelSelect()
     {
         Debug.Log("Levels");
+        //back to level select and select bots again 
+        Destroy(GameObject.Find("PlayerInfo"));
+        Destroy(GameObject.Find("Factory"));
+        Destroy(GameObject.Find("City"));
+        Destroy(GameObject.Find("Oasis"));
+        Destroy(GameObject.Find("West"));
+        SceneManager.LoadScene("LevelSelect");
     }
 
     // Not implemented yet
     public void BotSelect()
     {
         Debug.Log("bots");
+        //goes back to bot select keeps level that was selected.
+        Destroy(GameObject.Find("PlayerInfo"));
+        SceneManager.LoadScene("PlayerSelect");
     }
 
     // No menu scene yet.
