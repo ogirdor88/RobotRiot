@@ -43,6 +43,8 @@ public class WinTracker : MonoBehaviour
         if (scene.name == "Game Over")
         {
             FindObjectOfType<PlayerWinHandler>().WinningPlayer(winID);
+            winID = 0;
+            loser = 0;
         }
     }
 }
