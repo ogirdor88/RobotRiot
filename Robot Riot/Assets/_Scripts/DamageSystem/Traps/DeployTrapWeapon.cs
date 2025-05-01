@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DeployTrapWeapon : Weapon
 {
-    [SerializeField] private Weapons weapon;
+    [SerializeField] private Weapons weapons;
     private float timeToFire;
 
     //[SerializeField] private bool canShoot = true;

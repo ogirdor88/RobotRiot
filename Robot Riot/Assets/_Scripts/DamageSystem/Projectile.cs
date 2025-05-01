@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public ProjectileType projectileType;
     public GameObject owner;
     private Vector3 velocity;
-    private float gravity = -5f;
+    //private float gravity = -5f;
 
     private bool didDamage;
 
