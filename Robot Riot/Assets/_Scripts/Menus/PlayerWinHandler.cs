@@ -11,6 +11,8 @@ public class PlayerWinHandler : MonoBehaviour
     public GameObject[] winUI;  // UI for winners
     public GameObject[] loseUI; // UI for losers
 
+    public int winnerID;
+
     public void WinningPlayer(int playerIndex)
     {
         Debug.Log(playerIndex + "Player WINNN");
