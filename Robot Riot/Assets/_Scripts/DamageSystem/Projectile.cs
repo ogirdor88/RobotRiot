@@ -12,10 +12,9 @@ public class Projectile : MonoBehaviour
     public ProjectileType projectileType;
     public GameObject owner;
     private Vector3 velocity;
-    private float gravity = -5f;
+    //private float gravity = -5f;
 
     private bool didDamage;
-
 
     public Vector3 target { get; set; }
     public bool hitShot { get; set; }
@@ -64,7 +63,7 @@ public class Projectile : MonoBehaviour
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
                 Debug.Log("Did Damage");
                 didDamage = true;
-                Destroy(gameObject, .05f);
+                PlayAudioOnDestroy(gameObject);
             }
             else if(other.gameObject != owner)
             {
@@ -75,7 +74,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        if (other.gameObject != owner && other.gameObject.tag != "Weapon")
+        if (other.gameObject != owner && other.gameObject.tag != "Weapon" && other.gameObject.tag != "Spawner")
         {
             if(weapon.weaponType == WeaponType.Projectile)
             {
@@ -84,9 +83,9 @@ public class Projectile : MonoBehaviour
                 VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 //VFXObject.transform.localScale = new Vector3(.3f, .3f, .3f);
                 transform.localScale = new Vector3(3f, 3f, 3f);
-                
+
                 //VFX.SetActive(true);
-                Destroy(gameObject, .05f);
+                PlayAudioOnDestroy(gameObject);
                 Destroy(VFXObject, VFXObject.GetComponent<ParticleSystem>().main.duration);
             }
             else
@@ -94,6 +93,33 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void PlayAudioOnDestroy(GameObject obj)
+    {
+        AudioSource confettiNoise = obj.GetComponent<AudioSource>();
+
+        if(confettiNoise!= null && confettiNoise.clip != null)
+        {
+            GameObject temp = new GameObject("Audio");
+            temp.transform.position = obj.transform.position;
+            AudioSource tempAudio = temp.AddComponent<AudioSource>();
+
+            tempAudio.clip = confettiNoise.clip;
+            tempAudio.volume = confettiNoise.volume;
+            tempAudio.pitch = confettiNoise.pitch;
+            tempAudio.spatialBlend = confettiNoise.spatialBlend;
+            tempAudio.minDistance = confettiNoise.minDistance;
+            tempAudio.maxDistance = confettiNoise.maxDistance;
+            tempAudio.rolloffMode = confettiNoise.rolloffMode;
+            tempAudio.outputAudioMixerGroup = confettiNoise.outputAudioMixerGroup;
+
+            tempAudio.Play();
+
+            Destroy(temp, tempAudio.clip.length);
+        }
+
+        Destroy(obj, .05f);
     }
 }
 

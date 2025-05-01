@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DeployTrapWeapon : Weapon
 {
-    [SerializeField] private Weapons weapon;
+    [SerializeField] private Weapons weapons;
     private float timeToFire;
 
     //[SerializeField] private bool canShoot = true;
@@ -18,7 +18,7 @@ public class DeployTrapWeapon : Weapon
     private void Start()
     {
         canShoot = true;
-        timeToFire = weapon.fireRate;
+        //timeToFire = weapon.fireRate;
         canTrap = true;
     }
     private void Update()
@@ -37,6 +37,11 @@ public class DeployTrapWeapon : Weapon
                 playerMove.GetComponent<InventoryManager>().inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
                 Destroy(gameObject);
             }
+        }
+
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
         }
     }
 }

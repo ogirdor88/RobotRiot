@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _cameraMove;
 
     public LayerMask layerMask;
+    public LayerMask noCollisionMask;
 
     private float _jumpHieght = 1f;
     private float _gravity = -20;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public bool botMode = false;
     private bool slide = false;
     private bool iced = false;
+    [SerializeField] private bool canChange = true;
 
     public bool isShooting = false; 
     public bool istrapping = false;
@@ -97,6 +99,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private CinemachineImpulseSource impulseScource;
 
+    [SerializeField] private AudioSource botSwitchSound;
+
+    [SerializeField] private TMP_Text botText;
+
+    [SerializeField] private CinemachineVirtualCamera virtualCam;
+    [SerializeField] private Cinemachine3rdPersonFollow camCollision;
+
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -112,6 +122,7 @@ public class PlayerController : MonoBehaviour
             transform.position = spawnPos;
         }
 
+        canChange = true;
         originalMoveSpeed = _playerSpeed;
         botMode = false;
         isShooting = false;
@@ -133,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
             initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
         }
+        camCollision = virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
     }
 
     private void Start()
@@ -187,6 +199,18 @@ public class PlayerController : MonoBehaviour
             sensSliderX.gameObject.SetActive(false);
             sensSliderY.gameObject.SetActive(false);
         }
+
+        if (botMode)
+        {
+            botText.text = "Bot Mode";
+            camCollision.CameraCollisionFilter = noCollisionMask;
+        }
+        else
+        {
+            botText.text = "Combat Mode";
+            camCollision.CameraCollisionFilter = layerMask;
+        }
+
     }
 
     #region Movement
@@ -379,7 +403,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!GameStartCountdown.isCountingDown)
         {
-            if (isChanging == false)
+            if (isChanging == false && canChange == true)
             {
                 StartCoroutine(SwitchMode());
             }
@@ -395,6 +419,8 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(.4f);
         botMode = !botMode;
         gameObject.GetComponent<InventoryManager>().SwapSlot(true);
+        if (botSwitchSound != null)
+            botSwitchSound.Play();
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();
@@ -500,19 +526,22 @@ public class PlayerController : MonoBehaviour
     #region Animation
     private void UpdateAnimation()
     {
-        //Move Animations
-        smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
-        smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
-        animator.SetFloat("Velocity X", smoothMoveX);
-        animator.SetFloat("Velocity Z", smoothMoveY);
-        bool isMoving = horizontal != 0 || vertical != 0;
-        animator.SetBool("IsMoving", isMoving);
+        if (!GameStartCountdown.isCountingDown)
+        {
+            //Move Animations
+            smoothMoveX = Mathf.Lerp(smoothMoveX, horizontal, animationDampTime);
+            smoothMoveY = Mathf.Lerp(smoothMoveY, vertical, animationDampTime);
+            animator.SetFloat("Velocity X", smoothMoveX);
+            animator.SetFloat("Velocity Z", smoothMoveY);
+            bool isMoving = horizontal != 0 || vertical != 0;
+            animator.SetBool("IsMoving", isMoving);
 
-        //Jump animation
-        animator.SetBool("Jump", !jump);
-        
-        //Bot Place trap animation
+            //Jump animation
+            animator.SetBool("Jump", !jump);
 
+            //Bot Place trap animation
+
+        }
     }
     #endregion
 
@@ -531,6 +560,11 @@ public class PlayerController : MonoBehaviour
             if(other.gameObject.GetComponent<IceSpikes>().count == 1)
             StartCoroutine(SlowDown());
         }
+
+        if(other.tag == "Spawner")
+        {
+            canChange = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -539,6 +573,11 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Oil")
         {
             slide = false;
+        }
+
+        if(other.tag == "Spawner")
+        {
+            canChange = true;
         }
     }
 

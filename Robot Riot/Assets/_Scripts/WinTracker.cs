@@ -27,11 +27,10 @@ public class WinTracker : MonoBehaviour
     {
         loser = PlayerWon;
         winID = PlayerWon;
-        //SceneManager.LoadScene(3);
-        Debug.Log("Player Won:" + PlayerWon);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
+        Debug.Log("Player Won:" + winID);
+        
         SceneManager.LoadScene("Game Over");
-
         
 
     }
@@ -39,10 +38,13 @@ public class WinTracker : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene Loaded: " + scene.name);
-
+        //winID = winID;
         if (scene.name == "Game Over")
         {
-            FindObjectOfType<PlayerWinHandler>().WinningPlayer(winID);
+            Debug.Log("sending player " + winID);
+            //FindObjectOfType<PlayerWinHandler>().WinningPlayer(loser);
+           //Destroy(this);
         }
     }
+
 }

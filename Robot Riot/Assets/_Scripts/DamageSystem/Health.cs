@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     //Players current health
     [SerializeField] public int _currentHealth;
     private int missingHealth;
-    [SerializeField] private int _livesCount;
+    [SerializeField] public int _livesCount;
 
     [SerializeField] private Vector3 _spawnPoint;
 
@@ -29,6 +29,8 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject Life1;
     [SerializeField] private GameObject Life2;
     [SerializeField] private GameObject Life3;
+
+    [SerializeField] private Camera _camera;
 
     //[SerializeField] private int _weaponDamage;
 
@@ -47,7 +49,8 @@ public class Health : MonoBehaviour
     public Texture2D energyDrinkTexure;
 
     private bool respawn = true;
-
+    [SerializeField]
+    private AudioSource deathSound;
     private void Awake()
     {
         playerNumber = GetComponent<PlayerInput>().playerIndex + 1;
@@ -188,6 +191,7 @@ public class Health : MonoBehaviour
         
         else
         {
+            deathSound.Play();
             _livesCount--;
             SetMaxHealth(_startHealth);
         }
@@ -196,13 +200,18 @@ public class Health : MonoBehaviour
 
     private void SuddenDeathRespawn()
     {
-        _playerController._playerCC.enabled = false;
-        transform.position = _spawnPoint;
-        _livesCount = 1;
-        //sets player health to 1
-        SetMaxHealth(1);
-        _playerController._playerCC.enabled = true;
-        respawn = false;
+        _camera.enabled = false;
+        if (MatchTimer.camOn)
+        {
+            _playerController._playerCC.enabled = false;
+            transform.position = _spawnPoint;
+            _livesCount = 1;
+            //sets player health to 1
+            SetMaxHealth(1);
+            _playerController._playerCC.enabled = true;
+            respawn = false;
+            _camera.enabled = true;
+        }
 
     }
 
@@ -219,7 +228,8 @@ public class Health : MonoBehaviour
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed PR");
         }
         if(other.gameObject.tag == "EnergyDrink")
@@ -240,7 +250,8 @@ public class Health : MonoBehaviour
             }
             SetMaxHealth(newHealth);
             StartCoroutine(ObtainedPowerUp("Energy Drink", energyDrinkTexure));
-            Destroy(other.gameObject);
+            StartCoroutine(CountDown(other.gameObject));
+            //Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
         }
     }

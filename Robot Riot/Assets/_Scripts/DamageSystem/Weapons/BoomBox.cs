@@ -54,12 +54,20 @@ public class BoomBox : Weapon
                 StopFiring();
             }
         }
+
+        if (MatchTimer.suddenDeath)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FireWeapon()
     {
         playerMove.animator.Play("L3 BoomBox");
+        if (!GetComponent<AudioSource>().isPlaying)
+            GetComponent<AudioSource>().Play();
         damageCollider.enabled = true;
+
         if (!currentProjectile)
         {
             currentProjectile = Instantiate(boomBoxVFX, flameLocation.transform.position, transform.rotation);
@@ -76,14 +84,38 @@ public class BoomBox : Weapon
         currentProjectile.transform.rotation = transform.rotation;
         if (remainingAmmo > 0 && attemptCharge)
             StartCoroutine(Recharge(false));
+
+        RaycastHit shootHit;
+        if (Physics.Raycast(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward), out shootHit, 100f, playerMove.layerMask))
+        {
+            //using forward cause we are we know the where it is going
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * shootHit.distance, Color.blue);
+            currentProjectile.transform.LookAt(shootHit.point);
+        }
+        else
+        {
+            Debug.DrawRay(playerMove.canvas.transform.position, playerMove.canvas.transform.TransformDirection(Vector3.forward) * 50f, Color.red);
+
+            Vector3 forwardDirection = playerMove.canvas.transform.forward;
+            Vector3 fallbackTarget = playerMove.canvas.transform.position + forwardDirection * weapon.maxDistance;
+
+            currentProjectile.transform.LookAt(fallbackTarget);
+        }
+
     }
 
     private void StopFiring()
     {
         Destroy(currentProjectile);
+        GetComponent<AudioSource>().Stop();
         damageCollider.enabled = false;
         if (remainingAmmo == 0)
             Destroy(this.gameObject);
+    }
+
+    private void OnDisable()
+    {
+        StopFiring();
     }
 
     /*private void OnTriggerEnter(Collider other)
