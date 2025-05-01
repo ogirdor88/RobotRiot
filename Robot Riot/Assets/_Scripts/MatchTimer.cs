@@ -43,7 +43,7 @@ public class MatchTimer : MonoBehaviour
         if(sdClip != null)
         {
             clipLength = (float)sdClip.length;
-            Debug.LogWarning("GOT LENGTH");
+            //Debug.LogWarning("GOT LENGTH");
         }
     }
     private void Update()
@@ -63,13 +63,13 @@ public class MatchTimer : MonoBehaviour
                 if (sdClip != null)
                 {
                     StartCoroutine(PlayClip());
-                    Debug.LogWarning("CLIP PLAY IN IF");
+                    //Debug.LogWarning("CLIP PLAY IN IF");
                 }
                 else
                 {
                     suddenDeath = true;
                     camOn = true;
-                    Debug.LogWarning("CLIP NO PLAY IN IF");
+                    //Debug.LogWarning("CLIP NO PLAY IN IF");
                 }
                 //Debug.Log("START SUDDEN DEATH");
             }
@@ -94,11 +94,11 @@ public class MatchTimer : MonoBehaviour
     {
         mainCam.enabled = true;
         sdClip.Play();
-        Debug.LogWarning("CLIP PLAY FIRST");
+        //Debug.LogWarning("CLIP PLAY FIRST");
         yield return new WaitForSeconds(clipLength);
         camOn = true;
         stop = true;
-        Debug.LogWarning("CLIP PLAY SECOND");
+        //Debug.LogWarning("CLIP PLAY SECOND");
         Destroy(sdClip.gameObject);
     }
 

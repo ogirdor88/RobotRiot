@@ -9,10 +9,10 @@ public class RoundPopUp : MonoBehaviour
 	public GameObject player1, player2;
 	[SerializeField]
 	private Image popUpImage1, popUpImage2;
+	//[SerializeField]
+	//private TextMeshProUGUI popUpText1, popUpText2;
 	[SerializeField]
-	private TextMeshProUGUI popUpText1, popUpText2;
-	[SerializeField]
-	private int health1, health2;
+	private int lives1, lives2;
 
 	//[SerializeField]
 	//public GameObject spawner1, spawner2;
@@ -21,9 +21,9 @@ public class RoundPopUp : MonoBehaviour
 
 	private void Start()
 	{
-		// initializes health for this script
-		health1 = -1;
-		health2 = -1;	
+		// initializes lives for this script
+		lives1 = 3;
+		lives2 = 3;
 	}
 
 	void Update()
@@ -40,21 +40,19 @@ public class RoundPopUp : MonoBehaviour
 			foreach (GameObject player in players)
 			{
 				player1 = players[0];
-				health1 = player1.gameObject.GetComponent<Health>()._currentHealth;
+				//lives1 = player1.gameObject.GetComponent<Health>()._livesCount;
 				player2 = players[1];
-				health2 = player2.gameObject.GetComponent<Health>()._currentHealth;
+				//lives2 = player2.gameObject.GetComponent<Health>()._livesCount;
 			}
 		}
 
 		// if both players are active w/ health, run updates to retrieve current health
 		if (player1 != null && player2 != null)
 		{
-			// update health
-			health1 = player1.gameObject.GetComponent<Health>()._currentHealth;
-			health2 = player2.gameObject.GetComponent<Health>()._currentHealth;
+			//Debug.Log("Player 1 : " + player1.gameObject.GetComponent<Health>()._livesCount);
 
 			//if player 1 loses a life, calls player 2 pop up and return player to other side of map
-			if(health1 <= 0)
+			if(lives1 > player1.gameObject.GetComponent<Health>()._livesCount)
 			{
 				//Debug.Log("Player 2 wins");
 				//player2.transform.position = spawner2.transform.position;
@@ -62,7 +60,7 @@ public class RoundPopUp : MonoBehaviour
 			}
 
 			// if player 2 loses a life, calls player 1 pop up and return player to other side of map
-			else if(health2 <= 0)
+			else if(lives2 > player2.gameObject.GetComponent<Health>()._livesCount)
 			{
 				//Debug.Log("Player 1 wins");
 				//player1.transform.position = spawner1.transform.position;
@@ -75,11 +73,11 @@ public class RoundPopUp : MonoBehaviour
 	IEnumerator PopUpTimeout1()
 	{
 		popUpImage1.gameObject.SetActive(true);
-		popUpText1.gameObject.SetActive(true);
+		//popUpText1.gameObject.SetActive(true);
 		yield return new WaitForSeconds(3f);
 		popUpImage1.gameObject.SetActive(false);
-		popUpText1.gameObject.SetActive(false);
-		health1 = 0;
+		//popUpText1.gameObject.SetActive(false);
+		lives2 = player2.gameObject.GetComponent<Health>()._livesCount;
 		
 	}
 	
@@ -87,10 +85,10 @@ public class RoundPopUp : MonoBehaviour
 	IEnumerator PopUpTimeout2()
 	{
 		popUpImage2.gameObject.SetActive(true);
-		popUpText2.gameObject.SetActive(true);
+		//popUpText2.gameObject.SetActive(true);
 		yield return new WaitForSeconds(3f);
 		popUpImage2.gameObject.SetActive(false);
-		popUpText2.gameObject.SetActive(false);
-		health2 = 0;
+		//popUpText2.gameObject.SetActive(false);
+		lives1 = player1.gameObject.GetComponent<Health>()._livesCount;
 	}
 }
