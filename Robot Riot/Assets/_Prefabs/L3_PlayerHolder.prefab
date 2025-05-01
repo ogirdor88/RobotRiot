@@ -2810,8 +2810,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4117984480142439922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.058047242, y: -0.056006707, z: 0.0032615794, w: 0.9967363}
-  m_LocalPosition: {x: 0.74, y: 1.297, z: -1.6539997}
+  m_LocalRotation: {x: -0.010598912, y: -0.028606089, z: -0.00030343203, w: 0.99953455}
+  m_LocalPosition: {x: 0.26330385, y: 0.42735112, z: 0.31367642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3147,9 +3147,9 @@ MonoBehaviour:
   CameraDistance: 2
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
+    m_Bits: 128
+  IgnoreTag: Player
+  CameraRadius: 0.001
   DampingIntoCollision: 0
   DampingFromCollision: 2
 --- !u!1 &4517117712127001235
@@ -4723,8 +4723,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7701942927096897961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.058047242, y: -0.056006707, z: 0.0032615794, w: 0.9967363}
-  m_LocalPosition: {x: 0.74, y: 1.297, z: -1.6539997}
+  m_LocalRotation: {x: -0.010598912, y: -0.028606089, z: -0.00030343203, w: 0.99953455}
+  m_LocalPosition: {x: 0.26330385, y: 0.42735112, z: 0.31367642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4890,7 +4890,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 6669401733891300940}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5754,6 +5754,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  noCollisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   _playerSpeed: 4
   botMode: 0
   canChange: 1
@@ -5778,6 +5781,9 @@ MonoBehaviour:
   isChanging: 0
   impulseScource: {fileID: 3921688300185951729}
   botSwitchSound: {fileID: 5609151054498364302}
+  botText: {fileID: 2615725344078411644}
+  virtualCam: {fileID: 8190248158333718779}
+  camCollision: {fileID: 0}
 --- !u!114 &3615163168465011546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6397,6 +6403,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+--- !u!114 &2615725344078411644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6648144162212376819, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+  m_PrefabInstance: {fileID: 8650886788413835151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3505305691776876189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}

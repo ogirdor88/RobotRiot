@@ -973,7 +973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829888269412116134}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2423988, y: -0.010016927, z: 0.2699829, w: 0.9318003}
+  m_LocalRotation: {x: 0.24239144, y: -0.010022965, z: 0.26998264, w: 0.9318022}
   m_LocalPosition: {x: 0.22593498, y: 0.66111255, z: 0.23376417}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -992,11 +992,11 @@ ParentConstraint:
   serializedVersion: 2
   m_Weight: 1
   m_TranslationAtRest: {x: 0.22593498, y: 0.66111255, z: 0.23376417}
-  m_RotationAtRest: {x: 27.202936, y: 7.248639, z: 34.073242}
+  m_RotationAtRest: {x: 27.202318, y: 7.247599, z: 34.072853}
   m_TranslationOffsets:
   - {x: 0.030001402, y: -0.026752472, z: 0.009999752}
   m_RotationOffsets:
-  - {x: 88.5892, y: -173.70189, z: 156.99135}
+  - {x: 88.59031, y: -173.70232, z: 156.99106}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -3898,9 +3898,9 @@ MonoBehaviour:
   CameraDistance: 2
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
-  IgnoreTag: 
-  CameraRadius: 0.2
+    m_Bits: 128
+  IgnoreTag: Player
+  CameraRadius: 0.001
   DampingIntoCollision: 0
   DampingFromCollision: 2
 --- !u!1 &6578304363309272373
@@ -4148,8 +4148,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7235081738362124146}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.058047242, y: -0.056006707, z: 0.0032615794, w: 0.9967363}
-  m_LocalPosition: {x: 0.74, y: 1.297, z: -1.6539997}
+  m_LocalRotation: {x: -0.010598912, y: -0.028606089, z: -0.00030343203, w: 0.99953455}
+  m_LocalPosition: {x: 0.26330385, y: 0.42735115, z: 0.31367642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4714,8 +4714,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7775231576759980305}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.058047242, y: -0.056006707, z: 0.0032615794, w: 0.9967363}
-  m_LocalPosition: {x: 0.74, y: 1.297, z: -1.6539997}
+  m_LocalRotation: {x: -0.010598912, y: -0.028606089, z: -0.00030343203, w: 0.99953455}
+  m_LocalPosition: {x: 0.26330385, y: 0.42735115, z: 0.31367642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4818,7 +4818,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 6291583860035197264}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5978,6 +5978,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+  noCollisionMask:
+    serializedVersion: 2
+    m_Bits: 0
   _playerSpeed: 4
   botMode: 0
   canChange: 1
@@ -6002,6 +6005,9 @@ MonoBehaviour:
   isChanging: 0
   impulseScource: {fileID: 3921688300185951729}
   botSwitchSound: {fileID: 3497644386403277240}
+  botText: {fileID: 2615725344078411644}
+  virtualCam: {fileID: 4455937397117304966}
+  camCollision: {fileID: 0}
 --- !u!114 &3615163168465011546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6439,6 +6445,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+--- !u!114 &2615725344078411644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6648144162212376819, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
+  m_PrefabInstance: {fileID: 8650886788413835151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3505305691776876189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5236357363963083026, guid: 4d868829148f6ed48bf3c162edb01b52, type: 3}
