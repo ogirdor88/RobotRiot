@@ -101,7 +101,7 @@ public class Health : MonoBehaviour
 
         if (isPlayer)
         {
-            if (MatchTimer.suddenDeath && respawn)
+            if (MatchTimer.suddenDeath && respawn & !_playerController.isChanging)
             {
                 playerController.canChange = true;
                 SuddenDeathRespawn();
