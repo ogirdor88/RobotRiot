@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
     public bool botMode = false;
     private bool slide = false;
     private bool iced = false;
-    [SerializeField] private bool canChange = true;
+    public bool canChange = true;
 
     public bool isShooting = false; 
     public bool istrapping = false;
