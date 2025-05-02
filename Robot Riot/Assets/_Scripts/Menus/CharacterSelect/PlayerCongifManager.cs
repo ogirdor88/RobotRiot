@@ -14,8 +14,6 @@ public class PlayerCongifManager : MonoBehaviour
     public static PlayerCongifManager instance { get; private set; }
     public GameObject playerInfo;
 
-    private bool player1;
-
     private void Awake()
     {
         // if there is a playerConfigManager already, throw the debug message
@@ -78,12 +76,10 @@ public class PlayerCongifManager : MonoBehaviour
         if(pi.devices[0].name == test)
         {
             Debug.Log("W PEEM");
-            player1 = true;
         }
         else
         {
             Debug.Log("L Peem");
-            player1 = false;
         }
 
 
