@@ -13,7 +13,8 @@ public class TempSceneSwitch : MonoBehaviour
 
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject items;
-    [SerializeField] private Button creditsX, itemsX, creditsButton, itemsButton;
+    [SerializeField] private GameObject settings;
+    [SerializeField] private Button creditsX, itemsX, settingsX, creditsButton, itemsButton, settingsButton;
 
    /* private void Awake()
     {
@@ -75,10 +76,22 @@ public class TempSceneSwitch : MonoBehaviour
         Debug.Log("Items");
     }
 
+    public void ShowSettings()
+    {
+        settings.SetActive(true);
+        settingsX.Select();
+        Debug.Log("Settings");
+    }
+
     public void BackOutItems()
     {
         items.SetActive(false);
         itemsButton.Select();
+    }
+    public void BackOutSettings()
+    {
+        settings.SetActive(false);
+        settingsButton.Select();
     }
     public void BackOutCredits()
     {

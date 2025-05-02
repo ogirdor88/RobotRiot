@@ -18,6 +18,8 @@ public class Menus : MonoBehaviour
 
     private void Start()
     {
+        settings.GetComponent<SettingsMenu>().LoadVolume();
+
         //if (debugOnly)
         if ((Application.isEditor || Debug.isDebugBuild) && debug != null)
         {
@@ -59,11 +61,11 @@ public class Menus : MonoBehaviour
     //
     // Settings
     //
-    public void Settings()
+    /*public void Settings()
     {
         menu.SetActive(false);
         settings.SetActive(true);
-    }
+    }*/
 
     //
     // Debug
