@@ -295,7 +295,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
-                    ""groups"": ""Keyboard"",
+                    ""groups"": ""Controller"",
                     ""action"": ""Boost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
