@@ -70,6 +70,11 @@ public class PlayerCongifManager : MonoBehaviour
     public void HandlePlayerJoin(PlayerInput pi)
     {
         Debug.Log("player joined " + pi.playerIndex);
+        Debug.Log(pi.splitScreenIndex);
+        Debug.Log(pi.user);
+        Debug.Log(pi.user.pairedDevices);
+        Debug.Log(pi.user.platformUserAccountId);
+        Debug.Log(pi.user.platformUserAccountName);
         
         if(!playerConfigs.Any(p => p.playerIndext == pi.playerIndex)) 
         {
