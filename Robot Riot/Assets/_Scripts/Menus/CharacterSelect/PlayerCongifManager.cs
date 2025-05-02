@@ -71,9 +71,19 @@ public class PlayerCongifManager : MonoBehaviour
     {
         //Debug.Log(pi.user);
         Debug.Log(pi.devices[0].name);
-        Debug.Log(pi.devices[1].name);
-        
-        if(!playerConfigs.Any(p => p.playerIndext == pi.playerIndex)) 
+        string test = "XInputControllerWindows";
+
+        if(pi.devices[0].name == test)
+        {
+            Debug.Log("W PEEM");
+        }
+        else
+        {
+            Debug.Log("L Peem");
+        }
+
+
+        if (!playerConfigs.Any(p => p.playerIndext == pi.playerIndex)) 
         {
             pi.transform.SetParent(transform);
             playerConfigs.Add(new PlayerConfiguration(pi));
