@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCam;
     [SerializeField] private Cinemachine3rdPersonFollow camCollision;
 
+    private InventoryManager inventory;
+
 
     private void Awake()
     {
@@ -145,6 +147,8 @@ public class PlayerController : MonoBehaviour
             initialBotPosition = new Vector3(initialBotPosition.x, 0.28f, initialBotPosition.z);
         }
         camCollision = virtualCam.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+
+        inventory = gameObject.GetComponent<InventoryManager>();
     }
 
     private void Start()
@@ -405,6 +409,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isChanging == false && canChange == true)
             {
+                isChanging = true;
                 StartCoroutine(SwitchMode());
             }
         }
@@ -418,9 +423,8 @@ public class PlayerController : MonoBehaviour
         isChanging = true;
         yield return new WaitForSecondsRealtime(.4f);
         botMode = !botMode;
-        gameObject.GetComponent<InventoryManager>().SwapSlot(true);
-        if (botSwitchSound != null)
-            botSwitchSound.Play();
+        inventory.SwapSlot(true);
+        botSwitchSound.Play();
         if (botMode)
         {
             animator = botAnimator.GetComponent<Animator>();

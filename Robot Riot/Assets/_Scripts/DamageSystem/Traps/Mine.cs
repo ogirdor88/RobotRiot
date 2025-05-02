@@ -25,7 +25,7 @@ public class Mine : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitForCooldown());
-        if (MatchTimer.suddenDeath)
+        if (MatchTimer.suddenDeath == true)
         {
             Destroy(gameObject, 5f);
         }

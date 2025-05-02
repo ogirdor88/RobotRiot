@@ -145,11 +145,7 @@ public class Health : MonoBehaviour
                 _healthText.text = _currentHealth.ToString();
                 _healthFill.color = _healthColor.Evaluate(_healthSlider.normalizedValue);
             }
-            Debug.Log("DAMAGED");
-        }
-        else
-        {
-            Debug.Log("ALL GOOD");
+            //Debug.Log("DAMAGED");
         }
     }
     public void SetMaxHealth(int health)
@@ -164,7 +160,7 @@ public class Health : MonoBehaviour
     }
     private void Respawn()
     {
-        Debug.Log("Does this work?");
+        //Debug.Log("Does this work?");
         _playerController._playerCC.enabled = false;
         this.gameObject.transform.position = _spawnPoint;
         
@@ -190,7 +186,7 @@ public class Health : MonoBehaviour
             }
             else
             {
-                //Debug.LogError("Could not find the other player's Health component!");
+                Debug.LogError("Could not find the other player's Health component!");
             }
         }
         
@@ -228,14 +224,14 @@ public class Health : MonoBehaviour
             StartCoroutine(ObtainedPowerUp("Health Pack", healthPackTexure));
             StartCoroutine(CountDown(other.gameObject));
             //Destroy(other.gameObject);
-            Debug.Log("Collecteed H");
+            //Debug.Log("Collecteed H");
         }
         if(other.gameObject.tag == "PowerRibbon" && isPlayer)
         {
             StartCoroutine(PlayerProtected());
             StartCoroutine(CountDown(other.gameObject));
             //Destroy(other.gameObject);
-            Debug.Log("Collecteed PR");
+            //Debug.Log("Collecteed PR");
         }
         if(other.gameObject.tag == "EnergyDrink")
         {
@@ -258,6 +254,11 @@ public class Health : MonoBehaviour
             StartCoroutine(CountDown(other.gameObject));
             //Destroy(other.gameObject);
             Debug.Log("Collecteed ED");
+        }
+
+        if(other.tag == "Burger")
+        {
+            _currentHealth--;
         }
     }
 
@@ -299,6 +300,8 @@ public class Health : MonoBehaviour
             Debug.Log("Killed Audio");
         }
         else
+        {
             Destroy(other);
+        }
     }
 }
