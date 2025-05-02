@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public GameObject[] characters;
+    public static GameObject[] characters;
     
 
     private void Awake()

@@ -162,8 +162,8 @@ public class PlayerManager : MonoBehaviour
 
         GameObject player1, player2;
 
-        player1 = info.GetComponent<PlayerInfo>().characters[0];
-        player2 = info.GetComponent<PlayerInfo>().characters[1];
+        player1 = PlayerInfo.characters[0].gameObject;
+        player2 = PlayerInfo.characters[1].gameObject;
 
         PlayerInput.Instantiate(player1, 0, "Controls", -1,new[] { Gamepad.all[0] });
         //player1.GetComponentInChildren<CinemachineBrain>().gameObject.layer = LayerMask.NameToLayer("Player 1");
