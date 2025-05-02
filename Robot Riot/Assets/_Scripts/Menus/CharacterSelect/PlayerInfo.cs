@@ -7,25 +7,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public List<GameObject> characters;
+    public GameObject[] characters;
     
 
     private void Awake()
     {
-        characters = new List<GameObject>();
+        characters = new GameObject[];
         DontDestroyOnLoad(this);
     }
 
-    public void GetPlayerCharacter(GameObject prefab)
+    public void GetPlayerCharacter(GameObject prefab , bool check)
     {
-        characters.Add(prefab);
+        if(check) 
+        {
+            characters[0] = prefab;
+        }
+        else 
+        {
+            characters[1] = prefab; 
+        }
+        
     }
 
     public void WhoGoesWhere()
     {
-        for (int i = 0; i < characters.Count; i++)
+        for (int i = 0; i < characters.Length; i++)
         {
-            Debug.Log("Player" + i + " Chose" + characters[i]);
+            Debug.Log("Player" + i + " Chose " + characters[i]);
         }
     }
 }
