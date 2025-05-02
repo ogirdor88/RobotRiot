@@ -22,7 +22,8 @@ public class PlayerInfo : MonoBehaviour
         {
             characters[0] = prefab;
         }
-        else 
+        
+        if(!check)
         {
             characters[1] = prefab; 
         }
