@@ -37,7 +37,7 @@ public class PlayerCongifManager : MonoBehaviour
     public void SetPlayerCharacter(int index, GameObject prefab)
     {
         playerConfigs[index].PlayerPrefab = prefab;
-        playerInfo.GetComponent<PlayerInfo>().GetPlayerCharacter(prefab);
+        playerInfo.GetComponent<PlayerInfo>().GetPlayerCharacter(prefab, player1);
         playerInfo.GetComponent<PlayerInfo>().WhoGoesWhere();
     }
 

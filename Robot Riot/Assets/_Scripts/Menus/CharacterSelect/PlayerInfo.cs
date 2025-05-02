@@ -12,7 +12,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Awake()
     {
-        characters = new GameObject[1];
+        characters = new GameObject[2];
         DontDestroyOnLoad(this);
     }
 
