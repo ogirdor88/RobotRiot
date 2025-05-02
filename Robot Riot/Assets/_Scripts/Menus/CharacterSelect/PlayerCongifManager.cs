@@ -71,6 +71,7 @@ public class PlayerCongifManager : MonoBehaviour
     {
         //Debug.Log(pi.user);
         Debug.Log(pi.devices[0].name);
+        Debug.Log(pi.devices[1].name);
         
         if(!playerConfigs.Any(p => p.playerIndext == pi.playerIndex)) 
         {
