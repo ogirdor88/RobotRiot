@@ -14,9 +14,15 @@ public class Spawner : MonoBehaviour
     private float spawndelay;
 
     private int slotNum;
-    private bool spawned;
-    //private GameObject spawnedItem;
 
+    [SerializeField]
+    private bool spawned, canspawn;
+
+    //private GameObject spawnedItem;
+    private void Awake()
+    {
+        canspawn = true;
+    }
     private void Update()
     {
        if (!spawned && !MatchTimer.suddenDeath)
@@ -39,7 +45,7 @@ public class Spawner : MonoBehaviour
 
         //spawn the random item
         //spawnedItem = Instantiate(items[rand], new Vector3(transform.position.x,transform.position.y + .5f, transform.position.z), Quaternion.identity);
-        slotNum = items[rand].GetComponent<DeployTrapWeapon>().slot;
+        FindSlot(items[rand]);
         Debug.Log(items[rand].name + " Slot:" + slotNum);
        Instantiate(items[rand], new Vector3(transform.position.x,transform.position.y + .5f, transform.position.z), Quaternion.identity);
         //set the spawned bool to true
@@ -49,17 +55,39 @@ public class Spawner : MonoBehaviour
     private void ConstantSpawn(int index)
     {
         //spawnedItem = Instantiate(items[index], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
-        slotNum = items[index].GetComponent<DeployTrapWeapon>().slot;
+        FindSlot(items[index]);
         Debug.Log(items[index].name + " Slot:" + slotNum);
         Instantiate(items[index], new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z), Quaternion.identity);
         //set the spawned bool to true
         spawned = true;
     }
 
-    private void FindSlot(//pass a game object here)
-        )
+    private void FindSlot(GameObject item)
     {
-        //check for slot number here 
+        //check if the item is a trap
+        if (item.GetComponent<DeployTrapWeapon>() != null)
+        {
+            //set the slot number
+            slotNum = item.GetComponent<DeployTrapWeapon>().slot;
+        }
+
+        //check if the item is a boombox 
+        if (item.GetComponent<BoomBox>() != null)
+        {
+            slotNum = item.GetComponent<BoomBox>().slot;
+        }
+
+        //check if the item is a cannon 
+        if (item.GetComponent<Cannon>() != null)
+        {
+            slotNum = item.GetComponent<Cannon>().slot;
+        }
+
+        //check if the item is a Laser gun 
+        if (item.GetComponent<LaserGun>() != null)
+        {
+            slotNum = item.GetComponent<LaserGun>().slot;
+        }
     }
     private IEnumerator NewSpawnDelay()
     {
@@ -72,15 +100,20 @@ public class Spawner : MonoBehaviour
         if (other.tag == "Player") 
         {
             //Destroy(spawnedItem);
-            StartCoroutine(NewSpawnDelay());
+            //if the spawner has an
+            if(canspawn)
+            {
+                canspawn = false;
+                StartCoroutine(NewSpawnDelay());
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && other.GetComponent<InventoryManager>().inventory[slotNum] == null)
         {
-             
+            canspawn = true;
         }
     }
 }
