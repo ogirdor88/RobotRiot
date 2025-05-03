@@ -15,6 +15,8 @@ public class InventoryManager : MonoBehaviour
 
     private Weapons currentWeapon;
 
+    private PlayerController playerController;
+
     public int activeSlot;
 
     [SerializeField] private GameObject weaponLocation;
@@ -25,51 +27,55 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         //inventory = new GameObject[5];
+        playerController = gameObject.GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         //if you run into a weapon
-        if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>() && !other.GetComponent<Weapon>().playerMove)
+        if (other.gameObject.tag == "Weapon" && other.GetComponent<Weapon>() && !other.GetComponent<Weapon>().playerMove && playerController.isChanging == false)
         {
-            Debug.Log("Got Weapon");
-            Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
-            
-            //apply impulse channel to the weapon so that the weapon recoil is sending to the correct player
-            other.GetComponent<CinemachineImpulseSource>().m_ImpulseDefinition.m_ImpulseChannel = gameObject.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
-            //
-
-
-            if (inventory[other.GetComponent<Weapon>().slot] != null && other.GetComponent<Weapon>().canTrap != true && inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo < inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo)
+            if(playerController.isChanging == false)
             {
-                inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo = inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo;
-                inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
-                Destroy(other.gameObject);
-            }
-            else if (inventory[other.GetComponent<Weapon>().slot] == null)
-            {
-                other.gameObject.transform.position = weaponLocation.transform.position;
-                other.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
-                other.gameObject.transform.parent = weaponLocation.transform.parent;
-                //turn off current weapon or trap
-                if (inventory[activeSlot])
-                {
-                    inventory[activeSlot].SetActive(false);
-                    inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
-                }
-                //change the current slot to the weapon you just picked up
-                activeSlot = other.GetComponent<Weapon>().slot;
-                /*
-                if (activeSlot != other.GetComponent<Weapon>().slot)
-                    other.gameObject.SetActive(false);
-                */
+                Debug.Log("Got Weapon");
+                Debug.Log("Weapon slot is: " + other.GetComponent<Weapon>().slot);
 
-                // this prevents you from taking the other players weapons
-                if (!other.gameObject.GetComponent<Weapon>().playerMove)
+                //apply impulse channel to the weapon so that the weapon recoil is sending to the correct player
+                other.GetComponent<CinemachineImpulseSource>().m_ImpulseDefinition.m_ImpulseChannel = gameObject.GetComponentInChildren<CinemachineIndependentImpulseListener>().m_ChannelMask;
+                //
+
+
+                if (inventory[other.GetComponent<Weapon>().slot] != null && other.GetComponent<Weapon>().canTrap != true && inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo < inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo)
                 {
-                    inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
-                    other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                    inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().remainingAmmo = inventory[other.GetComponent<Weapon>().slot].GetComponent<Weapon>().weapon.ammo;
                     inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
+                    Destroy(other.gameObject);
+                }
+                else if (inventory[other.GetComponent<Weapon>().slot] == null)
+                {
+                    other.gameObject.transform.position = weaponLocation.transform.position;
+                    other.gameObject.transform.rotation = weaponLocation.transform.parent.transform.rotation * other.transform.rotation;
+                    other.gameObject.transform.parent = weaponLocation.transform.parent;
+                    //turn off current weapon or trap
+                    if (inventory[activeSlot])
+                    {
+                        inventory[activeSlot].SetActive(false);
+                        inventory[activeSlot].GetComponent<Weapon>().canShoot = true;
+                    }
+                    //change the current slot to the weapon you just picked up
+                    activeSlot = other.GetComponent<Weapon>().slot;
+                    /*
+                    if (activeSlot != other.GetComponent<Weapon>().slot)
+                        other.gameObject.SetActive(false);
+                    */
+
+                    // this prevents you from taking the other players weapons
+                    if (!other.gameObject.GetComponent<Weapon>().playerMove)
+                    {
+                        inventory[other.GetComponent<Weapon>().slot] = other.gameObject;
+                        other.gameObject.GetComponent<Weapon>().playerMove = gameObject.GetComponent<PlayerController>();
+                        inventoryUI.GetComponent<WeaponUI>().UpdateWeapon();
+                    }
                 }
             }
         }

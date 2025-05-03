@@ -564,11 +564,6 @@ public class PlayerController : MonoBehaviour
             if(other.gameObject.GetComponent<IceSpikes>().count == 1)
             StartCoroutine(SlowDown());
         }
-
-        if(other.tag == "Spawner")
-        {
-            canChange = false;
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -577,11 +572,6 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Oil")
         {
             slide = false;
-        }
-
-        if(other.tag == "Spawner")
-        {
-            canChange = true;
         }
     }
 
