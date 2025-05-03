@@ -25,6 +25,7 @@ public class MatchTimer : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private VideoPlayer sdClip;
     [SerializeField] private Camera mainCam;
+    [SerializeField] private RawImage cutScne;
 
     private void Awake()
     {
@@ -94,12 +95,14 @@ public class MatchTimer : MonoBehaviour
     {
         mainCam.enabled = true;
         sdClip.Play();
+        cutScne.enabled = true;
         //Debug.LogWarning("CLIP PLAY FIRST");
         yield return new WaitForSeconds(clipLength);
         camOn = true;
         stop = true;
         //Debug.LogWarning("CLIP PLAY SECOND");
         Destroy(sdClip.gameObject);
+        Destroy(cutScne.gameObject);
     }
 
     private void OnDestroy()
