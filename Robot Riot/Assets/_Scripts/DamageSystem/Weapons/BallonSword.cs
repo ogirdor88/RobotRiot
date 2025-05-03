@@ -21,6 +21,7 @@ public class BallonSword : Weapon
 
     private void Start()
     {
+        timeToFire = weapon.fireRate;
         canShoot = true;
         damageCollider.enabled = false;
         owner = playerMove.gameObject;
@@ -49,6 +50,7 @@ public class BallonSword : Weapon
             {
                 other.GetComponent<Health>().TakeDamage(weapon.damage + bonusDamage);
                 hitSound.Play();
+                damageCollider.enabled = false;
             }
             Debug.Log("Hit health" + other.gameObject);
             Debug.Log("SAASSAASASA");
@@ -70,13 +72,13 @@ public class BallonSword : Weapon
         vfx.GetComponent<HitboxDamage>().weapon = weapon;
         vfx.GetComponent<HitboxDamage>().playerMove = playerMove;
         vfx.GetComponent<HitboxDamage>().hitSound = hitSound;
+
         yield return new WaitForSeconds(timeToFire);
 
         //Vector3 direction = new Vector3(1, 1, -1);
         impulseScource.GenerateImpulse(impulseScource.m_DefaultVelocity * 3);
-
-        Destroy(vfx);
         damageCollider.enabled = false;
+        Destroy(vfx);
         canShoot = true;
         //playerMove.animator.SetBool("Swing", !playerMove.isShooting);
     }
