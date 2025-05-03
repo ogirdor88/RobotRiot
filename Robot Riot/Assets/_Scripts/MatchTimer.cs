@@ -93,9 +93,10 @@ public class MatchTimer : MonoBehaviour
 
     IEnumerator PlayClip()
     {
+        cutScne.gameObject.SetActive(true);
         mainCam.enabled = true;
         sdClip.Play();
-        cutScne.enabled = true;
+        
         //Debug.LogWarning("CLIP PLAY FIRST");
         yield return new WaitForSeconds(clipLength);
         camOn = true;
