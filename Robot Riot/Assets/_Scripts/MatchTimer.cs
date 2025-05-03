@@ -24,10 +24,12 @@ public class MatchTimer : MonoBehaviour
 
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private VideoPlayer sdClip;
+    [SerializeField] private GameObject sdTexture;
     [SerializeField] private Camera mainCam;
 
     private void Awake()
     {
+        sdTexture.SetActive(false);
         //converts time to seconds
         startTime *= 60;
         suddenDeathTime *= 60;
@@ -92,12 +94,15 @@ public class MatchTimer : MonoBehaviour
 
     IEnumerator PlayClip()
     {
+        sdTexture.SetActive(true);
         mainCam.enabled = true;
         sdClip.Play();
         //Debug.LogWarning("CLIP PLAY FIRST");
         yield return new WaitForSeconds(clipLength);
         camOn = true;
         stop = true;
+        yield return new WaitForSeconds(2f);
+        sdTexture.SetActive(false);
         //Debug.LogWarning("CLIP PLAY SECOND");
         //Destroy(sdClip.gameObject);
     }
