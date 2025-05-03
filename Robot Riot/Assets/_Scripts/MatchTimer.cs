@@ -99,7 +99,7 @@ public class MatchTimer : MonoBehaviour
         camOn = true;
         stop = true;
         //Debug.LogWarning("CLIP PLAY SECOND");
-        Destroy(sdClip.gameObject);
+        //Destroy(sdClip.gameObject);
     }
 
     private void OnDestroy()
