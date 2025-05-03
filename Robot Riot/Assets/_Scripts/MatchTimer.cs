@@ -29,7 +29,10 @@ public class MatchTimer : MonoBehaviour
 
     private void Awake()
     {
-        sdTexture.SetActive(false);
+        if(sdTexture != null)
+        {
+            sdTexture.SetActive(false);
+        }
         //converts time to seconds
         startTime *= 60;
         suddenDeathTime *= 60;
