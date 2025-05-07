@@ -11,19 +11,13 @@ public class MenuControls : MonoBehaviour
     private void Start()
     {
         // Get all connected gamepads
-        var gamepads = Gamepad.all;
 
-        if (gamepads.Count > 1)
+        if (Gamepad.all.Count > 1)
         {
-            for (int i = 1; i < gamepads.Count; i++)
+            for (int i = 1; i < Gamepad.all.Count; i++)
             {
-                DisableController(gamepads[i]);
+                DisableController(Gamepad.all[i]);
             }
-        }
-
-        for (int i = 0; i <= gamepads.Count; i++)
-        {
-            Debug.LogWarning(i);
         }
     }
 
@@ -33,7 +27,10 @@ public class MenuControls : MonoBehaviour
         {
             if (playerInputManager.playerCount >= 1)
             {
-                EnableController(Gamepad.all[1]);
+                for (int i = 0; i < Gamepad.all.Count; i++)
+                {
+                    EnableController(Gamepad.all[i]);
+                }
             }
         }
     }
